@@ -1,0 +1,14 @@
+{
+  "name": "Sunshine",
+	"servePort": 8000,
+	"partitions": {
+        "Sunshine": {
+            "path": "Sunshine",
+			"target": "ReplicatedStorage.Sunshine"
+        },
+        "Assets": {
+            "path": "Assets/index.lua",
+			"target": "ReplicatedStorage.Assets.index"
+		}
+	}
+}
