@@ -15,6 +15,19 @@ return function(Sunshine, entity)
                 originalCFrames[descendant] = descendant.CFrame
             end
         end
+        transform.cFrame = nil
+        setmetatable(transform, {
+            __index = function(self, key)
+                if key == "cFrame" then
+                    return model.model:GetPrimaryPartCFrame()
+                end
+            end,
+            __newindex = function(self, key, value)
+                if key == "cFrame" then
+                    model.model:SetPrimaryPartCFrame(value)
+                end
+            end
+        })
         Sunshine:update(function()
             for index, descendant in pairs(model.model:GetDescendants()) do
                 if descendant:IsA("BasePart") then
@@ -23,9 +36,6 @@ return function(Sunshine, entity)
                 end
             end
             lastSize = transform.size
-            if not (entity.physics and not entity.physics.anchored) then
-                model.model:SetPrimaryPartCFrame(transform.cFrame)
-            end
         end)
     end
 end

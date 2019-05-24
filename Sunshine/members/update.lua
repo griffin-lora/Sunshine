@@ -1,5 +1,14 @@
 local RunService = game:GetService("RunService")
 
 return function(Sunshine, callback)
-    Sunshine:addConnection(RunService.RenderStepped, callback) 
+    if not Sunshine.updateConnection then
+        Sunshine.updateConnection = RunService.RenderStepped:Connect(function(...)
+            if not Sunshine.paused then
+                for _, callback in ipairs(Sunshine.updateCallbacks) do
+                    callback(...)
+                end
+            end
+        end)
+    end
+    Sunshine.updateCallbacks[#Sunshine.updateCallbacks + 1] = callback
 end
