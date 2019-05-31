@@ -10,6 +10,7 @@ return function(Sunshine, scene)
         Sunshine.callOrder = callOrder
     end
     Sunshine:unloadScene()
+    Sunshine.dataScene = scene
     Sunshine.scene = {entities = {}}
     for _, entity in pairs(scene.entities) do
         Sunshine:createEntity(entity)

@@ -7,6 +7,7 @@ return function(Sunshine)
         for _, instance in pairs(Sunshine.instances) do
             instance:Destroy()
         end
+        Sunshine.dataScene = nil
         Sunshine.scene = nil
     end
 end

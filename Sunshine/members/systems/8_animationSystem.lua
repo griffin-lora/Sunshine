@@ -1,9 +1,22 @@
+-- TrafficConeGod
+
 return function(Sunshine, entity)
     local animator = entity.animator
     local model = entity.model
     if animator and model then
         local animationController = Instance.new("AnimationController")
         animationController.Parent = model.model
+        local animationTracks = {}
+        local function loadAnimation(id)
+            local animationTrack = animationTracks[id]
+            if not animationTrack then
+                local animation = Instance.new("Animation")
+                animation.AnimationId = "rbxassetid://"..id
+                animationTrack = animationController:LoadAnimation(animation)
+                animationTracks[id] = animationTrack
+            end
+            return animationTrack
+        end
         local core = animator.core
         local coreTrack
         local idle = animator.idle
@@ -15,50 +28,46 @@ return function(Sunshine, entity)
         Sunshine:update(function()
             if action ~= animator.action then
                 action = animator.action
+                if actionTrack then
+                    actionTrack:Stop()
+                end
                 if animator.action then
-                    local animation = Instance.new("Animation")
-                    animation.AnimationId = "rbxassetid://"..action
-                    actionTrack = animationController:LoadAnimation(animation)
+                    actionTrack = loadAnimation(action)
                     actionTrack.Priority = Enum.AnimationPriority.Action
                     actionTrack:Play()
-                else
-                    actionTrack:Stop()
                 end
             end
             if movement ~= animator.movement then
                 movement = animator.movement
+                if movementTrack then
+                    movementTrack:Stop()
+                end
                 if animator.movement then
-                    local animation = Instance.new("Animation")
-                    animation.AnimationId = "rbxassetid://"..movement
-                    movementTrack = animationController:LoadAnimation(animation)
+                    movementTrack = loadAnimation(movement)
                     movementTrack.Priority = Enum.AnimationPriority.Movement
                     movementTrack:Play()
-                else
-                    movementTrack:Stop()
                 end
             end
             if idle ~= animator.idle then
                 idle = animator.idle
+                if idleTrack then
+                    idleTrack:Stop()
+                end
                 if animator.idle then
-                    local animation = Instance.new("Animation")
-                    animation.AnimationId = "rbxassetid://"..idle
-                    idleTrack = animationController:LoadAnimation(animation)
+                    idleTrack = loadAnimation(idle)
                     idleTrack.Priority = Enum.AnimationPriority.Idle
                     idleTrack:Play()
-                else
-                    idleTrack:Stop()
                 end
             end
             if core ~= animator.core then
                 core = animator.core
+                if coreTrack then
+                    coreTrack:Stop()
+                end
                 if animator.core then
-                    local animation = Instance.new("Animation")
-                    animation.AnimationId = "rbxassetid://"..core
-                    coreTrack = animationController:LoadAnimation(animation)
+                    coreTrack = loadAnimation(core)
                     coreTrack.Priority = Enum.AnimationPriority.Core
                     coreTrack:Play()
-                else
-                    coreTrack:Stop()
                 end
             end
         end)

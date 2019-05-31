@@ -1,3 +1,5 @@
+-- TrafficConeGod
+
 local cameraInstance = workspace.Camera
 
 return function(Sunshine, entity)

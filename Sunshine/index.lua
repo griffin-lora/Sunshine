@@ -20,17 +20,15 @@ local function getMember(instance)
 end
 
 return setmetatable({}, {
-
     __index = function(Sunshine, name)
         -- This just routes an index to the correct module in the members folder.
+        -- For example Sunshine.someIndex will return the required someIndex.lua file
         local member
         if folder.members:FindFirstChild(name) then
             local instance = folder.members[name]
             member = getMember(instance)
         end
-
         Sunshine[name] = member
         return member
     end
-
 })

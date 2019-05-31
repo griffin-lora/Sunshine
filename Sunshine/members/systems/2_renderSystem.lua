@@ -1,3 +1,5 @@
+-- TrafficConeGod
+
 return function(Sunshine, entity)
     local model = entity.model
     local transform = entity.transform
@@ -18,11 +20,19 @@ return function(Sunshine, entity)
         transform.cFrame = nil
         setmetatable(transform, {
             __index = function(self, key)
+                if not model.model.Parent then
+                    setmetatable(transform, {})
+                    return CFrame.new()
+                end
                 if key == "cFrame" then
                     return model.model:GetPrimaryPartCFrame()
                 end
             end,
             __newindex = function(self, key, value)
+                if not model.model.Parent then
+                    setmetatable(transform, {})
+                    return
+                end
                 if key == "cFrame" then
                     model.model:SetPrimaryPartCFrame(value)
                 end

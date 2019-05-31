@@ -1,3 +1,5 @@
+-- TrafficConeGod
+
 local RunService = game:GetService("RunService")
 
 return function(Sunshine, entity)
@@ -20,11 +22,19 @@ return function(Sunshine, entity)
         physics.velocity = nil
         setmetatable(physics, {
             __index = function(self, key)
+                if not model.model.Parent then
+                    setmetatable(physics, {})
+                    return Vector3.new()
+                end
                 if key == "velocity" then
                     return model.model.PrimaryPart.Velocity
                 end
             end,
             __newindex = function(self, key, value)
+                if not model.model.Parent then
+                    setmetatable(physics, {})
+                    return
+                end
                 if key == "velocity" then
                     model.model.PrimaryPart.Velocity = value
                 end

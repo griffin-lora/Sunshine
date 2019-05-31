@@ -5,7 +5,9 @@ return function(Sunshine, callback)
         Sunshine.updateConnection = RunService.RenderStepped:Connect(function(...)
             if not Sunshine.paused then
                 for _, callback in ipairs(Sunshine.updateCallbacks) do
-                    callback(...)
+                    if #Sunshine.updateCallbacks > 0 then
+                        callback(...)
+                    end
                 end
             end
         end)

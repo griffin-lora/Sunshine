@@ -1,19 +1,24 @@
-local UserInputService = game:GetService("UserInputService")
+local state = "state"
 
 return function(Sunshine, entity)
+    local component = entity[state]
     local character = entity.character
+    local input = entity.input
+    local transform = entity.transform
     local physics = entity.physics
-    if character and physics and character.controllable then
+    local animator = entity.animator
+    if component and character and input and transform and physics and animator and character.controllable then
+        local lastState = character.state
         Sunshine:update(function()
-            if character.state == "state" then
+            if character.state == state then
                 -- update
-                if --[[end criteria]] then
+                if --[[end criteria]] or (lastState == state and character.state ~= state) then
                     -- end
                     character.state = nil
                 end
-            elseif --[[start criteria]] then
+            elseif --[[start criteria]] or (lastState ~= state and character.state == state) then
                 -- start
-                character.state = "state"
+                character.state = state
             end
         end)
     end

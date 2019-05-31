@@ -1,3 +1,5 @@
+-- TrafficConeGod
+
 return function(Sunshine, entity)
     local collider = entity.collider
     local model = entity.model
