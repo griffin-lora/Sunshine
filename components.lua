@@ -69,10 +69,18 @@ return {
 		walkSpeedFactor = {Type = "number", Default = 1},
 	},
 	
+	charData = {
+		coins = {Type = "number", Default = 0}
+	},
+	
+	stats = {
+		coins = {Type = "number", Default = 0}
+	},
+	
 	jump = {
 		power = {Type = "number", Default = 50}
 	},
-	
+
 	dive = {
 		power = {Type = "number", Default = 50}
 	},
@@ -94,20 +102,26 @@ return {
 	animator = {
 	},
 	
-	Label = {
-		Text = "string"
+	frame = {
+		frame = {Type = "Instance", Default = nil}
 	},
 	
-	Button = {
-		MouseButton1Click = "Function"
+	uiTransform = {
+		position = {Type = "UDim2", Default = UDim2.new()},
+		size = {Type = "UDim2", Default = UDim2.new()},
+		zIndex = {Type = "number", Default = 0},
 	},
 	
-	Image = {
-		Image = "string"
+	label = {
+		text = {Type = "string", Default = "label"}
 	},
 	
-	Box = {
-		PlaceholderText = "string"
+	button = {
+		-- havent made events yet /shrug
+	},
+	
+	sound = {
+		id = {Type = "number", Default = 0}
 	}
 
 }
