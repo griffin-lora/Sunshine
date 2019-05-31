@@ -107,7 +107,8 @@ return {
 	},
 	
 	uiTransform = {
-		position = {Type = "UDim2", Default = UDim2.new()},
+        position = {Type = "UDim2", Default = UDim2.new()},
+        rotation = {Type = "number", Default = 0},
 		size = {Type = "UDim2", Default = UDim2.new()},
 		zIndex = {Type = "number", Default = 0},
 	},
@@ -122,6 +123,10 @@ return {
 	
 	sound = {
 		id = {Type = "number", Default = 0}
-	}
+    },
+    
+    transparency = {
+        transparency = {Type = "number", Default = 0}
+    }
 
 }
