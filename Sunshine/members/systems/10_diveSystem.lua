@@ -1,6 +1,7 @@
 -- TrafficConeGod
 
 local state = "dive"
+local lastInput = false
 
 return function(Sunshine, entity)
     local component = entity[state]
@@ -22,13 +23,14 @@ return function(Sunshine, entity)
                     character.state = nil
                     animator.action = 2794459258
                 end
-            elseif not character.grounded and input.e or (lastState ~= state and character.state == state) then
+            elseif not character.grounded and input.e and not lastInput or (lastState ~= state and character.state == state) and not lastInput then
                 -- start
                 character.state = state
                 horizontal = transform.cFrame.LookVector * component.power
                 physics.velocity = horizontal + Vector3.new(0, 30, 0)
                 animator.action = 1146922909
             end
+			lastInput = input.e
         end)
     end
 end

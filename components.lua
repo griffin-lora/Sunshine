@@ -107,9 +107,8 @@ return {
 	},
 	
 	uiTransform = {
-        position = {Type = "UDim2", Default = UDim2.new()},
-        rotation = {Type = "number", Default = 0},
-		size = {Type = "Vector2", Default = Vector2.new(1, 1)},
+		position = {Type = "UDim2", Default = UDim2.new()},
+		size = {Type = "UDim2", Default = UDim2.new()},
 		zIndex = {Type = "number", Default = 0},
 	},
 	
@@ -122,11 +121,30 @@ return {
 	},
 	
 	sound = {
-		id = {Type = "number", Default = 0}
-    },
-    
+		id = {Type = "number", Default = 0},
+		looped = {Type = "boolean", Default = false},
+		onstart = {Type = "boolean", Default = false}
+	},
+	
     transparency = {
         transparency = {Type = "number", Default = 0}
-    }
+    },
+
+	lighting = {
+		
+		sky = {Type = "Instance", Default = nil},
+		brightness = {Type = "number", Default = 2},
+		
+		ambient = {Type = "Color3", Default = Color3.new(128,128,128)},
+		outdoorAmbient = {Type = "Color3", Default = Color3.new(128,128,128)},
+		
+		globalShadows = {Type = "boolean", Default = true},
+		clockTime = {Type = "number", Default = 12},
+		
+		fogColor = {Type = "Color3", Default = Color3.new(192,192,192)},
+		fogStart = {Type = "number", Default = 0},
+		fogEnd = {Type = "number", Default = 100000},
+		
+	}
 
 }
