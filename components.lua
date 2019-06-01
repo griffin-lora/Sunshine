@@ -123,7 +123,7 @@ return {
 	sound = {
 		id = {Type = "number", Default = 0},
 		looped = {Type = "boolean", Default = false},
-		onstart = {Type = "boolean", Default = false}
+		onStart = {Type = "boolean", Default = false}
 	},
 	
     transparency = {
