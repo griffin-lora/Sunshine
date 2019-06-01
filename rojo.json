@@ -12,7 +12,7 @@
 		},
         "SunshineSuite": {
             "path": "SunshineSuite",
-			"target": "ServerStorage.SunshineSuite"
+			"target": "ServerStorage.SunshineSuite.SunshineSuite"
 		}
 	}
 }
