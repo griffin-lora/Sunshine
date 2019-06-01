@@ -6,7 +6,7 @@ return function(Sunshine, entity)
     local sound = entity.sound
 	if sound then
 		local lastId = sound.id
-		if sound.onstart then
+		if sound.onStart then
 	        local soundInstance = Instance.new("Sound")
 	        soundInstance.SoundId = "rbxassetid://"..sound.id
 			soundInstance.Looped = sound.looped
