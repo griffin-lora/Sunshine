@@ -2,7 +2,7 @@ return function(script, plugin)
 	
 	local Selection = game:GetService("Selection")
 	local ChangeHistoryService = game:GetService("ChangeHistoryService")
-	local Libs = require(script.Parent.Libs.init)
+	local Libs = require(script.Parent.Libs)
 	local Roact = require(script.Parent.Roact)
 	local Components = require(script.Parent.Components)
 	

@@ -1,13 +1,13 @@
 local SunshineSuite = {}
 
-function SunshineSuite:init(plugin)
+function SunshineSuite:init(script, plugin)
 	
 	plugin.Name = "SunshineSuite"
 	
 	local Selection = game:GetService("Selection")
 	local HttpService = game:GetService("HttpService")
 	local Sunshine = require(script.Parent.Sunshine)(script, plugin)
-	local Libs = require(script.Parent.Libs.init)
+	local Libs = require(script.Parent.Libs)
 	local Roact = require(script.Parent.Roact)
 	
 	local enabled = false
