@@ -11,7 +11,7 @@ return function(Sunshine, entity)
 	local sound = entity.sound
 	local tag = entity.tag
 	local charData = entity.charData
-	
+    
     if collectible and transform and collider and sound then
 		if tag.tag == "coin" then
 	        local collected = false

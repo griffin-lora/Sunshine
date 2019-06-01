@@ -109,7 +109,7 @@ return {
 	uiTransform = {
         position = {Type = "UDim2", Default = UDim2.new()},
         rotation = {Type = "number", Default = 0},
-		size = {Type = "UDim2", Default = UDim2.new()},
+		size = {Type = "Vector2", Default = Vector2.new(1, 1)},
 		zIndex = {Type = "number", Default = 0},
 	},
 	
