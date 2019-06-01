@@ -3,7 +3,7 @@
 return function(Sunshine, entity)
     local model = entity.model
     local transform = entity.transform
-    local physics = entity.physics
+    local transparency = entity.transparency
     if model and transform then
         model.model = model.model:Clone()
         Sunshine:addInstance(model.model)
@@ -43,6 +43,9 @@ return function(Sunshine, entity)
                 if descendant:IsA("BasePart") then
                     descendant.Size = descendant.Size / lastSize
                     descendant.Size = descendant.Size * transform.size
+                    if transparency then
+                        descendant.Transparency = transparency.transparency
+                    end
                 end
             end
             lastSize = transform.size

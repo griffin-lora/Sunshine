@@ -5,5 +5,7 @@ return function(Sunshine, entity)
         for _, system in ipairs(Sunshine.callOrder) do
             system(Sunshine, entity)
         end
+    else
+        warn("Entity " .. entity.core.id .. " is inactive.")
     end
 end
