@@ -40,7 +40,7 @@ return function(Sunshine, entity)
 				charData.coins = charData.coins + 1
 				if charData.coins > 9999 then charData.coins = 9999 end
 				last = charData.coins
-				local gui = plr.PlayerGui:FindFirstChild("Main")
+				local gui = plr.PlayerGui:FindFirstChild("ScreenGui")
 				if gui ~= nil then
 					local counter = gui:FindFirstChild("Counters")
 					if counter then
@@ -56,7 +56,7 @@ return function(Sunshine, entity)
 			end
 			if last ~= charData.coins then
 				if charData.coins > 9999 then charData.coins = 9999 end
-				local gui = plr.PlayerGui:FindFirstChild("Main")
+				local gui = plr.PlayerGui:FindFirstChild("ScreenGui")
 				if gui ~= nil then
 					local counter = gui:FindFirstChild("Counters")
 					if counter then
