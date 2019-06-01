@@ -128,6 +128,23 @@ return {
 	
     transparency = {
         transparency = {Type = "number", Default = 0}
-    }
+    },
+
+	lighting = {
+		
+		sky = {Type = "Instance", Default = nil},
+		brightness = {Type = "number", Default = 2},
+		
+		ambient = {Type = "Color3", Default = Color3.new(128,128,128)},
+		outdoorAmbient = {Type = "Color3", Default = Color3.new(128,128,128)},
+		
+		globalShadows = {Type = "boolean", Default = true},
+		clockTime = {Type = "number", Default = 12},
+		
+		fogColor = {Type = "Color3", Default = Color3.new(192,192,192)},
+		fogStart = {Type = "number", Default = 0},
+		fogEnd = {Type = "number", Default = 100000},
+		
+	}
 
 }

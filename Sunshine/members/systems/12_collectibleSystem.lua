@@ -38,21 +38,35 @@ return function(Sunshine, entity)
 			if addCoin then
 				addCoin = false
 				charData.coins = charData.coins + 1
+				if charData.coins > 9999 then charData.coins = 9999 end
 				last = charData.coins
 				local gui = plr.PlayerGui:FindFirstChild("Main")
 				if gui ~= nil then
 					local counter = gui:FindFirstChild("Counters")
 					if counter then
-						counter.coinIcon.coinCounter.Text = charData.coins
+						local text = tostring(charData.coins)
+						if string.len(text) < 4 then
+							for i=1, 4 - string.len(text) do
+								text = "0"..text
+							end
+						end
+						counter.coinIcon.coinCounter.Text = text
 					end
 				end
 			end
 			if last ~= charData.coins then
+				if charData.coins > 9999 then charData.coins = 9999 end
 				local gui = plr.PlayerGui:FindFirstChild("Main")
 				if gui ~= nil then
 					local counter = gui:FindFirstChild("Counters")
 					if counter then
-						counter.coinIcon.coinCounter.Text = charData.coins
+						local text = tostring(charData.coins)
+						if string.len(text) < 4 then
+							for i=1, 4 - string.len(text) do
+								text = "0"..text
+							end
+						end
+						counter.coinIcon.coinCounter.Text = text
 					end
 				end
 				last = charData.coins
