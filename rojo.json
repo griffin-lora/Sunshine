@@ -10,9 +10,9 @@
             "path": "Assets/index.lua",
 			"target": "ReplicatedStorage.Assets.index"
 		},
-        "components": {
-            "path": "components.lua",
-			"target": "ServerStorage.SunshineSuite.Components"
+        "SunshineSuite": {
+            "path": "SunshineSuite",
+			"target": "ServerStorage.SunshineSuite"
 		}
 	}
 }

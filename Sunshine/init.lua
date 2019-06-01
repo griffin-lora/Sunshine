@@ -5,7 +5,7 @@
 
 ]]
 
-local folder = script.Parent
+local folder = script
 
 local function getMember(instance)
     if instance:IsA("ModuleScript") then
