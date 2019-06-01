@@ -12,6 +12,7 @@ gui.Parent = playerGui -- ANGERY
 return function(Sunshine, entity)
     local frame = entity.frame
     local uiTransform = entity.uiTransform
+    local transparency = entity.transparency
     if frame and uiTransform then
         frame.frame = frame.frame:Clone()
         Sunshine:addInstance(frame.frame)
@@ -22,6 +23,9 @@ return function(Sunshine, entity)
             frame.frame.Size = UDim2.new(originalSize.X.Scale * uiTransform.size.X, originalSize.X.Offset * uiTransform.size.X, originalSize.Y.Scale * uiTransform.size.Y, originalSize.Y.Offset * uiTransform.size.Y)
             frame.frame.Rotation = uiTransform.rotation
             frame.frame.ZIndex = uiTransform.zIndex
+            if transparency then
+                frame.frame.Transparency = transparency.transparency
+            end
         end)
     end
 end
