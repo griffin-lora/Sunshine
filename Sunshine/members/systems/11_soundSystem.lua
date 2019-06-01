@@ -6,11 +6,12 @@ return function(Sunshine, entity)
     local sound = entity.sound
 	if sound then
 		local lastId = sound.id
-		if sound.onStart then
+		if sound.playing then
 	        local soundInstance = Instance.new("Sound")
 	        soundInstance.SoundId = "rbxassetid://"..sound.id
 			soundInstance.Looped = sound.looped
-	        soundInstance.Parent = SoundService
+			soundInstance.Parent = SoundService
+			Sunshine:addInstance(soundInstance)
 	        soundInstance:Play()
 		end
         Sunshine:update(function()
@@ -26,7 +27,8 @@ return function(Sunshine, entity)
                     local soundInstance = Instance.new("Sound")
                     soundInstance.SoundId = "rbxassetid://"..sound.id
 					soundInstance.Looped = sound.looped
-                    soundInstance.Parent = SoundService
+					soundInstance.Parent = SoundService
+					Sunshine:addInstance(soundInstance)
                     soundInstance:Play()
                 end
             end

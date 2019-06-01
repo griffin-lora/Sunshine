@@ -7,11 +7,12 @@ return function(Sunshine)
         for _, instance in pairs(Sunshine.instances) do
             instance:Destroy()
         end
-        for _,p in pairs(game.SoundService:GetChildren()) do
-			if p:IsA("Sound") then
-				p:Destroy()
-			end
-		end
+		game.ReplicatedStorage.Assets.skies.BrightBlue:Clone().Parent = game.Lighting
+		game.Lighting.Brightness = 2
+		game.Lighting.GlobalShadows = true
+		game.Lighting.ClockTime = 12
+		game.Lighting.FogStart = 0
+		game.Lighting.FogEnd = 100000
         Sunshine.dataScene = nil
         Sunshine.scene = nil
     end

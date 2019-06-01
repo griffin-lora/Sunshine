@@ -2,14 +2,10 @@ return function(Sunshine, entity)
 	
 	local lighting = entity.lighting
 	
-	for _,p in pairs(game.Lighting:GetChildren()) do
-		if p:IsA("Sky") then
-			p:Destroy()
-		end
-	end
-	
 	if lighting then
-		lighting.sky:Clone().Parent = game.Lighting
+		local sky = lighting.sky:Clone()
+		sky.Parent = game.Lighting
+		Sunshine:addInstance(sky)
 		game.Lighting.Brightness = lighting.brightness
 		game.Lighting.GlobalShadows = lighting.globalShadows
 		game.Lighting.ClockTime = lighting.clockTime
