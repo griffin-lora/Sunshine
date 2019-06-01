@@ -1,12 +1,12 @@
-local Section = require(script.Parent.Section)
-local Button = require(script.Parent.Button)
-local Label = require(script.Parent.Label)
-local Textbox = require(script.Parent.Textbox)
-local Slider = require(script.Parent.Slider)
-local RadioButtons = require(script.Parent.RadioButtons)
-local Checkbox = require(script.Parent.Checkbox)
-local Property = require(script.Parent.Property)
-local FitChildren = require(script.Parent.FitChildren)
+local Section = require(script.Section)
+local Button = require(script.Button)
+local Label = require(script.Label)
+local Textbox = require(script.Textbox)
+local Slider = require(script.Slider)
+local RadioButtons = require(script.RadioButtons)
+local Checkbox = require(script.Checkbox)
+local Property = require(script.Property)
+local FitChildren = require(script.FitChildren)
 
 return {
 	Section = Section,
