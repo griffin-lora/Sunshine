@@ -15,11 +15,5 @@ return function(Sunshine, entity)
 		game.Lighting.ClockTime = lighting.clockTime
 		game.Lighting.FogStart = lighting.fogStart
 		game.Lighting.FogEnd = lighting.fogEnd
-	else
-		game.Lighting.Brightness = 2
-		game.Lighting.GlobalShadows = true
-		game.Lighting.ClockTime = 12
-		game.Lighting.FogStart = 0
-		game.Lighting.FogEnd = 100000
 	end
 end
