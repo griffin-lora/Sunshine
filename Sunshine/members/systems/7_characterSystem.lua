@@ -82,6 +82,9 @@ return function(Sunshine, entity)
                     Sunshine:loadScene(Sunshine.dataScene)
                 end
             end
+            if model.model.PrimaryPart then
+                model.model.PrimaryPart.Anchored = character.anchored
+            end
         end)
     end
 end

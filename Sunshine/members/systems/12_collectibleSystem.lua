@@ -2,7 +2,10 @@
 
 local plr = game.Players.LocalPlayer
 local addCoin = false
+local addScript = false
 local last = 0
+local timeSinceLast = nil
+local removeScript = false
 
 return function(Sunshine, entity)
     local collectible = entity.collectible
@@ -12,6 +15,10 @@ return function(Sunshine, entity)
 	local sound = entity.sound
 	local tag = entity.tag
 	local charData = entity.charData
+	local character = entity.character
+	local animator = entity.animator
+	local physics = entity.physics
+	local lastcollected = false
     
     if collectible and transform and collider and sound and transparency then
 		if tag.tag == "coin" then
@@ -29,10 +36,21 @@ return function(Sunshine, entity)
 					addCoin = true
 	            end
 	        end)
+		elseif tag.tag == "script" then
+			local collected = false
+			Sunshine:update(function()
+				sound.id = nil
+				if collider.hitEntity and collider.hitEntity.tag and collider.hitEntity.tag.tag == "character" and not collected then
+					collected = true
+					addScript = true
+					sound.id = 1143857273
+					transparency.transparency = 1
+				end
+			end)
 		end
     end
 
-	if charData then
+	if charData and animator and character and physics then
 		last = charData.coins
 		Sunshine:update(function()
 			if addCoin then
@@ -54,6 +72,7 @@ return function(Sunshine, entity)
 					end
 				end
 			end
+
 			if last ~= charData.coins then
 				if charData.coins > 9999 then charData.coins = 9999 end
 				local gui = plr.PlayerGui:FindFirstChild("ScreenGui")
@@ -71,6 +90,26 @@ return function(Sunshine, entity)
 				end
 				last = charData.coins
 			end
+			
+			if timeSinceLast ~= nil and workspace.DistributedGameTime - timeSinceLast >= 2.85 and removeScript then
+				removeScript = false
+				character.controllable = true
+				character.anchored = false
+				Sunshine:unmuteAllSounds()
+			end
+
+			if addScript then
+				addScript = false
+				Sunshine:muteAllSounds()
+				animator.action = 1076799780
+				character.controllable = false
+				character.anchored = true
+				removeScript = true
+				timeSinceLast = workspace.DistributedGameTime
+			end
+
 		end)
 	end
+	
+
 end

@@ -27,7 +27,7 @@ return function(Sunshine, entity)
                     character.state = nil
                     animator.action = nil
                 end
-            elseif groundedRemember > 0 and input.space or (lastState ~= state and character.state == state) then
+            elseif groundedRemember > 0 and input.space and character.controllable or (lastState ~= state and character.state == state) and character.controllable then
                 -- start
                 character.state = state
                 groundedRemember = 0
