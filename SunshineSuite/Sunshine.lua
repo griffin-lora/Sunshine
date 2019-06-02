@@ -671,7 +671,7 @@ return function(script, plugin)
 								
 								local x, y, z = tonumber(vectorData[1]), tonumber(vectorData[2]), tonumber(vectorData[3])
 								
-								if (x and x < 255) and (y and y < 255) and (z and z < 255) then
+								if (x and x < 256) and (y and y < 256) and (z and z < 256) then
 									
 									rbx.Text = x..", "..y..", "..z
 									value = Color3.fromRGB(x, y, z)
