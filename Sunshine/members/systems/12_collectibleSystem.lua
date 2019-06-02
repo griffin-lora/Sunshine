@@ -60,7 +60,7 @@ return function(Sunshine, entity)
 				last = charData.coins
 				local gui = plr.PlayerGui:FindFirstChild("ScreenGui")
 				if gui ~= nil then
-					local counter = gui:FindFirstChild("Counters")
+					local counter = gui:FindFirstChild("CoinsFrame")
 					if counter then
 						local text = tostring(charData.coins)
 						if string.len(text) < 4 then
@@ -68,7 +68,7 @@ return function(Sunshine, entity)
 								text = "0"..text
 							end
 						end
-						counter.coinIcon.coinCounter.Text = text
+						counter.RegularFrame.RegularCoinsLabel.Text = text
 					end
 				end
 			end
