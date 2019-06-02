@@ -113,7 +113,10 @@ return {
 	},
 	
 	label = {
-		text = {Type = "string", Default = "label"}
+		text = {Type = "string", Default = "label"},
+        size = {Type = "UDim2", Default = UDim2.new(0, 100, 0, 100)},
+        color = {Type = "Color3", Default = Color3.new(1, 1, 1)},
+        font = {Type = "number", Default = 0}
 	},
 	
 	button = {
