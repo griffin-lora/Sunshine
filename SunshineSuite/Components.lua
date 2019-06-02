@@ -108,12 +108,14 @@ return {
 	
 	uiTransform = {
 		position = {Type = "UDim2", Default = UDim2.new()},
-		size = {Type = "Vector2", Default = Vector2.new()},
+		size = {Type = "Vector2", Default = Vector2.new(1, 1)},
 		zIndex = {Type = "number", Default = 0},
 	},
 	
 	label = {
-		text = {Type = "string", Default = "label"}
+		text = {Type = "string", Default = "label"},
+        size = {Type = "UDim2", Default = UDim2.new(0, 100, 0, 100)},
+        font = {Type = "number", Default = 0}
 	},
 	
 	button = {
