@@ -67,6 +67,7 @@ return {
 		torsoColor = {Type = "Color3", Default = Color3.fromRGB(163, 162, 165)},
 		walkSpeed = {Type = "number", Default = 16},
 		walkSpeedFactor = {Type = "number", Default = 1},
+		anchored = {Type = "boolean", Default = false},
 	},
 	
 	charData = {
@@ -138,13 +139,13 @@ return {
 		sky = {Type = "Instance", Default = nil},
 		brightness = {Type = "number", Default = 2},
 		
-		ambient = {Type = "Color3", Default = Color3.new(128,128,128)},
-		outdoorAmbient = {Type = "Color3", Default = Color3.new(128,128,128)},
+		ambient = {Type = "Color3", Default = Color3.new(128/255,128/255,128/255)},
+		outdoorAmbient = {Type = "Color3", Default = Color3.new(128/255,128/255,128/255)},
 		
 		globalShadows = {Type = "boolean", Default = true},
 		clockTime = {Type = "number", Default = 12},
 		
-		fogColor = {Type = "Color3", Default = Color3.new(192,192,192)},
+		fogColor = {Type = "Color3", Default = Color3.new(192/255,192/255,192/255)},
 		fogStart = {Type = "number", Default = 0},
 		fogEnd = {Type = "number", Default = 100000},
 		

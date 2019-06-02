@@ -23,7 +23,7 @@ return function(Sunshine, entity)
                     character.state = nil
                     animator.action = 2794459258
                 end
-            elseif not character.grounded and input.e and not lastInput or (lastState ~= state and character.state == state) and not lastInput then
+            elseif not character.grounded and input.e and not lastInput and character.controllable or character.controllable and (lastState ~= state and character.state == state) and not lastInput then
                 -- start
                 character.state = state
                 horizontal = transform.cFrame.LookVector * component.power

@@ -46,6 +46,14 @@ return function(Sunshine, entity)
                     if transparency then
                         descendant.Transparency = transparency.transparency
                     end
+                elseif descendant:IsA("ParticleEmitter") or descendant:IsA("PointLight") then
+                    if transparency then
+                        if transparency.transparency == 1 then
+                            descendant.Enabled = false
+                        elseif transparency.transparency == 0 then
+                            descendant.Enabled = true
+                        end
+                    end
                 end
             end
             lastSize = transform.size
