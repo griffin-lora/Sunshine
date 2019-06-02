@@ -43,6 +43,7 @@ return function(Sunshine, entity)
                 labelInstance.Rotation = uiTransform.rotation
                 labelInstance.ZIndex = uiTransform.zIndex
                 labelInstance.Text = label.text
+                labelInstance.TextColor3 = label.color
                 if transparency then
                     labelInstance.Transparency = transparency.transparency
                 end
