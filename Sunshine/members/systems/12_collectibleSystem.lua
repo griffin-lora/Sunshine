@@ -18,6 +18,7 @@ return function(Sunshine, entity)
 	local character = entity.character
 	local animator = entity.animator
 	local physics = entity.physics
+	local camera = entity.camera
 	local lastcollected = false
     
     if collectible and transform and collider and sound and transparency then
@@ -95,6 +96,7 @@ return function(Sunshine, entity)
 				removeScript = false
 				character.controllable = true
 				character.anchored = false
+				workspace.CurrentCamera.CameraType = Enum.CameraType.Custom
 				Sunshine:unmuteAllSounds()
 			end
 
@@ -104,6 +106,9 @@ return function(Sunshine, entity)
 				animator.action = 1076799780
 				character.controllable = false
 				character.anchored = true
+				transform.cFrame = CFrame.new(transform.cFrame.Position, Vector3.new(workspace.CurrentCamera.CFrame.Position.X,transform.cFrame.Position.Y,workspace.CurrentCamera.CFrame.Position.Z))
+				workspace.CurrentCamera.CameraType = Enum.CameraType.Scriptable
+				workspace.CurrentCamera.CFrame = CFrame.new((transform.cFrame.Position + (transform.cFrame.LookVector*12)) + Vector3.new(0,2,0),transform.cFrame.Position)
 				removeScript = true
 				timeSinceLast = workspace.DistributedGameTime
 			end
@@ -111,5 +116,4 @@ return function(Sunshine, entity)
 		end)
 	end
 	
-
 end
