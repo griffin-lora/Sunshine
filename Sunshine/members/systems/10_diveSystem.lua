@@ -26,7 +26,7 @@ return function(Sunshine, entity)
                 elseif character.state == "groundPound" and not character.grounded and input.e or (lastState ~= state and character.state == state) then
                     -- start
                     character.state = state
-                    character.movable = true
+                    physics.movable = true
                     horizontal = transform.cFrame.LookVector * component.power
                     physics.velocity = horizontal + Vector3.new(0, 30, 0)
                     animator.action = 1146922909

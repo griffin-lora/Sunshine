@@ -8,6 +8,9 @@ return function(Sunshine, entity)
     local physics = entity.physics
     local customPhysics = entity.customPhysics
     if model and transform and physics then
+        local bodyVelocity = Instance.new("BodyVelocity")
+        bodyVelocity.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
+        bodyVelocity.Velocity = Vector3.new()
         for index, descendant in pairs(model.model:GetDescendants()) do
             if descendant:IsA("BasePart") then
                 if physics.welded and descendant ~= model.model.PrimaryPart then
@@ -19,7 +22,13 @@ return function(Sunshine, entity)
                 descendant.CustomPhysicalProperties = PhysicalProperties.new(physics.density or 0.7, physics.friction or 0.3, physics.elasticity or 0.5, physics.frictionWeight or 1, physics.elasticityWeight or 1)
             end
         end
+        if physics.movable then
+            bodyVelocity.Parent = nil
+        else
+            bodyVelocity.Parent = model.model.PrimaryPart
+        end
         physics.velocity = nil
+        physics.movable = nil
         setmetatable(physics, {
             __index = function(self, key)
                 if not model.model.Parent then
@@ -28,6 +37,8 @@ return function(Sunshine, entity)
                 end
                 if key == "velocity" then
                     return model.model.PrimaryPart.Velocity
+                elseif key == "movable" then
+                    return not not bodyVelocity.Parent
                 end
             end,
             __newindex = function(self, key, value)
@@ -37,6 +48,12 @@ return function(Sunshine, entity)
                 end
                 if key == "velocity" then
                     model.model.PrimaryPart.Velocity = value
+                elseif key == "movable" then
+                    if value then
+                        bodyVelocity.Parent = nil
+                    else
+                        bodyVelocity.Parent = model.model.PrimaryPart
+                    end
                 end
             end
         })

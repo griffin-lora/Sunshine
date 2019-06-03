@@ -24,9 +24,6 @@ return function(Sunshine, entity)
     local physics = entity.physics
     local animator = entity.animator
     if character and model and input and transform and physics and animator then
-        local bodyVelocity = Instance.new("BodyVelocity")
-        bodyVelocity.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
-        bodyVelocity.Velocity = Vector3.new()
         Sunshine:update(function(step)
             local distance = -transform.cFrame.UpVector * 3.3
             local raycasts = {}
@@ -44,11 +41,6 @@ return function(Sunshine, entity)
             character.grounded = not not part
             if character.grounded then
                 physics.velocity = Vector3.new(physics.velocity.X, 0, physics.velocity.Z)
-            end
-            if character.movable then
-                bodyVelocity.Parent = nil
-            else
-                bodyVelocity.Parent = model.model.PrimaryPart
             end
             if character.controllable then
                 local moveVector = input.moveVector
