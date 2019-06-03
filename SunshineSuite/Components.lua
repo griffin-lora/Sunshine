@@ -29,7 +29,8 @@ return {
 		friction = {Type = "number", Default = 0.3},
 		elasticity = {Type = "number", Default = 0.5},
 		frictionWeight = {Type = "number", Default = 1},
-		elasticityWeight = {Type = "number", Default = 1}
+		elasticityWeight = {Type = "number", Default = 1},
+		movable = {Type = "boolean", Default = true},
 	},
 	
 	tag = {
@@ -66,8 +67,7 @@ return {
 		rightLegColor = {Type = "Color3", Default = Color3.fromRGB(163, 162, 165)},
 		torsoColor = {Type = "Color3", Default = Color3.fromRGB(163, 162, 165)},
 		walkSpeed = {Type = "number", Default = 16},
-		walkSpeedFactor = {Type = "number", Default = 1},
-		movable = {Type = "boolean", Default = false},
+		walkSpeedFactor = {Type = "number", Default = 1}
 	},
 	
 	charData = {
