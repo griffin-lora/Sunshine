@@ -25,6 +25,7 @@ return function(Sunshine, entity)
                     end
                     if character.grounded or (lastState == state and character.state ~= state) then
                         -- end
+                        physics.velocity = Vector3.new(0, 0, 0)
                         physics.movable = true
                         animator.action = nil
                         character.state = nil

@@ -38,7 +38,7 @@ return function(Sunshine, entity)
                 if key == "velocity" then
                     return model.model.PrimaryPart.Velocity
                 elseif key == "movable" then
-                    return not not bodyVelocity.Parent
+                    return not bodyVelocity.Parent
                 end
             end,
             __newindex = function(self, key, value)
