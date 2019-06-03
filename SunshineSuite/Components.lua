@@ -67,7 +67,7 @@ return {
 		torsoColor = {Type = "Color3", Default = Color3.fromRGB(163, 162, 165)},
 		walkSpeed = {Type = "number", Default = 16},
 		walkSpeedFactor = {Type = "number", Default = 1},
-		anchored = {Type = "boolean", Default = false},
+		movable = {Type = "boolean", Default = false},
 	},
 	
 	charData = {
@@ -83,7 +83,8 @@ return {
 	},
 
 	dive = {
-		power = {Type = "number", Default = 50}
+		power = {Type = "number", Default = 50},
+		bouncePower = {Type = "number", Default = 50}
 	},
 	
 	camera = {
@@ -145,6 +146,16 @@ return {
 		fogColor = {Type = "Color3", Default = Color3.fromRGB(192, 192, 192)},
 		fogStart = {Type = "number", Default = 0},
 		fogEnd = {Type = "number", Default = 100000},
-	}
+    },
+    
+    crouch = {
+        walkSpeedFactor = {Type = "number", Default = 0.5}
+    },
+    
+    groundPound = {
+        walkSpeedFactor = {Type = "number", Default = 0.1},
+        speed = {Type = "number", Default = 50},
+        delay = {Type = "number", Default = 0.5}
+    }
 
 }
