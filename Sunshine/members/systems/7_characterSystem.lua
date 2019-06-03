@@ -51,7 +51,7 @@ return function(Sunshine, entity)
                     physics.velocity = Vector3.new(physics.velocity.X, moveVector.Y * 50, physics.velocity.Z)
                     boost = -moveVector.Y * 10
                 end
-                if moveVector ~= Vector3.new() and character.movable then
+                if moveVector ~= Vector3.new() and physics.movable then
                     transform.cFrame = transform.cFrame:Lerp(CFrame.new(transform.cFrame.Position, transform.cFrame.Position + moveVector), step * character.walkSpeed)
                 end
                 if animator then

@@ -1,7 +1,7 @@
 --[[
 
     The Sunshine Engine
-    Written by TrafficConeGod
+    Written by TrafficConeGod and SuperMakerPlayer
 
 ]]
 
