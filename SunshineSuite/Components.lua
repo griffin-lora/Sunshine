@@ -127,7 +127,8 @@ return {
 	sound = {
 		id = {Type = "number", Default = 0},
 		looped = {Type = "boolean", Default = false},
-		playing = {Type = "boolean", Default = false}
+        playing = {Type = "boolean", Default = false},
+        volume = {Type = "number", Default = 0.5}
 	},
 	
     transparency = {
@@ -135,20 +136,15 @@ return {
     },
 
 	lighting = {
-		
 		sky = {Type = "Instance", Default = nil},
 		brightness = {Type = "number", Default = 2},
-		
-		ambient = {Type = "Color3", Default = Color3.new(128/255,128/255,128/255)},
-		outdoorAmbient = {Type = "Color3", Default = Color3.new(128/255,128/255,128/255)},
-		
+		ambient = {Type = "Color3", Default = Color3.fromRGB(128, 128, 128)},
+		outdoorAmbient = {Type = "Color3", Default = Color3.fromRGB(128, 128, 128)},
 		globalShadows = {Type = "boolean", Default = true},
 		clockTime = {Type = "number", Default = 12},
-		
-		fogColor = {Type = "Color3", Default = Color3.new(192/255,192/255,192/255)},
+		fogColor = {Type = "Color3", Default = Color3.fromRGB(192, 192, 192)},
 		fogStart = {Type = "number", Default = 0},
 		fogEnd = {Type = "number", Default = 100000},
-		
 	}
 
 }
