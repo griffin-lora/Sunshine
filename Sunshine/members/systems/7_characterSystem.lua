@@ -24,6 +24,9 @@ return function(Sunshine, entity)
     local physics = entity.physics
     local animator = entity.animator
     if character and model and input and transform and physics and animator then
+        local bodyVelocity = Instance.new("BodyVelocity")
+        bodyVelocity.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
+        bodyVelocity.Velocity = Vector3.new()
         Sunshine:update(function(step)
             local distance = -transform.cFrame.UpVector * 3.3
             local raycasts = {}
@@ -42,6 +45,11 @@ return function(Sunshine, entity)
             if character.grounded then
                 physics.velocity = Vector3.new(physics.velocity.X, 0, physics.velocity.Z)
             end
+            if character.movable then
+                bodyVelocity.Parent = nil
+            else
+                bodyVelocity.Parent = model.model.PrimaryPart
+            end
             if character.controllable then
                 local moveVector = input.moveVector
                 local boost = 0
@@ -51,7 +59,7 @@ return function(Sunshine, entity)
                     physics.velocity = Vector3.new(physics.velocity.X, moveVector.Y * 50, physics.velocity.Z)
                     boost = -moveVector.Y * 10
                 end
-                if moveVector ~= Vector3.new() then
+                if moveVector ~= Vector3.new() and character.movable then
                     transform.cFrame = transform.cFrame:Lerp(CFrame.new(transform.cFrame.Position, transform.cFrame.Position + moveVector), step * character.walkSpeed)
                 end
                 if animator then

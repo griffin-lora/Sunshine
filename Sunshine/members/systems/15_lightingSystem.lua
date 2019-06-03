@@ -1,18 +1,20 @@
+-- SuperMakerPlayer
+
+local Lighting = game:GetService("Lighting")
+
 return function(Sunshine, entity)
-	
 	local lighting = entity.lighting
-	
 	if lighting then
 		local sky = lighting.sky:Clone()
-		sky.Parent = game.Lighting
+		sky.Parent = Lighting
 		Sunshine:addInstance(sky)
-		game.Lighting.Ambient = lighting.ambient
-		game.Lighting.OutdoorAmbient = lighting.outdoorAmbient
-		game.Lighting.Brightness = lighting.brightness
-		game.Lighting.GlobalShadows = lighting.globalShadows
-		game.Lighting.ClockTime = lighting.clockTime
-		game.Lighting.FogColor = lighting.fogColor
-		game.Lighting.FogStart = lighting.fogStart
-		game.Lighting.FogEnd = lighting.fogEnd
+		Lighting.Ambient = lighting.ambient
+		Lighting.OutdoorAmbient = lighting.outdoorAmbient
+		Lighting.Brightness = lighting.brightness
+		Lighting.GlobalShadows = lighting.globalShadows
+		Lighting.ClockTime = lighting.clockTime
+		Lighting.FogColor = lighting.fogColor
+		Lighting.FogStart = lighting.fogStart
+		Lighting.FogEnd = lighting.fogEnd
 	end
 end
