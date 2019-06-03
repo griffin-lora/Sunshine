@@ -67,7 +67,7 @@ return {
 		torsoColor = {Type = "Color3", Default = Color3.fromRGB(163, 162, 165)},
 		walkSpeed = {Type = "number", Default = 16},
 		walkSpeedFactor = {Type = "number", Default = 1},
-		anchored = {Type = "boolean", Default = false},
+		movable = {Type = "boolean", Default = false},
 	},
 	
 	charData = {
@@ -83,7 +83,8 @@ return {
 	},
 
 	dive = {
-		power = {Type = "number", Default = 50}
+		power = {Type = "number", Default = 50},
+		bouncePower = {Type = "number", Default = 50}
 	},
 	
 	camera = {
@@ -127,7 +128,8 @@ return {
 	sound = {
 		id = {Type = "number", Default = 0},
 		looped = {Type = "boolean", Default = false},
-		playing = {Type = "boolean", Default = false}
+        playing = {Type = "boolean", Default = false},
+        volume = {Type = "number", Default = 0.5}
 	},
 	
     transparency = {
@@ -135,20 +137,25 @@ return {
     },
 
 	lighting = {
-		
 		sky = {Type = "Instance", Default = nil},
 		brightness = {Type = "number", Default = 2},
-		
-		ambient = {Type = "Color3", Default = Color3.new(128,128,128)},
-		outdoorAmbient = {Type = "Color3", Default = Color3.new(128,128,128)},
-		
+		ambient = {Type = "Color3", Default = Color3.fromRGB(128, 128, 128)},
+		outdoorAmbient = {Type = "Color3", Default = Color3.fromRGB(128, 128, 128)},
 		globalShadows = {Type = "boolean", Default = true},
 		clockTime = {Type = "number", Default = 12},
-		
-		fogColor = {Type = "Color3", Default = Color3.new(192,192,192)},
+		fogColor = {Type = "Color3", Default = Color3.fromRGB(192, 192, 192)},
 		fogStart = {Type = "number", Default = 0},
 		fogEnd = {Type = "number", Default = 100000},
-		
-	}
+    },
+    
+    crouch = {
+        walkSpeedFactor = {Type = "number", Default = 0.5}
+    },
+    
+    groundPound = {
+        walkSpeedFactor = {Type = "number", Default = 0.1},
+        speed = {Type = "number", Default = 50},
+        delay = {Type = "number", Default = 0.5}
+    }
 
 }

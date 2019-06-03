@@ -1,4 +1,4 @@
-local state = "state"
+local state = "crouch"
 
 return function(Sunshine, entity)
     local component = entity[state]
@@ -13,13 +13,16 @@ return function(Sunshine, entity)
             if character.controllable then
                 if character.state == state then
                     -- update
-                    if --[[end criteria]] or (lastState == state and character.state ~= state) then
+                    character.walkSpeedFactor = component.walkSpeedFactor
+                    if not input.shift or not character.grounded or (lastState == state and character.state ~= state) then
                         -- end
+                        character.walkSpeedFactor = 1
                         character.state = nil
                     end
-                elseif --[[start criteria]] or (lastState ~= state and character.state == state) then
+                elseif character.grounded and input.shift or (lastState ~= state and character.state == state) then
                     -- start
                     character.state = state
+                    character.walkSpeedFactor = component.walkSpeedFactor
                 end
             end
             lastState = character.state
