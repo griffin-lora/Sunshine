@@ -43,10 +43,6 @@ return function(Sunshine, entity)
                 physics.velocity = Vector3.new(physics.velocity.X, 0, physics.velocity.Z)
             end
             if character.controllable then
-                local UserInputService = game:GetService("UserInputService")
-                if UserInputService:IsKeyDown(Enum.KeyCode.L) then  
-                    character.state = nil
-            end
                 local moveVector = input.moveVector
                 local boost = 0
                 if character.grounded then
