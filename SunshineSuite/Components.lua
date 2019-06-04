@@ -156,6 +156,9 @@ return {
         walkSpeedFactor = {Type = "number", Default = 0.1},
         speed = {Type = "number", Default = 50},
         delay = {Type = "number", Default = 0.5}
+    },
+    
+    save = {
     }
 
 }
