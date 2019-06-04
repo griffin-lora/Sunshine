@@ -1,6 +1,7 @@
 -- TrafficConeGod
 
 local state = "dive"
+local UserInputService = game:GetService("UserInputService")
 
 return function(Sunshine, entity)
     local component = entity[state]
@@ -23,7 +24,7 @@ return function(Sunshine, entity)
                         character.state = nil
                         animator.action = 2794459258
                     end
-                elseif character.state == "groundPound" and not character.grounded and input.e or (lastState ~= state and character.state == state) then
+                elseif character.state == "groundPound" and not character.grounded and input.e and UserInputService:GetFocusedTextBox() == nil or (lastState ~= state and character.state == state) and UserInputService:GetFocusedTextBox() == nil then
                     -- start
                     character.state = state
                     physics.movable = true
