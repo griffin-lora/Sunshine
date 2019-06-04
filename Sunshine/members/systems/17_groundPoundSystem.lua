@@ -1,4 +1,5 @@
 local state = "groundPound"
+local UserInputService = game:GetService("UserInputService")
 
 return function(Sunshine, entity)
     local component = entity[state]
@@ -29,7 +30,7 @@ return function(Sunshine, entity)
                         animator.action = nil
                         character.state = nil
                     end
-                elseif character.state ~= "dive" and not character.grounded and input.shift or (lastState ~= state and character.state == state) then
+                elseif character.state ~= "dive" and not character.grounded and input.shift and UserInputService:GetFocusedTextBox() == nil or (lastState ~= state and character.state == state) and UserInputService:GetFocusedTextBox() == nil then
                     -- start
                     character.state = state
                     physics.movable = false

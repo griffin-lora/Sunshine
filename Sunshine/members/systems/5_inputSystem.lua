@@ -43,7 +43,11 @@ return function(Sunshine, entity)
                 if moveVector ~= Vector3.new() then
                     moveVector = moveVector.Unit
                 end
-                input.moveVector = moveVector
+                if UserInputService:GetFocusedTextBox() == nil then
+                    input.moveVector = moveVector
+                else
+                    input.moveVector = Vector3.new(0,0,0)
+                end
             end
         end)
     end

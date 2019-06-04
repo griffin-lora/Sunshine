@@ -1,6 +1,7 @@
 -- TrafficConeGod
 
 local state = "jump"
+local UserInputService = game:GetService("UserInputService")
 
 return function(Sunshine, entity)
     local component = entity[state]
@@ -27,7 +28,7 @@ return function(Sunshine, entity)
                         character.state = nil
                         animator.action = nil
                     end
-                elseif groundedRemember > 0 and input.space or (lastState ~= state and character.state == state) then
+                elseif groundedRemember > 0 and input.space and UserInputService:GetFocusedTextBox() == nil or (lastState ~= state and character.state == state) and UserInputService:GetFocusedTextBox() == nil then
                     -- start
                     character.state = state
                     groundedRemember = 0
