@@ -25,12 +25,16 @@ return function(Sunshine, entity)
 		Sunshine:addInstance(bloom)
 		local rays = Instance.new("SunRaysEffect")
 		Sunshine:addInstance(rays)
-		color.Brightness = color.brightness
-		color.Contrast = color.contrast
-		color.Saturation = color.saturation
-		color.TintColor = color.tintColor
-		blur.Size = color.blurAmount
-		bloom.Threshold = color.bloomThreshold
-		rays.Enabled = color.sunRays
+		color.Brightness = lighting.brightness
+		color.Contrast = lighting.contrast
+		color.Saturation = lighting.saturation
+		color.TintColor = lighting.tintColor
+		blur.Size = lighting.blurAmount
+		bloom.Threshold = lighting.bloomThreshold
+		rays.Enabled = lighting.sunRays
+		color.Parent = game.Lighting
+		blur.Parent = game.Lighting
+		bloom.Parent = game.Lighting
+		rays.Parent = game.Lighting
 	end
 end

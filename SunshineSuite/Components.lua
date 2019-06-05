@@ -148,7 +148,7 @@ return {
 		fogStart = {Type = "number", Default = 0},
 		fogEnd = {Type = "number", Default = 100000},
 		brightness = {Type = "number", Default = 0},
-		contrast = {Type = "number", Default = 0}
+		contrast = {Type = "number", Default = 0},
 		saturation = {Type = "number", Default = 0},
 		tintColor = {Type = "Color3", Default = Color3.new(1,1,1)},
 		blurAmount = {Type = "number", Default = 1},
