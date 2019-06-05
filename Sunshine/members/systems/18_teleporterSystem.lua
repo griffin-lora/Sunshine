@@ -1,3 +1,5 @@
+-- TrafficConeGod
+
 return function(Sunshine, entity)
     local teleporter = entity.teleporter
     local collider = entity.collider

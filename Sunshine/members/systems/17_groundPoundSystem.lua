@@ -1,3 +1,5 @@
+-- TrafficConeGod
+
 local state = "groundPound"
 local UserInputService = game:GetService("UserInputService")
 
@@ -39,7 +41,16 @@ return function(Sunshine, entity)
                     animator.action = 1146925487
                 end
             end
-            lastState = character.state
-        end)
-    end
+        else
+            physics.movable = false
+        end
+    end, function()
+        -- end check
+        return character.grounded
+    end, function()
+        -- end
+        physics.velocity = Vector3.new(0, 0, 0)
+        physics.movable = true
+        animator.action = nil
+    end)
 end
