@@ -53,7 +53,7 @@ return {
 	
 	character = {
 		controllable = {Type = "boolean", Default = false},
-		camera = {Type = "Object", Defualt = nil},
+		camera = {Type = "Object", Default = nil},
 		shirtGraphic = {Type = "string", Default = ""},
 		shirtGraphicColor = {Type = "Color3", Default = Color3.fromRGB(255, 255, 255)},
 		shirt = {Type = "string", Default = ""},
@@ -138,14 +138,22 @@ return {
 
 	lighting = {
 		sky = {Type = "Instance", Default = nil},
-		brightness = {Type = "number", Default = 2},
+		lightness = {Type = "number", Default = 2},
 		ambient = {Type = "Color3", Default = Color3.fromRGB(128, 128, 128)},
 		outdoorAmbient = {Type = "Color3", Default = Color3.fromRGB(128, 128, 128)},
 		globalShadows = {Type = "boolean", Default = true},
 		clockTime = {Type = "number", Default = 12},
+		sunPos = {Type = "number", Default = 41},
 		fogColor = {Type = "Color3", Default = Color3.fromRGB(192, 192, 192)},
 		fogStart = {Type = "number", Default = 0},
 		fogEnd = {Type = "number", Default = 100000},
+		brightness = {Type = "number", Default = 0},
+		contrast = {Type = "number", Default = 0}
+		saturation = {Type = "number", Default = 0},
+		tintColor = {Type = "Color3", Default = Color3.new(1,1,1)},
+		blurAmount = {Type = "number", Default = 1},
+		bloomThreshold = {Type = "number", Default = 2},
+		sunRays = {Type = "boolean", Default = false}
     },
     
     crouch = {
