@@ -4,10 +4,12 @@ local Lighting = game:GetService("Lighting")
 
 return function(Sunshine, entity)
 	local lighting = entity.lighting
-	if lighting then
-		local sky = lighting.sky:Clone()
-		sky.Parent = Lighting
-		Sunshine:addInstance(sky)
+    if lighting then
+        if lighting.sky then
+            local sky = lighting.sky:Clone()
+            sky.Parent = Lighting
+            Sunshine:addInstance(sky)
+        end
 		Lighting.Ambient = lighting.ambient
 		Lighting.OutdoorAmbient = lighting.outdoorAmbient
 		Lighting.Brightness = lighting.lightness
