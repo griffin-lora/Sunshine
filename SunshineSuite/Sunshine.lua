@@ -380,17 +380,17 @@ return function(script, plugin)
 				object[componentName][name] = value
 				self.Objects[objectInstance] = object
 				self:SaveScene()
-			end
-			
+            end
+            
 			if componentName == "transform" then
-				
+                
 				local primaryPart = objectInstance.PrimaryPart
 				
 				if primaryPart then
 					
 					primaryPart:GetPropertyChangedSignal("CFrame"):Connect(function()
 						
-						saveObject(primaryPart.CFrame, "CFrame")
+						saveObject(primaryPart.CFrame, "cFrame")
 						
 					end)
 					
@@ -398,7 +398,7 @@ return function(script, plugin)
 						
 						local size = primaryPart.Size / object.Model.Model.PrimaryPart.Size
 						
-						saveObject(size, "Size")
+						saveObject(size, "size")
 						
 					end)
 					
