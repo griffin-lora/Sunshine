@@ -18,11 +18,23 @@ return function(Sunshine, entity)
     end, function()
         -- update
         character.walkSpeedFactor = component.walkSpeedFactor
+        if character.moving then
+            if animator.action ~= 1156875985 then
+                animator.action = 1156875985
+            end
+        else
+            if animator.action ~= 1156846595 then
+                animator.action = 1156846595
+            end
+        end
     end, function()
         -- end check
         return not input.shift or not character.grounded
     end, function()
         -- end
         character.walkSpeedFactor = 1
+        if character.state == state then
+            animator.action = nil
+        end
     end)
 end

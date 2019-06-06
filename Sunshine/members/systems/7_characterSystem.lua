@@ -44,6 +44,7 @@ return function(Sunshine, entity)
             end
             if character.controllable then
                 local moveVector = input.moveVector
+                character.moving = moveVector ~= Vector3.new()
                 local boost = 0
                 if character.grounded then
                     local closestPoint = getClosestPointOnPlane(Vector3.new(), normal, moveVector)
@@ -51,11 +52,11 @@ return function(Sunshine, entity)
                     physics.velocity = Vector3.new(physics.velocity.X, moveVector.Y * 50, physics.velocity.Z)
                     boost = -moveVector.Y * 10
                 end
-                if moveVector ~= Vector3.new() and physics.movable then
+                if character.moving and physics.movable then
                     transform.cFrame = transform.cFrame:Lerp(CFrame.new(transform.cFrame.Position, transform.cFrame.Position + moveVector), step * character.walkSpeed)
                 end
                 if animator then
-                    if moveVector ~= Vector3.new() then
+                    if character.moving then
                         animator.movement = 3214734207
                     else
                         animator.movement = 507766388
