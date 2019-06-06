@@ -9,9 +9,10 @@ return function(Sunshine, entity)
     local transform = entity.transform
     local physics = entity.physics
     local animator = entity.animator
+    local lastE = false
     Sunshine:createStateSystem(entity, state, function()
         -- start check
-        return character.state == "groundPound" and not character.grounded and input.e
+        return character.state == "groundPound" and not character.grounded and input.e and not lastE
     end, function()
         -- start
         physics.movable = true
@@ -28,5 +29,8 @@ return function(Sunshine, entity)
     end, function()
         -- end
         animator.action = 2794459258
+    end, function()
+        -- general update
+        lastE = input.e
     end)
 end

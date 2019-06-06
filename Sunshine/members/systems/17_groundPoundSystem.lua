@@ -10,9 +10,10 @@ return function(Sunshine, entity)
     local physics = entity.physics
     local animator = entity.animator
     local startTick
+    local lastShift = false
     Sunshine:createStateSystem(entity, state, function()
         -- start check
-        return character.state ~= "dive" and not character.grounded and input.shift
+        return character.state ~= "dive" and not character.grounded and input.shift and not lastShift
     end, function()
         -- start
         physics.movable = false
@@ -34,8 +35,13 @@ return function(Sunshine, entity)
         return character.grounded
     end, function()
         -- end
-        physics.velocity = Vector3.new(0, 0, 0)
-        physics.movable = true
-        animator.action = nil
+        if character.state == state then
+            physics.velocity = Vector3.new(0, 0, 0)
+            physics.movable = true
+            animator.action = nil
+        end
+    end, function()
+        -- general update
+        lastShift = input.shift
     end)
 end

@@ -28,7 +28,9 @@ return function(Sunshine, entity)
         return character.grounded
     end, function()
         -- end
-        animator.action = nil
+        if character.state == state then
+            animator.action = nil
+        end
     end, function(step)
         -- general update
         groundedRemember = groundedRemember - step
