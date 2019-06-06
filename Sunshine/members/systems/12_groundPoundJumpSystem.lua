@@ -1,6 +1,4 @@
--- TrafficConeGod
-
-local state = "jump"
+local state = "groundPoundJump"
 
 return function(Sunshine, entity)
     local component = entity[state]
@@ -9,20 +7,15 @@ return function(Sunshine, entity)
     local transform = entity.transform
     local physics = entity.physics
     local animator = entity.animator
-    local groundedRemember = 0
     Sunshine:createStateSystem(entity, state, function()
         -- start check
-        return character.state == nil and groundedRemember > 0 and input.space
+        return character.state == "groundPound" and character.grounded and input.space
     end, function()
         -- start
-        groundedRemember = 0
         physics.velocity = Vector3.new(physics.velocity.X, component.power, physics.velocity.Z)
-        animator.action = 507765000
+        animator.action = 2576438520
     end, function()
         -- update
-        if physics.velocity.Y > 0 and not input.space then
-            physics.velocity = Vector3.new(physics.velocity.X, physics.velocity.Y * 0.8, physics.velocity.Z)
-        end
     end, function()
         -- end check
         return character.grounded
@@ -30,12 +23,6 @@ return function(Sunshine, entity)
         -- end
         if character.state == state then
             animator.action = nil
-        end
-    end, function(step)
-        -- general update
-        groundedRemember = groundedRemember - step
-        if character.grounded then
-            groundedRemember = 0.2
         end
     end)
 end

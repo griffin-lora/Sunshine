@@ -10,6 +10,7 @@ return function(Sunshine, entity)
     local physics = entity.physics
     local animator = entity.animator
     local startTick
+    local startEndTick
     local lastShift = false
     Sunshine:createStateSystem(entity, state, function()
         -- start check
@@ -21,24 +22,29 @@ return function(Sunshine, entity)
         animator.action = 1146925487
     end, function()
         -- update
-        if (tick() - startTick) > component.delay then
+        if character.grounded then
+            physics.movable = false
+            if not startEndTick then
+                startEndTick = tick()
+                animator.action = 1146923706
+            end
+        elseif (tick() - startTick) > component.delay then
             physics.movable = true
             physics.velocity = Vector3.new(0, component.speed, 0)
             if animator.action ~= 1146924615 then
                 animator.action = 1146924615
             end
-        else
-            physics.movable = false
         end
     end, function()
         -- end check
-        return character.grounded
+        return startEndTick and ((tick() - startEndTick) > component.delay)
     end, function()
         -- end
+        startTick = nil
+        startEndTick = nil
+        physics.movable = true
         if character.state == state then
             physics.velocity = Vector3.new(0, 0, 0)
-            physics.movable = true
-            animator.action = nil
         end
     end, function()
         -- general update
