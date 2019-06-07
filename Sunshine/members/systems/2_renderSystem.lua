@@ -39,19 +39,21 @@ return function(Sunshine, entity)
             end
         })
         Sunshine:update(function()
-            for index, descendant in pairs(model.model:GetDescendants()) do
-                if descendant:IsA("BasePart") then
-                    descendant.Size = descendant.Size / lastSize
-                    descendant.Size = descendant.Size * transform.size
-                    if transparency then
-                        descendant.Transparency = transparency.transparency
-                    end
-                elseif descendant:IsA("ParticleEmitter") or descendant:IsA("PointLight") then
-                    if transparency then
-                        if transparency.transparency == 1 then
-                            descendant.Enabled = false
-                        elseif transparency.transparency == 0 then
-                            descendant.Enabled = true
+            if transparency or transform.size ~= Vector3.new(1, 1, 1) then
+                for index, descendant in pairs(model.model:GetDescendants()) do
+                    if descendant:IsA("BasePart") then
+                        descendant.Size = descendant.Size / lastSize
+                        descendant.Size = descendant.Size * transform.size
+                        if transparency then
+                            descendant.Transparency = transparency.transparency
+                        end
+                    elseif descendant:IsA("ParticleEmitter") or descendant:IsA("PointLight") then
+                        if transparency then
+                            if transparency.transparency == 1 then
+                                descendant.Enabled = false
+                            elseif transparency.transparency == 0 then
+                                descendant.Enabled = true
+                            end
                         end
                     end
                 end
