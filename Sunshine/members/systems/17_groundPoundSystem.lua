@@ -19,20 +19,20 @@ return function(Sunshine, entity)
         -- start
         physics.movable = false
         startTick = tick()
-        animator.action = 1146925487
+        animator.action = component.startAnimation
     end, function()
         -- update
         if character.grounded then
             physics.movable = false
             if not startEndTick then
                 startEndTick = tick()
-                animator.action = 1146923706
+                animator.action = component.endAnimation
             end
         elseif (tick() - startTick) > component.delay then
             physics.movable = true
             physics.velocity = Vector3.new(0, component.speed, 0)
-            if animator.action ~= 1146924615 then
-                animator.action = 1146924615
+            if animator.action ~= component.animation then
+                animator.action = component.animation
             end
         end
     end, function()

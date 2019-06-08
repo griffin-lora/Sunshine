@@ -14,7 +14,7 @@ return function(Sunshine, entity)
         -- start
         local horizontal = transform.cFrame.LookVector * component.backPower
         physics.velocity = Vector3.new(horizontal.X, component.power, horizontal.Z)
-        animator.action = 1158426944
+        animator.action = component.animation
     end, function()
         -- update
     end, function()

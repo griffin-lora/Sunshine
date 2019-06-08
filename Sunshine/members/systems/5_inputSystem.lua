@@ -12,6 +12,8 @@ return function(Sunshine, entity)
         local space = false
         local shift = false
         local e = false
+        local r2 = false
+        local l2 = false
         local function handleInput(input, gameProcessedEvent)
             if not gameProcessedEvent then
                 local begin = input.UserInputState == Enum.UserInputState.Begin
@@ -29,6 +31,10 @@ return function(Sunshine, entity)
                     shift = begin
                 elseif input.KeyCode == Enum.KeyCode.E then
                     e = begin
+                elseif input.KeyCode == Enum.KeyCode.ButtonR2 then
+                    r2 = begin
+                elseif input.KeyCode == Enum.KeyCode.ButtonL2 then
+                    l2 = begin
                 end
             end
         end
@@ -46,7 +52,7 @@ return function(Sunshine, entity)
         end)
         Sunshine:update(function()
             input.space = space or UserInputService:IsGamepadButtonDown(Enum.UserInputType.Gamepad1, Enum.KeyCode.ButtonA) or UserInputService:IsGamepadButtonDown(Enum.UserInputType.Gamepad1, Enum.KeyCode.ButtonB)
-            input.shift = shift
+            input.shift = shift or r2 or l2
             input.e = e or UserInputService:IsGamepadButtonDown(Enum.UserInputType.Gamepad1, Enum.KeyCode.ButtonY) or UserInputService:IsGamepadButtonDown(Enum.UserInputType.Gamepad1, Enum.KeyCode.ButtonX)
             local camera = Sunshine:getEntityById(input.camera)
             if camera and camera.transform then
