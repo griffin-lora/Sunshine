@@ -9,7 +9,7 @@ return function(Sunshine, entity)
     local animator = entity.animator
     Sunshine:createStateSystem(entity, state, function()
         -- start check
-        return character.state == "crouch" and character.grounded and input.space
+        return character.state == "crouch" and physics.velocity.Magnitude < 13 and character.grounded and input.space
     end, function()
         -- start
         local horizontal = transform.cFrame.LookVector * component.backPower
