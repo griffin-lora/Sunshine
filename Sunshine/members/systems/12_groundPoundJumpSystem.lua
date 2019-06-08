@@ -13,7 +13,7 @@ return function(Sunshine, entity)
     end, function()
         -- start
         physics.velocity = Vector3.new(physics.velocity.X, component.power, physics.velocity.Z)
-        animator.action = 2576438520
+        animator.action = component.animation
     end, function()
         -- update
     end, function()

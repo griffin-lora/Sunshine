@@ -19,12 +19,12 @@ return function(Sunshine, entity)
         -- update
         character.walkSpeedFactor = component.walkSpeedFactor
         if character.moving then
-            if animator.action ~= 1156875985 then
-                animator.action = 1156875985
+            if animator.action ~= component.moveAnimation then
+                animator.action = component.moveAnimation
             end
         else
-            if animator.action ~= 1156846595 then
-                animator.action = 1156846595
+            if animator.action ~= component.animation then
+                animator.action = component.animation
             end
         end
     end, function()

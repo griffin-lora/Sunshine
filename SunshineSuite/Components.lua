@@ -79,12 +79,15 @@ return {
 	},
 	
 	jump = {
-		power = {Type = "number", Default = 50}
+        power = {Type = "number", Default = 50},
+        animation = {Type = "number", Default = 0}
 	},
 
 	dive = {
 		power = {Type = "number", Default = 50},
-		bouncePower = {Type = "number", Default = 50}
+		bouncePower = {Type = "number", Default = 50},
+        animation = {Type = "number", Default = 0},
+        endAnimation = {Type = "number", Default = 0}
 	},
 	
 	camera = {
@@ -157,22 +160,29 @@ return {
     },
     
     crouch = {
-        walkSpeedFactor = {Type = "number", Default = 0.5}
+        walkSpeedFactor = {Type = "number", Default = 0.5},
+        animation = {Type = "number", Default = 0},
+        moveAnimation = {Type = "number", Default = 0}
     },
     
     groundPound = {
         walkSpeedFactor = {Type = "number", Default = 0.1},
         speed = {Type = "number", Default = 50},
-        delay = {Type = "number", Default = 0.5}
+        delay = {Type = "number", Default = 0.5},
+        startAnimation = {Type = "number", Default = 0},
+        animation = {Type = "number", Default = 0},
+        endAnimation = {Type = "number", Default = 0}
     },
 	
 	groundPoundJump = {
-		power = {Type = "number", Default = 50}
+		power = {Type = "number", Default = 50},
+        animation = {Type = "number", Default = 0}
 	},
 	
 	backFlip = {
 		power = {Type = "number", Default = 50},
 		backPower = {Type = "number", Default = 50},
+        animation = {Type = "number", Default = 0}
 	},
     
     save = {

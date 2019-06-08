@@ -18,7 +18,7 @@ return function(Sunshine, entity)
         physics.movable = true
         horizontal = transform.cFrame.LookVector * component.power
         physics.velocity = horizontal + Vector3.new(0, 30, 0)
-        animator.action = 1146922909
+        animator.action = component.animation
     end, function(step)
         -- update
         horizontal = horizontal:Lerp(transform.cFrame.LookVector * component.power, step * 3)
@@ -28,7 +28,7 @@ return function(Sunshine, entity)
         return character.grounded
     end, function()
         -- end
-        animator.action = 2794459258
+        animator.action = component.endAnimation
     end, function()
         -- general update
         lastE = input.e

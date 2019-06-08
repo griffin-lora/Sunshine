@@ -17,7 +17,7 @@ return function(Sunshine, entity)
         -- start
         groundedRemember = 0
         physics.velocity = Vector3.new(physics.velocity.X, component.power, physics.velocity.Z)
-        animator.action = 507765000
+        animator.action = component.animation
     end, function()
         -- update
         if physics.velocity.Y > 0 and not input.space then
