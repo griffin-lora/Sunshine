@@ -24,6 +24,7 @@ return function(Sunshine, entity)
     local physics = entity.physics
     local animator = entity.animator
     if character and model and input and transform and physics and animator then
+        local lastGrounded
         Sunshine:update(function(step)
             local distance = -transform.cFrame.UpVector * 3.3
             local raycasts = {}
@@ -79,12 +80,10 @@ return function(Sunshine, entity)
                 zVelocity = zVelocity + (moveVector.Z * walkSpeed + (boost * moveVector.Z))
                 zVelocity = zVelocity * math.pow(1 - damping, step * 10)
                 physics.velocity = Vector3.new(xVelocity, physics.velocity.Y, zVelocity)
+                
                 if transform.cFrame.Y < (workspace.FallenPartsDestroyHeight + 50) then
                     Sunshine:loadScene(Sunshine.dataScene)
                 end
-            end
-            if model.model.PrimaryPart then
-                model.model.PrimaryPart.Anchored = character.anchored
             end
         end)
     end

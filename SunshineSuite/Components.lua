@@ -169,6 +169,11 @@ return {
 	groundPoundJump = {
 		power = {Type = "number", Default = 50}
 	},
+	
+	backFlip = {
+		power = {Type = "number", Default = 50},
+		backPower = {Type = "number", Default = 50},
+	},
     
     save = {
     }
