@@ -24,7 +24,8 @@ return function(Sunshine, entity)
     local physics = entity.physics
     local animator = entity.animator
     if character and model and input and transform and physics and animator then
-        local lastGrounded
+        local lastGroundeds = {}
+        local lastVelocity
         Sunshine:update(function(step)
             local distance = -transform.cFrame.UpVector * 3.3
             local raycasts = {}
@@ -67,8 +68,10 @@ return function(Sunshine, entity)
                     end
                 end
                 local damping = 0.5
-                if not character.grounded and moveVector == Vector3.new() then
-                    damping = 0
+                local canLoseMagnitude = true
+                local fullyGrounded = lastGroundeds[2] and lastGroundeds[1] and character.grounded
+                if not fullyGrounded then
+                    canLoseMagnitude = false
                 elseif moveVector == Vector3.new() then
                     damping = 0.7
                 end
@@ -79,8 +82,18 @@ return function(Sunshine, entity)
                 local zVelocity = physics.velocity.Z
                 zVelocity = zVelocity + (moveVector.Z * walkSpeed + (boost * moveVector.Z))
                 zVelocity = zVelocity * math.pow(1 - damping, step * 10)
-                physics.velocity = Vector3.new(xVelocity, physics.velocity.Y, zVelocity)
-                
+                local velocity = Vector3.new(xVelocity, 0, zVelocity)
+                if not canLoseMagnitude and lastVelocity and velocity.Magnitude < lastVelocity.Magnitude then
+                    if velocity.Unit.Magnitude == velocity.Unit.Magnitude then
+                        velocity = velocity.Unit * lastVelocity.Magnitude
+                    else
+                        velocity = lastVelocity
+                    end
+                end
+                physics.velocity = Vector3.new(velocity.X, physics.velocity.Y, velocity.Z)
+                lastVelocity = velocity
+                lastGroundeds[2] = lastGroundeds[1]
+                lastGroundeds[1] = character.grounded
                 if transform.cFrame.Y < (workspace.FallenPartsDestroyHeight + 50) then
                     Sunshine:loadScene(Sunshine.dataScene)
                 end
