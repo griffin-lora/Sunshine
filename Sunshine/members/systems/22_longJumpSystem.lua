@@ -1,4 +1,4 @@
-local state = "wallPush"
+local state = "longJump"
 
 return function(Sunshine, entity)
     local component = entity[state]
@@ -9,17 +9,21 @@ return function(Sunshine, entity)
     local animator = entity.animator
     Sunshine:createStateSystem(entity, state, function()
         -- start check
-        return 
+        return character.state == "crouch" and physics.velocity.Magnitude >= 13 and character.grounded and input.space
     end, function()
         -- start
+        local horizontal = transform.cFrame.LookVector * component.power
+        physics.velocity = Vector3.new(horizontal.X, component.bouncePower, horizontal.Z)
+        animator.action = component.animation
     end, function()
         -- update
     end, function()
         -- end check
-        return
+        return character.grounded
     end, function()
         -- end
-    end, function()
-        -- general update
+        if character.state == state then
+            animator.action = nil
+        end
     end)
 end

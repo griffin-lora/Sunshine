@@ -184,6 +184,12 @@ return {
 		backPower = {Type = "number", Default = 50},
         animation = {Type = "number", Default = 0}
 	},
+	
+	longJump = {
+		power = {Type = "number", Default = 50},
+		bouncePower = {Type = "number", Default = 50},
+        animation = {Type = "number", Default = 0}
+	},
     
     save = {
 	},
