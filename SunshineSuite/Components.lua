@@ -192,6 +192,11 @@ return {
 	},
     
     save = {
-    }
+	},
+	
+	moving = {
+		extend = {Type = "CFrame", Default = CFrame.new(0,0,0)},
+		speed = {Type = "number", Default = 1}
+	}
 
 }
