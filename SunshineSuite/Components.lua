@@ -197,6 +197,14 @@ return {
 	moving = {
 		extend = {Type = "CFrame", Default = CFrame.new(0,0,0)},
 		speed = {Type = "number", Default = 1}
-	}
+    },
+    
+    head = {
+        cFrame = {Type = "CFrame", Default = CFrame.new()}
+    },
+
+    bouncer = {
+        power = {Type = "number", Default = 50}
+    }
 
 }
