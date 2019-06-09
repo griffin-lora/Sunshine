@@ -26,6 +26,7 @@ return function(Sunshine, entity)
     if character and model and input and transform and physics and animator then
         local lastGroundeds = {}
         local lastVelocity
+        local lastMoveVector
         Sunshine:update(function(step)
             local distance = -transform.cFrame.UpVector * 3.3
             local raycasts = {}
@@ -54,9 +55,6 @@ return function(Sunshine, entity)
                     physics.velocity = Vector3.new(physics.velocity.X, moveVector.Y * 50, physics.velocity.Z)
                     boost = -moveVector.Y * 10
                 end
-                if character.moving and physics.movable then
-                    transform.cFrame = transform.cFrame:Lerp(CFrame.new(transform.cFrame.Position, transform.cFrame.Position + moveVector), step * character.walkSpeed)
-                end
                 if animator then
                     if character.moving then
                         animator.movement = 3214734207
@@ -66,6 +64,9 @@ return function(Sunshine, entity)
                     if not character.grounded and physics.velocity.Y < -0.5 then
                         animator.movement = 507767968
                     end
+                end
+                if character.moving and physics.movable and lastMoveVector then
+                    transform.cFrame = transform.cFrame:Lerp(CFrame.new(transform.cFrame.Position, transform.cFrame.Position + moveVector), step * moveVector:Dot(lastMoveVector) * 10)
                 end
                 local damping = 0.5
                 local canLoseMagnitude = true
@@ -91,6 +92,7 @@ return function(Sunshine, entity)
                     end
                 end
                 physics.velocity = Vector3.new(velocity.X, physics.velocity.Y, velocity.Z)
+                lastMoveVector = moveVector
                 lastVelocity = velocity
                 lastGroundeds[2] = lastGroundeds[1]
                 lastGroundeds[1] = character.grounded
