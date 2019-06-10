@@ -208,6 +208,10 @@ return {
 
     bouncer = {
         power = {Type = "number", Default = 50}
+    },
+
+    teleporter = {
+        scene = {Type = "Instance", Default = nil}
     }
 
 }
