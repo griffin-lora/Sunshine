@@ -5,6 +5,7 @@ return function(Sunshine, entity)
         local buttonInstance = Instance.new("TextButton")
         buttonInstance.Text = ""
         buttonInstance.BackgroundTransparency = 1
+        Sunshine:addInstance(buttonInstance)
         buttonInstance.Parent = Sunshine.gui
         Sunshine:addConnection(buttonInstance.MouseButton1Click, function()
             button.activated = true
