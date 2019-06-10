@@ -156,7 +156,7 @@ return {
 		contrast = {Type = "number", Default = 0},
 		saturation = {Type = "number", Default = 0},
 		tintColor = {Type = "Color3", Default = Color3.new(1,1,1)},
-		blurAmount = {Type = "number", Default = 1},
+		blurAmount = {Type = "number", Default = 0},
 		bloomThreshold = {Type = "number", Default = 2},
 		sunRays = {Type = "boolean", Default = false}
     },
