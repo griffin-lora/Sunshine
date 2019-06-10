@@ -115,6 +115,7 @@ return {
 		position = {Type = "UDim2", Default = UDim2.new()},
 		size = {Type = "Vector2", Default = Vector2.new(1, 1)},
 		zIndex = {Type = "number", Default = 0},
+		anchorPoint = {Type = "Vector2", Default = Vector2.new()},
 	},
 	
 	label = {
@@ -125,7 +126,8 @@ return {
 	},
 	
 	button = {
-		-- havent made events yet /shrug
+		activated = {Type = "boolean", Default = false},
+        size = {Type = "UDim2", Default = UDim2.new(0, 100, 0, 100)}
 	},
 	
 	sound = {
@@ -200,7 +202,8 @@ return {
     },
     
     head = {
-        cFrame = {Type = "CFrame", Default = CFrame.new()}
+        cFrame = {Type = "CFrame", Default = CFrame.new()},
+        active = {Type = "boolean", Default = true}
     },
 
     bouncer = {
