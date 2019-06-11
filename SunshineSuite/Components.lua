@@ -219,6 +219,11 @@ return {
 
     teleporter = {
         scene = {Type = "Instance", Default = nil}
+    },
+
+    throw = {
+        power = {Type = "number", Default = 50},
+        animation = {Type = "number", Default = 0}
     }
 
 }
