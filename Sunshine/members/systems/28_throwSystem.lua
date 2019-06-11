@@ -10,10 +10,16 @@ return function(Sunshine, entity)
     local lastE = false
     Sunshine:createStateSystem(entity, state, function()
         -- start check
-        return character.state ~= "groundPound" and character.state ~= "dive" and not character.grounded and input.e and not lastE
+        return character.state ~= "groundPound" and character.state ~= "dive" and input.e and not lastE
     end, function()
         -- start
-        physics.velocity = Vector3.new(physics.velocity.X * 0.1, component.power, physics.velocity.Z * 0.1)
+        local velocityY
+        if character.grounded then
+            velocityY = physics.velocity.Y
+        else
+            velocityY = component.power
+        end
+        physics.velocity = Vector3.new(physics.velocity.X * 0.1, velocityY, physics.velocity.Z * 0.1)
         animator.action = component.animation
     end, function()
         -- update
