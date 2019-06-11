@@ -9,14 +9,16 @@ return function(Sunshine, entity)
     local transform = entity.transform
     local physics = entity.physics
     local animator = entity.animator
+    local spaceRemember = 0
     local groundedRemember = 0
     local lastSpace = false
     Sunshine:createStateSystem(entity, state, function()
         -- start check
-        return character.state == nil and groundedRemember > 0 and input.space and not lastSpace
+        return character.state == nil and groundedRemember > 0 and spaceRemember > 0
     end, function()
         -- start
         groundedRemember = 0
+        spaceRemember = 0
         physics.velocity = Vector3.new(physics.velocity.X, component.power, physics.velocity.Z)
         animator.action = component.animation
     end, function()
@@ -34,10 +36,14 @@ return function(Sunshine, entity)
         end
     end, function(step)
         -- general update
-        lastSpace = input.space
         groundedRemember = groundedRemember - step
+        spaceRemember = spaceRemember - step
         if character.grounded then
-            groundedRemember = 0.2
+            groundedRemember = 0.1
         end
+        if input.space and not lastSpace then
+            spaceRemember = 0.1
+        end
+        lastSpace = input.space
     end)
 end
