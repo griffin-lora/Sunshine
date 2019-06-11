@@ -1,5 +1,8 @@
 -- TrafficConeGod and Phenite (math help)
 
+local rayNew = Ray.new
+local vector3New = Vector3.new
+
 local function getClosestPointOnPlane(point, normal, vector)
     local D = point.X * normal.X + point.Y * normal.Y + point.Z * normal.Z
     local A,B,C = normal.X, normal.Y, normal.Z
@@ -30,11 +33,11 @@ return function(Sunshine, entity)
         Sunshine:update(function(step)
             local distance = -transform.cFrame.UpVector * 3.3
             local raycasts = {}
-            raycasts[1] = {Sunshine:findPartOnRay(Ray.new(transform.cFrame.Position, distance), {model.model})}
-            raycasts[2] = {Sunshine:findPartOnRay(Ray.new(transform.cFrame.Position + Vector3.new(size, 0, 0), distance), {model.model})}
-            raycasts[3] = {Sunshine:findPartOnRay(Ray.new(transform.cFrame.Position - Vector3.new(size, 0, 0), distance), {model.model})}
-            raycasts[4] = {Sunshine:findPartOnRay(Ray.new(transform.cFrame.Position + Vector3.new(0, 0, size), distance), {model.model})}
-            raycasts[5] = {Sunshine:findPartOnRay(Ray.new(transform.cFrame.Position - Vector3.new(0, 0, size), distance), {model.model})}
+            raycasts[1] = {Sunshine:findPartOnRay(rayNew(transform.cFrame.Position, distance), {model.model})}
+            raycasts[2] = {Sunshine:findPartOnRay(rayNew(transform.cFrame.Position + vector3New(size, 0, 0), distance), {model.model})}
+            raycasts[3] = {Sunshine:findPartOnRay(rayNew(transform.cFrame.Position - vector3New(size, 0, 0), distance), {model.model})}
+            raycasts[4] = {Sunshine:findPartOnRay(rayNew(transform.cFrame.Position + vector3New(0, 0, size), distance), {model.model})}
+            raycasts[5] = {Sunshine:findPartOnRay(rayNew(transform.cFrame.Position - vector3New(0, 0, size), distance), {model.model})}
             local part, position, normal
             for index, raycast in pairs(raycasts) do
                 if raycast[1] then
@@ -43,16 +46,16 @@ return function(Sunshine, entity)
             end
             character.grounded = not not part
             if character.grounded then
-                physics.velocity = Vector3.new(physics.velocity.X, 0, physics.velocity.Z)
+                physics.velocity = vector3New(physics.velocity.X, 0, physics.velocity.Z)
             end
             if character.controllable then
                 local moveVector = input.moveVector
-                character.moving = moveVector ~= Vector3.new()
+                character.moving = moveVector ~= vector3New()
                 local boost = 0
                 if character.grounded then
-                    local closestPoint = getClosestPointOnPlane(Vector3.new(), normal, moveVector)
+                    local closestPoint = getClosestPointOnPlane(vector3New(), normal, moveVector)
                     moveVector = closestPoint
-                    physics.velocity = Vector3.new(physics.velocity.X, moveVector.Y * 50, physics.velocity.Z)
+                    physics.velocity = vector3New(physics.velocity.X, moveVector.Y * 50, physics.velocity.Z)
                     boost = -moveVector.Y * 10
                 end
                 if animator then
@@ -73,7 +76,7 @@ return function(Sunshine, entity)
                 local fullyGrounded = lastGroundeds[2] and lastGroundeds[1] and character.grounded
                 if not fullyGrounded then
                     canLoseMagnitude = false
-                elseif moveVector == Vector3.new() then
+                elseif moveVector == vector3New() then
                     damping = 0.7
                 end
                 local walkSpeed = character.walkSpeed * character.walkSpeedFactor
@@ -83,7 +86,7 @@ return function(Sunshine, entity)
                 local zVelocity = physics.velocity.Z
                 zVelocity = zVelocity + (moveVector.Z * walkSpeed + (boost * moveVector.Z))
                 zVelocity = zVelocity * math.pow(1 - damping, step * 10)
-                local velocity = Vector3.new(xVelocity, 0, zVelocity)
+                local velocity = vector3New(xVelocity, 0, zVelocity)
                 if not canLoseMagnitude and lastVelocity and velocity.Magnitude < lastVelocity.Magnitude then
                     if velocity.Unit.Magnitude == velocity.Unit.Magnitude then
                         velocity = velocity.Unit * lastVelocity.Magnitude
@@ -91,7 +94,7 @@ return function(Sunshine, entity)
                         velocity = lastVelocity
                     end
                 end
-                physics.velocity = Vector3.new(velocity.X, physics.velocity.Y, velocity.Z)
+                physics.velocity = vector3New(velocity.X, physics.velocity.Y, velocity.Z)
                 lastMoveVector = moveVector
                 lastVelocity = velocity
                 lastGroundeds[2] = lastGroundeds[1]
