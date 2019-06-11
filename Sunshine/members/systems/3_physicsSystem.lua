@@ -62,7 +62,9 @@ return function(Sunshine, entity)
             for index = 1, #descendants do
                 local descendant = descendants[index]
                 if descendant:IsA("BasePart") then
-                    descendant.Anchored = physics.anchored
+                    if descendant.Anchored then
+                        descendant.Anchored = physics.anchored
+                    end
                     descendant.Massless = physics.massless
                     if descendant.CanCollide then
                         descendant.CanCollide = physics.canCollide
