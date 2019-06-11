@@ -79,6 +79,9 @@ return function(Sunshine, entity)
                 elseif moveVector == vector3New() then
                     damping = 0.7
                 end
+                if character.state == "throw" then -- hacky fix
+                    canLoseMagnitude = true
+                end
                 local walkSpeed = character.walkSpeed * character.walkSpeedFactor
                 local xVelocity = physics.velocity.X
                 xVelocity = xVelocity + (moveVector.X * walkSpeed + (boost * moveVector.X))

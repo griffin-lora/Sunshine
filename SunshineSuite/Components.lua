@@ -137,6 +137,13 @@ return {
         volume = {Type = "number", Default = 0.5}
 	},
 	
+	animation = {
+		id = {Type = "number", Default = 0},
+		looped = {Type = "boolean", Default = false},
+        playing = {Type = "boolean", Default = false},
+        speed = {Type = "number", Default = 1}
+	},
+	
     transparency = {
         transparency = {Type = "number", Default = 0}
     },
@@ -212,6 +219,11 @@ return {
 
     teleporter = {
         scene = {Type = "Instance", Default = nil}
+    },
+
+    throw = {
+        power = {Type = "number", Default = 50},
+        animation = {Type = "number", Default = 0}
     }
 
 }

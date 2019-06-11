@@ -20,7 +20,7 @@ local function getMember(instance)
     end
 end
 
-return setmetatable({}, {
+local Sunshine = setmetatable({}, {
     __index = function(Sunshine, name)
         -- This just routes an index to the correct module in the members folder.
         -- For example Sunshine.someIndex will return the required someIndex.lua file
@@ -33,3 +33,7 @@ return setmetatable({}, {
         return member
     end
 })
+
+Sunshine:setTopbarEnabled(false)
+
+return Sunshine
