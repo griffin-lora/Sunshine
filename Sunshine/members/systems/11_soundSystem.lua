@@ -17,7 +17,6 @@ return function(Sunshine, entity)
                     soundInstance.SoundId = "rbxassetid://"..sound.id
 					soundInstance.Parent = SoundService
 					Sunshine:addInstance(soundInstance)
-                    soundInstance:Play()
                 end
             end
             if soundInstance then
