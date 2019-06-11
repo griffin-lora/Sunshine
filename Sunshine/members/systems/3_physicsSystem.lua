@@ -58,7 +58,9 @@ return function(Sunshine, entity)
             end
         })
         Sunshine:update(function()
-            for index, descendant in pairs(model.model:GetDescendants()) do
+            local descend = model,model:GetDescendants()
+            for i=1, #descend do
+                local descendant = descend[i]
                 if descendant:IsA("BasePart") then
                     descendant.Anchored = physics.anchored
                     descendant.Massless = physics.massless

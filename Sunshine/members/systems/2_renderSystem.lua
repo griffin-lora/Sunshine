@@ -40,7 +40,9 @@ return function(Sunshine, entity)
         })
         Sunshine:update(function()
             if transparency or transform.size ~= Vector3.new(1, 1, 1) then
-                for index, descendant in pairs(model.model:GetDescendants()) do
+                local descend = model.model:GetDescendants()
+                for i=1, #descend do
+                    local descendant = descend[i]
                     if descendant:IsA("BasePart") then
                         descendant.Size = descendant.Size / lastSize
                         descendant.Size = descendant.Size * transform.size
