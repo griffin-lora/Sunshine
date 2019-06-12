@@ -18,6 +18,7 @@ return function(Sunshine, entity)
     end, function()
         -- start
         physics.movable = false
+        physics.velocity = Vector3.new()
         startTick = tick()
         animator.action = component.startAnimation
     end, function()
