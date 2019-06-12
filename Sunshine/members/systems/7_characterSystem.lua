@@ -110,9 +110,6 @@ return function(Sunshine, entity)
                 lastVelocity = velocity
                 lastGroundeds[2] = lastGroundeds[1]
                 lastGroundeds[1] = character.grounded
-                if transform.cFrame.Y < (workspace.FallenPartsDestroyHeight + 50) then
-                    Sunshine:loadScene(Sunshine.dataScene)
-                end
             end
         end)
     end
