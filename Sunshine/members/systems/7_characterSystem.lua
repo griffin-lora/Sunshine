@@ -69,7 +69,7 @@ return function(Sunshine, entity)
                     end
                 end
                 if character.moving and physics.movable and lastMoveVector then
-                    transform.cFrame = transform.cFrame:Lerp(CFrame.new(transform.cFrame.Position, transform.cFrame.Position + moveVector), step * moveVector:Dot(lastMoveVector) * 10)
+                    transform.cFrame = transform.cFrame:Lerp(CFrame.new(transform.cFrame.Position, transform.cFrame.Position + moveVector), step * moveVector:Dot(lastMoveVector) * 12)
                 end
                 local damping = 0.5
                 local canLoseMagnitude = true
@@ -92,11 +92,19 @@ return function(Sunshine, entity)
                 local velocity = vector3New(xVelocity, 0, zVelocity)
                 if not canLoseMagnitude and lastVelocity and velocity.Magnitude < lastVelocity.Magnitude then
                     if velocity.Unit.Magnitude == velocity.Unit.Magnitude then
-                        velocity = velocity.Unit * lastVelocity.Magnitude
+                        if character.moving then
+                            velocity = velocity:Lerp(velocity.Unit * lastVelocity.Magnitude, moveVector:Dot(lastMoveVector))
+                        else
+                            velocity = velocity.Unit * lastVelocity.Magnitude
+                        end
                     else
                         velocity = lastVelocity
                     end
                 end
+                local stepPart, stepPosition = Sunshine:findPartOnRay(rayNew(transform.cFrame.Position + (velocity * step * 20), distance), {model.model})
+                -- if stepPart ~= part then
+                --     transform.cFrame = (transform.cFrame - Vector3.new(0, transform.cFrame.Y, 0)) + Vector3.new(0, stepPosition.Y + 3, 0)
+                -- end
                 physics.velocity = vector3New(velocity.X, physics.velocity.Y, velocity.Z)
                 lastMoveVector = moveVector
                 lastVelocity = velocity
