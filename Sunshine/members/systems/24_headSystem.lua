@@ -5,8 +5,9 @@ return function(Sunshine, entity)
     if head and collider then
         transform.cFrame = head.cFrame
         Sunshine:update(function()
-            if collider.hitEntity and collider.hitEntity.tag and collider.hitEntity.tag.tag == "character" then
-                transform.cFrame = collider.hitEntity.transform.cFrame
+            local character = Sunshine:getEntityById(head.character)
+            if collider.hitEntity == character then
+                collider.trigger = false
             end
         end)
     end

@@ -210,7 +210,8 @@ return {
     
     head = {
         cFrame = {Type = "CFrame", Default = CFrame.new()},
-        active = {Type = "boolean", Default = true}
+        active = {Type = "boolean", Default = true},
+        character = {Type = "Object", Default = nil},
     },
 
     bouncer = {
@@ -223,7 +224,8 @@ return {
 
     throw = {
         power = {Type = "number", Default = 50},
-        animation = {Type = "number", Default = 0}
+        animation = {Type = "number", Default = 0},
+        head = {Type = "Object", Default = nil}
     },
 
     health = {
