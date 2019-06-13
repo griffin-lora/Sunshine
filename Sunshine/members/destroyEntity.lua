@@ -1,7 +1,7 @@
 return function(Sunshine, entity)
-    for _, callback in pairs(Sunshine.updateCallbacks) do
+    for index, callback in pairs(Sunshine.updateCallbacks) do
         if callback[2] == entity then
-            callback[1]:Disconnect()
+            Sunshine.updateCallbacks[index] = nil
         end
     end
     for _, connection in pairs(Sunshine.connections) do
@@ -11,7 +11,7 @@ return function(Sunshine, entity)
     end
     for _, instance in pairs(Sunshine.instances) do
         if instance[2] == entity then
-            instance[1]:Disconnect()
+            instance[1]:Destroy()
         end
     end
 end

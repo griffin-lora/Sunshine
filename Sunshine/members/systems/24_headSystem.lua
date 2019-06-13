@@ -8,6 +8,7 @@ return function(Sunshine, entity)
             local character = Sunshine:getEntityById(head.character)
             if collider.hitEntity == character then
                 collider.trigger = false
+                Sunshine:destroyEntity(entity)
             end
         end, entity)
     end
