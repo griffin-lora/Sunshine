@@ -5,11 +5,11 @@ return function(Sunshine, entity)
         local buttonInstance = Instance.new("TextButton")
         buttonInstance.Text = ""
         buttonInstance.BackgroundTransparency = 1
-        Sunshine:addInstance(buttonInstance)
+        Sunshine:addInstance(buttonInstance, entity)
         buttonInstance.Parent = Sunshine.gui
         Sunshine:addConnection(buttonInstance.MouseButton1Click, function()
             button.activated = true
-        end)
+        end, entity)
         local endActivation = false
         local originalSize = button.size
         Sunshine:update(function()
@@ -26,6 +26,6 @@ return function(Sunshine, entity)
                     endActivation = true
                 end
             end
-        end)
+        end, entity)
     end
 end

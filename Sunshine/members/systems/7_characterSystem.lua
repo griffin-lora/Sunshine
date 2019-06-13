@@ -111,6 +111,6 @@ return function(Sunshine, entity)
                 lastGroundeds[2] = lastGroundeds[1]
                 lastGroundeds[1] = character.grounded
             end
-        end)
+        end, entity)
     end
 end

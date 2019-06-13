@@ -8,7 +8,7 @@ return function(Sunshine, entity)
         if lighting.sky then
             local sky = lighting.sky:Clone()
             sky.Parent = Lighting
-            Sunshine:addInstance(sky)
+            Sunshine:addInstance(sky, entity)
         end
 		Lighting.Ambient = lighting.ambient
 		Lighting.OutdoorAmbient = lighting.outdoorAmbient
@@ -20,13 +20,13 @@ return function(Sunshine, entity)
 		Lighting.FogStart = lighting.fogStart
 		Lighting.FogEnd = lighting.fogEnd
 		local color = Instance.new("ColorCorrectionEffect")
-		Sunshine:addInstance(color)
+		Sunshine:addInstance(color, entity)
 		local blur = Instance.new("BlurEffect")
-		Sunshine:addInstance(blur)
+		Sunshine:addInstance(blur, entity)
 		local bloom = Instance.new("BloomEffect")
-		Sunshine:addInstance(bloom)
+		Sunshine:addInstance(bloom, entity)
 		local rays = Instance.new("SunRaysEffect")
-		Sunshine:addInstance(rays)
+		Sunshine:addInstance(rays, entity)
 		color.Brightness = lighting.brightness
 		color.Contrast = lighting.contrast
 		color.Saturation = lighting.saturation

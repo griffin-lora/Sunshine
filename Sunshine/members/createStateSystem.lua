@@ -27,6 +27,6 @@ return function(Sunshine, entity, state, startCheck, start, update, stopCheck, s
                 end
             end
             lastState = character.state
-        end)
+        end, entity)
     end
 end

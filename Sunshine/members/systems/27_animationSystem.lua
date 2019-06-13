@@ -33,6 +33,6 @@ return function(Sunshine, entity)
                 animationTrack.Looped = animation.looped
             end
 			lastId = animation.id
-        end)
+        end, entity)
     end
 end

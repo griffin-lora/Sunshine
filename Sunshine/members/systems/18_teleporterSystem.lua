@@ -11,13 +11,13 @@ return function(Sunshine, entity)
                 if collider.hitEntity and collider.hitEntity.tag and collider.hitEntity.tag.tag == "character" then
                     Sunshine:loadScene(scene)
                 end
-            end)
+            end, entity)
         elseif button then
             Sunshine:update(function()
                 if button.activated then
                     Sunshine:loadScene(scene)
                 end
-            end)
+            end, entity)
         end
     end
 end

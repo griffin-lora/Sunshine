@@ -6,7 +6,7 @@ return function(Sunshine, entity)
     local transparency = entity.transparency
     if model and transform then
         model.model = model.model:Clone()
-        Sunshine:addInstance(model.model)
+        Sunshine:addInstance(model.model, entity)
         model.model.Name = entity.core.id
         model.model:SetPrimaryPartCFrame(transform.cFrame)
         model.model.Parent = workspace
@@ -61,6 +61,6 @@ return function(Sunshine, entity)
                 end
             end
             lastSize = transform.size
-        end)
+        end, entity)
     end
 end

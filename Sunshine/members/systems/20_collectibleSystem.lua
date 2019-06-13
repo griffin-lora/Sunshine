@@ -36,7 +36,7 @@ return function(Sunshine, entity)
 					sound.id = 131323304
 					addCoin = true
 	            end
-	        end)
+	        end, entity)
 		elseif tag.tag == "script" then
 			local collected = false
 			Sunshine:update(function()
@@ -47,7 +47,7 @@ return function(Sunshine, entity)
 					sound.id = 1143857273
 					transparency.transparency = 1
 				end
-			end)
+			end, entity)
 		end
     end
 

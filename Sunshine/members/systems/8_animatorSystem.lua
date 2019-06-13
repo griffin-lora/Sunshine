@@ -70,6 +70,6 @@ return function(Sunshine, entity)
                     coreTrack:Play()
                 end
             end
-        end)
+        end, entity)
     end
 end

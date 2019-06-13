@@ -11,7 +11,7 @@ return function(Sunshine, entity)
                     collider.hitEntity = hitEntity
                 end
             end
-        end)
+        end, entity)
         Sunshine:addConnection(model.model.PrimaryPart.TouchEnded, function(part)
             if collider.trigger and part.Parent and part.Parent:IsA("Model") and part.Parent.PrimaryPart == part then
                 local hitEntity = Sunshine:getEntityById(part.Parent.Name)
@@ -19,11 +19,11 @@ return function(Sunshine, entity)
                     collider.hitEntity = nil
                 end
             end
-        end)
+        end, entity)
         Sunshine:update(function()
             if not collider.trigger then
                 collider.hitEntity = nil
             end
-        end)
+        end, entity)
     end
 end

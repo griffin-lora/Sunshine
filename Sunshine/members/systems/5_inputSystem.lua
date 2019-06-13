@@ -40,8 +40,8 @@ return function(Sunshine, entity)
                 end
             end
         end
-        Sunshine:addConnection(UserInputService.InputBegan, handleInput)
-        Sunshine:addConnection(UserInputService.InputEnded, handleInput)
+        Sunshine:addConnection(UserInputService.InputBegan, handleInput, entity)
+        Sunshine:addConnection(UserInputService.InputEnded, handleInput, entity)
         local position
         Sunshine:addConnection(UserInputService.InputChanged, function(input)
             if input.KeyCode == Enum.KeyCode.Thumbstick1 then
@@ -51,7 +51,7 @@ return function(Sunshine, entity)
                     position = vector3New()
                 end
             end
-        end)
+        end, entity)
         Sunshine:update(function()
             input.space = space or UserInputService:IsGamepadButtonDown(Enum.UserInputType.Gamepad1, Enum.KeyCode.ButtonA) or UserInputService:IsGamepadButtonDown(Enum.UserInputType.Gamepad1, Enum.KeyCode.ButtonB)
             input.shift = shift or r2 or l2
@@ -82,6 +82,6 @@ return function(Sunshine, entity)
                 end
                 input.moveVector = moveVector
             end
-        end)
+        end, entity)
     end
 end

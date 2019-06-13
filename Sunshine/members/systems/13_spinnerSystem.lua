@@ -8,6 +8,6 @@ return function(Sunshine, entity)
             if spinner.speed ~= 0 then
                 transform.cFrame = CFrame.new(transform.cFrame.Position) * CFrame.Angles(0, (tick() % math.pi) * spinner.speed, 0)
             end
-        end)
+        end, entity)
     end
 end

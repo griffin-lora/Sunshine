@@ -16,7 +16,7 @@ return function(Sunshine, entity)
                     soundInstance = Instance.new("Sound")
                     soundInstance.SoundId = "rbxassetid://"..sound.id
 					soundInstance.Parent = SoundService
-					Sunshine:addInstance(soundInstance)
+					Sunshine:addInstance(soundInstance, entity)
                 end
             end
             if soundInstance then
@@ -25,6 +25,6 @@ return function(Sunshine, entity)
                 soundInstance.Volume = sound.volume
             end
 			lastId = sound.id
-		end)
+		end, entity)
 	end
 end

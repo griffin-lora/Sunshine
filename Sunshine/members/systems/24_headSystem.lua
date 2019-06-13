@@ -9,6 +9,6 @@ return function(Sunshine, entity)
             if collider.hitEntity == character then
                 collider.trigger = false
             end
-        end)
+        end, entity)
     end
 end

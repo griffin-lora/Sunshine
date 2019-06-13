@@ -8,7 +8,7 @@ return function(Sunshine, entity)
     if (frame or label) and uiTransform then
         if frame then
             frame.frame = frame.frame:Clone()
-            Sunshine:addInstance(frame.frame)
+            Sunshine:addInstance(frame.frame, entity)
             frame.frame.Parent = Sunshine.gui
             local originalSize = frame.frame.Size
             Sunshine:update(function()
@@ -20,13 +20,13 @@ return function(Sunshine, entity)
                 if transparency then
                     frame.frame.BackgroundTransparency = transparency.transparency
                 end
-            end)
+            end, entity)
         end
         if label then
             local labelInstance = Instance.new("TextLabel")
             labelInstance.BackgroundTransparency = 1
             labelInstance.TextScaled = true
-            Sunshine:addInstance(labelInstance)
+            Sunshine:addInstance(labelInstance, entity)
             labelInstance.Parent = Sunshine.gui
             local originalSize = label.size
             Sunshine:update(function()
@@ -40,7 +40,7 @@ return function(Sunshine, entity)
                 if transparency then
                     labelInstance.TextTransparency = transparency.transparency
                 end
-            end)
+            end, entity)
         end
     end
 end

@@ -71,6 +71,6 @@ return function(Sunshine, entity)
                     end
                 end
             end
-        end)
+        end, entity)
     end
 end

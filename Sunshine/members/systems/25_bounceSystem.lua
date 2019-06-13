@@ -9,6 +9,6 @@ return function(Sunshine, entity)
                 print(physics.velocity)
                 physics.velocity = Vector3.new(physics.velocity.X, bouncer.power, physics.velocity.Z)
             end
-        end)
+        end, entity)
     end
 end
