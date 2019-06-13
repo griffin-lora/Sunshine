@@ -36,6 +36,8 @@ return function(Sunshine, entity)
                     active = false
                     character.character.controllable = false
                     collider.hitEntity.character.controllable = true
+                    collider.hitEntity.capture.character = character.core.id
+                    collider.hitEntity.capture.active = true
                     Sunshine:destroyEntity(entity)
                 end
             else

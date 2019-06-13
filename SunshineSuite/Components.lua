@@ -54,7 +54,6 @@ return {
 	
 	character = {
 		controllable = {Type = "boolean", Default = false},
-		camera = {Type = "Object", Default = nil},
 		shirtGraphic = {Type = "string", Default = ""},
 		shirtGraphicColor = {Type = "Color3", Default = Color3.fromRGB(255, 255, 255)},
 		shirt = {Type = "string", Default = ""},
@@ -68,7 +67,10 @@ return {
 		rightLegColor = {Type = "Color3", Default = Color3.fromRGB(163, 162, 165)},
 		torsoColor = {Type = "Color3", Default = Color3.fromRGB(163, 162, 165)},
 		walkSpeed = {Type = "number", Default = 16},
-		walkSpeedFactor = {Type = "number", Default = 1}
+		walkSpeedFactor = {Type = "number", Default = 1},
+		moveAnimation = {Type = "number", Default = 0},
+		idleAnimation = {Type = "number", Default = 0},
+		fallAnimation = {Type = "number", Default = 0},
 	},
 	
 	charData = {
@@ -243,7 +245,8 @@ return {
     },
     
     capture = {
-        
+        active = {Type = "boolean", Default = false},
+        character = {Type = "Object", Default = nil}
     },
 
     lockAxis = {

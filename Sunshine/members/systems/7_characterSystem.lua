@@ -49,12 +49,12 @@ return function(Sunshine, entity)
                 physics.velocity = vector3New(physics.velocity.X, 0, physics.velocity.Z)
             end
             if character.moving then
-                animator.movement = 3214734207
+                animator.movement = character.moveAnimation
             else
-                animator.movement = 507766388
+                animator.movement = character.idleAnimation
             end
             if not character.grounded and physics.velocity.Y < -0.5 then
-                animator.movement = 507767968
+                animator.movement = character.fallAnimation
             end
             if character.controllable then
                 local moveVector = input.moveVector
