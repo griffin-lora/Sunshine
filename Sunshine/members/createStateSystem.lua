@@ -9,13 +9,15 @@ return function(Sunshine, entity, state, startCheck, start, update, stopCheck, s
         local lastState = character.state
         Sunshine:update(function(step)
             if character.controllable then
-                if character.state == state then
+                if lastState ~= state and character.state == state then
+                    start(step)
+                elseif character.state == state then
                     update(step)
                     if stopCheck(step) then
                         stop(step)
                         character.state = nil
                     end
-                elseif startCheck(step) or (lastState ~= state and character.state == state) then
+                elseif startCheck(step) then
                     character.state = state
                     start(step)
                 end

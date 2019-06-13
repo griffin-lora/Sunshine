@@ -232,6 +232,11 @@ return {
 
     health = {
         health = {Type = "number", Default = 3}
+    },
+
+    bounce = {
+        power = {Type = "number", Default = 50},
+        animation = {Type = "number", Default = 0}
     }
 
 }

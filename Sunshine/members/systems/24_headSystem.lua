@@ -15,7 +15,7 @@ return function(Sunshine, entity)
                 elseif collider.hitEntity == character then
                     active = false
                     bounceTick = tick()
-                    character.character.state = nil
+                    character.character.state = "bounce"
                     collider.trigger = false
                 end
             else
