@@ -48,7 +48,8 @@ return {
 	input = {
 		moveVector = {Type = "Vector3", Default = Vector3.new()},
 		space = {Type = "boolean", Default = false},
-		shift = {Type = "boolean", Default = false},
+        shift = {Type = "boolean", Default = false},
+        camera = {Type = "Object", Default = nil},
 	},
 	
 	character = {
@@ -210,8 +211,10 @@ return {
     
     head = {
         cFrame = {Type = "CFrame", Default = CFrame.new()},
-        active = {Type = "boolean", Default = true},
         character = {Type = "Object", Default = nil},
+        time = {Type = "number", Default = 2},
+        holdTime = {Type = "number", Default = 5},
+        bounceTime = {Type = "number", Default = 0.5},
     },
 
     bouncer = {
@@ -237,6 +240,16 @@ return {
     bounce = {
         power = {Type = "number", Default = 50},
         animation = {Type = "number", Default = 0}
+    },
+    
+    capture = {
+        
+    },
+
+    lockAxis = {
+        x = {Type = "boolean", Default = false},
+        y = {Type = "boolean", Default = false},
+        z = {Type = "boolean", Default = false}
     }
 
 }

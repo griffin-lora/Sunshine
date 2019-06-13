@@ -12,7 +12,6 @@ return function(Sunshine, entity)
         return 
     end, function()
         -- start
-        print("start")
         physics.velocity = Vector3.new(0, component.power, 0)
         animator.action = 2504812300
     end, function()

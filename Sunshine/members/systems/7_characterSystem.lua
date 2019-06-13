@@ -48,6 +48,14 @@ return function(Sunshine, entity)
             if character.grounded then
                 physics.velocity = vector3New(physics.velocity.X, 0, physics.velocity.Z)
             end
+            if character.moving then
+                animator.movement = 3214734207
+            else
+                animator.movement = 507766388
+            end
+            if not character.grounded and physics.velocity.Y < -0.5 then
+                animator.movement = 507767968
+            end
             if character.controllable then
                 local moveVector = input.moveVector
                 character.moving = moveVector ~= vector3New()
@@ -57,16 +65,6 @@ return function(Sunshine, entity)
                     moveVector = closestPoint
                     physics.velocity = vector3New(physics.velocity.X, moveVector.Y * 50, physics.velocity.Z)
                     boost = -moveVector.Y * 10
-                end
-                if animator then
-                    if character.moving then
-                        animator.movement = 3214734207
-                    else
-                        animator.movement = 507766388
-                    end
-                    if not character.grounded and physics.velocity.Y < -0.5 then
-                        animator.movement = 507767968
-                    end
                 end
                 if character.moving and physics.movable and lastMoveVector then
                     transform.cFrame = transform.cFrame:Lerp(CFrame.new(transform.cFrame.Position, transform.cFrame.Position + moveVector), step * moveVector:Dot(lastMoveVector) * 12)

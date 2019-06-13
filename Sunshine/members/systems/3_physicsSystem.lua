@@ -6,11 +6,34 @@ return function(Sunshine, entity)
     local model = entity.model
     local transform = entity.transform
     local physics = entity.physics
-    local customPhysics = entity.customPhysics
+    local lockAxis = entity.lockAxis
     if model and transform and physics then
         local bodyVelocity = Instance.new("BodyVelocity")
         bodyVelocity.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
         bodyVelocity.Velocity = Vector3.new()
+        if lockAxis then
+            local x = 0
+            local y = 0
+            local z = 0
+            if lockAxis.x then
+                x = math.huge
+            end
+            if lockAxis.y then
+                y = math.huge
+            end
+            if lockAxis.z then
+                z = math.huge
+            end
+            local lockAxisBodyVelocity = Instance.new("BodyVelocity")
+            lockAxisBodyVelocity.MaxForce = Vector3.new(x, y, z)
+            lockAxisBodyVelocity.Velocity = Vector3.new()
+            lockAxisBodyVelocity.Parent = model.model.PrimaryPart
+            for index, descendant in pairs(model.model:GetDescendants()) do
+                if descendant:IsA("BasePart") then
+                    lockAxisBodyVelocity:Clone().Parent = descendant
+                end
+            end
+        end
         for index, descendant in pairs(model.model:GetDescendants()) do
             if descendant:IsA("BasePart") then
                 if physics.welded and descendant ~= model.model.PrimaryPart then
