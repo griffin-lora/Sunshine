@@ -1,4 +1,5 @@
 return function(Sunshine, entity)
+    entity.core.active = false
     for index, callback in pairs(Sunshine.updateCallbacks) do
         if callback[2] == entity then
             Sunshine.updateCallbacks[index] = nil

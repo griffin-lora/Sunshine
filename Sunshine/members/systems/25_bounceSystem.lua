@@ -6,8 +6,11 @@ return function(Sunshine, entity)
             if collider.hitEntity and collider.hitEntity.tag and collider.hitEntity.tag.tag == "character" then
                 local hitEntity = collider.hitEntity
                 local physics = collider.hitEntity.physics
-                print(physics.velocity)
-                physics.velocity = Vector3.new(physics.velocity.X, bouncer.power, physics.velocity.Z)
+                if bouncer.direct then
+                    physics.velocity = Vector3.new(0, bouncer.power, 0)
+                else
+                    physics.velocity = Vector3.new(physics.velocity.X, bouncer.power, physics.velocity.Z)
+                end
             end
         end, entity)
     end

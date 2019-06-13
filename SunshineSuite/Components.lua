@@ -215,7 +215,8 @@ return {
     },
 
     bouncer = {
-        power = {Type = "number", Default = 50}
+        power = {Type = "number", Default = 50},
+        direct = {Type = "boolean", fakse}
     },
 
     teleporter = {
@@ -224,6 +225,7 @@ return {
 
     throw = {
         power = {Type = "number", Default = 50},
+        distance = {Type = "number", Default = 20},
         animation = {Type = "number", Default = 0},
         head = {Type = "Object", Default = nil}
     },

@@ -8,16 +8,16 @@ return function(Sunshine, entity)
     local physics = entity.physics
     local animator = entity.animator
     local lastE = false
-    local head
+    local head = {core = {}}
     Sunshine:createStateSystem(entity, state, function()
         -- start check
-        return character.state ~= "groundPound" and character.state ~= "dive" and input.e and not lastE
+        return not head.core.active and character.state ~= "groundPound" and character.state ~= "dive" and input.e and not lastE
     end, function()
         -- start
-        if not head and Sunshine:getEntityById(component.head) then
+        if Sunshine:getEntityById(component.head) then
             local headClone = Sunshine:copyTable(Sunshine:getEntityById(component.head))
             headClone.core.active = true
-            headClone.head.cFrame = CFrame.new(transform.cFrame.Position + (transform.cFrame.LookVector.Unit * 10))
+            headClone.head.cFrame = CFrame.new(transform.cFrame.Position + (transform.cFrame.LookVector.Unit * component.distance))
             head = Sunshine:createEntity(headClone)
         end
         local velocityY
