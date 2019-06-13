@@ -7,6 +7,7 @@ return function(Sunshine, entity)
     local transform = entity.transform
     local physics = entity.physics
     local animator = entity.animator
+    local model = entity.model
     local lastE = false
     local head = {core = {}}
     Sunshine:createStateSystem(entity, state, function()
@@ -41,5 +42,13 @@ return function(Sunshine, entity)
     end, function()
         -- general update
         lastE = input.e
+        -- hacky fix incoming
+        if head.core.active then
+            model.model.Head.Transparency = 1
+            model.model.Head.face.Transparency = 1
+        else
+            model.model.Head.Transparency = 0
+            model.model.Head.face.Transparency = 0
+        end
     end)
 end
