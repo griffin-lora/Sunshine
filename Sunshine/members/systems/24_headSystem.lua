@@ -18,30 +18,37 @@ return function(Sunshine, entity)
                 if (transform.cFrame.Position - character.transform.cFrame.Position).Magnitude > 2 then
                     collider.trigger = true
                 end
-                if character.input.e then
-                    if (tick() - startTick) > head.holdTime then
+                if collider.trigger then
+                    if character.input.e then
+                        if (tick() - startTick) > head.holdTime then
+                            active = false
+                        end
+                    elseif (tick() - startTick) > head.time then
                         active = false
-                        Sunshine:destroyEntity(entity)
                     end
-                elseif (tick() - startTick) > head.time then
-                    active = false
-                    Sunshine:destroyEntity(entity)
+                else
+                    if (tick() - bounceTick) > head.bounceTime then
+                        active = false
+                    end
                 end
                 if active and collider.hitEntity == character then
-                    active = false
                     bounceTick = tick()
                     character.character.state = "bounce"
                     collider.trigger = false
                 elseif active and collider.hitEntity and collider.hitEntity.capture then
                     active = false
+                    character.transform.cFrame = CFrame.new(0, 100000, 0)
+                    character.physics.movable = false
                     character.character.controllable = false
                     collider.hitEntity.character.controllable = true
                     collider.hitEntity.capture.character = character.core.id
+                    Sunshine:getEntityById(character.input.camera).camera.subject = collider.hitEntity.core.id
                     collider.hitEntity.capture.active = true
                     Sunshine:destroyEntity(entity)
                 end
             else
-                if (tick() - bounceTick) > head.bounceTime then
+                transform.cFrame = transform.cFrame:Lerp(character.transform.cFrame, step * 10)
+                if (transform.cFrame.Position - character.transform.cFrame.Position).Magnitude < 5 then
                     Sunshine:destroyEntity(entity)
                 end
             end

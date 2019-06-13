@@ -9,6 +9,7 @@ return function(Sunshine, entity)
         cameraInstance.CFrame = transform.cFrame
         Sunshine:update(function()
             local subject = Sunshine:getEntityById(camera.subject)
+            print(subject)
             if subject and subject.model then
                 cameraInstance.CameraType = Enum.CameraType.Custom
                 cameraInstance.CameraSubject = subject.model.model
