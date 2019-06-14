@@ -136,11 +136,18 @@ return function(script, plugin)
     function Sunshine:LoadScene(sceneInstance, prefab)
         self.Prefab = prefab
         local scene
+        Sunshine.Storage:ClearAllChildren()
         if prefab then
             scene = require(sceneInstance)
+            local sceneClone = sceneInstance:Clone()
+            sceneClone.Name = "LoadedPrefab"
+            sceneClone.Parent = Sunshine.Storage
             scene = {entities = {scene}}
         else
             scene = require(sceneInstance)
+            local sceneClone = sceneInstance:Clone()
+            sceneClone.Name = "LoadedScene"
+            sceneClone.Parent = Sunshine.Storage
         end
         self.SceneInstance = sceneInstance
 		
