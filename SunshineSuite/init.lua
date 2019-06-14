@@ -10,6 +10,8 @@ function SunshineSuite:init(script, plugin)
 	local Sunshine = require(script.Parent.Sunshine)(script, plugin)
 	local Libs = require(script.Parent.Libs)
     local Roact = require(script.Parent.Roact)
+
+    wait(3)
     
     if ServerStorage:FindFirstChild("SunshineSuiteStorage") then
         Sunshine.Storage = ServerStorage.SunshineSuiteStorage
