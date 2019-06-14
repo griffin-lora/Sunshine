@@ -1,6 +1,9 @@
 local SunshineSuite = {}
 
 function SunshineSuite:init(script, plugin)
+    if not game:GetService("RunService"):IsEdit() then
+        return
+    end
 	
 	plugin.Name = "SunshineSuite"
 	
