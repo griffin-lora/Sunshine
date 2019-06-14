@@ -253,6 +253,10 @@ return {
         x = {Type = "boolean", Default = false},
         y = {Type = "boolean", Default = false},
         z = {Type = "boolean", Default = false}
+    },
+
+    deathBarrier = {
+        y = {Type = "number", Default = -500}
     }
 
 }

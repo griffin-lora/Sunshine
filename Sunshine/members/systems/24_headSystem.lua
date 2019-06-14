@@ -25,7 +25,7 @@ return function(Sunshine, entity)
                     collider.trigger = true
                 end
                 if collider.trigger then
-                    if character.input.e then
+                    if character.input.e or character.character.state == "dive" then
                         if (tick() - startTick) > head.holdTime then
                             active = false
                         end

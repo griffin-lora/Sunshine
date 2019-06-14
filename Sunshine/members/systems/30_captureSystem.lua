@@ -3,10 +3,11 @@ return function(Sunshine, entity)
     local character = entity.character
     local input = entity.input
     local transform = entity.transform
-    if capture and character and input and transform then
+    local health = entity.health
+    if capture and character and input and transform and health then
         Sunshine:update(function()
             if capture.active then
-                if input.shift then
+                if input.shift or health.health <= 0 then
                     capture.active = false
                     character.controllable = false
                     local character = Sunshine:getEntityById(capture.character)
