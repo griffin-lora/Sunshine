@@ -114,8 +114,48 @@ function SunshineSuite:init(script, plugin)
 		})
 	})
 	
-	Roact.mount(tree, objectCreatorGui, "SunshineSuite")
+    Roact.mount(tree, objectCreatorGui, "SunshineSuite")
+    local prefabEditorGui = plugin:CreateDockWidgetPluginGui("PrefabEditor", DockWidgetPluginGuiInfo.new(Enum.InitialDockState.Right, false, false, 400, 500, 300, 80))
+	prefabEditorGui.Name = "PrefabEditor"
+	prefabEditorGui.Title = "Prefab Editor"
+	table.insert(pluginGuis, prefabEditorGui)
 	
+	local tree = Roact.createElement("Folder", {}, {
+		Frame = Roact.createElement("Frame", {
+			Size = UDim2.new(1, 0, 1, 0),
+			BackgroundColor3 = Color3.fromRGB(46, 46, 46),
+			BorderSizePixel = 0
+		}, {
+			UIListLayout = Roact.createElement("UIListLayout", {
+				SortOrder = Enum.SortOrder.Name,
+				HorizontalAlignment = Enum.HorizontalAlignment.Center,
+				Padding = UDim.new(0, 20)
+			}),
+			A = Roact.createElement(Libs.Label, {
+				labelText = "",
+				textSize = 30,
+				textColor = Color3.fromRGB(255, 255, 255)
+			}),
+			B = Roact.createElement(Libs.Button, {
+				labelText = "Edit Prefab",
+				onClick = function()
+					
+					local prefab = Selection:Get()[1]
+					
+					if prefab and prefab:IsA("ModuleScript") then
+						
+						Sunshine:LoadPrefab(prefab)
+						
+					end
+					
+				end
+			})
+		})
+	})
+	
+	Roact.mount(tree, prefabEditorGui, "SunshineSuite")
+
+	local prefabNameLabel = prefabEditorGui.SunshineSuite.Frame.A
 	local nameLabel = sceneLoaderGui.SunshineSuite.Frame.A
 	local frame = componentViewerGui.SunshineSuite.Frame
 	
@@ -125,11 +165,13 @@ function SunshineSuite:init(script, plugin)
 					
 		if scene and scene:IsA("ModuleScript") then
 			
-			nameLabel.Text = scene.Name
+            nameLabel.Text = scene.Name
+            prefabNameLabel.Text = scene.Name
 			
 		else
 			
 			nameLabel.Text = "Invalid Selection"
+            prefabNameLabel.Text = "Invalid Selection"
 			
 		end
 		
