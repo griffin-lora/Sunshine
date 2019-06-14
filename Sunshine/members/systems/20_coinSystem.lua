@@ -13,7 +13,6 @@ return function(Sunshine, entity)
     local collider = entity.collider
     local sound = entity.sound
     if coin and transform and collider and sound then
-        print("COIN")
         local collected = false
         Sunshine:update(function(step)
             if collected and transform.size.Magnitude > 0.001 then
