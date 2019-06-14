@@ -26,6 +26,8 @@ return function(Sunshine, entity)
     local transform = entity.transform
     local physics = entity.physics
     local animator = entity.animator
+    local health = entity.health
+    local tag = entity.tag
     if character and model and input and transform and physics and animator then
         local lastGroundeds = {}
         local lastVelocity
@@ -108,6 +110,11 @@ return function(Sunshine, entity)
                 lastVelocity = velocity
                 lastGroundeds[2] = lastGroundeds[1]
                 lastGroundeds[1] = character.grounded
+                if health and tag and tag.tag == "character" then
+                    if health.health <= 0 then
+                        Sunshine:reloadScene()
+                    end
+                end
             end
         end, entity)
     end
