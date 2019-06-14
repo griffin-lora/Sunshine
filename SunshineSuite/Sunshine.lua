@@ -127,13 +127,22 @@ return function(script, plugin)
 		
 		return output
 		
-	end
+    end
+    
+    function Sunshine:LoadPrefab(prefabInstance)
+        Sunshine:LoadScene(prefabInstance, true)
+    end
 	
-	function Sunshine:LoadScene(sceneInstance)
-		
-		local scene = require(sceneInstance)
-		
-		self.SceneInstance = sceneInstance
+    function Sunshine:LoadScene(sceneInstance, prefab)
+        self.Prefab = prefab
+        local scene
+        if prefab then
+            scene = require(sceneInstance)
+            scene = {entities = {scene}}
+        else
+            scene = require(sceneInstance)
+        end
+        self.SceneInstance = sceneInstance
 		
 		for index, member in pairs(self.Objects) do
 			
@@ -222,25 +231,35 @@ return function(script, plugin)
 	end
 	
 	function Sunshine:SaveScene()
+        
+        local sceneInstance = self.SceneInstance
+
+        local scene
+        
+        if not self.Prefab then
+            
+            scene = {entities = {}}
+            
+            for index, member in pairs(self.Objects) do
+                
+                if index.Parent then
+                    
+                    scene.entities[#scene.entities + 1] = member
+                    
+                end
+                
+            end
+            
+            ChangeHistoryService:SetWaypoint("F")
+        else
+            for _ , object in pairs(self.Objects) do
+                scene = object
+            end
+            
+        end
 		
-		local sceneInstance = self.SceneInstance
-		
-		local scene = {entities = {}}
-		
-		for index, member in pairs(self.Objects) do
-			
-			if index.Parent then
-				
-				scene.entities[#scene.entities + 1] = member
-				
-			end
-			
-		end
-		
-		ChangeHistoryService:SetWaypoint("F")
-		
-		sceneInstance.Source = "return "..self:EncodeTable(scene)
-		
+            
+        sceneInstance.Source = "return "..self:EncodeTable(scene)
 		local newSceneInstance = sceneInstance:Clone()
 		
 		newSceneInstance.Parent = sceneInstance.Parent
@@ -257,9 +276,9 @@ return function(script, plugin)
 		
 		local data = self:CopyTable(object)
 		
-		if data.Prefab then
+		if data.prefab then
 			
-			local prefab = require(data.Prefab.Prefab)
+			local prefab = require(data.prefab.prefab)
 			
 			for name, component in pairs(prefab) do
 				
@@ -326,7 +345,7 @@ return function(script, plugin)
 						
 						self.Objects[objectInstance] = object
 						self:SaveScene()
-						self:LoadScene(self.SceneInstance)
+						self:LoadScene(self.SceneInstance, self.Prefab)
 						
 					end
 					
@@ -343,7 +362,7 @@ return function(script, plugin)
 						
 						self.Objects[objectInstance] = object
 						self:SaveScene()
-						self:LoadScene(self.SceneInstance)
+						self:LoadScene(self.SceneInstance, self.Prefab)
 						
 					end
 					
@@ -498,7 +517,7 @@ return function(script, plugin)
 								
 								saveObject(instance, name)
 								
-								self:LoadScene(self.SceneInstance)
+								self:LoadScene(self.SceneInstance, self.Prefab)
 								
 							end)
 							
@@ -515,7 +534,7 @@ return function(script, plugin)
 						
 						for index, object in pairs(self.Objects) do
 							
-							if object.core.id == component[name] then
+							if object.core and object.core.id == component[name] then
 								
 								instanceName = object.core.name
 								
@@ -550,7 +569,7 @@ return function(script, plugin)
 								
 								saveObject(selectedObject.core.id, name)
 								
-								self:LoadScene(self.SceneInstance)
+								self:LoadScene(self.SceneInstance, self.Prefab)
 								
 							end)
 							
@@ -584,7 +603,7 @@ return function(script, plugin)
 									rbx.Text = x..", "..y..", "..z
 									value = Vector3.new(x, y, z)
 									saveObject(value, name)
-									self:LoadScene(self.SceneInstance)
+									self:LoadScene(self.SceneInstance, self.Prefab)
 									
 								else
 									
@@ -632,7 +651,7 @@ return function(script, plugin)
 									rbx.Text = x..", "..y..", "..z..", "..rX..", "..rY..", "..rZ
 									value = CFrame.new(x, y, z) * CFrame.Angles(math.rad(rX), math.rad(rY), math.rad(rZ))
 									saveObject(value, name)
-									self:LoadScene(self.SceneInstance)
+									self:LoadScene(self.SceneInstance, self.Prefab)
 									
 								else
 									
@@ -719,7 +738,7 @@ return function(script, plugin)
 									rbx.Text = xScale..", "..xOffset..", "..yScale..", "..yOffset
 									value = UDim2.new(xScale, xOffset, yScale, yOffset)
 									saveObject(value, name)
-									self:LoadScene(self.SceneInstance)
+									self:LoadScene(self.SceneInstance, self.Prefab)
 									
 								else
 									
@@ -763,7 +782,7 @@ return function(script, plugin)
 									rbx.Text = x..", "..y
 									value = Vector2.new(x, y)
 									saveObject(value, name)
-									self:LoadScene(self.SceneInstance)
+									self:LoadScene(self.SceneInstance, self.Prefab)
 									
 								else
 									
