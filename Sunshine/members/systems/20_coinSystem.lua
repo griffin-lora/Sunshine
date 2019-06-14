@@ -13,17 +13,10 @@ return function(Sunshine, entity)
 	local transparency = entity.transparency
     local collider = entity.collider
 	local sound = entity.sound
-	local tag = entity.tag
-	local disappear = entity.disappear
-	local charData = entity.charData
-	local character = entity.character
-	local animator = entity.animator
-	local physics = entity.physics
-	local camera = entity.camera
-	local lastcollected = false
+	local coin = entity.coin
     
-    if collectible and transform and collider and disappear and sound and transparency then
-		if tag.tag == "coin" then
+    if collectible and transform and collider and sound and transparency then
+		if coin then
 	        local collected = false
 	        Sunshine:update(function(step)
 				sound.id = nil
@@ -32,22 +25,13 @@ return function(Sunshine, entity)
 	            elseif collected then
 	                transform.size = Vector3.new(0, 0, 0)
 					transparency.transparency = 1
-	            elseif disappear.disappear then
+				end
+				local entity = collider.hitEntity
+				if entity and entity.stats then
 					sound.id = 131323304
 					collected = true
-	            end
+				end
 	        end, entity)
 		end
     end
-
-	if charData and animator and character and physics then
-		Sunshine:update(function()
-			if collider.hitEntity and collider.hitEntity.tag and collider.hitEntity.tag.tag == "coin" then
-				if not collider.hitEntity.disappear then
-					collider.hitEntity.disappear.disappear = true
-				end
-			end
-		end)
-	end
-	
 end

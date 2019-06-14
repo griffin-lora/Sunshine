@@ -255,8 +255,9 @@ return {
         z = {Type = "boolean", Default = false}
 	},
 	
-	disappear = {
-		disappear = {Type = "boolean", Default = false}
+
+	coin = {
+		textUi = {Type = "Object", Default = nil}
 	}
 
 }
