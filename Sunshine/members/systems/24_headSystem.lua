@@ -1,5 +1,3 @@
-local bounceCount = 0
-
 return function(Sunshine, entity)
     local head = entity.head
     local transform = entity.transform
@@ -12,9 +10,6 @@ return function(Sunshine, entity)
         local first = true
         Sunshine:update(function(step)
             local character = Sunshine:getEntityById(head.character)
-            if character.character.grounded then
-                bounceCount = 0
-            end
             if active then
                 if first then
                     transform.cFrame = character.transform.cFrame
@@ -25,7 +20,7 @@ return function(Sunshine, entity)
                     collider.trigger = true
                 end
                 if collider.trigger then
-                    if character.input.e then
+                    if character.input.e or character.character.state == "dive" then
                         if (tick() - startTick) > head.holdTime then
                             active = false
                         end
@@ -37,13 +32,10 @@ return function(Sunshine, entity)
                         active = false
                     end
                 end
-                if active and canBounce and collider.hitEntity == character and bounceCount < 1 then
+                if active and canBounce and collider.hitEntity == character and character.bounce.bounceCount < 1 then
                     canBounce = false
                     collider.trigger = false
                     bounceTick = tick()
-                    if not character.character.grounded then
-                        bounceCount = bounceCount + 1
-                    end
                     character.character.state = "bounce"
                 elseif active and collider.hitEntity and collider.hitEntity.capture then
                     active = false

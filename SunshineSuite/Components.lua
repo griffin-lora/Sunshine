@@ -241,7 +241,8 @@ return {
 
     bounce = {
         power = {Type = "number", Default = 50},
-        animation = {Type = "number", Default = 0}
+        animation = {Type = "number", Default = 0},
+        bounceCount = {Type = "number", Default = 0}
     },
     
     capture = {

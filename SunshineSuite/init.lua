@@ -1,14 +1,29 @@
 local SunshineSuite = {}
 
 function SunshineSuite:init(script, plugin)
+    if not game:GetService("RunService"):IsEdit() then
+        return
+    end
 	
 	plugin.Name = "SunshineSuite"
 	
 	local Selection = game:GetService("Selection")
 	local HttpService = game:GetService("HttpService")
+	local ServerStorage = game:GetService("ServerStorage")
 	local Sunshine = require(script.Parent.Sunshine)(script, plugin)
 	local Libs = require(script.Parent.Libs)
-	local Roact = require(script.Parent.Roact)
+    local Roact = require(script.Parent.Roact)
+
+    wait(3)
+    
+    if ServerStorage:FindFirstChild("SunshineSuiteStorage") then
+        Sunshine.Storage = ServerStorage.SunshineSuiteStorage
+    else
+        local storage = Instance.new("Folder")
+        storage.Name = "SunshineSuiteStorage"
+        Sunshine.Storage = storage
+        storage.Parent = ServerStorage
+    end
 	
 	local enabled = false
 	
@@ -204,7 +219,13 @@ function SunshineSuite:init(script, plugin)
 			
 		end
 		
-	end)
+    end)
+    
+    if Sunshine.Storage:FindFirstChild("LoadedScene") then
+        Sunshine:LoadScene(Sunshine.Storage.LoadedScene)
+    elseif Sunshine.Storage:FindFirstChild("LoadedPrefab") then
+        Sunshine:LoadPrefab(Sunshine.Storage.LoadedPrefab)
+    end
 
 end
 

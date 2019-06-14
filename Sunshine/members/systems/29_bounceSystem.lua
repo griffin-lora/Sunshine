@@ -13,6 +13,9 @@ return function(Sunshine, entity)
     end, function()
         -- start
         physics.velocity = Vector3.new(0, component.power, 0)
+        if not character.grounded then
+            component.bounceCount = component.bounceCount + 1
+        end
         animator.action = 2504812300
     end, function()
         -- update
@@ -23,6 +26,10 @@ return function(Sunshine, entity)
         -- end
         if character.state == state then
             animator.action = nil
+        end
+    end, function()
+        if character.grounded then
+            component.bounceCount = 0
         end
     end)
 end

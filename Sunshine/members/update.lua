@@ -1,15 +1,16 @@
 local RunService = game:GetService("RunService")
+local step = 1/60
 
 return function(Sunshine, callback, entity)
     if not entity then
         warn("update is being used without entity specification.")
     end
     if not Sunshine.updateConnection then
-        Sunshine.updateConnection = RunService.RenderStepped:Connect(function(...)
+        Sunshine.updateConnection = RunService.RenderStepped:Connect(function()
             if not Sunshine.paused then
                 for _, callback in ipairs(Sunshine.updateCallbacks) do
                     if #Sunshine.updateCallbacks > 0 then
-                        callback[1](...)
+                        callback[1](step)
                     end
                 end
             end
