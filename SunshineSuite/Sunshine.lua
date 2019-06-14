@@ -283,7 +283,7 @@ return function(script, plugin)
 		
 		local data = self:CopyTable(object)
 		
-		if data.prefab then
+		if data.prefab and data.prefab.prefab then
 			
 			local prefab = require(data.prefab.prefab)
 			

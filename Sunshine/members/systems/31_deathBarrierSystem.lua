@@ -9,6 +9,6 @@ return function(Sunshine, entity)
                     health.health = 0
                 end
             end
-        end)
+        end, entity)
     end
 end

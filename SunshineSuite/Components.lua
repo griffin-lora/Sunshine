@@ -258,7 +258,7 @@ return {
 	
 
 	coin = {
-		textUi = {Type = "Object", Default = nil}
+		
 	}
 
 }
