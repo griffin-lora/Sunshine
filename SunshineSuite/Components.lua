@@ -257,8 +257,14 @@ return {
 	},
 	
 
-	coin = {
-		
+	coin = {	
+	},
+
+	coinCounter = {
+	},
+	
+	charObject = {
+		object = {Type = "Object", Default = nil}
 	}
 
 }
