@@ -12,6 +12,7 @@ return function(Sunshine, entity)
         return 
     end, function()
         -- start
+        character.canLoseMagnitude = true
         physics.velocity = Vector3.new(0, component.power, 0)
         if not character.grounded then
             component.bounceCount = component.bounceCount + 1
@@ -19,6 +20,7 @@ return function(Sunshine, entity)
         animator.action = 2504812300
     end, function()
         -- update
+        character.canLoseMagnitude = false
     end, function()
         -- end check
         return character.grounded

@@ -54,6 +54,7 @@ return {
 	
 	character = {
 		controllable = {Type = "boolean", Default = false},
+		canLoseMagnitude = {Type = "boolean", Default = false},
 		shirtGraphic = {Type = "string", Default = ""},
 		shirtGraphicColor = {Type = "Color3", Default = Color3.fromRGB(255, 255, 255)},
 		shirt = {Type = "string", Default = ""},

@@ -27,10 +27,12 @@ return function(Sunshine, entity)
         else
             velocityY = component.power
         end
+        character.canLoseMagnitude = true
         physics.velocity = Vector3.new(physics.velocity.X * 0.1, velocityY, physics.velocity.Z * 0.1)
         animator.action = component.animation
     end, function()
         -- update
+        character.canLoseMagnitude = false
     end, function()
         -- end check
         return character.grounded
