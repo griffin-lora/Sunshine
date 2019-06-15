@@ -266,6 +266,10 @@ return {
 	
 	charObject = {
 		object = {Type = "Object", Default = nil}
-	}
+    },
+    
+    deathBarrier = {
+        y = {Type = "number", Default = -500}
+    }
 
 }
