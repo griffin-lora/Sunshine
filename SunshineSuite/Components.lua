@@ -270,6 +270,21 @@ return {
     
     deathBarrier = {
         y = {Type = "number", Default = -500}
+    },
+
+    wallPush = {
+        animation = {Type = "number", Default = 0}
+    },
+    
+    wallSlide = {
+        animation = {Type = "number", Default = 0},
+        speed = {Type = "number", Default = -50},
+    },
+
+    wallJump = {
+        animation = {Type = "number", Default = 0},
+        power = {Type = "number", Default = 5},
+        bouncePower = {Type = "number", Default = 20},
     }
 
 }

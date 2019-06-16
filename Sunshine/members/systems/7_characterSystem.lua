@@ -47,6 +47,11 @@ return function(Sunshine, entity)
                 end
             end
             character.grounded = not not part
+            character.floor = part
+            local wallPart, wallPosition, wallNormal = Sunshine:findPartOnRay(rayNew(transform.cFrame.Position, transform.cFrame.LookVector * 2), {model.model})
+            character.onWall = not not wallPart
+            character.wall = wallPart
+            character.wallNormal = wallNormal
             if character.grounded then
                 physics.velocity = vector3New(physics.velocity.X, 0, physics.velocity.Z)
             end
@@ -73,7 +78,7 @@ return function(Sunshine, entity)
                 end
                 local damping = 0.5
                 local canLoseMagnitude = true
-                local fullyGrounded = lastGroundeds[2] and lastGroundeds[1] and character.grounded
+                local fullyGrounded = lastGroundeds[1] and lastGroundeds[2] and character.grounded
                 if not fullyGrounded then
                     canLoseMagnitude = false
                 elseif moveVector == vector3New() then
@@ -92,11 +97,7 @@ return function(Sunshine, entity)
                 local velocity = vector3New(xVelocity, 0, zVelocity)
                 if not canLoseMagnitude and lastVelocity and velocity.Magnitude < lastVelocity.Magnitude then
                     if velocity.Unit.Magnitude == velocity.Unit.Magnitude then
-                        if character.moving then
-                            velocity = velocity:Lerp(velocity.Unit * lastVelocity.Magnitude, moveVector:Dot(lastMoveVector))
-                        else
-                            velocity = velocity.Unit * lastVelocity.Magnitude
-                        end
+                        velocity = velocity.Unit * lastVelocity.Magnitude
                     else
                         velocity = lastVelocity
                     end
