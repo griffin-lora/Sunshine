@@ -105,7 +105,8 @@ return {
 	},
 	
 	spinner = {
-		speed = {Type = "number", Default = 1}
+		speed = {Type = "number", Default = 1},
+		axis = {Type = "string", Default = "y"}
 	},
 	
 	animator = {
@@ -285,6 +286,14 @@ return {
         animation = {Type = "number", Default = 0},
         power = {Type = "number", Default = 5},
         bouncePower = {Type = "number", Default = 20},
+    },
+    
+    hazard = {
+        damage = {Type = "number", Default = 1}
+    },
+
+    player = {
+        camera = {Type = "Object", Default = nil}
     }
 
 }

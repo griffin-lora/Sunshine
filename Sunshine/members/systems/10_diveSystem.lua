@@ -9,6 +9,7 @@ return function(Sunshine, entity)
     local transform = entity.transform
     local physics = entity.physics
     local animator = entity.animator
+    local horizontal
     local lastE = false
     Sunshine:createStateSystem(entity, state, function()
         -- start check
@@ -17,7 +18,7 @@ return function(Sunshine, entity)
         -- start
         physics.movable = true
         horizontal = transform.cFrame.LookVector * component.power
-        physics.velocity = horizontal + Vector3.new(0, 30, 0)
+        physics.velocity = horizontal + Vector3.new(0, component.bouncePower, 0)
         animator.action = component.animation
     end, function(step)
         -- update

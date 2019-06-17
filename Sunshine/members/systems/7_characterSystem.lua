@@ -19,6 +19,12 @@ local function getClosestPointOnPlane(point, normal, vector)
 end
 local size = 0.7
 
+local function dotToLerp(dot)
+    dot = dot + 1
+    dot = dot / 2
+    return dot
+end
+
 return function(Sunshine, entity)
     local character = entity.character
     local model = entity.model
@@ -49,7 +55,7 @@ return function(Sunshine, entity)
             character.grounded = not not part
             character.floor = part
             local wallPart, wallPosition, wallNormal = Sunshine:findPartOnRay(rayNew(transform.cFrame.Position, transform.cFrame.LookVector * 2), {model.model})
-            character.onWall = not not wallPart
+            character.onWall = not not wallPart and wallNormal ~= vector3New()
             character.wall = wallPart
             character.wallNormal = wallNormal
             if character.grounded then
@@ -97,7 +103,11 @@ return function(Sunshine, entity)
                 local velocity = vector3New(xVelocity, 0, zVelocity)
                 if not canLoseMagnitude and lastVelocity and velocity.Magnitude < lastVelocity.Magnitude then
                     if velocity.Unit.Magnitude == velocity.Unit.Magnitude then
-                        velocity = velocity.Unit * lastVelocity.Magnitude
+                        if character.moving then
+                            velocity = velocity:Lerp(velocity.Unit * lastVelocity.Magnitude, dotToLerp(moveVector:Dot(velocity.Unit)))
+                        else
+                            velocity = velocity.Unit * lastVelocity.Magnitude
+                        end
                     else
                         velocity = lastVelocity
                     end
