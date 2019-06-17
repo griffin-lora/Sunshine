@@ -209,20 +209,20 @@ return function(script, plugin)
 			
 			if object.transform then
 				
-				for index, descendant in pairs(model:GetDescendants()) do
+				-- for index, descendant in pairs(model:GetDescendants()) do
 					
-					if descendant:IsA("BasePart") then
+				-- 	if descendant:IsA("BasePart") then
 						
-						descendant.CFrame = CFrame.new((descendant.CFrame.Position - object.transform.cFrame.Position) * object.transform.size + (object.transform.cFrame.Position * 2))
+				-- 		descendant.CFrame = CFrame.new((descendant.CFrame.Position - object.transform.cFrame.Position) * object.transform.size + (object.transform.cFrame.Position * 2))
 						
-						descendant.Size = descendant.Size * object.transform.size
+				-- 		descendant.Size = descendant.Size * object.transform.size
 						
-					end
+				-- 	end
 					
-				end
+				-- end
 				
 				if model.PrimaryPart then
-					
+                    
 					model:SetPrimaryPartCFrame(object.transform.cFrame)
 					
 				end
