@@ -30,20 +30,24 @@ return function(Sunshine, entity)
         end
         character.canLoseMagnitude = true
         physics.velocity = Vector3.new(physics.velocity.X * 0.1, velocityY, physics.velocity.Z * 0.1)
-        animator.action = component.animation
+        if animator.action == component.animation then
+            animator.action = nil
+        else
+            animator.action = component.animation
+        end
     end, function()
         -- update
         head.core.active = true
         head.head.cFrame = cFrame
         character.canLoseMagnitude = false
+        if not animator.action then
+            animator.action = component.animation
+        end
     end, function()
         -- end check
         return character.grounded
     end, function()
         -- end
-        if character.state == state then
-            animator.action = nil
-        end
     end, function()
         -- general update
         lastE = input.e
