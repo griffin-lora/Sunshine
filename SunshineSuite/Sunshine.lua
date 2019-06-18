@@ -134,6 +134,7 @@ return function(script, plugin)
     end
 	
     function Sunshine:LoadScene(sceneInstance, prefab)
+        self.Loading = true
         self.Prefab = prefab
         local scene
         Sunshine.Storage:ClearAllChildren()
@@ -203,7 +204,11 @@ return function(script, plugin)
 			
 			if object.core then
 				
-				model.Name = object.core.name
+                model.Name = object.core.name
+                local id = Instance.new("StringValue")
+                id.Name = "EntityId"
+                id.Value = object.core.id
+                id.Parent = model
 				
 			end
 			
@@ -234,6 +239,7 @@ return function(script, plugin)
 			self.Objects[model] = object
 			
 		end
+        self.Loading = false
 		
 	end
 	
@@ -279,7 +285,12 @@ return function(script, plugin)
 	
 	function Sunshine:LoadObject(objectInstance, frame)
 		
-		local object = self.Objects[objectInstance]
+        local object = self.Objects[objectInstance]
+        
+        if not object then
+            frame:ClearAllChildren()
+            return
+        end
 		
 		local data = self:CopyTable(object)
 		

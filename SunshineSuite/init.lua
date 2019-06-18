@@ -90,7 +90,7 @@ function SunshineSuite:init(script, plugin)
 	
 	local objectCreatorGui = plugin:CreateDockWidgetPluginGui("ObjectCreator", DockWidgetPluginGuiInfo.new(Enum.InitialDockState.Left, false, false, 400, 500, 300, 80))
 	objectCreatorGui.Name = "ObjectCreator"
-	objectCreatorGui.Title = "Object Creator"
+	objectCreatorGui.Title = "Entity Creator"
 	table.insert(pluginGuis, objectCreatorGui)
 	
 	local tree = Roact.createElement("Folder", {}, {
@@ -105,7 +105,7 @@ function SunshineSuite:init(script, plugin)
 				Padding = UDim.new(0, 20)
 			}),
 			B = Roact.createElement(Libs.Button, {
-				labelText = "Create Object",
+				labelText = "Create Entity",
 				onClick = function()
 					
 					if Sunshine.SceneInstance then
@@ -194,11 +194,31 @@ function SunshineSuite:init(script, plugin)
 		
 		if Sunshine.Objects[objectInstance] then
 			
-			Sunshine:LoadObject(objectInstance, frame)
+            Sunshine:LoadObject(objectInstance, frame)
+            
+        else
+            
+            Sunshine:LoadObject(nil, frame)
 			
 		end
 		
-	end)
+    end)
+    
+    workspace.ChildAdded:Connect(function(child)
+        if not Sunshine.Loading and not Sunshine.Prefab and child:FindFirstChild("EntityId") then
+            local entityId = child.EntityId
+            for instance, entity in pairs(Sunshine.Objects) do
+                if instance.EntityId.Value == entityId.Value then
+                    local entity = Sunshine:CopyTable(entity)
+                    entity.core.id = HttpService:GenerateGUID()
+                    Sunshine.Objects[instance] = entity
+                    Sunshine:SaveScene()
+                    Sunshine:LoadScene(Sunshine.SceneInstance, Sunshine.Prefab)
+                    break
+                end
+            end
+        end
+    end)
 	
 	plugin.Deactivation:Connect(function()
 		
