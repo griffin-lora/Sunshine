@@ -19,6 +19,7 @@ return function(Sunshine, entity)
         -- start
         physics.movable = false
         physics.velocity = Vector3.new()
+        character.canLoseMagnitude = true
         startTick = tick()
         animator.action = component.startAnimation
     end, function()
@@ -44,6 +45,7 @@ return function(Sunshine, entity)
         startTick = nil
         startEndTick = nil
         physics.movable = true
+        character.canLoseMagnitude = false
         if character.state == state then
             physics.velocity = Vector3.new(0, 0, 0)
         end

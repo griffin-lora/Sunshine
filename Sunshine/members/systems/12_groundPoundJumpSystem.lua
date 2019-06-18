@@ -12,7 +12,7 @@ return function(Sunshine, entity)
         return character.state == "groundPound" and character.grounded and input.space
     end, function()
         -- start
-        physics.velocity = Vector3.new(physics.velocity.X, component.power, physics.velocity.Z)
+        physics.velocity = Vector3.new(0, component.power, 0)
         animator.action = component.animation
     end, function()
         -- update

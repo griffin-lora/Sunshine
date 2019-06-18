@@ -22,6 +22,7 @@ return function(Sunshine, entity)
                     lastCharacter.character.controllable = false
                     character.physics.movable = true
                     character.character.controllable = true
+                    character.character.state = "bounce"
                     character.transform.cFrame = lastCharacter.transform.cFrame + Vector3.new(0, 10, 0)
                 end
                 lastCharacter = character
