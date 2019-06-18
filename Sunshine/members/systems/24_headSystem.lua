@@ -39,13 +39,8 @@ return function(Sunshine, entity)
                     character.character.state = "bounce"
                 elseif active and collider.hitEntity and collider.hitEntity.capture then
                     active = false
-                    character.transform.cFrame = CFrame.new(0, 100000, 0)
-                    character.physics.movable = false
-                    character.character.controllable = false
-                    collider.hitEntity.character.controllable = true
-                    collider.hitEntity.capture.character = character.core.id
-                    Sunshine:getEntityById(character.input.camera).camera.subject = collider.hitEntity.core.id
-                    collider.hitEntity.capture.active = true
+                    local player = character.character.player
+                    player.player.character = collider.hitEntity.core.id
                     Sunshine:destroyEntity(entity)
                 end
             else

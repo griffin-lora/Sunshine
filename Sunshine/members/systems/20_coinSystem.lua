@@ -21,9 +21,10 @@ return function(Sunshine, entity)
             end
 
             local entity = collider.hitEntity
-            if entity and entity.stats and not collected then
+            if entity and entity.character and entity.character.player and not collected then
+                local player = entity.character.player
                 collected = true
-                entity.stats.coins = entity.stats.coins + 1
+                player.stats.coins = player.stats.coins + 1
                 sound.playing = true
                 stop = true
                 timeSince = tick()

@@ -8,13 +8,8 @@ return function(Sunshine, entity)
         Sunshine:update(function()
             if capture.active then
                 if input.shift or health.health <= 0 then
-                    capture.active = false
-                    character.controllable = false
-                    local character = Sunshine:getEntityById(capture.character)
-                    character.physics.movable = true
-                    character.character.controllable = true
-                    character.transform.cFrame = transform.cFrame + Vector3.new(0, 10, 0)
-                    Sunshine:getEntityById(input.camera).camera.subject = character.core.id
+                    local player = character.player
+                    player.player.character = player.player.mainCharacter
                 end
             end
         end, entity)

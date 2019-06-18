@@ -71,7 +71,7 @@ return {
 		walkSpeedFactor = {Type = "number", Default = 1},
 		moveAnimation = {Type = "number", Default = 0},
 		idleAnimation = {Type = "number", Default = 0},
-		fallAnimation = {Type = "number", Default = 0},
+        fallAnimation = {Type = "number", Default = 0}
 	},
 	
 	charData = {
@@ -293,6 +293,8 @@ return {
     },
 
     player = {
+        mainCharacter = {Type = "Object", Default = nil},
+        character = {Type = "Object", Default = nil},
         camera = {Type = "Object", Default = nil}
     }
 
