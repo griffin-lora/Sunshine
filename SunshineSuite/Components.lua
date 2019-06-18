@@ -214,8 +214,7 @@ return {
     },
     
     head = {
-        cFrame = {Type = "CFrame", Default = CFrame.new()},
-        character = {Type = "Object", Default = nil},
+        character = {Type = "Object", Default = nil}
         time = {Type = "number", Default = 2},
         holdTime = {Type = "number", Default = 5},
         bounceTime = {Type = "number", Default = 0.5},

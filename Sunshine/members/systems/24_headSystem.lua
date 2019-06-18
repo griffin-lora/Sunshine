@@ -10,7 +10,7 @@ return function(Sunshine, entity)
         local first = true
         Sunshine:update(function(step)
             local character = Sunshine:getEntityById(head.character)
-            if active then
+            if head.cFrame and active then
                 if first then
                     transform.cFrame = character.transform.cFrame
                     first = false
