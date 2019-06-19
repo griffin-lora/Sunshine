@@ -214,7 +214,7 @@ return {
     },
     
     head = {
-        character = {Type = "Object", Default = nil}
+        character = {Type = "Object", Default = nil},
         time = {Type = "number", Default = 2},
         holdTime = {Type = "number", Default = 5},
         bounceTime = {Type = "number", Default = 0.5},
@@ -295,6 +295,16 @@ return {
         mainCharacter = {Type = "Object", Default = nil},
         character = {Type = "Object", Default = nil},
         camera = {Type = "Object", Default = nil}
-    }
+    },
+	
+	doubleJump = {
+        power = {Type = "number", Default = 50},
+        animation = {Type = "number", Default = 0}
+	},
+	
+	tripleJump = {
+        power = {Type = "number", Default = 50},
+        animation = {Type = "number", Default = 0}
+	},
 
 }

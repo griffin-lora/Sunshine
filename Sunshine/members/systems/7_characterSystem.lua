@@ -112,10 +112,17 @@ return function(Sunshine, entity)
                         velocity = lastVelocity
                     end
                 end
-                local stepPart, stepPosition = Sunshine:findPartOnRay(rayNew(transform.cFrame.Position + (velocity * step * 20), distance), {model.model})
-                -- if stepPart ~= part then
-                --     transform.cFrame = (transform.cFrame - Vector3.new(0, transform.cFrame.Y, 0)) + Vector3.new(0, stepPosition.Y + 3, 0)
-                -- end
+                if character.grounded then
+                    local stepUpPart, stepUpPosition = Sunshine:findPartOnRay(rayNew(transform.cFrame.Position + (moveVector), distance), {model.model})
+                    if stepUpPart ~= part then
+                        transform.cFrame = (transform.cFrame - Vector3.new(0, transform.cFrame.Y, 0)) + Vector3.new(0, stepUpPosition.Y + 3.1, 0)
+                    else
+                        local stepDownPart, stepDownPosition = Sunshine:findPartOnRay(rayNew(transform.cFrame.Position, distance * 2), {model.model})
+                        if stepDownPart ~= part then
+                            transform.cFrame = (transform.cFrame - Vector3.new(0, transform.cFrame.Y, 0)) + Vector3.new(0, stepDownPosition.Y + 3.1, 0)
+                        end
+                    end
+                end
                 physics.velocity = vector3New(velocity.X, physics.velocity.Y, velocity.Z)
                 lastMoveVector = moveVector
                 lastVelocity = velocity
