@@ -7,7 +7,7 @@ return function(Sunshine, entity)
 
     if coin and charObject and label then
         Sunshine:update(function()
-            local char = Sunshine:getEntityById(charObject.object)
+            local char = Sunshine:getEntity(charObject.object)
             if char then
                 local stats = char.stats
                 if stats then

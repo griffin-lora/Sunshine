@@ -305,6 +305,15 @@ return {
 	tripleJump = {
         power = {Type = "number", Default = 50},
         animation = {Type = "number", Default = 0}
-	},
+    },
+    
+    follow = {
+        
+    },
+    
+    spawner = {
+        active = {Type = "boolean", Default = false},
+        entity = {Type = "Object", Default = nil}
+    },
 
 }

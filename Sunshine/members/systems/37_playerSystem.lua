@@ -3,13 +3,13 @@ return function(Sunshine, entity)
     if player then
         local lastCharacter
         Sunshine:update(function()
-            local mainCharacter = Sunshine:getEntityById(player.mainCharacter)
-            local character = Sunshine:getEntityById(player.character)
-            local camera = Sunshine:getEntityById(player.camera)
+            local mainCharacter = Sunshine:getEntity(player.mainCharacter)
+            local character = Sunshine:getEntity(player.character)
+            local camera = Sunshine:getEntity(player.camera)
             if mainCharacter and character and camera then
                 character.character.player = entity
-                character.input.camera = camera.core.id
-                camera.camera.subject = character.core.id
+                character.input.camera = camera
+                camera.camera.subject = character
                 if character ~= mainCharacter then
                     mainCharacter.transform.cFrame = CFrame.new(0, 100000, 0)
                     mainCharacter.physics.movable = false

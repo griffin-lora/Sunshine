@@ -16,9 +16,9 @@ return function(Sunshine, entity)
         return not head.core.active and character.state ~= "groundPound" and character.state ~= "dive" and input.e and not lastE
     end, function()
         -- start
-        if Sunshine:getEntityById(component.head) then
+        if Sunshine:getEntity(component.head) then
             cFrame = CFrame.new(transform.cFrame.Position + (transform.cFrame.LookVector.Unit * component.distance))
-            local headClone = Sunshine:copyTable(Sunshine:getEntityById(component.head))
+            local headClone = Sunshine:copyTable(Sunshine:getEntity(component.head))
             headClone.core.active = true
             head = Sunshine:createEntity(headClone)
         end

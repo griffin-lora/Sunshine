@@ -9,7 +9,7 @@ return function(Sunshine, entity)
         local canBounce = true
         local first = true
         Sunshine:update(function(step)
-            local character = Sunshine:getEntityById(head.character)
+            local character = Sunshine:getEntity(head.character)
             if head.cFrame and active then
                 if first then
                     transform.cFrame = character.transform.cFrame
@@ -40,7 +40,7 @@ return function(Sunshine, entity)
                 elseif active and collider.hitEntity and collider.hitEntity.capture then
                     active = false
                     local player = character.character.player
-                    player.player.character = collider.hitEntity.core.id
+                    player.player.character = collider.hitEntity
                     Sunshine:destroyEntity(entity)
                 end
             else

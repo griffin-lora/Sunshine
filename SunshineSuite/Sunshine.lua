@@ -254,9 +254,7 @@ return function(script, plugin)
             scene = {entities = {}}
             
             for index, member in pairs(self.Objects) do
-                
                 if index.Parent then
-                    
                     scene.entities[#scene.entities + 1] = member
                     
                 end

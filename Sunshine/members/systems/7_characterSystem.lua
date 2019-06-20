@@ -28,13 +28,12 @@ end
 return function(Sunshine, entity)
     local character = entity.character
     local model = entity.model
-    local input = entity.input
     local transform = entity.transform
     local physics = entity.physics
     local animator = entity.animator
     local health = entity.health
     local tag = entity.tag
-    if character and model and input and transform and physics and animator then
+    if character and model and transform and physics and animator then
         local lastGroundeds = {}
         local lastVelocity
         local lastMoveVector
@@ -69,8 +68,8 @@ return function(Sunshine, entity)
             if not character.grounded and physics.velocity.Y < -0.5 then
                 animator.movement = character.fallAnimation
             end
-            if character.controllable then
-                local moveVector = input.moveVector
+            if (input and character.controllable) or character.moveVector then
+                local moveVector = character.moveVector or input.moveVector
                 character.moving = moveVector ~= vector3New()
                 local boost = 0
                 if character.grounded then

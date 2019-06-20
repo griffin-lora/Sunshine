@@ -211,7 +211,7 @@ function SunshineSuite:init(script, plugin)
                 if instance.EntityId.Value == entityId.Value then
                     local entity = Sunshine:CopyTable(entity)
                     entity.core.id = HttpService:GenerateGUID()
-                    Sunshine.Objects[instance] = entity
+                    Sunshine.Objects[child] = entity
                     Sunshine:SaveScene()
                     Sunshine:LoadScene(Sunshine.SceneInstance, Sunshine.Prefab)
                     break

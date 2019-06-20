@@ -56,7 +56,7 @@ return function(Sunshine, entity)
             input.space = space or UserInputService:IsGamepadButtonDown(Enum.UserInputType.Gamepad1, Enum.KeyCode.ButtonA) or UserInputService:IsGamepadButtonDown(Enum.UserInputType.Gamepad1, Enum.KeyCode.ButtonB)
             input.shift = shift or r2 or l2
             input.e = e or UserInputService:IsGamepadButtonDown(Enum.UserInputType.Gamepad1, Enum.KeyCode.ButtonY) or UserInputService:IsGamepadButtonDown(Enum.UserInputType.Gamepad1, Enum.KeyCode.ButtonX)
-            local camera = Sunshine:getEntityById(input.camera)
+            local camera = Sunshine:getEntity(input.camera)
             if camera and camera.transform then
                 local cameraCFrame = CFrame.new(vector3New(), vector3New(camera.transform.cFrame.LookVector.X, 0, camera.transform.cFrame.LookVector.Z))
                 local moveVector = vector3New()
