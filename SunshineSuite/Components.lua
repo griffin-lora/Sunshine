@@ -315,5 +315,9 @@ return {
         active = {Type = "boolean", Default = false},
         entity = {Type = "Object", Default = nil}
     },
+    
+    key = {
+        
+    },
 
 }

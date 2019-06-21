@@ -28,6 +28,7 @@ end
 return function(Sunshine, entity)
     local character = entity.character
     local model = entity.model
+    local input = entity.input
     local transform = entity.transform
     local physics = entity.physics
     local animator = entity.animator
