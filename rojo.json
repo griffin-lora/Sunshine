@@ -6,9 +6,9 @@
             "path": "Sunshine",
 			"target": "ReplicatedStorage.Sunshine"
         },
-        "Assets": {
-            "path": "Assets/index.lua",
-			"target": "ReplicatedStorage.Assets.index"
+        "SunshineServer": {
+            "path": "SunshineServer",
+			"target": "ServerStorage.SunshineServer"
 		},
         "SunshineSuite": {
             "path": "SunshineSuite",

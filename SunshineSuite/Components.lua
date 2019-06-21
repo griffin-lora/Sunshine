@@ -308,7 +308,7 @@ return {
     },
     
     follow = {
-        
+        range = {Type = "number", Default = 50}
     },
     
     spawner = {
@@ -316,7 +316,7 @@ return {
         entity = {Type = "Object", Default = nil}
     },
     
-    key = {
+    collisionSpawner = {
         
     },
 
