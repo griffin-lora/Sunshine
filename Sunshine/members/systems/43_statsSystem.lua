@@ -4,14 +4,11 @@ return function(Sunshine, entity)
     if stats and store then
         local loaded = false
         Sunshine:update(function()
-            if store.save then
-                if loaded then
-                    store.save.stats = Sunshine:copyTable(stats)
-                else
-                    entity.stats = Sunshine:copyTable(store.save.stats) or stats
-                    stats = entity.stats
-                    loaded = true
-                end
+            if store.save and not loaded then
+                entity.stats = store.save.stats or stats
+                stats = entity.stats
+                store.save.stats = stats
+                loaded = true
             end
         end, entity)
     end
