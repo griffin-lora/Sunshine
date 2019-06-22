@@ -222,7 +222,7 @@ return {
 
     bouncer = {
         power = {Type = "number", Default = 50},
-        direct = {Type = "boolean", fakse}
+        direct = {Type = "boolean", Default = false}
     },
 
     teleporter = {
@@ -318,6 +318,10 @@ return {
     
     collisionSpawner = {
         
-    },
+	},
+	
+	crate = {
+		spawnEntity = {Type = "Object", Default = nil}
+	}
 
 }
