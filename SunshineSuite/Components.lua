@@ -321,4 +321,8 @@ return {
         
     },
 
+    sceneTransition = {
+        
+    }
+
 }
