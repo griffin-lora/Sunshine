@@ -205,7 +205,8 @@ return {
         animation = {Type = "number", Default = 0}
 	},
     
-    save = {
+    store = {
+        
 	},
 	
 	moving = {
