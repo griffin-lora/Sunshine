@@ -8,7 +8,7 @@
         },
         "SunshineServer": {
             "path": "SunshineServer",
-			"target": "ServerStorage.SunshineServer"
+			"target": "ServerScriptService.Sunshine"
 		},
         "SunshineSuite": {
             "path": "SunshineSuite",

@@ -205,7 +205,8 @@ return {
         animation = {Type = "number", Default = 0}
 	},
     
-    save = {
+    store = {
+        
 	},
 	
 	moving = {
@@ -323,5 +324,9 @@ return {
 	crate = {
 		spawnEntity = {Type = "Object", Default = nil}
 	}
+
+    sceneTransition = {
+        
+    }
 
 }

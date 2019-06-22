@@ -1,6 +1,7 @@
 return function(Sunshine)
     if Sunshine.scene then
         Sunshine.updateCallbacks = {}
+        Sunshine.sceneLoadCallbacks = {}
         for _, connection in pairs(Sunshine.connections) do
             connection[1]:Disconnect()
         end
