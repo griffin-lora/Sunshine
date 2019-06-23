@@ -4,7 +4,9 @@ return function(Sunshine, entity)
     if sceneTransition and uiTransform then
         local loadingScene = false
         local scene
+        local startTick = tick()
         Sunshine:update(function(step)
+            print(Sunshine:tween(tick() - startTick, TweenInfo.new(10, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), 0, 10))
             if loadingScene then
                 uiTransform.size = uiTransform.size:Lerp(Vector2.new(), step * 8)
                 if (uiTransform.size - Vector2.new()).Magnitude < 0.01 then
