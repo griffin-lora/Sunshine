@@ -259,7 +259,8 @@ return {
 	},
 	
 
-	coin = {	
+	coin = {
+        tweenInfo = {Type = "TweenInfo", Default = TweenInfo.new()}
 	},
 
 	coinCounter = {
@@ -326,7 +327,7 @@ return {
 	},
 
     sceneTransition = {
-        
+        tweenInfo = {Type = "TweenInfo", Default = TweenInfo.new()}
     },
 
     visible = {

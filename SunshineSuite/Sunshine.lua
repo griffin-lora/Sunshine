@@ -1,4 +1,31 @@
 return function(script, plugin)
+
+    local tweenEnums = {
+        linear = Enum.EasingStyle.Linear,
+        quadratic = Enum.EasingStyle.Quad,
+        quartic = Enum.EasingStyle.Quart,
+        quintic = Enum.EasingStyle.Quint,
+        sinusoidal = Enum.EasingStyle.Sine,
+        elastic = Enum.EasingStyle.Elastic,
+        back = Enum.EasingStyle.Back,
+        bounce = Enum.EasingStyle.Bounce,
+        easeIn = Enum.EasingDirection.In,
+        easeOut = Enum.EasingDirection.Out,
+        easeInOut = Enum.EasingDirection.InOut
+    }
+    local tweenEnumsInverse = {
+        [Enum.EasingStyle.Linear] = "linear",
+        [Enum.EasingStyle.Quad] = "quadratic",
+        [Enum.EasingStyle.Quart] = "quartic",
+        [Enum.EasingStyle.Quint] = "quintic",
+        [Enum.EasingStyle.Sine] = "sinusoidal",
+        [Enum.EasingStyle.Elastic] = "elastic",
+        [Enum.EasingStyle.Back] = "back",
+        [Enum.EasingStyle.Bounce] = "bounce",
+        [Enum.EasingDirection.In] = "easeIn",
+        [Enum.EasingDirection.Out] = "easeOut",
+        [Enum.EasingDirection.InOut] = "easeInOut",
+    }
 	
 	local Selection = game:GetService("Selection")
 	local ChangeHistoryService = game:GetService("ChangeHistoryService")
@@ -108,6 +135,12 @@ return function(script, plugin)
 				local x, y = member.X, member.Y
 				
 				output = output.."Vector2.new("..x..","..y..")"
+				
+			elseif memberType == "TweenInfo" then
+				
+				local time, style, direction = member.Time, member.EasingStyle, member.EasingDirection
+				
+				output = output.."TweenInfo.new("..time..","..tostring(style)..","..tostring(direction)..")"
 				
 			elseif memberType == "function" then
 				
@@ -809,6 +842,51 @@ return function(script, plugin)
 							else
 								
 								rbx.Text = component[name].X..", "..component[name].Y
+								
+							end
+							
+						end
+					})
+					
+					
+				elseif propertyType == "TweenInfo" then
+					
+					value = Roact.createElement(Libs.Textbox, {
+						Size = UDim2.new(1, 0, 0, 24),
+						value = component[name].Time..", "..tweenEnumsInverse[component[name].EasingStyle]..", "..tweenEnumsInverse[component[name].EasingDirection],
+						ClearTextOnFocus = false,
+						onSubmit = function(rbx, value)
+							
+							value = value:gsub(" ", "")
+							
+							local vectorData = {}
+							
+							for number in value:gmatch("[^%,]+") do
+								
+								vectorData[#vectorData + 1] = number
+								
+							end
+							
+							if #vectorData == 3 then
+								
+								local x, y, z = tonumber(vectorData[1]), tweenEnums[vectorData[2]], tweenEnums[vectorData[3]]
+								
+								if x and y and z then
+									
+									rbx.Text = x..", "..vectorData[2]..", "..vectorData[3]
+									value = TweenInfo.new(x, y, z)
+									saveObject(value, name)
+									self:LoadScene(self.SceneInstance, self.Prefab)
+									
+								else
+									
+									rbx.Text = component[name].Time..", "..tweenEnumsInverse[component[name].EasingStyle]..", "..tweenEnumsInverse[component[name].EasingDirection]
+									
+								end
+								
+							else
+								
+								rbx.Text = component[name].Time..", "..tweenEnumsInverse[component[name].EasingStyle]..", "..tweenEnumsInverse[component[name].EasingDirection]
 								
 							end
 							
