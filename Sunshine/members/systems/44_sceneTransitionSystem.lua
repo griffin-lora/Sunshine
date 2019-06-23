@@ -1,4 +1,4 @@
-local info = TweenInfo.new(0.75, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut) -- we really need to make TweenInfo into a supported property type for SunshineSuite
+local info = TweenInfo.new(0.75, Enum.EasingStyle.Back, Enum.EasingDirection.Out) -- we really need to make TweenInfo into a supported property type for SunshineSuite
 
 return function(Sunshine, entity)
     local sceneTransition = entity.sceneTransition
