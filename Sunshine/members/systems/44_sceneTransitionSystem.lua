@@ -1,25 +1,34 @@
+local info = TweenInfo.new(0.75, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut) -- we really need to make TweenInfo into a supported property type for SunshineSuite
+
 return function(Sunshine, entity)
     local sceneTransition = entity.sceneTransition
     local uiTransform = entity.uiTransform
-    if sceneTransition and uiTransform then
+    local visible = entity.visible
+    if sceneTransition and uiTransform and visible then
         local loadingScene = false
         local scene
         local startTick = tick()
         Sunshine:update(function(step)
-            print(Sunshine:tween(tick() - startTick, TweenInfo.new(10, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), 0, 10))
             if loadingScene then
-                uiTransform.size = uiTransform.size:Lerp(Vector2.new(), step * 8)
-                if (uiTransform.size - Vector2.new()).Magnitude < 0.01 then
+                visible.visible = true
+                uiTransform.size = Sunshine:tween(tick() - startTick, info, Vector2.new(1, 1), Vector2.new())
+                if (tick() - startTick) > 0.75 then
                     Sunshine:loadScene(scene, true)
                 end
             else
-                uiTransform.size = uiTransform.size:Lerp(Vector2.new(1, 1), step * 8)
+                uiTransform.size = Sunshine:tween(tick() - startTick, info, Vector2.new(), Vector2.new(1, 1))
+                if (tick() - startTick) > 0.75 then
+                   visible.visible = false
+                end
             end
         end, entity)
         Sunshine:sceneLoad(function(sceneLoading, load)
             Sunshine.loadingScene = load
-            scene = sceneLoading
-            loadingScene = true
+            if not loadingScene then
+                scene = sceneLoading
+                loadingScene = true
+                startTick = tick()
+            end
         end, entity)
     end
 end

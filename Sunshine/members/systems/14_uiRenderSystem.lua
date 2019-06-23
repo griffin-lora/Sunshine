@@ -5,6 +5,7 @@ return function(Sunshine, entity)
     local uiTransform = entity.uiTransform
     local transparency = entity.transparency
     local label = entity.label
+    local visible = entity.visible
     if (frame or label) and uiTransform then
         if frame then
             frame.frame = frame.frame:Clone()
@@ -19,6 +20,9 @@ return function(Sunshine, entity)
                 frame.frame.AnchorPoint = uiTransform.anchorPoint
                 if transparency then
                     frame.frame.BackgroundTransparency = transparency.transparency
+                end
+                if visible then
+                    frame.frame.Visible = visible.visible
                 end
             end, entity)
         end
@@ -40,6 +44,9 @@ return function(Sunshine, entity)
                 labelInstance.TextColor3 = label.color
                 if transparency then
                     labelInstance.TextTransparency = transparency.transparency
+                end
+                if visible then
+                    labelInstance.Visible = visible.visible
                 end
             end, entity)
         end

@@ -323,10 +323,14 @@ return {
 	
 	crate = {
 		spawnEntity = {Type = "Object", Default = nil}
-	}
+	},
 
     sceneTransition = {
         
+    },
+
+    visible = {
+        visible = {Type = "boolean", Default = true},
     }
 
 }

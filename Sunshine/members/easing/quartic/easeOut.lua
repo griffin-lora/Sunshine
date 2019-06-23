@@ -1,3 +1,3 @@
 return function(k)
-    return 1 - (--k * k * k * k)
+    -- return 1 - (--k * k * k * k)
 end
