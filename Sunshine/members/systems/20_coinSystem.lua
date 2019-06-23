@@ -8,13 +8,15 @@ return function(Sunshine, entity)
     local sound = entity.sound
 
     local stop = false
-    local timeSince = nil
 
     if coin and transform and collider and sound and transparency then
         local collected = false
+        local info = coin.tweenInfo
+        local startTick
+        local size = transform.size
         Sunshine:update(function(step)
-            if collected and transform.size.Magnitude > 0.001 then
-                transform.size = transform.size:Lerp(Vector3.new(0, 0, 0), step * 12)
+            if collected and tick() - startTick <= info.Time then
+                transform.size = Sunshine:tween(tick() - startTick, info, size, Vector3.new(0, 0, 0))
             elseif collected then
                 transform.size = Vector3.new(0, 0, 0)
                 transparency.transparency = 1
@@ -27,11 +29,11 @@ return function(Sunshine, entity)
                 player.stats.coins = player.stats.coins + 1
                 sound.playing = true
                 stop = true
-                timeSince = tick()
+                startTick = tick()
             end
 
-            if timeSince ~= nil and stop then
-                if tick() - timeSince > 0.6 then
+            if startTick ~= nil and stop then
+                if tick() - startTick > 0.6 then
                     sound.playing = false
                     stop = false
                 end
