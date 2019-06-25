@@ -42,6 +42,21 @@ return function(Sunshine, entity)
                     local player = character.character.player
                     player.player.character = collider.hitEntity
                     Sunshine:destroyEntity(entity)
+                elseif active and collider.hitEntity and collider.trigger and collider.hitEntity.crate and collider.hitEntity.transparency and collider.hitEntity.physics then
+                    if collider.hitEntity.crate.hits > 0 then
+                        print("lol die")
+                        collider.trigger = false
+                        collider.hitEntity.crate.hits = collider.hitEntity.crate.hits - 1
+                        if collider.hitEntity.crate.hits == 0 then
+                            print("ded af")
+                            collider.hitEntity.physics.canCollide = false
+                            collider.hitEntity.transparency.transparency = 1
+                            if collider.hitEntity.spawner.entity then
+                                collider.hitEntity.spawner.active = true
+                                print("spawn")
+                            end
+                        end
+                    end
                 end
             else
                 transform.cFrame = transform.cFrame:Lerp(character.transform.cFrame, step * 10)

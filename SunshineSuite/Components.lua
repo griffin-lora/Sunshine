@@ -323,7 +323,7 @@ return {
 	},
 	
 	crate = {
-		spawnEntity = {Type = "Object", Default = nil}
+		hits = {Type = "number", Default = 1}
 	},
 
     sceneTransition = {
