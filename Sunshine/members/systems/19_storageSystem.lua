@@ -3,8 +3,10 @@
 return function(Sunshine, entity)
     local store = entity.store
     if store then
-        Sunshine:addConnection(Sunshine:onClientEvent(function(save)
-            store.save = save
+        Sunshine:addConnection(Sunshine:onClientEvent(function(id, save)
+            if entity.core.id == id then
+                store.save = save
+            end
         end), nil, entity)
         Sunshine:fireServer("loading", entity.core.id)
         local lastSaveTick = tick()

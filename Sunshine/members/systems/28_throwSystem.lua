@@ -1,3 +1,4 @@
+local CollectionService = game:GetService("CollectionService")
 local state = "throw"
 
 return function(Sunshine, entity)
@@ -51,13 +52,14 @@ return function(Sunshine, entity)
     end, function()
         -- general update
         lastE = input.e
-        -- hacky fix incoming
-        if head.core.active then
-            model.model.Head.Transparency = 1
-            model.model.Head.face.Transparency = 1
-        else
-            model.model.Head.Transparency = 0
-            model.model.Head.face.Transparency = 0
+        for _, descendant in pairs(model.model:GetDescendants()) do
+            if CollectionService:HasTag(descendant, "head") then
+                if head.core.active then
+                    descendant.Transparency = 1
+                else
+                    descendant.Transparency = 0
+                end
+            end
         end
     end)
 end

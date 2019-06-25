@@ -332,6 +332,14 @@ return {
 
     visible = {
         visible = {Type = "boolean", Default = true},
-    }
+    },
+
+    spawn = {
+        active = {Type = "boolean", Default = false}
+    },
+    
+    checkpoint = {
+        
+	},
 
 }
