@@ -17,6 +17,7 @@ return function(Sunshine, entity)
                 originalCFrames[descendant] = descendant.CFrame
             end
         end
+        local originalSize = model.model.PrimaryPart.Size
         transform.cFrame = nil
         setmetatable(transform, {
             __index = function(self, key)
@@ -40,12 +41,13 @@ return function(Sunshine, entity)
         })
         Sunshine:update(function()
             if transparency or transform.size ~= Vector3.new(1, 1, 1) then
+                model.model.PrimaryPart.Size = originalSize * transform.size
                 local descendants = model.model:GetDescendants()
                 for index = 1, #descendants do
                     local descendant = descendants[index]
                     if descendant:IsA("BasePart") then
-                        descendant.Size = descendant.Size / lastSize
-                        descendant.Size = descendant.Size * transform.size
+                        -- descendant.Size = descendant.Size / lastSize
+                        -- descendant.Size = descendant.Size * transform.size
                         if transparency then
                             descendant.Transparency = transparency.transparency
                         end

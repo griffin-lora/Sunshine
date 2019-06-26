@@ -9,13 +9,14 @@ return function(Sunshine, entity)
         Sunshine:update(function()
             if collider.hitEntity and collider.hitEntity.character and collider.hitEntity.character.controllable then
                 spawn.active = true
+                print(entity.core.name)
             end
             for _, descendant in pairs(model.model:GetDescendants()) do
                 if CollectionService:HasTag(descendant, "flag") then
                     if spawn.active then
-                        descendant.Transparency = 1
+                        descendant.Color = Color3.fromRGB(196, 40, 28)
                     else
-                        descendant.Transparency = 0
+                        descendant.Color = Color3.fromRGB(0, 0, 0)
                     end
                 end
             end

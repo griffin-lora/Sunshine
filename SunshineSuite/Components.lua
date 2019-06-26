@@ -339,7 +339,12 @@ return {
     },
     
     checkpoint = {
-        
-	},
+
+    },
+    
+    magicMirror = {
+        preview = {Type = "number", Default = 0},
+        active = {Type = "boolean", Default = false},
+    }
 
 }

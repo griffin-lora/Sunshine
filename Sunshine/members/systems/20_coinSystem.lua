@@ -18,18 +18,18 @@ return function(Sunshine, entity)
             if collected and tick() - startTick <= info.Time then
                 transform.size = Sunshine:tween(tick() - startTick, info, size, Vector3.new(0, 0, 0))
             elseif collected then
-                transparency.transparency = 1
+                -- transparency.transparency = 1
             end
 
-            -- local entity = collider.hitEntity
-            -- if entity and entity.character and entity.character.player and not collected then
-            --     local player = entity.character.player
-            --     collected = true
-            --     player.stats.coins = player.stats.coins + 1
-            --     sound.playing = true
-            --     stop = true
-            --     startTick = tick()
-            -- end
+            local entity = collider.hitEntity
+            if entity and entity.character and entity.character.player and not collected then
+                local player = entity.character.player
+                collected = true
+                player.stats.coins = player.stats.coins + 1
+                sound.playing = true
+                stop = true
+                startTick = tick()
+            end
 
             if startTick ~= nil and stop then
                 if tick() - startTick > 0.6 then

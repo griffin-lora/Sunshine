@@ -5,7 +5,9 @@ return function(Sunshine, entity)
     if prefab then
         prefab.prefab = require(prefab.prefab)
         for name, component in pairs(prefab.prefab) do
-            entity[name] = Sunshine:copyTable(component)
+            if name == "core" or not entity[name] then
+                entity[name] = Sunshine:copyTable(component)
+            end
         end
     end
 end
