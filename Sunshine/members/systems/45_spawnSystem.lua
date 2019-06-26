@@ -8,12 +8,12 @@ return function(Sunshine, entity)
         local loaded = false
         Sunshine:update(function()
             if store.save and not loaded then
-                entity.spawn = store.save.spawn or spawn
-                spawn = entity.spawn
-                store.save.spawn = spawn
+                store.save.spawn = store.save.spawn or {active = false}
+                spawn.active = store.save.spawn.active
                 loaded = true
             end
             if store.save then
+                store.save.spawn.active = spawn.active
                 if not player then
                     for _, entity in pairs(Sunshine.scene.entities) do
                         if entity.tag and entity.tag.tag == "player" then
