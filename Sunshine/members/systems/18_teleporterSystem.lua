@@ -9,12 +9,14 @@ return function(Sunshine, entity)
         if collider then
             Sunshine:update(function()
                 if collider.hitEntity and collider.hitEntity.character and collider.hitEntity.character.controllable then
+                    teleporter.activated = true
                     Sunshine:loadScene(scene)
                 end
             end, entity)
         elseif button then
             Sunshine:update(function()
                 if button.activated then
+                    teleporter.activated = true
                     Sunshine:loadScene(scene)
                 end
             end, entity)
