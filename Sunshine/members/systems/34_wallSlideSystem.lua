@@ -21,7 +21,7 @@ return function(Sunshine, entity)
         transform.cFrame = CFrame.new(transform.cFrame.Position, transform.cFrame.Position - character.wallNormal)
     end, function()
         -- end check
-        return character.grounded
+        return character.grounded or not character.onWall
     end, function()
         -- end
         if character.state == state then

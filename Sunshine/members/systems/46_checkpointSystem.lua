@@ -7,6 +7,9 @@ return function(Sunshine, entity)
     local model = entity.model
     if checkpoint and spawn and collider and model then
         Sunshine:update(function()
+            if collider.hitEntity and collider.hitEntity.character and collider.hitEntity.character.controllable then
+                spawn.active = true
+            end
             for _, descendant in pairs(model.model:GetDescendants()) do
                 if CollectionService:HasTag(descendant, "flag") then
                     if spawn.active then
@@ -15,9 +18,6 @@ return function(Sunshine, entity)
                         descendant.Transparency = 0
                     end
                 end
-            end
-            if collider.hitEntity and collider.hitEntity.character and collider.hitEntity.character.controllable then
-                spawn.active = true
             end
         end, true)
     end
