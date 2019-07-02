@@ -4,6 +4,6 @@ return function(Sunshine, entity)
     local terrain = entity.terrain
     local transform = entity.transform
     if terrain and transform then
-        Terrain:FillBlock(transform.cFrame, transform.size, Enum.Material.Grass)
+        Terrain:FillBlock(transform.cFrame, transform.size, Enum.Material.Water)
     end
 end

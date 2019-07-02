@@ -46,16 +46,16 @@ return function(Sunshine, entity)
             raycasts[3] = {Sunshine:findPartOnRay(rayNew(transform.cFrame.Position - vector3New(size, 0, 0), distance), {model.model})}
             raycasts[4] = {Sunshine:findPartOnRay(rayNew(transform.cFrame.Position + vector3New(0, 0, size), distance), {model.model})}
             raycasts[5] = {Sunshine:findPartOnRay(rayNew(transform.cFrame.Position - vector3New(0, 0, size), distance), {model.model})}
-            local part, position, normal
+            local part, position, normal, material
             for index, raycast in pairs(raycasts) do
                 if raycast[1] then
-                    part, position, normal = raycast[1], raycast[2], raycast[3]
+                    part, position, normal, material = raycast[1], raycast[2], raycast[3], raycast[4]
                 end
             end
-            character.grounded = not not part
+            character.grounded = not not part and material ~= Enum.Material.Water
             character.floor = part
-            local wallPart, wallPosition, wallNormal = Sunshine:findPartOnRay(rayNew(transform.cFrame.Position, transform.cFrame.LookVector * 2), {model.model})
-            character.onWall = not not wallPart and wallNormal ~= vector3New()
+            local wallPart, wallPosition, wallNormal, wallMaterial = Sunshine:findPartOnRay(rayNew(transform.cFrame.Position, transform.cFrame.LookVector * 2), {model.model})
+            character.onWall = not not wallPart and wallMaterial ~= Enum.Material.Water
             character.wall = wallPart
             character.wallNormal = wallNormal
             if character.grounded then
