@@ -1,4 +1,14 @@
 return function(Sunshine, entity)
+    local destroying = true
+    for index, callback in pairs(Sunshine.entityDestroyCallbacks) do
+        if callback[2] == entity then
+            if callback[1]() == false then
+                destroying = false
+            else
+                Sunshine.entityDestroyCallbacks[index] = nil
+            end            
+        end
+    end
     entity.core.active = false
     for index, callback in pairs(Sunshine.updateCallbacks) do
         if callback[2] == entity then

@@ -44,7 +44,7 @@ return function(Sunshine, entity)
             end
         })
         Sunshine:update(function()
-            if transparency or transform.size ~= Vector3.new(1, 1, 1) then
+            if model.model.PrimaryPart and transparency or transform.size ~= Vector3.new(1, 1, 1) then
                 model.model.PrimaryPart.Size = originalSize * transform.size
                 local descendants = model.model:GetDescendants()
                 for index = 1, #descendants do

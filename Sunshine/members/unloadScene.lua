@@ -1,5 +1,9 @@
 return function(Sunshine)
     if Sunshine.scene then
+        for _, callback in pairs(Sunshine.entityDestroyCallbacks) do
+            callback[1]()
+        end
+        Sunshine.entityDestroyCallbacks = {}
         Sunshine.updateCallbacks = {}
         Sunshine.sceneLoadCallbacks = {}
         for _, connection in pairs(Sunshine.connections) do

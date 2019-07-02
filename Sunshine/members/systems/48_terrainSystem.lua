@@ -5,10 +5,9 @@ return function(Sunshine, entity)
     local transform = entity.transform
     if terrain and transform then
         Terrain:FillBlock(transform.cFrame, transform.size, Enum.Material.Water)
-        Sunshine:sceneLoad(function(sceneLoading, load)
-            if load then
-                
-            end
+        Sunshine:entityDestroy(function()
+            print("i die")
+            Terrain:FillBlock(transform.cFrame, transform.size, Enum.Material.Air)
         end, entity)
     end
 end
