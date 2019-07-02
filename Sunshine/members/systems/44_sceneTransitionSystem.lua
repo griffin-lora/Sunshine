@@ -22,12 +22,12 @@ return function(Sunshine, entity)
             end
         end, entity)
         Sunshine:sceneLoad(function(sceneLoading, load)
-            Sunshine.loadingScene = load
             if not loadingScene then
                 scene = sceneLoading
                 loadingScene = true
                 startTick = tick()
             end
+            return load or false
         end, entity)
     end
 end

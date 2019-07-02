@@ -48,7 +48,7 @@ return function(Sunshine, entity)
                         collider.trigger = false
                         collider.hitEntity.crate.hits = collider.hitEntity.crate.hits - 1
                         if collider.hitEntity.crate.hits == 0 then
-                            print("ded af")
+                            print("ded (swear word)")
                             collider.hitEntity.physics.canCollide = false
                             collider.hitEntity.transparency.transparency = 1
                             if collider.hitEntity.spawner.entity then
@@ -61,6 +61,7 @@ return function(Sunshine, entity)
             else
                 transform.cFrame = transform.cFrame:Lerp(character.transform.cFrame, step * 10)
                 if (transform.cFrame.Position - character.transform.cFrame.Position).Magnitude < 5 then
+                    print("kill it with fire")
                     Sunshine:destroyEntity(entity)
                 end
             end

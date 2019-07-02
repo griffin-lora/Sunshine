@@ -52,6 +52,7 @@ return function(Sunshine, entity)
     end, function()
         -- general update
         lastE = input.e
+        -- print(head.core.active)
         for _, descendant in pairs(model.model:GetDescendants()) do
             if CollectionService:HasTag(descendant, "head") then
                 if head.core.active then

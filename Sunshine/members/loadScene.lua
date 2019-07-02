@@ -10,10 +10,13 @@ return function(Sunshine, scene, ...)
         end
         Sunshine.callOrder = callOrder
     end
+    local loading = true
     for index, callback in pairs(Sunshine.sceneLoadCallbacks) do
-        callback[1](scene, ...)
+        if callback[1](scene, ...) == false then
+            loading = false
+        end
     end
-    if Sunshine.loadingScene then
+    if loading then
         Sunshine:unloadScene()
         Sunshine.dataScene = scene
         Sunshine.scene = {entities = {}}
