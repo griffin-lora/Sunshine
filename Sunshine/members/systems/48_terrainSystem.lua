@@ -6,7 +6,6 @@ return function(Sunshine, entity)
     if terrain and transform then
         Terrain:FillBlock(transform.cFrame, transform.size, Enum.Material.Water)
         Sunshine:entityDestroy(function()
-            print("i die")
             Terrain:FillBlock(transform.cFrame, transform.size, Enum.Material.Air)
         end, entity)
     end

@@ -61,7 +61,6 @@ return function(Sunshine, entity)
             else
                 transform.cFrame = transform.cFrame:Lerp(character.transform.cFrame, step * 10)
                 if (transform.cFrame.Position - character.transform.cFrame.Position).Magnitude < 5 then
-                    print("kill it with fire")
                     Sunshine:destroyEntity(entity)
                 end
             end

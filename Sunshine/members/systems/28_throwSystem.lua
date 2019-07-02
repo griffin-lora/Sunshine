@@ -22,6 +22,7 @@ return function(Sunshine, entity)
             local headClone = Sunshine:copyTable(Sunshine:getEntity(component.head))
             headClone.core.active = true
             head = Sunshine:createEntity(headClone)
+            head.core.active = true
         end
         local velocityY
         if character.grounded then
@@ -38,7 +39,6 @@ return function(Sunshine, entity)
         end
     end, function()
         -- update
-        head.core.active = true
         head.head.cFrame = cFrame
         character.canLoseMagnitude = false
         if not animator.action then
@@ -52,7 +52,6 @@ return function(Sunshine, entity)
     end, function()
         -- general update
         lastE = input.e
-        -- print(head.core.active)
         for _, descendant in pairs(model.model:GetDescendants()) do
             if CollectionService:HasTag(descendant, "head") then
                 if head.core.active then
