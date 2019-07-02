@@ -35,7 +35,11 @@ return function(Sunshine, entity)
                     return
                 end
                 if key == "cFrame" then
-                    model.model:SetPrimaryPartCFrame(value)
+                    if value.LookVector.Unit.Magnitude == value.LookVector.Unit.Magnitude then
+                        model.model:SetPrimaryPartCFrame(value)
+                    else
+                        warn("A transformation error occurred. Input CFrame is: " .. tostring(value))
+                    end
                 end
             end
         })
