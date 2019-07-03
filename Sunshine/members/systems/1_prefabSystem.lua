@@ -9,5 +9,6 @@ return function(Sunshine, entity)
                 entity[name] = Sunshine:copyTable(component)
             end
         end
+        entity.core.active = true
     end
 end

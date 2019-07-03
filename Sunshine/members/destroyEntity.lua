@@ -5,19 +5,19 @@ return function(Sunshine, entity)
             if callback[1]() == false then
                 destroying = false
             else
-                Sunshine.entityDestroyCallbacks[index] = nil
+                table.remove(Sunshine.entityDestroyCallbacks, index)
             end            
         end
     end
     entity.core.active = false
     for index, callback in pairs(Sunshine.updateCallbacks) do
         if callback[2] == entity then
-            Sunshine.updateCallbacks[index] = nil
+            table.remove(Sunshine.updateCallbacks, index)
         end
     end
     for index, callback in pairs(Sunshine.sceneLoadCallbacks) do
         if callback[2] == entity then
-            Sunshine.sceneLoadCallbacks[index] = nil
+            table.remove(Sunshine.sceneLoadCallbacks, index)
         end
     end
     for _, connection in pairs(Sunshine.connections) do

@@ -18,7 +18,7 @@ return function(Sunshine, entity)
             if collected and tick() - startTick <= info.Time then
                 transform.size = Sunshine:tween(tick() - startTick, info, size, Vector3.new(0, 0, 0))
             elseif collected then
-                transparency.transparency = 1
+                Sunshine:destroyEntity(entity)
             end
 
             local entity = collider.hitEntity

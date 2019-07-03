@@ -22,7 +22,6 @@ return function(Sunshine, entity)
             local headClone = Sunshine:copyTable(Sunshine:getEntity(component.head))
             headClone.core.active = true
             head = Sunshine:createEntity(headClone)
-            head.core.active = true
         end
         local velocityY
         if character.grounded then
