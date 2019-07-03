@@ -7,11 +7,13 @@ return function(Sunshine, entity)
         local scene
         local startTick = tick()
         local info = sceneTransition.tweenInfo
+        local loading = false
         Sunshine:update(function(step)
             if loadingScene then
                 visible.visible = true
                 uiTransform.size = Sunshine:tween(tick() - startTick, info, Vector2.new(1, 1), Vector2.new())
-                if (tick() - startTick) > info.Time then
+                if (tick() - startTick) > info.Time and not loading then
+                    loading = true
                     Sunshine:loadScene(scene, true)
                 end
             else
