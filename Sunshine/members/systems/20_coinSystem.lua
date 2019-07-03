@@ -4,12 +4,11 @@ return function(Sunshine, entity)
 	local coin = entity.coin
     local transform = entity.transform
     local collider = entity.collider
-    local transparency = entity.transparency
     local sound = entity.sound
 
     local stop = false
 
-    if coin and transform and collider and sound and transparency then
+    if coin and transform and collider and sound then
         local collected = false
         local info = coin.tweenInfo
         local startTick

@@ -14,7 +14,7 @@ return function(Sunshine, entity)
     local lastSpace = false
     Sunshine:createStateSystem(entity, state, function()
         -- start check
-        return character.state == nil and groundedRemember > 0 and spaceRemember > 0
+        return not character.swimming and character.state == nil and groundedRemember > 0 and spaceRemember > 0
     end, function()
         -- start
         groundedRemember = 0

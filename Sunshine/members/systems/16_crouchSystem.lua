@@ -11,7 +11,7 @@ return function(Sunshine, entity)
     local animator = entity.animator
     Sunshine:createStateSystem(entity, state, function()
         -- start check
-        return character.state == nil and character.grounded and input.shift
+        return not character.swimming and character.state == nil and character.grounded and input.shift
     end, function()
         -- start
         character.walkSpeedFactor = component.walkSpeedFactor

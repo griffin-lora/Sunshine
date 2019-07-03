@@ -70,6 +70,7 @@ return {
 		walkSpeed = {Type = "number", Default = 16},
 		walkSpeedFactor = {Type = "number", Default = 1},
 		moveAnimation = {Type = "number", Default = 0},
+		swimAnimation = {Type = "number", Default = 0},
 		idleAnimation = {Type = "number", Default = 0},
         fallAnimation = {Type = "number", Default = 0}
 	},
@@ -127,7 +128,7 @@ return {
 		text = {Type = "string", Default = "label"},
         size = {Type = "UDim2", Default = UDim2.new(0, 100, 0, 100)},
         color = {Type = "Color3", Default = Color3.new(1, 1, 1)},
-        font = {Type = "number", Default = 0}
+        font = {Type = Enum.Font, Default = Enum.Font.Highway}
 	},
 	
 	button = {
@@ -348,7 +349,16 @@ return {
     },
 
     terrain = {
-        
-    }
+        -- material = {Type = Enum.Material, Default = Enum.Material.Grass}
+    },
+
+    water = {
+
+    },
+
+	swimUp = {
+        power = {Type = "number", Default = 50},
+        animation = {Type = "number", Default = 0}
+	},
 
 }

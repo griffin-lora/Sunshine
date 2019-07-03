@@ -13,7 +13,7 @@ return function(Sunshine, entity)
     local lastE = false
     Sunshine:createStateSystem(entity, state, function()
         -- start check
-        return character.state == "groundPound" and not character.grounded and input.e and not lastE
+        return not character.swimming and character.state == "groundPound" and not character.grounded and input.e and not lastE
     end, function()
         -- start
         physics.movable = true

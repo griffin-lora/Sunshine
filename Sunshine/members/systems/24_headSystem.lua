@@ -36,7 +36,9 @@ return function(Sunshine, entity)
                     canBounce = false
                     collider.trigger = false
                     bounceTick = tick()
-                    character.character.state = "bounce"
+                    if not character.character.swimming then
+                        character.character.state = "bounce"
+                    end
                 elseif active and collider.hitEntity and collider.hitEntity.capture then
                     active = false
                     local player = character.character.player

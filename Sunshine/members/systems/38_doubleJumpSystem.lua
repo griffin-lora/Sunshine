@@ -14,7 +14,7 @@ return function(Sunshine, entity)
     local jumping = false
     Sunshine:createStateSystem(entity, state, function()
         -- start check
-        return jumping and character.grounded and spaceRemember > 0
+        return not character.swimming and jumping and character.grounded and spaceRemember > 0
     end, function()
         -- start
         spaceRemember = 0
