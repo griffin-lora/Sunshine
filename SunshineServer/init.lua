@@ -34,4 +34,17 @@ local Sunshine = setmetatable({}, {
     end
 })
 
+if game.ServerScriptService:FindFirstChild("trackingId") then
+    local trackingId = require(game.ServerScriptService.trackingId)
+    local config = {
+        DoNotReportScriptErrors = false,
+        DoNotTrackServerStart = false,
+        DoNotTrackVisits = false
+    }
+    local Analytics = require(153590792)
+    Analytics.Init(trackingId, config)
+else
+    warn("Google Analytics is not enabled due to no tracking id being found.")
+end
+
 return Sunshine
