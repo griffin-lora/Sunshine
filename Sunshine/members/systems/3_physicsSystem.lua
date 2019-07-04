@@ -42,7 +42,9 @@ return function(Sunshine, entity)
                     weldConstraint.Part1 = model.model.PrimaryPart
                     weldConstraint.Parent = descendant
                 end
-                descendant.CustomPhysicalProperties = PhysicalProperties.new(physics.density or 0.7, physics.friction or 0.3, physics.elasticity or 0.5, physics.frictionWeight or 1, physics.elasticityWeight or 1)
+                descendant.CustomPhysicalProperties = PhysicalProperties.new(physics.density or 0.7,
+                physics.friction or 0.3, physics.elasticity or 0.5, physics.frictionWeight or 1,
+                physics.elasticityWeight or 1)
             end
         end
         if physics.movable then
