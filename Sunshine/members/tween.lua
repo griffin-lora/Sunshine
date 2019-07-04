@@ -15,7 +15,8 @@ return function(Sunshine, time, info, start, goal)
         if type == "Vector2" then
             return Vector2.new(Sunshine:tween(time, info, start.X, goal.X), Sunshine:tween(time, info, start.Y, goal.Y))
         elseif type == "Vector3" then
-            return Vector3.new(Sunshine:tween(time, info, start.X, goal.X), Sunshine:tween(time, info, start.Y, goal.Y), Sunshine:tween(time, info, start.Z, goal.Z))
+            return Vector3.new(Sunshine:tween(time, info, start.X, goal.X), Sunshine:tween(time, info, start.Y, goal.Y),
+            Sunshine:tween(time, info, start.Z, goal.Z))
         else
             error("Type " .. type .. " is unsupported for tweening")
         end

@@ -8,8 +8,8 @@ return function(Sunshine)
             storage:Set(storageTable)
         elseif reason == "loading" then
             local storage = DataStore2("storage", player)
-            local save = storage:Get({})[id] or {}
-            Sunshine:fireClient(player, id, save)
+            local storedSave = storage:Get({})[id] or {}
+            Sunshine:fireClient(player, id, storedSave)
         end
     end)
 end

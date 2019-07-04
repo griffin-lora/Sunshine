@@ -16,26 +16,26 @@ return function(Sunshine, entity)
         local e = false
         local r2 = false
         local l2 = false
-        local function handleInput(input, gameProcessedEvent)
+        local function handleInput(inputObject, gameProcessedEvent)
             if not gameProcessedEvent then
-                local begin = input.UserInputState == Enum.UserInputState.Begin
-                if input.KeyCode == Enum.KeyCode.D then
+                local begin = inputObject.UserInputState == Enum.UserInputState.Begin
+                if inputObject.KeyCode == Enum.KeyCode.D then
                     d = begin
-                elseif input.KeyCode == Enum.KeyCode.A then
+                elseif inputObject.KeyCode == Enum.KeyCode.A then
                     a = begin
-                elseif input.KeyCode == Enum.KeyCode.S then
+                elseif inputObject.KeyCode == Enum.KeyCode.S then
                     s = begin
-                elseif input.KeyCode == Enum.KeyCode.W then
+                elseif inputObject.KeyCode == Enum.KeyCode.W then
                     w = begin
-                elseif input.KeyCode == Enum.KeyCode.Space then
+                elseif inputObject.KeyCode == Enum.KeyCode.Space then
                     space = begin
-                elseif input.KeyCode == Enum.KeyCode.LeftShift then
+                elseif inputObject.KeyCode == Enum.KeyCode.LeftShift then
                     shift = begin
-                elseif input.KeyCode == Enum.KeyCode.E then
+                elseif inputObject.KeyCode == Enum.KeyCode.E then
                     e = begin
-                elseif input.KeyCode == Enum.KeyCode.ButtonR2 then
+                elseif inputObject.KeyCode == Enum.KeyCode.ButtonR2 then
                     r2 = begin
-                elseif input.KeyCode == Enum.KeyCode.ButtonL2 then
+                elseif inputObject.KeyCode == Enum.KeyCode.ButtonL2 then
                     l2 = begin
                 end
             end
@@ -43,22 +43,27 @@ return function(Sunshine, entity)
         Sunshine:addConnection(UserInputService.InputBegan, handleInput, entity)
         Sunshine:addConnection(UserInputService.InputEnded, handleInput, entity)
         local position
-        Sunshine:addConnection(UserInputService.InputChanged, function(input)
-            if input.KeyCode == Enum.KeyCode.Thumbstick1 then
-                if input.Position.Magnitude > 0.2 then
-                    position = input.Position
+        Sunshine:addConnection(UserInputService.InputChanged, function(inputObject)
+            if inputObject.KeyCode == Enum.KeyCode.Thumbstick1 then
+                if inputObject.Position.Magnitude > 0.2 then
+                    position = inputObject.Position
                 else
                     position = vector3New()
                 end
             end
         end, entity)
         Sunshine:update(function()
-            input.space = space or UserInputService:IsGamepadButtonDown(Enum.UserInputType.Gamepad1, Enum.KeyCode.ButtonA) or UserInputService:IsGamepadButtonDown(Enum.UserInputType.Gamepad1, Enum.KeyCode.ButtonB)
+            input.space = space or
+            UserInputService:IsGamepadButtonDown(Enum.UserInputType.Gamepad1, Enum.KeyCode.ButtonA) or
+            UserInputService:IsGamepadButtonDown(Enum.UserInputType.Gamepad1, Enum.KeyCode.ButtonB)
             input.shift = shift or r2 or l2
-            input.e = e or UserInputService:IsGamepadButtonDown(Enum.UserInputType.Gamepad1, Enum.KeyCode.ButtonY) or UserInputService:IsGamepadButtonDown(Enum.UserInputType.Gamepad1, Enum.KeyCode.ButtonX)
+            input.e = e or
+            UserInputService:IsGamepadButtonDown(Enum.UserInputType.Gamepad1, Enum.KeyCode.ButtonY) or
+            UserInputService:IsGamepadButtonDown(Enum.UserInputType.Gamepad1, Enum.KeyCode.ButtonX)
             local camera = Sunshine:getEntity(input.camera)
             if camera and camera.transform then
-                local cameraCFrame = CFrame.new(vector3New(), vector3New(camera.transform.cFrame.LookVector.X, 0, camera.transform.cFrame.LookVector.Z))
+                local cameraCFrame = CFrame.new(vector3New(), vector3New(camera.transform.cFrame.LookVector.X,
+                0, camera.transform.cFrame.LookVector.Z))
                 local moveVector = vector3New()
                 if UserInputService:GetLastInputType() ~= Enum.UserInputType.Gamepad1 then
                     if d then

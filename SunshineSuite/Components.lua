@@ -1,23 +1,18 @@
 return {
-	
 	core = {
 		active = {Type = "boolean", Default = true},
 		name = {Type = "string", Default = "Name"}
 	},
-	
 	prefab = {
 		prefab = {Type = "Instance", Default = nil}
 	},
-	
 	model = {
 		model = {Type = "Instance", Default = nil}
 	},
-	
 	transform = {
 		cFrame = {Type = "CFrame", Default = CFrame.new()},
 		size = {Type = "Vector3", Default = Vector3.new(1, 1, 1)}
 	},
-	
 	physics = {
 		anchored = {Type = "boolean", Default = true},
 		canCollide = {Type = "boolean", Default = true},
@@ -32,26 +27,20 @@ return {
 		elasticityWeight = {Type = "number", Default = 1},
 		movable = {Type = "boolean", Default = true},
 	},
-	
 	tag = {
 		tag = {Type = "string", Default = ""}
 	},
-	
 	collider = {
 		trigger = {Type = "boolean", Default = false}
 	},
-	
 	collectible = {
-		
 	},
-	
 	input = {
 		moveVector = {Type = "Vector3", Default = Vector3.new()},
 		space = {Type = "boolean", Default = false},
         shift = {Type = "boolean", Default = false},
         camera = {Type = "Object", Default = nil},
 	},
-	
 	character = {
 		controllable = {Type = "boolean", Default = false},
 		canLoseMagnitude = {Type = "boolean", Default = false},
@@ -74,15 +63,12 @@ return {
 		idleAnimation = {Type = "number", Default = 0},
         fallAnimation = {Type = "number", Default = 0}
 	},
-	
 	charData = {
 		coins = {Type = "number", Default = 0}
 	},
-	
 	stats = {
 		coins = {Type = "number", Default = 0}
 	},
-	
 	jump = {
         power = {Type = "number", Default = 50},
         animation = {Type = "number", Default = 0}
@@ -94,62 +80,48 @@ return {
         animation = {Type = "number", Default = 0},
         endAnimation = {Type = "number", Default = 0}
 	},
-	
 	camera = {
 		controllable = {Type = "boolean", Default = false},
 		subject = {Type = "Object", Default = nil},
 		fieldOfView = {Type = "number", Default = 70}
 	},
-	
-	spawner = {
-		object = {Type = "Object", Default = nil}
-	},
-	
 	spinner = {
 		speed = {Type = "number", Default = 1},
 		axis = {Type = "string", Default = "y"}
 	},
-	
 	animator = {
 	},
-	
 	frame = {
 		frame = {Type = "Instance", Default = nil}
 	},
-	
 	uiTransform = {
 		position = {Type = "UDim2", Default = UDim2.new()},
 		size = {Type = "Vector2", Default = Vector2.new(1, 1)},
 		zIndex = {Type = "number", Default = 0},
 		anchorPoint = {Type = "Vector2", Default = Vector2.new()},
 	},
-	
 	label = {
 		text = {Type = "string", Default = "label"},
         size = {Type = "UDim2", Default = UDim2.new(0, 100, 0, 100)},
         color = {Type = "Color3", Default = Color3.new(1, 1, 1)},
         font = {Type = Enum.Font, Default = Enum.Font.Highway}
 	},
-	
 	button = {
 		activated = {Type = "boolean", Default = false},
         size = {Type = "UDim2", Default = UDim2.new(0, 100, 0, 100)}
 	},
-	
 	sound = {
 		id = {Type = "number", Default = 0},
 		looped = {Type = "boolean", Default = false},
         playing = {Type = "boolean", Default = false},
         volume = {Type = "number", Default = 0.5}
 	},
-	
 	animation = {
 		id = {Type = "number", Default = 0},
 		looped = {Type = "boolean", Default = false},
         playing = {Type = "boolean", Default = false},
         speed = {Type = "number", Default = 1}
 	},
-	
     transparency = {
         transparency = {Type = "number", Default = 0}
     },
@@ -173,13 +145,11 @@ return {
 		bloomThreshold = {Type = "number", Default = 2},
 		sunRays = {Type = "boolean", Default = false}
     },
-    
     crouch = {
         walkSpeedFactor = {Type = "number", Default = 0.5},
         animation = {Type = "number", Default = 0},
         moveAnimation = {Type = "number", Default = 0}
     },
-    
     groundPound = {
         walkSpeedFactor = {Type = "number", Default = 0.1},
         speed = {Type = "number", Default = 50},
@@ -188,33 +158,26 @@ return {
         animation = {Type = "number", Default = 0},
         endAnimation = {Type = "number", Default = 0}
     },
-	
 	groundPoundJump = {
 		power = {Type = "number", Default = 50},
         animation = {Type = "number", Default = 0}
 	},
-	
 	backFlip = {
 		power = {Type = "number", Default = 50},
 		backPower = {Type = "number", Default = 50},
         animation = {Type = "number", Default = 0}
 	},
-	
 	longJump = {
 		power = {Type = "number", Default = 50},
 		bouncePower = {Type = "number", Default = 50},
         animation = {Type = "number", Default = 0}
 	},
-    
     store = {
-        
 	},
-	
 	moving = {
 		extend = {Type = "CFrame", Default = CFrame.new(0,0,0)},
 		speed = {Type = "number", Default = 1}
     },
-    
     head = {
         character = {Type = "Object", Default = nil},
         time = {Type = "number", Default = 2},
@@ -247,7 +210,6 @@ return {
         animation = {Type = "number", Default = 0},
         bounceCount = {Type = "number", Default = 0}
     },
-    
     capture = {
         active = {Type = "boolean", Default = false},
         character = {Type = "Object", Default = nil}
@@ -258,19 +220,15 @@ return {
         y = {Type = "boolean", Default = false},
         z = {Type = "boolean", Default = false}
 	},
-	
-
 	coin = {
         tweenInfo = {Type = "TweenInfo", Default = TweenInfo.new()}
 	},
 
 	coinCounter = {
 	},
-	
 	charObject = {
 		object = {Type = "Object", Default = nil}
     },
-    
     deathBarrier = {
         y = {Type = "number", Default = -500}
     },
@@ -278,7 +236,6 @@ return {
     wallPush = {
         animation = {Type = "number", Default = 0}
     },
-    
     wallSlide = {
         animation = {Type = "number", Default = 0},
         speed = {Type = "number", Default = -50},
@@ -289,7 +246,6 @@ return {
         power = {Type = "number", Default = 5},
         bouncePower = {Type = "number", Default = 20},
     },
-    
     hazard = {
         damage = {Type = "number", Default = 1}
     },
@@ -299,30 +255,23 @@ return {
         character = {Type = "Object", Default = nil},
         camera = {Type = "Object", Default = nil}
     },
-	
 	doubleJump = {
         power = {Type = "number", Default = 50},
         animation = {Type = "number", Default = 0}
 	},
-	
 	tripleJump = {
         power = {Type = "number", Default = 50},
         animation = {Type = "number", Default = 0}
     },
-    
     follow = {
         range = {Type = "number", Default = 50}
     },
-    
     spawner = {
         active = {Type = "boolean", Default = false},
         entity = {Type = "Object", Default = nil}
     },
-    
     collisionSpawner = {
-        
 	},
-	
 	crate = {
 		hits = {Type = "number", Default = 1}
 	},
@@ -338,31 +287,23 @@ return {
     spawn = {
         active = {Type = "boolean", Default = false}
     },
-    
     checkpoint = {
-
     },
-    
     magicMirror = {
         preview = {Type = "number", Default = 0},
         active = {Type = "boolean", Default = false},
     },
-
     terrain = {
         -- material = {Type = Enum.Material, Default = Enum.Material.Grass}
     },
-
     water = {
 
     },
-
 	swimUp = {
         power = {Type = "number", Default = 50},
         animation = {Type = "number", Default = 0}
     },
-    
     music = {
-        
     }
 
 }

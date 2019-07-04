@@ -1,5 +1,5 @@
 local StarterGui = game:GetService("StarterGui")
 
-return function(Sunshine, enabled)
+return function(_, enabled)
     StarterGui:SetCore("TopbarEnabled", enabled)
 end

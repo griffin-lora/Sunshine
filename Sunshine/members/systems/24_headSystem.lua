@@ -44,7 +44,8 @@ return function(Sunshine, entity)
                     local player = character.character.player
                     player.player.character = collider.hitEntity
                     Sunshine:destroyEntity(entity)
-                elseif active and collider.hitEntity and collider.trigger and collider.hitEntity.crate and collider.hitEntity.transparency and collider.hitEntity.physics then
+                elseif active and collider.hitEntity and collider.trigger and collider.hitEntity.crate and
+                collider.hitEntity.transparency and collider.hitEntity.physics then
                     if collider.hitEntity.crate.hits > 0 then
                         print("lol die")
                         collider.trigger = false

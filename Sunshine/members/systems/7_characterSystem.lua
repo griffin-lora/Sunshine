@@ -42,19 +42,24 @@ return function(Sunshine, entity)
             local distance = -transform.cFrame.UpVector * 3.3
             local raycasts = {}
             raycasts[1] = {Sunshine:findPartOnRay(rayNew(transform.cFrame.Position, distance), {model.model})}
-            raycasts[2] = {Sunshine:findPartOnRay(rayNew(transform.cFrame.Position + vector3New(size, 0, 0), distance), {model.model})}
-            raycasts[3] = {Sunshine:findPartOnRay(rayNew(transform.cFrame.Position - vector3New(size, 0, 0), distance), {model.model})}
-            raycasts[4] = {Sunshine:findPartOnRay(rayNew(transform.cFrame.Position + vector3New(0, 0, size), distance), {model.model})}
-            raycasts[5] = {Sunshine:findPartOnRay(rayNew(transform.cFrame.Position - vector3New(0, 0, size), distance), {model.model})}
-            local part, position, normal, material
-            for index, raycast in pairs(raycasts) do
+            raycasts[2] = {Sunshine:findPartOnRay(rayNew(transform.cFrame.Position + vector3New(size, 0, 0), distance),
+            {model.model})}
+            raycasts[3] = {Sunshine:findPartOnRay(rayNew(transform.cFrame.Position - vector3New(size, 0, 0), distance),
+            {model.model})}
+            raycasts[4] = {Sunshine:findPartOnRay(rayNew(transform.cFrame.Position + vector3New(0, 0, size), distance),
+            {model.model})}
+            raycasts[5] = {Sunshine:findPartOnRay(rayNew(transform.cFrame.Position - vector3New(0, 0, size), distance),
+            {model.model})}
+            local part, normal, material
+            for _, raycast in pairs(raycasts) do
                 if raycast[1] then
-                    part, position, normal, material = raycast[1], raycast[2], raycast[3], raycast[4]
+                    part, _, normal, material = raycast[1], raycast[2], raycast[3], raycast[4]
                 end
             end
             character.grounded = not not part and material ~= Enum.Material.Water
             character.floor = part
-            local wallPart, wallPosition, wallNormal, wallMaterial = Sunshine:findPartOnRay(rayNew(transform.cFrame.Position, transform.cFrame.LookVector * 2), {model.model})
+            local wallPart, _, wallNormal, wallMaterial = Sunshine:findPartOnRay(rayNew(transform.cFrame.Position,
+            transform.cFrame.LookVector * 2), {model.model})
             character.onWall = not not wallPart and wallMaterial ~= Enum.Material.Water
             character.wall = wallPart
             character.wallNormal = wallNormal
@@ -80,7 +85,8 @@ return function(Sunshine, entity)
                     boost = -moveVector.Y * 10
                 end
                 if character.moving and physics.movable and lastMoveVector then
-                    transform.cFrame = transform.cFrame:Lerp(CFrame.new(transform.cFrame.Position, transform.cFrame.Position + moveVector), step * moveVector:Dot(lastMoveVector) * 12)
+                    transform.cFrame = transform.cFrame:Lerp(CFrame.new(transform.cFrame.Position,
+                    transform.cFrame.Position + moveVector), step * moveVector:Dot(lastMoveVector) * 12)
                 end
                 local damping = 0.5
                 local canLoseMagnitude = true
@@ -104,7 +110,8 @@ return function(Sunshine, entity)
                 if not canLoseMagnitude and lastVelocity and velocity.Magnitude < lastVelocity.Magnitude then
                     if velocity.Unit.Magnitude == velocity.Unit.Magnitude then
                         if character.moving then
-                            velocity = velocity:Lerp(velocity.Unit * lastVelocity.Magnitude, dotToLerp(moveVector:Dot(velocity.Unit)))
+                            velocity = velocity:Lerp(velocity.Unit * lastVelocity.Magnitude,
+                            dotToLerp(moveVector:Dot(velocity.Unit)))
                         else
                             velocity = velocity.Unit * lastVelocity.Magnitude
                         end
@@ -113,13 +120,17 @@ return function(Sunshine, entity)
                     end
                 end
                 if character.grounded then
-                    local stepUpPart, stepUpPosition = Sunshine:findPartOnRay(rayNew(transform.cFrame.Position + (moveVector), distance), {model.model})
+                    local stepUpPart, stepUpPosition = Sunshine:findPartOnRay(rayNew(transform.cFrame.Position +
+                    (moveVector), distance), {model.model})
                     if stepUpPart ~= part then
-                        transform.cFrame = (transform.cFrame - Vector3.new(0, transform.cFrame.Y, 0)) + Vector3.new(0, stepUpPosition.Y + 3.1, 0)
+                        transform.cFrame = (transform.cFrame - Vector3.new(0, transform.cFrame.Y, 0)) + Vector3.new(0,
+                        stepUpPosition.Y + 3.1, 0)
                     else
-                        local stepDownPart, stepDownPosition = Sunshine:findPartOnRay(rayNew(transform.cFrame.Position, distance * 2), {model.model})
+                        local stepDownPart, stepDownPosition = Sunshine:findPartOnRay(rayNew(transform.cFrame.Position,
+                        distance * 2), {model.model})
                         if stepDownPart ~= part then
-                            transform.cFrame = (transform.cFrame - Vector3.new(0, transform.cFrame.Y, 0)) + Vector3.new(0, stepDownPosition.Y + 3.1, 0)
+                            transform.cFrame = (transform.cFrame - Vector3.new(0, transform.cFrame.Y, 0)) +
+                            Vector3.new(0, stepDownPosition.Y + 3.1, 0)
                         end
                     end
                 end

@@ -3,9 +3,7 @@ local state = "wallPush"
 return function(Sunshine, entity)
     local component = entity[state]
     local character = entity.character
-    local input = entity.input
     local transform = entity.transform
-    local physics = entity.physics
     local animator = entity.animator
     Sunshine:createStateSystem(entity, state, function()
         -- start check

@@ -3,14 +3,14 @@ local state = "wallSlide"
 return function(Sunshine, entity)
     local component = entity[state]
     local character = entity.character
-    local input = entity.input
     local transform = entity.transform
     local physics = entity.physics
     local animator = entity.animator
     local lastWall
     Sunshine:createStateSystem(entity, state, function()
         -- start check
-        return character.onWall and character.wall ~= lastWall and not character.grounded and Vector3.new(physics.velocity.X, 0, physics.velocity.Z).Magnitude > 1
+        return character.onWall and character.wall ~= lastWall and not character.grounded and
+        Vector3.new(physics.velocity.X, 0, physics.velocity.Z).Magnitude > 1
     end, function()
         -- start
         lastWall = character.wall

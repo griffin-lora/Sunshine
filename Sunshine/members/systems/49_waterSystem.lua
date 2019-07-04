@@ -1,5 +1,3 @@
-local Terrain = workspace.Terrain
-
 return function(Sunshine, entity)
     local water = entity.water
     local collider = entity.collider

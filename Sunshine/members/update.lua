@@ -8,9 +8,9 @@ return function(Sunshine, callback, entity)
     if not Sunshine.updateConnection then
         Sunshine.updateConnection = RunService.RenderStepped:Connect(function()
             if not Sunshine.paused and RunService:IsRunning() then
-                for _, callback in ipairs(Sunshine.updateCallbacks) do
+                for _, callbackInList in ipairs(Sunshine.updateCallbacks) do
                     if #Sunshine.updateCallbacks > 0 then
-                        callback[1](step)
+                        callbackInList[1](step)
                     end
                 end
             end

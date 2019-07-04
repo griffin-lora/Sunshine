@@ -14,7 +14,8 @@ return function(Sunshine, entity)
         local originalSize = button.size
         Sunshine:update(function()
             buttonInstance.Position = uiTransform.position
-            buttonInstance.Size = UDim2.new(originalSize.X.Scale * uiTransform.size.X, originalSize.X.Offset * uiTransform.size.X, originalSize.Y.Scale * uiTransform.size.Y, originalSize.Y.Offset * uiTransform.size.Y)
+            buttonInstance.Size = UDim2.new(originalSize.X.Scale * uiTransform.size.X, originalSize.X.Offset *
+            uiTransform.size.X, originalSize.Y.Scale * uiTransform.size.Y, originalSize.Y.Offset * uiTransform.size.Y)
             buttonInstance.Rotation = uiTransform.rotation
             buttonInstance.ZIndex = uiTransform.zIndex
             buttonInstance.AnchorPoint = uiTransform.anchorPoint

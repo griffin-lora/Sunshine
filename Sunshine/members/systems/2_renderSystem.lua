@@ -10,17 +10,17 @@ return function(Sunshine, entity)
         model.model.Name = entity.core.id
         model.model:SetPrimaryPartCFrame(transform.cFrame)
         model.model.Parent = workspace
-        local lastSize = Vector3.new(1, 1, 1)
-        local originalCFrames = {}
-        for index, descendant in pairs(model.model:GetDescendants()) do
-            if descendant:IsA("BasePart") then
-                originalCFrames[descendant] = descendant.CFrame
-            end
-        end
+        -- local lastSize = Vector3.new(1, 1, 1)
+        -- local originalCFrames = {}
+        -- for _, descendant in pairs(model.model:GetDescendants()) do
+        --     if descendant:IsA("BasePart") then
+        --         originalCFrames[descendant] = descendant.CFrame
+        --     end
+        -- end
         local originalSize = model.model.PrimaryPart.Size
         transform.cFrame = nil
         setmetatable(transform, {
-            __index = function(self, key)
+            __index = function(_, key)
                 if not model.model.Parent then
                     setmetatable(transform, {})
                     return CFrame.new()
@@ -29,7 +29,7 @@ return function(Sunshine, entity)
                     return model.model:GetPrimaryPartCFrame()
                 end
             end,
-            __newindex = function(self, key, value)
+            __newindex = function(_, key, value)
                 if not model.model.Parent then
                     setmetatable(transform, {})
                     return
@@ -66,7 +66,6 @@ return function(Sunshine, entity)
                     end
                 end
             end
-            lastSize = transform.size
         end, entity)
     end
 end

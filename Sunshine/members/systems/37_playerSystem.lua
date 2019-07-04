@@ -17,7 +17,8 @@ return function(Sunshine, entity)
                     character.character.controllable = true
                     character.capture.active = true
                 end
-                if lastCharacter and lastCharacter.capture and lastCharacter ~= character and character == mainCharacter then
+                if lastCharacter and lastCharacter.capture and lastCharacter ~= character and
+                character == mainCharacter then
                     lastCharacter.capture.active = false
                     lastCharacter.character.controllable = false
                     character.physics.movable = true

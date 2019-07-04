@@ -13,10 +13,9 @@ return function(Sunshine, entity)
             Sunshine:update(function(step)
                 if (transform.cFrame.Position - start.Position).Magnitude < 1 and moveTo == "start" then
                     moveTo = "destination"
-                elseif (transform.cFrame.Position - destination.Position).Magnitude < 1  and moveTo == "destination" then
+                elseif (transform.cFrame.Position - destination.Position).Magnitude < 1 and moveTo == "destination" then
                     moveTo = "start"
                 end
-                
                 if moveTo == "destination" then
                     local lerp = transform.cFrame:Lerp(destination, step * moving.speed)
                     transform.cFrame = lerp

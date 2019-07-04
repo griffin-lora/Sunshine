@@ -14,7 +14,7 @@ return function(Sunshine, entity)
                     if last ~= stats.coins then
                         last = stats.coins
                         local text = stats.coins
-                        for i=1, 4-string.len(text) do
+                        for _ = 1, 4 - tostring(text):len() do
                             text = "0"..text
                         end
                         label.text = text

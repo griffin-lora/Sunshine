@@ -14,7 +14,8 @@ return function(Sunshine, entity)
     local cFrame
     Sunshine:createStateSystem(entity, state, function()
         -- start check
-        return not head.core.active and character.state ~= "groundPound" and character.state ~= "dive" and input.e and not lastE
+        return not head.core.active and character.state ~= "groundPound" and character.state ~= "dive" and input.e and
+        not lastE
     end, function()
         -- start
         if Sunshine:getEntity(component.head) then

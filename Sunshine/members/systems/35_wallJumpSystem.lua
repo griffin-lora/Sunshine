@@ -14,11 +14,12 @@ return function(Sunshine, entity)
         return character.state == "wallSlide" and input.space and not lastSpace
     end, function()
         -- start
-        transform.cFrame = CFrame.new(transform.cFrame.Position, (transform.cFrame.Position) - transform.cFrame.LookVector)
+        transform.cFrame = CFrame.new(transform.cFrame.Position, (transform.cFrame.Position) -
+        transform.cFrame.LookVector)
         horizontal = transform.cFrame.LookVector * component.power
         physics.velocity = Vector3.new(horizontal.X, component.bouncePower, horizontal.Z)
         animator.action = component.animation
-    end, function(step)
+    end, function()
         -- update
         physics.velocity = Vector3.new(horizontal.X, physics.velocity.Y, horizontal.Z)
     end, function()

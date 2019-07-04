@@ -6,7 +6,6 @@ return function(Sunshine, entity)
     local component = entity[state]
     local character = entity.character
     local input = entity.input
-    local transform = entity.transform
     local physics = entity.physics
     local animator = entity.animator
     local spaceRemember = 0
@@ -14,7 +13,8 @@ return function(Sunshine, entity)
     local doubleJumping = false
     Sunshine:createStateSystem(entity, state, function()
         -- start check
-        return not character.swimming and doubleJumping and physics.velocity.Magnitude > 20 and character.grounded and spaceRemember > 0
+        return not character.swimming and doubleJumping and physics.velocity.Magnitude > 20 and character.grounded and
+        spaceRemember > 0
     end, function()
         -- start
         spaceRemember = 0

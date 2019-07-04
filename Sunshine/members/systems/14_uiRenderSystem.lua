@@ -14,7 +14,9 @@ return function(Sunshine, entity)
             local originalSize = frame.frame.Size
             Sunshine:update(function()
                 frame.frame.Position = uiTransform.position
-                frame.frame.Size = UDim2.new(originalSize.X.Scale * uiTransform.size.X, originalSize.X.Offset * uiTransform.size.X, originalSize.Y.Scale * uiTransform.size.Y, originalSize.Y.Offset * uiTransform.size.Y)
+                frame.frame.Size = UDim2.new(originalSize.X.Scale * uiTransform.size.X, originalSize.X.Offset *
+                uiTransform.size.X, originalSize.Y.Scale * uiTransform.size.Y, originalSize.Y.Offset *
+                uiTransform.size.Y)
                 frame.frame.Rotation = uiTransform.rotation
                 frame.frame.ZIndex = uiTransform.zIndex
                 frame.frame.AnchorPoint = uiTransform.anchorPoint
@@ -36,7 +38,9 @@ return function(Sunshine, entity)
             Sunshine:update(function()
                 labelInstance.Position = uiTransform.position
                 labelInstance.Font = Enum.Font.Highway
-                labelInstance.Size = UDim2.new(originalSize.X.Scale * uiTransform.size.X, originalSize.X.Offset * uiTransform.size.X, originalSize.Y.Scale * uiTransform.size.Y, originalSize.Y.Offset * uiTransform.size.Y)
+                labelInstance.Size = UDim2.new(originalSize.X.Scale * uiTransform.size.X, originalSize.X.Offset *
+                uiTransform.size.X, originalSize.Y.Scale * uiTransform.size.Y, originalSize.Y.Offset *
+                uiTransform.size.Y)
                 labelInstance.Rotation = uiTransform.rotation
                 labelInstance.ZIndex = uiTransform.zIndex
                 labelInstance.AnchorPoint = uiTransform.anchorPoint

@@ -15,6 +15,21 @@ std = {
         "UDim2",
         "Vector2",
         "Color3",
-        "TweenInfo"
+        "TweenInfo",
+        "warn",
+        "tostring",
+        "error",
+        "print",
+        "Ray",
+        "tick",
+        "type",
+        "typeof",
+        "next",
+        "getmetatable",
+        "ipairs",
+        "table",
+        "tonumber",
+        "unpack",
+        "pcall"
     }
 }

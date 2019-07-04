@@ -15,9 +15,9 @@ return function(Sunshine, entity)
             if store.save then
                 store.save.spawn.active = spawn.active
                 if not player then
-                    for _, entity in pairs(Sunshine.scene.entities) do
-                        if entity.tag and entity.tag.tag == "player" then
-                            player = entity
+                    for _, otherEntity in pairs(Sunshine.scene.entities) do
+                        if otherEntity.tag and otherEntity.tag.tag == "player" then
+                            player = otherEntity
                             break
                         end
                     end
@@ -27,10 +27,10 @@ return function(Sunshine, entity)
                     end
                 end
                 if spawn.active and spawn.active ~= lastActive then
-                    for _, entity in pairs(Sunshine.scene.entities) do
-                        local spawn = entity.spawn
-                        if spawn then
-                            spawn.active = false
+                    for _, otherEntity in pairs(Sunshine.scene.entities) do
+                        local otherSpawn = otherEntity.spawn
+                        if otherSpawn then
+                            otherSpawn.active = false
                         end
                     end
                     spawn.active = true

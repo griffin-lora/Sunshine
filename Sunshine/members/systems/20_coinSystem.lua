@@ -13,16 +13,16 @@ return function(Sunshine, entity)
         local info = coin.tweenInfo
         local startTick
         local size = transform.size
-        Sunshine:update(function(step)
+        Sunshine:update(function()
             if collected and tick() - startTick <= info.Time then
                 transform.size = Sunshine:tween(tick() - startTick, info, size, Vector3.new(0, 0, 0))
             elseif collected then
                 Sunshine:destroyEntity(entity)
             end
 
-            local entity = collider.hitEntity
-            if entity and entity.character and entity.character.player and not collected then
-                local player = entity.character.player
+            local hitEntity = collider.hitEntity
+            if hitEntity and hitEntity.character and hitEntity.character.player and not collected then
+                local player = hitEntity.character.player
                 collected = true
                 player.stats.coins = player.stats.coins + 1
                 sound.playing = true

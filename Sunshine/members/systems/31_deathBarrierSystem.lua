@@ -2,9 +2,9 @@ return function(Sunshine, entity)
     local deathBarrier = entity.deathBarrier
     if deathBarrier then
         Sunshine:update(function()
-            for _, entity in pairs(Sunshine.scene.entities) do
-                local transform = entity.transform
-                local health = entity.health
+            for _, otherEntity in pairs(Sunshine.scene.entities) do
+                local transform = otherEntity.transform
+                local health = otherEntity.health
                 if transform and health and transform.cFrame.y <= deathBarrier.y then
                     health.health = 0
                 end

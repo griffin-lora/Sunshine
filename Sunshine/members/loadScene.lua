@@ -5,13 +5,12 @@ return function(Sunshine, scene, ...)
         for fullName, system in pairs(Sunshine.systems) do
             local split = fullName:split("_")
             local index = tonumber(split[1])
-            local name = split[2]
             callOrder[index] = system
         end
         Sunshine.callOrder = callOrder
     end
     local loading = true
-    for index, callback in pairs(Sunshine.sceneLoadCallbacks) do
+    for _, callback in pairs(Sunshine.sceneLoadCallbacks) do
         if callback[1](scene, ...) == false then
             loading = false
         end

@@ -1,7 +1,5 @@
 -- TrafficConeGod
 
-local RunService = game:GetService("RunService")
-
 return function(Sunshine, entity)
     local model = entity.model
     local transform = entity.transform
@@ -28,13 +26,13 @@ return function(Sunshine, entity)
             lockAxisBodyVelocity.MaxForce = Vector3.new(x, y, z)
             lockAxisBodyVelocity.Velocity = Vector3.new()
             lockAxisBodyVelocity.Parent = model.model.PrimaryPart
-            for index, descendant in pairs(model.model:GetDescendants()) do
+            for _, descendant in pairs(model.model:GetDescendants()) do
                 if descendant:IsA("BasePart") then
                     lockAxisBodyVelocity:Clone().Parent = descendant
                 end
             end
         end
-        for index, descendant in pairs(model.model:GetDescendants()) do
+        for _, descendant in pairs(model.model:GetDescendants()) do
             if descendant:IsA("BasePart") then
                 if physics.welded and descendant ~= model.model.PrimaryPart then
                     local weldConstraint = Instance.new("WeldConstraint")
@@ -55,7 +53,7 @@ return function(Sunshine, entity)
         physics.velocity = nil
         physics.movable = nil
         setmetatable(physics, {
-            __index = function(self, key)
+            __index = function(_, key)
                 if not model.model.Parent then
                     setmetatable(physics, {})
                     return Vector3.new()
@@ -66,7 +64,7 @@ return function(Sunshine, entity)
                     return not bodyVelocity.Parent
                 end
             end,
-            __newindex = function(self, key, value)
+            __newindex = function(_, key, value)
                 if not model.model.Parent then
                     setmetatable(physics, {})
                     return

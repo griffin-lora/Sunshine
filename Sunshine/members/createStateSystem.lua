@@ -5,7 +5,7 @@ return function(Sunshine, entity, state, startCheck, start, update, stopCheck, s
     local transform = entity.transform
     local physics = entity.physics
     local animator = entity.animator
-    if component and character and transform and physics and animator then
+    if component and character and transform and input and physics and animator then
         local lastState = character.state
         Sunshine:update(function(step)
             if character.controllable then

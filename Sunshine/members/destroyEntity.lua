@@ -6,7 +6,7 @@ return function(Sunshine, entity, ...)
                 destroying = false
             else
                 table.remove(Sunshine.entityDestroyCallbacks, index)
-            end            
+            end
         end
     end
     if destroying then
