@@ -1,8 +1,8 @@
-return function(Sunshine, entity)
+return function(Sunshine, entity, ...)
     local destroying = true
     for index, callback in pairs(Sunshine.entityDestroyCallbacks) do
         if callback[2] == entity then
-            if callback[1]() == false then
+            if callback[1](...) == false then
                 destroying = false
             else
                 table.remove(Sunshine.entityDestroyCallbacks, index)

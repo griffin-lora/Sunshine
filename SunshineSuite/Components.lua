@@ -359,6 +359,10 @@ return {
 	swimUp = {
         power = {Type = "number", Default = 50},
         animation = {Type = "number", Default = 0}
-	},
+    },
+    
+    music = {
+        
+    }
 
 }

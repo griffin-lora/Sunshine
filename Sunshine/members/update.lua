@@ -3,7 +3,7 @@ local step = 1/60
 
 return function(Sunshine, callback, entity)
     if not entity then
-        warn("update is being used without entity specification.")
+        error("update is being used without entity specification.")
     end
     if not Sunshine.updateConnection then
         Sunshine.updateConnection = RunService.RenderStepped:Connect(function()
