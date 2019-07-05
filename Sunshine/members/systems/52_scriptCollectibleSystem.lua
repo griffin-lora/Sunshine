@@ -15,8 +15,8 @@ return function(Sunshine, entity)
                 character.animator.action = 1076799780
                 character.character.controllable = false
                 character.physics.movable = false
-                character.transform.cFrame = CFrame.new(entity.transform.cFrame.Position, Vector3.new
-                (camera.transform.cFrame.Position.X,entity.transform.cFrame.Y, camera.transform.cFrame.Position.Z))
+                character.transform.cFrame = CFrame.new(entity.transform.cFrame.Position, Vector3.new(
+                camera.transform.cFrame.Position.X, entity.transform.cFrame.Y, camera.transform.cFrame.Position.Z))
                 camera.camera.controllable = false
                 camera.transform.cFrame = CFrame.new(CFrame.new(entity.transform.cFrame.Position, Vector3.new
                 (camera.transform.cFrame.Position.X, entity.transform.cFrame.Y, camera.transform.cFrame.Position.Z))
