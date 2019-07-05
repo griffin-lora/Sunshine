@@ -1,0 +1,1 @@
+return {spinner={speed=5,axis='y',},model={model=game.ReplicatedStorage.Assets.models.coin,},collider={trigger=true,},sound={id=131323304,looped=false,playing=false,volume=0.5,},coin={tweenInfo=TweenInfo.new(0.20000000298023,Enum.EasingStyle.Sine,Enum.EasingDirection.InOut),},}

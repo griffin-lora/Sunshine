@@ -13,6 +13,10 @@
         "SunshineSuite": {
             "path": "SunshineSuite",
 			"target": "ServerStorage.SunshineSuite.SunshineSuite"
+        },
+        "prefabs": {
+            "path": "prefabs",
+			"target": "ReplicatedStorage.Assets.prefabs"
 		}
 	}
 }

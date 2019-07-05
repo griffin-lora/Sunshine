@@ -1,0 +1,1 @@
+return {core={id='{7296A060-2B1A-4BDF-9B58-80097E412AAE}',name='Camera',active=true,},transform={cFrame=CFrame.new(0,0,0,1,0,0,0,1,0,0,0,1),size=Vector3.new(1,1,1),},camera={fieldOfView=70,controllable=true,subject='{9E1EB4B3-85F3-4249-9AD7-FEA653C8F82A}',},}

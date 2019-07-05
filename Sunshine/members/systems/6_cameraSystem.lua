@@ -9,9 +9,12 @@ return function(Sunshine, entity)
         cameraInstance.CFrame = transform.cFrame
         Sunshine:update(function()
             local subject = Sunshine:getEntity(camera.subject)
-            if subject and subject.model then
+            if subject and subject.model and camera.controllable then
                 cameraInstance.CameraType = Enum.CameraType.Custom
                 cameraInstance.CameraSubject = subject.model.model
+            end
+            if not camera.controllable then
+                cameraInstance.CameraType = Enum.CameraType.Scriptable
             end
             transform.cFrame = cameraInstance.CFrame
             cameraInstance.FieldOfView = camera.fieldOfView
