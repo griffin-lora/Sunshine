@@ -18,8 +18,8 @@ return function(Sunshine, entity)
                 character.transform.cFrame = CFrame.new(entity.transform.cFrame.Position, Vector3.new(
                 camera.transform.cFrame.Position.X, entity.transform.cFrame.Y, camera.transform.cFrame.Position.Z))
                 camera.camera.controllable = false
-                camera.transform.cFrame = CFrame.new(CFrame.new(entity.transform.cFrame.Position, Vector3.new
-                (camera.transform.cFrame.Position.X, entity.transform.cFrame.Y, camera.transform.cFrame.Position.Z))
+                camera.transform.cFrame = CFrame.new(CFrame.new(entity.transform.cFrame.Position, Vector3.new(
+                camera.transform.cFrame.Position.X, entity.transform.cFrame.Y, camera.transform.cFrame.Position.Z))
                 .LookVector*15, character.transform.cFrame.Position)
                 sound.playing = true
                 spinner.speed = 0
