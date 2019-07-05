@@ -1,5 +1,5 @@
 return function(Sunshine)
-    local DataStore2 = Sunshine.DataStore2
+    local DataStore2 = require(1936396537)
     Sunshine:onServerEvent(function(player, reason, id, save)
         if reason == "saving" then
             local storage = DataStore2("storage", player)
