@@ -33,3 +33,4 @@ std = {
         "pcall"
     }
 }
+ignore = {"Assets/prefabs/camera.lua"}

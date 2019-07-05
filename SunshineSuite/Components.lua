@@ -288,33 +288,26 @@ return {
     spawn = {
         active = {Type = "boolean", Default = false}
 	},
-	
     checkpoint = {
 	},
-	
     magicMirror = {
         preview = {Type = "number", Default = 0},
         active = {Type = "boolean", Default = false},
 	},
-	
     terrain = {
         -- material = {Type = Enum.Material, Default = Enum.Material.Grass}
 	},
-	
     water = {
 
 	},
-	
 	swimUp = {
         power = {Type = "number", Default = 50},
         animation = {Type = "number", Default = 0}
 	},
-	
     music = {
 	},
-
-	script = {
-		name = {Type = "string", Default = "rename this or your stupid idiot"},
+	scriptCollectible = {
+		name = {Type = "string", Default = "rename this or you\'re a poo poo head"},
 	}
 
 }

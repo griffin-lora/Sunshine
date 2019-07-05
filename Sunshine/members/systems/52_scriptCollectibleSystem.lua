@@ -1,12 +1,11 @@
 return function(Sunshine, entity)
-    local script = entity.script
+    local scriptCollectible = entity.scriptCollectible
     local transform =  entity.transform
     local sound = entity.sound
     local collider = entity.collider
     local spinner = entity.spinner
-    if script and sound and collider then
+    if scriptCollectible and sound and collider then
         local startTick
-        local info = script.tweenInfo
         local character
         local camera
         Sunshine:update(function()
@@ -16,9 +15,12 @@ return function(Sunshine, entity)
                 character.animator.action = 1076799780
                 character.character.controllable = false
                 character.physics.movable = false
-                character.transform.cFrame = CFrame.new(entity.transform.cFrame.Position, Vector3.new(camera.transform.cFrame.Position.X, entity.transform.cFrame.Y, camera.transform.cFrame.Position.Z))
+                character.transform.cFrame = CFrame.new(entity.transform.cFrame.Position, Vector3.new
+                (camera.transform.cFrame.Position.X,entity.transform.cFrame.Y, camera.transform.cFrame.Position.Z))
                 camera.camera.controllable = false
-                camera.transform.cFrame = CFrame.new(CFrame.new(entity.transform.cFrame.Position, Vector3.new(camera.transform.cFrame.Position.X, entity.transform.cFrame.Y, camera.transform.cFrame.Position.Z)).LookVector*15, character.transform.cFrame.Position)
+                camera.transform.cFrame = CFrame.new(CFrame.new(entity.transform.cFrame.Position, Vector3.new
+                (camera.transform.cFrame.Position.X, entity.transform.cFrame.Y, camera.transform.cFrame.Position.Z))
+                .LookVector*15, character.transform.cFrame.Position)
                 sound.playing = true
                 spinner.speed = 0
                 startTick = tick()
@@ -31,7 +33,8 @@ return function(Sunshine, entity)
                     camera.camera.controllable = true
                     Sunshine:destroyEntity(entity)
                 elseif tick() - startTick < 3 then
-                    transform.cFrame = transform.cFrame:lerp(character.transform.cFrame + Vector3.new(0,6.5,0), tick() - startTick)
+                    transform.cFrame = transform.cFrame:lerp(character.transform.cFrame + Vector3.new(0,6.5,0), tick() -
+                    startTick)
                 end
             end
         end, entity)

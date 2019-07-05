@@ -15,7 +15,7 @@
 			"target": "ServerStorage.SunshineSuite.SunshineSuite"
         },
         "prefabs": {
-            "path": "prefabs",
+            "path": "Assets/prefabs",
 			"target": "ReplicatedStorage.Assets.prefabs"
 		}
 	}
