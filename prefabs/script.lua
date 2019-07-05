@@ -1,0 +1,1 @@
+return {spinner={speed=1,axis='y',},model={model=game.ReplicatedStorage.Assets.models.Script,},collider={trigger=true,},sound={volume=0.5,id=1274526576,looped=false,autoStop=true,playing=false,},script={name='rename this or your stupid idiot'},}
