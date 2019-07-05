@@ -114,7 +114,8 @@ return {
 		id = {Type = "number", Default = 0},
 		looped = {Type = "boolean", Default = false},
         playing = {Type = "boolean", Default = false},
-        volume = {Type = "number", Default = 0.5}
+		volume = {Type = "number", Default = 0.5},
+		autoStop = {Type = "boolean", Default = false},
 	},
 	animation = {
 		id = {Type = "number", Default = 0},
@@ -286,24 +287,34 @@ return {
 
     spawn = {
         active = {Type = "boolean", Default = false}
-    },
+	},
+	
     checkpoint = {
-    },
+	},
+	
     magicMirror = {
         preview = {Type = "number", Default = 0},
         active = {Type = "boolean", Default = false},
-    },
+	},
+	
     terrain = {
         -- material = {Type = Enum.Material, Default = Enum.Material.Grass}
-    },
+	},
+	
     water = {
 
-    },
+	},
+	
 	swimUp = {
         power = {Type = "number", Default = 50},
         animation = {Type = "number", Default = 0}
-    },
+	},
+	
     music = {
-    }
+	},
+
+	script = {
+		name = {Type = "string", Default = "rename this or your stupid idiot"},
+	}
 
 }
