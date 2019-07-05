@@ -4,7 +4,8 @@ return function(Sunshine, eventOrConnection, callback, entity)
     end
     if typeof(eventOrConnection) == "RBXScriptSignal" then
         Sunshine.connections[#Sunshine.connections + 1] = {eventOrConnection:Connect(function(...)
-            if not Sunshine.paused then
+            local scene = Sunshine.entityScenes[entity]
+            if scene and not scene.paused then
                 callback(...)
             end
         end), entity}

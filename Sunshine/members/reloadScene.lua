@@ -1,3 +1,3 @@
-return function(Sunshine)
-    Sunshine:loadScene(Sunshine.dataScene)
+return function(Sunshine, sceneIndex)
+    Sunshine:loadScene(Sunshine.dataScene, sceneIndex)
 end

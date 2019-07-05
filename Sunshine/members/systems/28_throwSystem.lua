@@ -1,7 +1,7 @@
 local CollectionService = game:GetService("CollectionService")
 local state = "throw"
 
-return function(Sunshine, entity)
+return function(Sunshine, entity, scene)
     local component = entity[state]
     local character = entity.character
     local input = entity.input
@@ -22,7 +22,7 @@ return function(Sunshine, entity)
             cFrame = CFrame.new(transform.cFrame.Position + (transform.cFrame.LookVector.Unit * component.distance))
             local headClone = Sunshine:copyTable(Sunshine:getEntity(component.head))
             headClone.core.active = true
-            head = Sunshine:createEntity(headClone)
+            head = Sunshine:createEntity(headClone, scene)
         end
         local velocityY
         if character.grounded then

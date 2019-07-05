@@ -1,4 +1,5 @@
-return function(Sunshine, scene, ...)
+return function(Sunshine, scene, sceneIndex, ...)
+    sceneIndex = sceneIndex or 1
     Sunshine.loadingScene = true
     if not Sunshine.callOrder then
         local callOrder = {}
@@ -11,17 +12,18 @@ return function(Sunshine, scene, ...)
     end
     local loading = true
     for _, callback in pairs(Sunshine.sceneLoadCallbacks) do
-        if callback[1](scene, ...) == false then
+        if callback[1](scene, sceneIndex, ...) == false then
             loading = false
         end
     end
     if loading then
-        Sunshine:unloadScene()
+        Sunshine:unloadScene(Sunshine.scenes[sceneIndex])
         Sunshine.dataScene = scene
-        Sunshine.scene = {entities = {}}
+        Sunshine.scenes[sceneIndex] = {entities = {}, paused = false}
+        Sunshine.scene = Sunshine.scenes[sceneIndex]
         Sunshine.loadingScene = false
         for _, entity in pairs(scene.entities) do
-            Sunshine:createEntity(entity)
+            Sunshine:createEntity(entity, Sunshine.scenes[sceneIndex])
         end
     end
 end

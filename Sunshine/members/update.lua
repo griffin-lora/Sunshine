@@ -7,9 +7,10 @@ return function(Sunshine, callback, entity)
     end
     if not Sunshine.updateConnection then
         Sunshine.updateConnection = RunService.RenderStepped:Connect(function()
-            if not Sunshine.paused and Sunshine.running and RunService:IsRunning() then
+            if Sunshine.running and RunService:IsRunning() then
                 for _, callbackInList in ipairs(Sunshine.updateCallbacks) do
-                    if #Sunshine.updateCallbacks > 0 then
+                    local scene = Sunshine.entityScenes[callbackInList[2]]
+                    if scene and not scene.paused then
                         callbackInList[1](step)
                     end
                 end

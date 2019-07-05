@@ -1,7 +1,9 @@
-return function(Sunshine)
-    if Sunshine.scene then
-        for _, entity in pairs(Sunshine.scene.entities) do
-            Sunshine:destroyEntity(entity)
+return function(Sunshine, scene)
+    if scene then
+        for _, entity in pairs(scene.entities) do
+            if Sunshine.entityScenes[entity] == scene then
+                Sunshine:destroyEntity(entity)
+            end
         end
         -- for _, callback in pairs(Sunshine.entityDestroyCallbacks) do
         --     callback[1]()
