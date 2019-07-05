@@ -23,6 +23,7 @@ return function(Sunshine, entity)
             __index = function(_, key)
                 if not model.model.Parent then
                     setmetatable(transform, {})
+                    transform.cFrame = CFrame.new()
                     return CFrame.new()
                 end
                 if key == "cFrame" then

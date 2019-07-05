@@ -34,6 +34,8 @@ local Sunshine = setmetatable({}, {
     end
 })
 
+Sunshine:manageStorage()
+
 if game.ServerScriptService:FindFirstChild("trackingId") then
     local trackingId = require(game.ServerScriptService.trackingId)
     local config = {

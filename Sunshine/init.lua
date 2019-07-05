@@ -35,5 +35,6 @@ local Sunshine = setmetatable({}, {
 })
 
 Sunshine:setTopbarEnabled(false)
+Sunshine:manageErrors()
 
 return Sunshine

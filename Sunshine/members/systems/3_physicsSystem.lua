@@ -56,10 +56,11 @@ return function(Sunshine, entity)
             __index = function(_, key)
                 if not model.model.Parent then
                     setmetatable(physics, {})
+                    physics.velocity = Vector3.new()
                     return Vector3.new()
                 end
                 if key == "velocity" then
-                    return model.model.PrimaryPart.Velocity
+                    return model.model.PrimaryPart.Velocity or Vector3.new()
                 elseif key == "movable" then
                     return not bodyVelocity.Parent
                 end
