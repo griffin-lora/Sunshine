@@ -8,7 +8,6 @@ return function(Sunshine, entity)
     if checkpoint and spawn and collider and model then
         Sunshine:update(function()
             if collider.hitEntity and collider.hitEntity.character and collider.hitEntity.character.controllable then
-                print("die")
                 spawn.active = true
             end
             for _, descendant in pairs(model.model:GetDescendants()) do
@@ -20,6 +19,6 @@ return function(Sunshine, entity)
                     end
                 end
             end
-        end, true)
+        end, entity)
     end
 end

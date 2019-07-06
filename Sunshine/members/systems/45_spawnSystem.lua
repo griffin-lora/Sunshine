@@ -37,6 +37,6 @@ return function(Sunshine, entity, scene)
                 end
                 lastActive = spawn.active
             end
-        end, true)
+        end, entity)
     end
 end
