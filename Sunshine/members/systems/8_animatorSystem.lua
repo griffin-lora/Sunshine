@@ -9,7 +9,7 @@ return function(Sunshine, entity, scene)
         local animationTracks = {}
         local function loadAnimation(id)
             local animationTrack = animationTracks[id]
-            if not animationTrack then
+            if not animationTrack and animationController.Parent then
                 local animation = Instance.new("Animation")
                 animation.AnimationId = "rbxassetid://"..id
                 animationTrack = animationController:LoadAnimation(animation)
@@ -46,8 +46,10 @@ return function(Sunshine, entity, scene)
                     end
                     if animator.action then
                         actionTrack = loadAnimation(action)
-                        actionTrack.Priority = Enum.AnimationPriority.Action
-                        actionTrack:Play()
+                        if actionTrack then
+                            actionTrack.Priority = Enum.AnimationPriority.Action
+                            actionTrack:Play()
+                        end
                     end
                 end
                 if movement ~= animator.movement then
@@ -57,8 +59,10 @@ return function(Sunshine, entity, scene)
                     end
                     if animator.movement then
                         movementTrack = loadAnimation(movement)
-                        movementTrack.Priority = Enum.AnimationPriority.Movement
-                        movementTrack:Play()
+                        if movementTrack then
+                            movementTrack.Priority = Enum.AnimationPriority.Movement
+                            movementTrack:Play()
+                        end
                     end
                 end
                 if idle ~= animator.idle then
@@ -68,8 +72,10 @@ return function(Sunshine, entity, scene)
                     end
                     if animator.idle then
                         idleTrack = loadAnimation(idle)
-                        idleTrack.Priority = Enum.AnimationPriority.Idle
-                        idleTrack:Play()
+                        if idleTrack then
+                            idleTrack.Priority = Enum.AnimationPriority.Idle
+                            idleTrack:Play()
+                        end
                     end
                 end
                 if core ~= animator.core then
@@ -79,8 +85,10 @@ return function(Sunshine, entity, scene)
                     end
                     if animator.core then
                         coreTrack = loadAnimation(core)
-                        coreTrack.Priority = Enum.AnimationPriority.Core
-                        coreTrack:Play()
+                        if coreTrack then
+                            coreTrack.Priority = Enum.AnimationPriority.Core
+                            coreTrack:Play()
+                        end
                     end
                 end
             else
