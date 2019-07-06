@@ -15,6 +15,7 @@ return function(Sunshine, entity, scene)
             end
             if not camera.controllable then
                 cameraInstance.CameraType = Enum.CameraType.Scriptable
+                cameraInstance.CFrame = transform.cFrame
             end
             transform.cFrame = cameraInstance.CFrame
             cameraInstance.FieldOfView = camera.fieldOfView
