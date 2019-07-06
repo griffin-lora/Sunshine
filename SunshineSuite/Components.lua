@@ -227,9 +227,7 @@ return {
 	},
 
 	coinCounter = {
-	},
-	charObject = {
-		object = {Type = "Object", Default = nil}
+		player = {Type = "Object", Default = nil}
     },
     deathBarrier = {
         y = {Type = "number", Default = -500}
