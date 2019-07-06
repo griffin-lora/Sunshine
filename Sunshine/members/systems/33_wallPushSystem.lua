@@ -7,7 +7,7 @@ return function(Sunshine, entity)
     local animator = entity.animator
     Sunshine:createStateSystem(entity, state, function()
         -- start check
-        return character.onWall and character.grounded and character.moving
+        return not character.swimming and character.onWall and character.grounded and character.moving
     end, function()
         -- start
         animator.action = component.animation
@@ -16,7 +16,7 @@ return function(Sunshine, entity)
         transform.cFrame = CFrame.new(transform.cFrame.Position, transform.cFrame.Position - character.wallNormal)
     end, function()
         -- end check
-        return not character.onWall or not character.moving
+        return not character.onWall or not character.moving or character.swimming
     end, function()
         -- end
         if character.state == state then

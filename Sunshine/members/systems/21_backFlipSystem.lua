@@ -19,7 +19,7 @@ return function(Sunshine, entity)
         -- update
     end, function()
         -- end check
-        return character.grounded
+        return character.grounded or character.swimming
     end, function()
         -- end
         if character.state == state then

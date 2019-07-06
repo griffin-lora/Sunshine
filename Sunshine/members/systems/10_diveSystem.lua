@@ -27,7 +27,7 @@ return function(Sunshine, entity)
         physics.velocity = Vector3.new(horizontal.X, physics.velocity.Y, horizontal.Z)
     end, function()
         -- end check
-        return character.grounded
+        return character.grounded or character.swimming
     end, function()
         -- end
         animator.action = component.endAnimation

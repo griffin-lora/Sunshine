@@ -59,9 +59,10 @@ return {
 		walkSpeed = {Type = "number", Default = 16},
 		walkSpeedFactor = {Type = "number", Default = 1},
 		moveAnimation = {Type = "number", Default = 0},
-		swimAnimation = {Type = "number", Default = 0},
 		idleAnimation = {Type = "number", Default = 0},
-        fallAnimation = {Type = "number", Default = 0}
+        fallAnimation = {Type = "number", Default = 0},
+		swimAnimation = {Type = "number", Default = 0},
+		sinkAnimation = {Type = "number", Default = 0},
 	},
 	charData = {
 		coins = {Type = "number", Default = 0}

@@ -9,7 +9,7 @@ return function(Sunshine, entity)
     local lastWall
     Sunshine:createStateSystem(entity, state, function()
         -- start check
-        return character.onWall and character.wall ~= lastWall and not character.grounded and
+        return not character.swimming and character.onWall and character.wall ~= lastWall and not character.grounded and
         Vector3.new(physics.velocity.X, 0, physics.velocity.Z).Magnitude > 1
     end, function()
         -- start
@@ -21,7 +21,7 @@ return function(Sunshine, entity)
         transform.cFrame = CFrame.new(transform.cFrame.Position, transform.cFrame.Position - character.wallNormal)
     end, function()
         -- end check
-        return character.grounded or not character.onWall
+        return character.grounded or not character.onWall or character.swimming
     end, function()
         -- end
         if character.state == state then
