@@ -2,7 +2,7 @@ local errorFrame = game.ReplicatedStorage.Assets.frames.errorFrame
 local ScriptContext = game:GetService("ScriptContext")
 
 return function(Sunshine)
-    ScriptContext.Error:Connect(function(errorScript)
+    ScriptContext.Error:Connect(function(_, _, errorScript)
         local success = pcall(function()
             errorScript:IsDescendantOf(game)
         end)

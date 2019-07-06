@@ -21,7 +21,7 @@ return function(Sunshine, scene, sceneIndex, ...)
     end
     if loading then
         Sunshine:unloadScene(Sunshine.scenes[sceneIndex])
-        Sunshine.dataScene = scene
+        Sunshine.dataScenes[sceneIndex] = scene
         Sunshine.scenes[sceneIndex] = {entities = {}, paused = false}
         Sunshine.loadingScene = false
         for _, entity in pairs(scene.entities) do
