@@ -429,7 +429,10 @@ return function(script, plugin)
 				})
 			}
 			
-			local componentInterface = Components[name]
+            local componentInterface = Components[name]
+            if not componentInterface then
+                error("component" .. name .. " doesn't exist.")
+            end
 			
 			local componentName = name
 			
@@ -473,7 +476,8 @@ return function(script, plugin)
 				end
 				
 			end
-			
+            
+            
 			for name, propertyData in pairs(componentInterface) do
 				
 				local propertyType = propertyData.Type
