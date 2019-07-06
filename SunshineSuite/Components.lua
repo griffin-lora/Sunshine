@@ -308,6 +308,11 @@ return {
 	scriptCollectible = {
 		name = {Type = "string", Default = "rename this or you\'re a poo poo head"},
     },
-    pause = {}
+    pause = {},
+    oscillator = {
+        amplitude = {Type = "number", Default = 1},
+        frequency = {Type = "number", Default = 1},
+        axis = {Type = "string", Default = "y"}
+    }
 
 }
