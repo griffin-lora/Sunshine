@@ -313,6 +313,11 @@ return {
         amplitude = {Type = "number", Default = 1},
         frequency = {Type = "number", Default = 1},
         axis = {Type = "string", Default = "y"}
-    }
+    },
+    lockRotationAxis = {
+        x = {Type = "boolean", Default = false},
+        y = {Type = "boolean", Default = false},
+        z = {Type = "boolean", Default = false}
+	},
 
 }

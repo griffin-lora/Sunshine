@@ -5,6 +5,7 @@ return function(Sunshine, entity, scene)
     local transform = entity.transform
     local physics = entity.physics
     local lockAxis = entity.lockAxis
+    local lockRotationAxis = entity.lockRotationAxis
     if model and transform and physics then
         local bodyVelocity = Instance.new("BodyVelocity")
         bodyVelocity.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
@@ -32,6 +33,29 @@ return function(Sunshine, entity, scene)
             for _, descendant in pairs(model.model:GetDescendants()) do
                 if descendant:IsA("BasePart") then
                     lockAxisBodyVelocity:Clone().Parent = descendant
+                end
+            end
+        end
+        if lockRotationAxis then
+            local x = 0
+            local y = 0
+            local z = 0
+            if lockRotationAxis.x then
+                x = math.huge
+            end
+            if lockRotationAxis.y then
+                y = math.huge
+            end
+            if lockRotationAxis.z then
+                z = math.huge
+            end
+            local lockRotationAxisBodyVelocity = Instance.new("BodyAngularVelocity")
+            lockRotationAxisBodyVelocity.MaxTorque = Vector3.new(x, y, z)
+            lockRotationAxisBodyVelocity.AngularVelocity = Vector3.new()
+            lockRotationAxisBodyVelocity.Parent = model.model.PrimaryPart
+            for _, descendant in pairs(model.model:GetDescendants()) do
+                if descendant:IsA("BasePart") then
+                    lockRotationAxisBodyVelocity:Clone().Parent = descendant
                 end
             end
         end

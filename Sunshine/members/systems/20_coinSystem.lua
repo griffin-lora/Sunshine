@@ -19,7 +19,6 @@ return function(Sunshine, entity, scene)
             elseif collected then
                 Sunshine:destroyEntity(entity)
             end
-
             local hitEntity = collider.hitEntity
             if hitEntity and hitEntity.character and hitEntity.character.player and not collected then
                 local player = hitEntity.character.player
@@ -29,7 +28,6 @@ return function(Sunshine, entity, scene)
                 stop = true
                 startTick = Sunshine:tick(scene)
             end
-
             if startTick ~= nil and stop then
                 if Sunshine:tick(scene) - startTick > 0.6 then
                     sound.playing = false
