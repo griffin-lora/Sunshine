@@ -8,7 +8,8 @@ return function(Sunshine, entity)
         local scene = require(teleporter.scene)
         if collider then
             Sunshine:update(function()
-                if collider.hitEntity and collider.hitEntity.character and collider.hitEntity.character.controllable then
+                if collider.hitEntity and collider.hitEntity.character and
+                collider.hitEntity.character.controllable then
                     teleporter.activated = true
                     Sunshine:loadScene(scene)
                 end
