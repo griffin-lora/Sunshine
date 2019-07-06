@@ -5,7 +5,6 @@ return function(Sunshine, entity)
     if sceneTransition and uiTransform and visible then
         local loadingScene = false
         local scene
-        local sceneIndex
         local startTick = tick()
         local info = sceneTransition.tweenInfo
         local loading = false
@@ -13,25 +12,29 @@ return function(Sunshine, entity)
             if loadingScene then
                 visible.visible = true
                 uiTransform.size = Sunshine:tween(tick() - startTick, info, Vector2.new(1, 1), Vector2.new())
-                if (tick() - startTick) > info.Time and not loading then
+                if (tick() - startTick) >= info.Time and not loading then
                     loading = true
-                    Sunshine:loadScene(scene, sceneIndex, true)
+                    loadingScene = false
+                    Sunshine:loadScene(scene, 1, false)
+                    startTick = tick()
                 end
             else
                 uiTransform.size = Sunshine:tween(tick() - startTick, info, Vector2.new(), Vector2.new(1, 1))
-                if (tick() - startTick) > info.Time then
-                   visible.visible = false
+                if (tick() - startTick) >= info.Time then
+                    visible.visible = false
                 end
             end
         end, entity)
-        Sunshine:sceneLoad(function(sceneLoading, sceneIndexLoading, load)
-            if not loadingScene then
-                scene = sceneLoading
-                sceneIndex = sceneIndexLoading
-                loadingScene = true
-                startTick = tick()
+        Sunshine:sceneLoad(function(sceneLoading, sceneIndex, load)
+            if sceneIndex == 1 and load ~= false then
+                loading = false
+                if not loadingScene then
+                    scene = sceneLoading
+                    loadingScene = true
+                    startTick = tick()
+                end
+                return load or false
             end
-            return load or false
         end, entity)
     end
 end
