@@ -1,1 +1,0 @@
-return {model={model=game.ReplicatedStorage.Assets.models.MagicMirror,},magicMirror={preview=0,active=false,},collider={trigger=false,},teleporter={},store={},}
