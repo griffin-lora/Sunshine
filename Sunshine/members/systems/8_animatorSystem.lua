@@ -1,6 +1,6 @@
 -- TrafficConeGod
 
-return function(Sunshine, entity)
+return function(Sunshine, entity, scene)
     local animator = entity.animator
     local model = entity.model
     if animator and model then
@@ -26,50 +26,77 @@ return function(Sunshine, entity)
         local action = animator.action
         local actionTrack
         Sunshine:update(function()
-            if action ~= animator.action then
-                action = animator.action
+            if not scene.paused then
                 if actionTrack then
-                    actionTrack:Stop()
+                    actionTrack:AdjustSpeed(1)
                 end
-                if animator.action then
-                    actionTrack = loadAnimation(action)
-                    actionTrack.Priority = Enum.AnimationPriority.Action
-                    actionTrack:Play()
-                end
-            end
-            if movement ~= animator.movement then
-                movement = animator.movement
                 if movementTrack then
-                    movementTrack:Stop()
+                    movementTrack:AdjustSpeed(1)
                 end
-                if animator.movement then
-                    movementTrack = loadAnimation(movement)
-                    movementTrack.Priority = Enum.AnimationPriority.Movement
-                    movementTrack:Play()
-                end
-            end
-            if idle ~= animator.idle then
-                idle = animator.idle
                 if idleTrack then
-                    idleTrack:Stop()
+                    idleTrack:AdjustSpeed(1)
                 end
-                if animator.idle then
-                    idleTrack = loadAnimation(idle)
-                    idleTrack.Priority = Enum.AnimationPriority.Idle
-                    idleTrack:Play()
-                end
-            end
-            if core ~= animator.core then
-                core = animator.core
                 if coreTrack then
-                    coreTrack:Stop()
+                    coreTrack:AdjustSpeed(1)
                 end
-                if animator.core then
-                    coreTrack = loadAnimation(core)
-                    coreTrack.Priority = Enum.AnimationPriority.Core
-                    coreTrack:Play()
+                if action ~= animator.action then
+                    action = animator.action
+                    if actionTrack then
+                        actionTrack:Stop()
+                    end
+                    if animator.action then
+                        actionTrack = loadAnimation(action)
+                        actionTrack.Priority = Enum.AnimationPriority.Action
+                        actionTrack:Play()
+                    end
+                end
+                if movement ~= animator.movement then
+                    movement = animator.movement
+                    if movementTrack then
+                        movementTrack:Stop()
+                    end
+                    if animator.movement then
+                        movementTrack = loadAnimation(movement)
+                        movementTrack.Priority = Enum.AnimationPriority.Movement
+                        movementTrack:Play()
+                    end
+                end
+                if idle ~= animator.idle then
+                    idle = animator.idle
+                    if idleTrack then
+                        idleTrack:Stop()
+                    end
+                    if animator.idle then
+                        idleTrack = loadAnimation(idle)
+                        idleTrack.Priority = Enum.AnimationPriority.Idle
+                        idleTrack:Play()
+                    end
+                end
+                if core ~= animator.core then
+                    core = animator.core
+                    if coreTrack then
+                        coreTrack:Stop()
+                    end
+                    if animator.core then
+                        coreTrack = loadAnimation(core)
+                        coreTrack.Priority = Enum.AnimationPriority.Core
+                        coreTrack:Play()
+                    end
+                end
+            else
+                if actionTrack then
+                    actionTrack:AdjustSpeed(0)
+                end
+                if movementTrack then
+                    movementTrack:AdjustSpeed(0)
+                end
+                if idleTrack then
+                    idleTrack:AdjustSpeed(0)
+                end
+                if coreTrack then
+                    coreTrack:AdjustSpeed(0)
                 end
             end
-        end, entity)
+        end, entity, true)
     end
 end

@@ -1,6 +1,6 @@
 -- TrafficConeGod
 
-return function(Sunshine, entity)
+return function(Sunshine, entity, fr)
     local teleporter = entity.teleporter
     local collider = entity.collider
     local button = entity.button
@@ -8,16 +8,17 @@ return function(Sunshine, entity)
         local scene = require(teleporter.scene)
         if collider then
             Sunshine:update(function()
-                if collider.hitEntity and collider.hitEntity.character and collider.hitEntity.character.controllable then
+                if collider.hitEntity and collider.hitEntity.character and
+                collider.hitEntity.character.controllable then
                     teleporter.activated = true
-                    Sunshine:loadScene(scene)
+                    fr.paused = true
                 end
             end, entity)
         elseif button then
             Sunshine:update(function()
                 if button.activated then
                     teleporter.activated = true
-                    Sunshine:loadScene(scene)
+                    Sunshine:loadScene(scene, 2)
                 end
             end, entity)
         end

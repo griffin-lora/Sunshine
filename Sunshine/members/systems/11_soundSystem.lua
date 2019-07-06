@@ -2,29 +2,33 @@
 
 local SoundService = game:GetService("SoundService")
 
-return function(Sunshine, entity)
+return function(Sunshine, entity, scene)
     local sound = entity.sound
 	if sound then
         local lastId
         local soundInstance
         Sunshine:update(function()
-            if sound.id ~= lastId then
-                if sound.id then
-                    if soundInstance then
-                        soundInstance:Destroy()
+            if not scene.paused then
+                if sound.id ~= lastId then
+                    if sound.id then
+                        if soundInstance then
+                            soundInstance:Destroy()
+                        end
+                        soundInstance = Instance.new("Sound")
+                        soundInstance.SoundId = "rbxassetid://"..sound.id
+                        soundInstance.Parent = SoundService
+                        Sunshine:addInstance(soundInstance, entity)
                     end
-                    soundInstance = Instance.new("Sound")
-                    soundInstance.SoundId = "rbxassetid://"..sound.id
-					soundInstance.Parent = SoundService
-					Sunshine:addInstance(soundInstance, entity)
                 end
+                if soundInstance then
+                    soundInstance.Playing = sound.playing
+                    soundInstance.Looped = sound.looped
+                    soundInstance.Volume = sound.volume
+                end
+                lastId = sound.id
+            elseif soundInstance then
+                soundInstance.Playing = false
             end
-            if soundInstance then
-                soundInstance.Playing = sound.playing
-                soundInstance.Looped = sound.looped
-                soundInstance.Volume = sound.volume
-            end
-			lastId = sound.id
-		end, entity)
+		end, entity, true)
 	end
 end

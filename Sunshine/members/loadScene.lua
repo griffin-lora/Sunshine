@@ -12,8 +12,11 @@ return function(Sunshine, scene, sceneIndex, ...)
     end
     local loading = true
     for _, callback in pairs(Sunshine.sceneLoadCallbacks) do
-        if callback[1](scene, sceneIndex, ...) == false then
-            loading = false
+        local callbackScene = Sunshine.entityScenes[callback[2]]
+        if callbackScene and not callbackScene.paused then
+            if callback[1](scene, sceneIndex, ...) == false then
+                loading = false
+            end
         end
     end
     if loading then
