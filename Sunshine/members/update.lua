@@ -6,8 +6,13 @@ return function(Sunshine, callback, entity, ignorePause)
         error("update is being used without entity specification.")
     end
     if not Sunshine.updateConnection then
-        Sunshine.updateConnection = RunService.RenderStepped:Connect(function()
+        Sunshine.updateConnection = RunService.RenderStepped:Connect(function(trueStep)
             if Sunshine.running and RunService:IsRunning() then
+                for _, scene in pairs(Sunshine.scenes) do
+                    if not scene.paused then
+                        scene.tick = scene.tick + trueStep
+                    end
+                end
                 for _, callbackInList in ipairs(Sunshine.updateCallbacks) do
                     local scene = Sunshine.entityScenes[callbackInList[2]]
                     if scene and (not scene.paused or callbackInList[3]) then

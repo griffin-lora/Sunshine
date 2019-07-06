@@ -1,6 +1,6 @@
 -- SuperMakerPlayer and TrafficConeGod
 
-return function(Sunshine, entity)
+return function(Sunshine, entity, scene)
 	local coin = entity.coin
     local transform = entity.transform
     local collider = entity.collider
@@ -14,8 +14,8 @@ return function(Sunshine, entity)
         local startTick
         local size = transform.size
         Sunshine:update(function()
-            if collected and tick() - startTick <= info.Time then
-                transform.size = Sunshine:tween(tick() - startTick, info, size, Vector3.new(0, 0, 0))
+            if collected and Sunshine:tick(scene) - startTick <= info.Time then
+                transform.size = Sunshine:tween(Sunshine:tick(scene) - startTick, info, size, Vector3.new(0, 0, 0))
             elseif collected then
                 Sunshine:destroyEntity(entity)
             end
@@ -27,11 +27,11 @@ return function(Sunshine, entity)
                 player.stats.coins = player.stats.coins + 1
                 sound.playing = true
                 stop = true
-                startTick = tick()
+                startTick = Sunshine:tick(scene)
             end
 
             if startTick ~= nil and stop then
-                if tick() - startTick > 0.6 then
+                if Sunshine:tick(scene) - startTick > 0.6 then
                     sound.playing = false
                     stop = false
                 end

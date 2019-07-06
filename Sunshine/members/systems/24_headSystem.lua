@@ -4,7 +4,7 @@ return function(Sunshine, entity, scene)
     local collider = entity.collider
     if head and collider then
         local bounceTick
-        local startTick = tick()
+        local startTick = Sunshine:tick(scene)
         local active = true
         local canBounce = true
         local first = true
@@ -21,21 +21,21 @@ return function(Sunshine, entity, scene)
                 end
                 if collider.trigger then
                     if character.input.e or character.character.state == "dive" then
-                        if (tick() - startTick) > head.holdTime then
+                        if (Sunshine:tick(scene) - startTick) > head.holdTime then
                             active = false
                         end
-                    elseif (tick() - startTick) > head.time then
+                    elseif (Sunshine:tick(scene) - startTick) > head.time then
                         active = false
                     end
                 else
-                    if (tick() - bounceTick) > head.bounceTime then
+                    if (Sunshine:tick(scene) - bounceTick) > head.bounceTime then
                         active = false
                     end
                 end
                 if active and canBounce and collider.hitEntity == character and character.bounce.bounceCount < 1 then
                     canBounce = false
                     collider.trigger = false
-                    bounceTick = tick()
+                    bounceTick = Sunshine:tick(scene)
                     if not character.character.swimming then
                         character.character.state = "bounce"
                     end

@@ -2,7 +2,7 @@
 
 local state = "groundPound"
 
-return function(Sunshine, entity)
+return function(Sunshine, entity, scene)
     local component = entity[state]
     local character = entity.character
     local input = entity.input
@@ -19,17 +19,17 @@ return function(Sunshine, entity)
         physics.movable = false
         physics.velocity = Vector3.new()
         character.canLoseMagnitude = true
-        startTick = tick()
+        startTick = Sunshine:tick(scene)
         animator.action = component.startAnimation
     end, function()
         -- update
         if character.grounded then
             physics.movable = false
             if not startEndTick then
-                startEndTick = tick()
+                startEndTick = Sunshine:tick(scene)
                 animator.action = component.endAnimation
             end
-        elseif (tick() - startTick) > component.delay then
+        elseif (Sunshine:tick(scene) - startTick) > component.delay then
             physics.movable = true
             physics.velocity = Vector3.new(0, component.speed, 0)
             if animator.action ~= component.animation then
@@ -38,7 +38,7 @@ return function(Sunshine, entity)
         end
     end, function()
         -- end check
-        return startEndTick and ((tick() - startEndTick) > component.delay)
+        return startEndTick and ((Sunshine:tick(scene) - startEndTick) > component.delay)
     end, function()
         -- end
         startTick = nil

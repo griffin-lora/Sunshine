@@ -23,17 +23,17 @@ return function(Sunshine, entity, scene)
                 .LookVector*15, character.transform.cFrame.Position)
                 sound.playing = true
                 spinner.speed = 0
-                startTick = tick()
+                startTick = Sunshine:tick(scene)
             end
             if startTick ~= nil and character and camera then
-                if tick() - startTick > 4 then
+                if Sunshine:tick(scene) - startTick > 4 then
                     startTick = nil
                     character.physics.movable = true
                     character.character.controllable = true
                     camera.camera.controllable = true
                     Sunshine:destroyEntity(entity)
-                elseif tick() - startTick < 3 then
-                    transform.cFrame = transform.cFrame:lerp(character.transform.cFrame + Vector3.new(0,6.5,0), tick() -
+                elseif Sunshine:tick(scene) - startTick < 3 then
+                    transform.cFrame = transform.cFrame:lerp(character.transform.cFrame + Vector3.new(0,6.5,0), Sunshine:tick(scene) -
                     startTick)
                 end
             end

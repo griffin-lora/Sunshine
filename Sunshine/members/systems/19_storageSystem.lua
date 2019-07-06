@@ -1,6 +1,6 @@
 -- TrafficConeGod
 
-return function(Sunshine, entity)
+return function(Sunshine, entity, scene)
     local store = entity.store
     if store then
         Sunshine:addConnection(Sunshine:onClientEvent(function(id, save)
@@ -9,10 +9,10 @@ return function(Sunshine, entity)
             end
         end), nil, entity)
         Sunshine:fireServer("loading", entity.core.id)
-        local lastSaveTick = tick()
+        local lastSaveTick = Sunshine:tick(scene)
         Sunshine:update(function()
-            if (tick() - lastSaveTick) > 1 then
-                lastSaveTick = tick()
+            if (Sunshine:tick(scene) - lastSaveTick) > 1 then
+                lastSaveTick = Sunshine:tick(scene)
                 Sunshine:fireServer("saving", entity.core.id, store.save)
             end
         end, entity)
