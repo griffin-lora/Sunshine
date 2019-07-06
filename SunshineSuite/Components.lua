@@ -307,6 +307,7 @@ return {
 	},
 	scriptCollectible = {
 		name = {Type = "string", Default = "rename this or you\'re a poo poo head"},
-	}
+    },
+    pause = {}
 
 }
