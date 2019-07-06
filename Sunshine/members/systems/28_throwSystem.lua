@@ -18,9 +18,9 @@ return function(Sunshine, entity, scene)
         not lastE
     end, function()
         -- start
-        if Sunshine:getEntity(component.head) then
+        if Sunshine:getEntity(component.head, scene) then
             cFrame = CFrame.new(transform.cFrame.Position + (transform.cFrame.LookVector.Unit * component.distance))
-            local headClone = Sunshine:copyTable(Sunshine:getEntity(component.head))
+            local headClone = Sunshine:copyTable(Sunshine:getEntity(component.head, scene))
             headClone.core.active = true
             head = Sunshine:createEntity(headClone, scene)
         end

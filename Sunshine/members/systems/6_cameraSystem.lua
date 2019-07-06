@@ -2,13 +2,13 @@
 
 local cameraInstance = workspace.Camera
 
-return function(Sunshine, entity)
+return function(Sunshine, entity, scene)
     local camera = entity.camera
     local transform = entity.transform
     if camera and transform then
         cameraInstance.CFrame = transform.cFrame
         Sunshine:update(function()
-            local subject = Sunshine:getEntity(camera.subject)
+            local subject = Sunshine:getEntity(camera.subject, scene)
             if subject and subject.model and camera.controllable then
                 cameraInstance.CameraType = Enum.CameraType.Custom
                 cameraInstance.CameraSubject = subject.model.model

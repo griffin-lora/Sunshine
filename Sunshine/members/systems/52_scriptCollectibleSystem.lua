@@ -1,4 +1,4 @@
-return function(Sunshine, entity)
+return function(Sunshine, entity, scene)
     local scriptCollectible = entity.scriptCollectible
     local transform =  entity.transform
     local sound = entity.sound
@@ -11,7 +11,7 @@ return function(Sunshine, entity)
         Sunshine:update(function()
             if collider.hitEntity and collider.hitEntity.character and collider.hitEntity.character.controllable then
                 character = collider.hitEntity
-                camera = Sunshine:getEntity(character.input.camera)
+                camera = Sunshine:getEntity(character.input.camera, scene)
                 character.animator.action = 1076799780
                 character.character.controllable = false
                 character.physics.movable = false

@@ -3,7 +3,7 @@ return function(Sunshine, entity, scene)
     if spawner then
         Sunshine:update(function()
             if spawner.active then
-                local entityClone = Sunshine:copyTable(Sunshine:getEntity(spawner.entity))
+                local entityClone = Sunshine:copyTable(Sunshine:getEntity(spawner.entity, scene))
                 entityClone.core.active = true
                 Sunshine:createEntity(entityClone, scene)
                 spawner.active = false

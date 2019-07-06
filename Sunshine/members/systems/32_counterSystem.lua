@@ -1,5 +1,5 @@
 -- SuperMakerPlayer and TrafficConeGod
-return function(Sunshine, entity)
+return function(Sunshine, entity, scene)
     local coin = entity.coinCounter
     local charObject = entity.charObject
     local label = entity.label
@@ -7,7 +7,7 @@ return function(Sunshine, entity)
 
     if coin and charObject and label then
         Sunshine:update(function()
-            local char = Sunshine:getEntity(charObject.object)
+            local char = Sunshine:getEntity(charObject.object, scene)
             if char then
                 local stats = char.stats
                 if stats then

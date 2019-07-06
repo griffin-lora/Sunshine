@@ -20,7 +20,6 @@ return function(Sunshine, scene, sceneIndex, ...)
         Sunshine:unloadScene(Sunshine.scenes[sceneIndex])
         Sunshine.dataScene = scene
         Sunshine.scenes[sceneIndex] = {entities = {}, paused = false}
-        Sunshine.scene = Sunshine.scenes[sceneIndex]
         Sunshine.loadingScene = false
         for _, entity in pairs(scene.entities) do
             Sunshine:createEntity(entity, Sunshine.scenes[sceneIndex])

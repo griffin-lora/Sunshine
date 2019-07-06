@@ -1,4 +1,4 @@
-return function(Sunshine, entity)
+return function(Sunshine, entity, scene)
     local head = entity.head
     local transform = entity.transform
     local collider = entity.collider
@@ -9,7 +9,7 @@ return function(Sunshine, entity)
         local canBounce = true
         local first = true
         Sunshine:update(function(step)
-            local character = Sunshine:getEntity(head.character)
+            local character = Sunshine:getEntity(head.character, scene)
             if head.cFrame and active then
                 if first then
                     transform.cFrame = character.transform.cFrame
