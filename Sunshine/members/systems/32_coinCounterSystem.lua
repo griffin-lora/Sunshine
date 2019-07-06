@@ -6,9 +6,9 @@ return function(Sunshine, entity)
 
     if coinCounter and label then
         Sunshine:update(function()
-            local char = Sunshine:getEntity(coinCounter.player, Sunshine.scenes[1])
-            if char then
-                local stats = char.stats
+            local player = Sunshine:getEntity(coinCounter.player, Sunshine.scenes[1])
+            if player then
+                local stats = player.stats
                 if stats then
                     if last ~= stats.coins then
                         last = stats.coins
