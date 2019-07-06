@@ -1,6 +1,6 @@
 -- TrafficConeGod
 
-return function(Sunshine, entity)
+return function(Sunshine, entity, scene)
     local model = entity.model
     local transform = entity.transform
     local physics = entity.physics
@@ -9,6 +9,9 @@ return function(Sunshine, entity)
         local bodyVelocity = Instance.new("BodyVelocity")
         bodyVelocity.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
         bodyVelocity.Velocity = Vector3.new()
+        local pauseBodyVelocity = Instance.new("BodyVelocity")
+        pauseBodyVelocity.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
+        pauseBodyVelocity.Velocity = Vector3.new()
         if lockAxis then
             local x = 0
             local y = 0
@@ -82,19 +85,24 @@ return function(Sunshine, entity)
             end
         })
         Sunshine:update(function()
-            local descendants = model.model:GetDescendants()
-            for index = 1, #descendants do
-                local descendant = descendants[index]
-                if descendant:IsA("BasePart") then
-                    if descendant.Anchored then
-                        descendant.Anchored = physics.anchored
-                    end
-                    descendant.Massless = physics.massless
-                    if descendant.CanCollide then
-                        descendant.CanCollide = physics.canCollide
+            if not scene.paused then
+                pauseBodyVelocity.Parent = nil
+                local descendants = model.model:GetDescendants()
+                for index = 1, #descendants do
+                    local descendant = descendants[index]
+                    if descendant:IsA("BasePart") then
+                        if descendant.Anchored then
+                            descendant.Anchored = physics.anchored
+                        end
+                        descendant.Massless = physics.massless
+                        if descendant.CanCollide then
+                            descendant.CanCollide = physics.canCollide
+                        end
                     end
                 end
+            else
+                pauseBodyVelocity.Parent = model.model.PrimaryPart
             end
-        end, entity)
+        end, entity, true)
     end
 end
