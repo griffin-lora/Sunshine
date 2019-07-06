@@ -84,9 +84,14 @@ return function(Sunshine, entity, scene)
                 end
             end
         })
+        local pauseVelocity
         Sunshine:update(function()
             if not scene.paused then
                 pauseBodyVelocity.Parent = nil
+                if pauseVelocity then
+                    model.model.PrimaryPart.Velocity = pauseVelocity
+                end
+                pauseVelocity = nil
                 local descendants = model.model:GetDescendants()
                 for index = 1, #descendants do
                     local descendant = descendants[index]
@@ -102,6 +107,11 @@ return function(Sunshine, entity, scene)
                 end
             else
                 pauseBodyVelocity.Parent = model.model.PrimaryPart
+                if not pauseVelocity then
+                    pauseVelocity = model.model.PrimaryPart.Velocity
+                else
+                    model.model.PrimaryPart.Velocity = pauseVelocity
+                end
             end
         end, entity, true)
     end
