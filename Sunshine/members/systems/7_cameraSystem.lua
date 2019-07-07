@@ -3,30 +3,13 @@
 local UserInputService = game:GetService("UserInputService")
 local Camera = workspace.Camera
 
--- private float yaw = 30
--- 	private float pitch = 0
--- 	private float offset = 15
--- 	private float visualOffset = 15
--- 	public GameObject character
--- 	public float rotateSpeed = 5
--- 	public float maxYaw = 85
--- 	public float minYaw = -85
--- 	public float scrollSpeed = 10
--- 	public float maxOffset = 30
--- 	public float minOffset = 2
-
 return function(Sunshine, entity, scene)
     local camera = entity.camera
     local transform = entity.transform
     if camera and transform then
-        local offset = 15
-        local yaw = 30
+        local zoom = 15
+        local yaw = -30
         local pitch = 0
-        -- TEMP
-        local rotateSpeed = 5
-        local scrollSpeed = 10
-        local maxOffset = 30
-        local minOffset = 2
         local mouseDown = false
         local mouseScrollWheel = 0
         local mouseChange = Vector3.new()
@@ -42,24 +25,28 @@ return function(Sunshine, entity, scene)
         Sunshine:addConnection(UserInputService.InputBegan, handleInput, entity, true)
         Sunshine:addConnection(UserInputService.InputChanged, handleInput, entity, true)
         Sunshine:addConnection(UserInputService.InputEnded, handleInput, entity, true)
-        Sunshine:update(function()
+        Sunshine:update(function(step)
             local subject = Sunshine:getEntity(camera.subject, scene)
             if subject and camera.controllable then
-                offset = offset - (mouseScrollWheel * scrollSpeed)
-                offset = math.clamp(offset, minOffset, maxOffset)
+                zoom = zoom - (mouseScrollWheel * camera.scrollSpeed)
+                zoom = math.clamp(zoom, camera.minZoom, camera.maxZoom)
                 if mouseDown then
-                    yaw = yaw - (mouseChange.Y * rotateSpeed)
-                    yaw = math.clamp(yaw, -85, 85)
-                    pitch = pitch + (mouseChange.X * rotateSpeed)
+                    yaw = yaw - (mouseChange.Y * camera.rotateSpeed)
+                    yaw = math.clamp(yaw, -80, 80)
+                    pitch = pitch - (mouseChange.X * camera.rotateSpeed)
                 end
-                -- visualOffset = Mathf.Lerp(visualOffset, offset, Time.deltaTime * scrollSpeed)
-
-                transform.cFrame = CFrame.new(subject.transform.cFrame.Position)
-                transform.cFrame = transform.cFrame * CFrame.Angles(math.rad(yaw), math.rad(pitch), 0)
-                transform.cFrame = (transform.cFrame - (transform.cFrame.LookVector * offset))
+                local hackPart = Instance.new("Part") -- This is hacky code 101. But euler angles work differently and
+                -- I can't be bothered to look up the math to do it.
+                hackPart.Orientation = Vector3.new(yaw, pitch, 0)
+                local cFrame = CFrame.new(subject.transform.cFrame.Position, subject.transform.cFrame.Position
+                + hackPart.CFrame.LookVector)
+                hackPart:Destroy()
+                -- cFrame = cFrame * CFrame.Angles(math.rad(yaw), math.rad(pitch), 0)
+                transform.cFrame = transform.cFrame:Lerp((cFrame - (cFrame.LookVector * zoom)), step * camera.lerpSpeed)
                 mouseScrollWheel = 0
-                Camera.CFrame = transform.cFrame
+                mouseChange = Vector3.new()
             end
+            Camera.CFrame = transform.cFrame
             Camera.FieldOfView = camera.fieldOfView
         end, entity)
     end

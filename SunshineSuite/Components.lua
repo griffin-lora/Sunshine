@@ -84,7 +84,12 @@ return {
 	camera = {
 		controllable = {Type = "boolean", Default = false},
 		subject = {Type = "Object", Default = nil},
-		fieldOfView = {Type = "number", Default = 70}
+        fieldOfView = {Type = "number", Default = 70},
+        rotateSpeed = {Type = "number", Default = 0.5},
+        scrollSpeed = {Type = "number", Default = 5},
+        maxZoom = {Type = "number", Default = 40},
+        minZoom = {Type = "number", Default = 10},
+        lerpSpeed = {Type = "number", Default = 15}
 	},
 	spinner = {
 		speed = {Type = "number", Default = 1},
