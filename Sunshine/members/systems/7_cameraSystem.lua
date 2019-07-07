@@ -7,7 +7,7 @@ return function(Sunshine, entity, scene)
     local camera = entity.camera
     local transform = entity.transform
     if camera and transform then
-        local zoom = 15
+        local zoom = (camera.minZoom + camera.maxZoom) / 2
         local yaw = -30
         local pitch = 0
         local mouseDown = false
