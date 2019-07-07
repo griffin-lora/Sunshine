@@ -319,5 +319,11 @@ return {
         y = {Type = "boolean", Default = false},
         z = {Type = "boolean", Default = false}
 	},
+	cracked = {
+		time = {Type = "number", Default = 2},
+		instant = {Type = "boolean", Default = false},
+		respawn = {Type = "boolean", Default = true},
+		animation = {Type = "number", Default = 0}
+	}
 
 }
