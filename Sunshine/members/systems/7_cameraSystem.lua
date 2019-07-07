@@ -13,13 +13,24 @@ return function(Sunshine, entity, scene)
         local mouseDown = false
         local mouseScrollWheel = 0
         local mouseChange = Vector3.new()
+        local position = Vector3.new()
         local function handleInput(inputObject)
-            if inputObject.UserInputType == Enum.UserInputType.MouseWheel then
-                mouseScrollWheel = inputObject.Position.Z
-            elseif inputObject.UserInputType == Enum.UserInputType.MouseButton2 then
-                mouseDown = inputObject.UserInputState == Enum.UserInputState.Begin
-            elseif inputObject.UserInputType == Enum.UserInputType.MouseMovement then
-                mouseChange = inputObject.Delta
+            if not UserInputService.GamepadEnabled then
+                if inputObject.UserInputType == Enum.UserInputType.MouseWheel then
+                    mouseScrollWheel = inputObject.Position.Z
+                elseif inputObject.UserInputType == Enum.UserInputType.MouseButton2 then
+                    mouseDown = inputObject.UserInputState == Enum.UserInputState.Begin
+                elseif inputObject.UserInputType == Enum.UserInputType.MouseMovement then
+                    mouseChange = inputObject.Delta
+                end
+            else
+                if inputObject.KeyCode == Enum.KeyCode.Thumbstick2 then
+                    if inputObject.Position.Magnitude > 0.2 then
+                        position = inputObject.Position
+                    else
+                        position = Vector3.new()
+                    end
+                end
             end
         end
         Sunshine:addConnection(UserInputService.InputBegan, handleInput, entity, true)
@@ -30,10 +41,14 @@ return function(Sunshine, entity, scene)
             if subject and camera.controllable then
                 zoom = zoom - (mouseScrollWheel * camera.scrollSpeed)
                 zoom = math.clamp(zoom, camera.minZoom, camera.maxZoom)
-                if mouseDown then
-                    yaw = yaw - (mouseChange.Y * camera.rotateSpeed)
+                if mouseDown or position then
+                    local change = mouseChange
+                    if position then
+                        change = Vector3.new(position.X, -position.Y, 0) * 5
+                    end
+                    yaw = yaw - (change.Y * camera.rotateSpeed)
                     yaw = math.clamp(yaw, -80, 80)
-                    pitch = pitch - (mouseChange.X * camera.rotateSpeed)
+                    pitch = pitch - (change.X * camera.rotateSpeed)
                 end
                 local hackPart = Instance.new("Part") -- This is hacky code 101. But euler angles work differently and
                 -- I can't be bothered to look up the math to do it.
@@ -42,7 +57,13 @@ return function(Sunshine, entity, scene)
                 + hackPart.CFrame.LookVector)
                 hackPart:Destroy()
                 -- cFrame = cFrame * CFrame.Angles(math.rad(yaw), math.rad(pitch), 0)
-                transform.cFrame = transform.cFrame:Lerp((cFrame - (cFrame.LookVector * zoom)), step * camera.lerpSpeed)
+                local newCFrame = transform.cFrame:Lerp((cFrame - (cFrame.LookVector * zoom)), step * camera.lerpSpeed)
+                -- local part, position = Sunshine:findPartOnRay(Ray.new(transform.cFrame.Position, newCFrame.Position -
+                -- transform.cFrame.Position), {})
+                -- if not part then
+                --     transform.cFrame = CFrame.new(position, position + newCFrame.LookVector)
+                -- end
+                transform.cFrame = newCFrame
                 mouseScrollWheel = 0
                 mouseChange = Vector3.new()
             end
