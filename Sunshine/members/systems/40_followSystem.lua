@@ -13,7 +13,7 @@ return function(Sunshine, entity, scene)
                 end
             end
             local mainCharacter = Sunshine:getEntity(player.player.character, scene)
-            if not character.controllable then
+            if not character.controllable and follow.active then
                 character.moveVector = Vector3.new()
                 local direction = mainCharacter.transform.cFrame.Position - transform.cFrame.Position
                 if direction.Magnitude < follow.range and not Sunshine:findPartOnRay(Ray.new(transform.cFrame.Position,

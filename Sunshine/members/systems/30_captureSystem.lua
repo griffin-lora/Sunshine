@@ -11,7 +11,6 @@ return function(Sunshine, entity)
                 if input.shift or health.health <= 0 then
                     local player = character.player
                     player.player.character = player.player.mainCharacter
-                    respawner.active = true
                 end
             end
         end, entity)

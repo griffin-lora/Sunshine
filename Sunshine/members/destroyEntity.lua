@@ -11,7 +11,6 @@ return function(Sunshine, entity, ...)
     end
     if destroying then
         entity.core.active = false
-        Sunshine.entityScenes[entity] = nil
         for index, callback in pairs(Sunshine.updateCallbacks) do
             if callback[2] == entity then
                 table.remove(Sunshine.updateCallbacks, index)
@@ -32,5 +31,12 @@ return function(Sunshine, entity, ...)
                 instance[1]:Destroy()
             end
         end
+        local scene = Sunshine.entityScenes[entity]
+        for index, otherEntity in pairs(scene.entities) do
+            if entity == otherEntity then
+                scene.entities[index] = nil
+            end
+        end
+        Sunshine.entityScenes[entity] = nil
     end
 end

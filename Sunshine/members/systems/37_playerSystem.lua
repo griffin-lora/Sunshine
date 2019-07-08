@@ -16,10 +16,12 @@ return function(Sunshine, entity, scene)
                     mainCharacter.character.controllable = false
                     character.character.controllable = true
                     character.capture.active = true
+                    character.respawner.active = false
                 end
                 if lastCharacter and lastCharacter.capture and lastCharacter ~= character and
                 character == mainCharacter then
                     lastCharacter.capture.active = false
+                    lastCharacter.respawner.active = true
                     lastCharacter.character.controllable = false
                     character.physics.movable = true
                     character.character.controllable = true

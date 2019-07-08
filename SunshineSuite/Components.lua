@@ -269,7 +269,8 @@ return {
         animation = {Type = "number", Default = 0}
     },
     follow = {
-        range = {Type = "number", Default = 50}
+        range = {Type = "number", Default = 50},
+        active = {Type = "boolean", Default = true}
     },
     spawner = {
         active = {Type = "boolean", Default = false},
