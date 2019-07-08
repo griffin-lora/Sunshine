@@ -15,7 +15,7 @@ return function(Sunshine, entity, scene)
         local mouseChange = Vector3.new()
         local position = Vector3.new()
         local function handleInput(inputObject)
-            if not UserInputService.GamepadEnabled then
+            if UserInputService:GetLastInputType() ~= Enum.UserInputType.Gamepad1 then
                 if inputObject.UserInputType == Enum.UserInputType.MouseWheel then
                     mouseScrollWheel = inputObject.Position.Z
                 elseif inputObject.UserInputType == Enum.UserInputType.MouseButton2 then
