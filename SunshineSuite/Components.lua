@@ -270,6 +270,7 @@ return {
     },
     follow = {
         range = {Type = "number", Default = 50},
+        radius = {Type = "number", Default = 70},
         active = {Type = "boolean", Default = true}
     },
     spawner = {

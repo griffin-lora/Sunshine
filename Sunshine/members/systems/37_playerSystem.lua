@@ -17,6 +17,9 @@ return function(Sunshine, entity, scene)
                     character.character.controllable = true
                     character.capture.active = true
                     character.respawner.active = false
+                    if character.follow then
+                        character.follow.active = false
+                    end
                 end
                 if lastCharacter and lastCharacter.capture and lastCharacter ~= character and
                 character == mainCharacter then
