@@ -39,7 +39,7 @@ return function(Sunshine, entity)
         local lastVelocity
         local lastMoveVector
         Sunshine:update(function(step)
-            local distance = -transform.cFrame.UpVector * 3.3
+            local distance = -transform.cFrame.UpVector * ((model.model.PrimaryPart.Size.Y / 2) + 0.3)
             local raycasts = {}
             raycasts[1] = {Sunshine:findPartOnRay(rayNew(transform.cFrame.Position, distance), {model.model})}
             raycasts[2] = {Sunshine:findPartOnRay(rayNew(transform.cFrame.Position + vector3New(size, 0, 0), distance),

@@ -24,9 +24,9 @@ return function(Sunshine, entity, state, startCheck, start, update, stopCheck, s
                 if lastState == state and character.state ~= state then
                     stop(step)
                 end
-                if generalUpdate then
-                    generalUpdate(step)
-                end
+            end
+            if generalUpdate then
+                generalUpdate(step)
             end
             lastState = character.state
         end, entity)
