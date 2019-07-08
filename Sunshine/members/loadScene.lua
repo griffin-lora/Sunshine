@@ -22,7 +22,7 @@ return function(Sunshine, scene, sceneIndex, ...)
     if loading then
         Sunshine:unloadScene(Sunshine.scenes[sceneIndex])
         Sunshine.dataScenes[sceneIndex] = scene
-        Sunshine.scenes[sceneIndex] = {entities = {}, paused = false, tick = 0}
+        Sunshine.scenes[sceneIndex] = {entities = {}, paused = false, tick = 0, index = sceneIndex}
         Sunshine.loadingScene = false
         for _, entity in pairs(scene.entities) do
             Sunshine:createEntity(entity, Sunshine.scenes[sceneIndex])

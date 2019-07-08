@@ -328,7 +328,16 @@ return {
 		time = {Type = "number", Default = 2},
 		instant = {Type = "boolean", Default = false},
 		respawn = {Type = "boolean", Default = true},
-		animation = {Type = "number", Default = 0}
-	}
+		animation = {Type = "number", Default = 0},
+	},
+    dash = {
+        animation = {Type = "number", Default = 0},
+        factor = {Type = "number", Default = 3},
+        time = {Type = "number", Default = 3}
+    },
+    respawner = {
+        active = {Type = "boolean", Default = false},
+        time = {Type = "number", Default = 0}
+    }
 
 }

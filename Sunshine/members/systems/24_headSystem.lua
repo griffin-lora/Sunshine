@@ -43,6 +43,7 @@ return function(Sunshine, entity, scene)
                     active = false
                     local player = character.character.player
                     player.player.character = collider.hitEntity
+                    collider.hitEntity.respawner.active = false
                     Sunshine:destroyEntity(entity)
                 elseif active and collider.hitEntity and collider.trigger and collider.hitEntity.crate and
                 collider.hitEntity.transparency and collider.hitEntity.physics then
