@@ -4,11 +4,12 @@ return function(Sunshine, entity, scene)
     local startTick = nil
     local active = false
     local transform = entity.transform
+    local transparency = entity.transparency
     local collider = entity.collider
     local cracked = entity.cracked
     local animator = entity.animator
     local respawner = entity.respawner
-    if transform and collider and cracked and animator and respawner then
+    if transform and collider and cracked and animator and respawner and transparency then
         Sunshine:update(function()
             if collider.hitEntity and collider.hitEntity.character and not startTick and not active then
                 startTick = Sunshine:tick(scene)
@@ -20,7 +21,6 @@ return function(Sunshine, entity, scene)
                     transform.cFrame = CFrame.new(0,100000000,0)
                     respawner.active = true
                 else
-                    print(Sunshine:tick(scene) - startTick)
                     local slow = 500
                     if cracked.instant then
                         slow = 250
