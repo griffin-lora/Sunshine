@@ -110,7 +110,7 @@ return {
 		text = {Type = "string", Default = "label"},
         size = {Type = "UDim2", Default = UDim2.new(0, 100, 0, 100)},
         color = {Type = "Color3", Default = Color3.new(1, 1, 1)},
-        font = {Type = Enum.Font, Default = Enum.Font.Highway}
+        -- font = {Type = Enum.Font, Default = Enum.Font.Highway}
 	},
 	button = {
 		activated = {Type = "boolean", Default = false},
@@ -313,7 +313,8 @@ return {
     music = {
 	},
 	scriptCollectible = {
-		name = {Type = "string", Default = "rename this or you\'re a poo poo head"},
+        name = {Type = "string", Default = "rename this or you\'re a poo poo head"},
+        active = {Type = "boolean", Default = false}
     },
     pause = {},
     oscillator = {
@@ -340,6 +341,11 @@ return {
     respawner = {
         active = {Type = "boolean", Default = false},
         time = {Type = "number", Default = 0}
+    },
+    scriptCollectibleDisplay = {
+        frame = {Type = "Object", Default = nil},
+        nameLabel = {Type = "Object", Default = nil},
+        dateLabel = {Type = "Object", Default = nil}
     }
 
 }

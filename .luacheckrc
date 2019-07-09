@@ -30,7 +30,8 @@ std = {
         "table",
         "tonumber",
         "unpack",
-        "pcall"
+        "pcall",
+        "os"
     }
 }
 ignore = {"Assets/prefabs/camera.lua"}

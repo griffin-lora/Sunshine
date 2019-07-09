@@ -10,17 +10,19 @@ return function(Sunshine, entity, scene)
         local camera
         Sunshine:update(function()
             if collider.hitEntity and collider.hitEntity.character and collider.hitEntity.character.controllable then
+                scriptCollectible.active = true
                 character = collider.hitEntity
                 camera = Sunshine:getEntity(character.input.camera, scene)
                 character.animator.action = 1076799780
                 character.character.controllable = false
                 character.physics.movable = false
-                character.transform.cFrame = CFrame.new(entity.transform.cFrame.Position, Vector3.new(
-                camera.transform.cFrame.Position.X, entity.transform.cFrame.Y, camera.transform.cFrame.Position.Z))
+                character.transform.cFrame = CFrame.new(transform.cFrame.Position, Vector3.new(
+                camera.transform.cFrame.Position.X, transform.cFrame.Y, camera.transform.cFrame.Position.Z))
+                transform.cFrame = character.transform.cFrame + Vector3.new(0, 6.5, 0)
                 camera.camera.controllable = false
-                camera.transform.cFrame = CFrame.new(CFrame.new(entity.transform.cFrame.Position, Vector3.new(
-                camera.transform.cFrame.Position.X, entity.transform.cFrame.Y, camera.transform.cFrame.Position.Z))
-                .LookVector*15, character.transform.cFrame.Position)
+                camera.transform.cFrame = CFrame.new(transform.cFrame.Position +
+                (-transform.cFrame.LookVector.Unit * 20) + Vector3.new(0, 10, 0),
+                transform.cFrame.Position)
                 sound.playing = true
                 spinner.speed = 0
                 startTick = Sunshine:tick(scene)
@@ -32,9 +34,6 @@ return function(Sunshine, entity, scene)
                     character.character.controllable = true
                     camera.camera.controllable = true
                     Sunshine:destroyEntity(entity)
-                elseif Sunshine:tick(scene) - startTick < 3 then
-                    transform.cFrame = transform.cFrame:lerp(character.transform.cFrame + Vector3.new(0,6.5,0), Sunshine:tick(scene) -
-                    startTick)
                 end
             end
         end, entity)
