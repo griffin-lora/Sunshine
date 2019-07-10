@@ -9,7 +9,7 @@ return function(Sunshine, entity, scene)
         local character
         local camera
         Sunshine:update(function()
-            if collider.hitEntity and collider.hitEntity.character and collider.hitEntity.character.controllable then
+            if collider.hitEntity and collider.hitEntity.character and collider.hitEntity.character.controllable and collider.trigger then
                 scriptCollectible.active = true
                 character = collider.hitEntity
                 camera = Sunshine:getEntity(character.input.camera, scene)
