@@ -13,17 +13,24 @@ return function(Sunshine, entity, scene)
     local collected = false
     local completed = false
     local spawning = false
+    local originalAngle
     if key and collider and spinner and transparency and oscillator and transform and respawner then
         local oldFrame = transform.cFrame
         local script = Sunshine:getEntity(key.scriptCollectible, scene)
         if script then
+            script.spinner.speed = 0
+            if originalAngle then
+                script.transform.cFrame = originalAngle + script.transform.cFrame.Position
+            end
             if script.scriptCollectible.active == false then
                 local lerpToScript = script.transform.cFrame
                 local lerpToSize = script.transform.size
-                local originalAngle = script.transform.cFrame - script.transform.cFrame.Position
+                originalAngle = script.transform.cFrame - script.transform.cFrame.Position
                 script.transform.size = Vector3.new(0, 0, 0)
                 script.transform.cFrame = script.transform.cFrame - Vector3.new(0, 2, 0)
                 script.transparency.transparency = 1
+                script.spinner.speed = 1
+                print(script.spinner.speed)
                 script.collider.trigger = false
                 Sunshine:update(function()
                     if not script then
