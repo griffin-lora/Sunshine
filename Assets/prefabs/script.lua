@@ -1,1 +1,1 @@
-return {spinner={speed=1,axis='y',},model={model=game.ReplicatedStorage.Assets.models.Script,},collider={trigger=true,},sound={volume=0.5,id=1274526576,looped=false,autoStop=true,playing=false,},scriptCollectible={name='rename this or your stupid idiot'},}
+return {scriptCollectible={name='rename this or your stupid idiot',},transparency={transparency=0,},spinner={speed=1,axis='y',},model={model=game.ReplicatedStorage.Assets.models.Script,},collider={trigger=true,},sound={volume=0.5,id=1274526576,looped=false,autoStop=true,playing=false,},}

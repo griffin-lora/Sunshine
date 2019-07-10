@@ -352,5 +352,8 @@ return {
 		increment = {Type = "number", Default = 0.05},
 		direction = {Type = "string", Default = "in"},
 	},
+	key = {
+		scriptCollectible = {Type = "Object", Default = nil},
+	},
 
 }
