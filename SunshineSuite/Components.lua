@@ -355,5 +355,14 @@ return {
 	key = {
 		scriptCollectible = {Type = "Object", Default = nil},
 	},
+	gyroBlock = {
+		hits = {Type = "number", Default = 2},
+		ring1 = {Type = "Object", Default = nil},
+		ring2 = {Type = "Object", Default = nil},
+	},
 
+	crackedWall = {
+		animation =  {Type = "number", Default = 0},
+		time = {Type = "number", Default = 0}
+	},
 }

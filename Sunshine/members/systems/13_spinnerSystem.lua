@@ -13,6 +13,8 @@ return function(Sunshine, entity, scene)
                     transform.cFrame = CFrame.new(transform.cFrame.Position) * CFrame.Angles(0, angle, 0)
                 elseif spinner.axis == "z" then
                     transform.cFrame = CFrame.new(transform.cFrame.Position) * CFrame.Angles(0, 0, angle)
+                elseif spinner.axis == "xyz" then
+                    transform.cFrame = CFrame.new(transform.cFrame.Position) * CFrame.Angles(angle, angle, angle)
                 end
             end
         end, entity)

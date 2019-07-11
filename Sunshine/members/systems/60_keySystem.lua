@@ -63,7 +63,7 @@ return function(Sunshine, entity, scene)
                         end
                     else
                         if Sunshine:tick(scene) - startTick2 <= 2 then
-                            camera.controllable = false
+                            camera.camera.controllable = false
                             character.character.controllable = false
                             local currentFrame = (originalAngle * CFrame.Angles(0,math.pi,0)) + script.transform.cFrame.Position
                             camera.transform.cFrame = CFrame.new(currentFrame.Position + (currentFrame.LookVector*10), currentFrame.Position)
@@ -72,7 +72,7 @@ return function(Sunshine, entity, scene)
                         else
                             script.transform.cFrame = lerpToScript
                             script.transform.size = lerpToSize
-                            camera.controllable = true
+                            camera.camera.controllable = true
                             character.character.controllable = true
                             spawning = false
                         end
