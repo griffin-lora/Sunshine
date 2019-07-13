@@ -104,7 +104,7 @@ return function(Sunshine, entity)
                 elseif moveVector == vector3New() then
                     damping = 0.7
                 end
-                if character.canLoseMagnitude or character.swimming then
+                if character.canLoseMagnitude or character.swimming or (lastGroundeds[1] and character.grounded) then
                     canLoseMagnitude = true
                 end
                 local walkSpeed = character.walkSpeed * character.walkSpeedFactor
