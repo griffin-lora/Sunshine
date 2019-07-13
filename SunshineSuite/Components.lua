@@ -150,7 +150,8 @@ return {
 		tintColor = {Type = "Color3", Default = Color3.new(1,1,1)},
 		blurAmount = {Type = "number", Default = 0},
 		bloomThreshold = {Type = "number", Default = 2},
-		sunRays = {Type = "boolean", Default = false}
+		sunRays = {Type = "boolean", Default = false},
+		sunIntensity = {Type = "number", Default = 0.25}
     },
     crouch = {
         walkSpeedFactor = {Type = "number", Default = 0.5},
