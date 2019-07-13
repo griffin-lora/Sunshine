@@ -34,6 +34,7 @@ return function(Sunshine, entity)
 		blur.Size = lighting.blurAmount
 		bloom.Threshold = lighting.bloomThreshold
 		rays.Enabled = lighting.sunRays
+		rays.Intensity = lighting.sunIntensity
 		color.Parent = game.Lighting
 		blur.Parent = game.Lighting
 		bloom.Parent = game.Lighting
