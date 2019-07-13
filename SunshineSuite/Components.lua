@@ -347,7 +347,6 @@ return {
         nameLabel = {Type = "Object", Default = nil},
         dateLabel = {Type = "Object", Default = nil}
 	},
-	
 	fade = {
 		increment = {Type = "number", Default = 0.05},
 		direction = {Type = "string", Default = "in"},
