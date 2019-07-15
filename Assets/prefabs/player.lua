@@ -1,1 +1,0 @@
-return {core={id='{FE8F0DA3-6DC2-46D5-84D6-AD08261A43E1}',name='player',active=true,},stats={coins=0,},player={mainCharacter='{9E1EB4B3-85F3-4249-9AD7-FEA653C8F82A}',camera='{7296A060-2B1A-4BDF-9B58-80097E412AAE}',character='{9E1EB4B3-85F3-4249-9AD7-FEA653C8F82A}',},store={},tag={tag='player',},}

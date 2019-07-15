@@ -1,0 +1,43 @@
+{
+	"name": "Sunshine",
+	"servePort": 8000,
+	"tree": {
+		"$className": "DataModel",
+		"ReplicatedStorage": {
+			"$className": "ReplicatedStorage",
+			"Sunshine": {
+				"$path": "Sunshine"
+            },
+            "Assets": {
+                "$className": "Folder",
+                "frames": {
+                    "$path": "Assets/frames.rbxm"
+                },
+                "prefabs": {
+                    "$path": "Assets/prefabs.rbxm"
+                },
+                "remotes": {
+                    "$path": "Assets/remotes.rbxm"
+                },
+                "scenes": {
+                    "$path": "Assets/scenes.rbxm"
+                },
+                "skies": {
+                    "$path": "Assets/skies.rbxm"
+                }
+            }
+		},
+		"ServerScriptService": {
+			"$className": "ServerScriptService",
+			"Sunshine": {
+				"$path": "SunshineServer"
+			}
+		},
+		"ServerStorage": {
+			"$className": "ServerStorage",
+			"SunshineSuite": {
+				"$path": "SunshineSuite"
+			}
+		}
+	}
+}

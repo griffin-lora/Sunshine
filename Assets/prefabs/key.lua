@@ -1,1 +1,0 @@
-return {oscillator={amplitude=1,frequency=1,axis='y',},transparency={transparency=0,},spinner={speed=0,axis='y',},model={model=game.ReplicatedStorage.Assets.models.Key,},respawner={time=10,active=false,},collider={trigger=true,},key={},}
