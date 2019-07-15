@@ -107,14 +107,17 @@ return function(Sunshine, entity)
                 if character.canLoseMagnitude or character.swimming or (lastGroundeds[1] and character.grounded) then
                     canLoseMagnitude = true
                 end
-                local walkSpeed = character.walkSpeed * character.walkSpeedFactor
-                local xVelocity = physics.velocity.X
-                xVelocity = xVelocity + (moveVector.X * walkSpeed + (boost * moveVector.X))
-                xVelocity = xVelocity * math.pow(1 - damping, step * 10)
-                local zVelocity = physics.velocity.Z
-                zVelocity = zVelocity + (moveVector.Z * walkSpeed + (boost * moveVector.Z))
-                zVelocity = zVelocity * math.pow(1 - damping, step * 10)
-                local velocity = vector3New(xVelocity, 0, zVelocity)
+                local function calculateVelocity()
+                    local walkSpeed = character.walkSpeed * character.walkSpeedFactor
+                    local xVelocity = physics.velocity.X
+                    xVelocity = xVelocity + (moveVector.X * walkSpeed + (boost * moveVector.X))
+                    xVelocity = xVelocity * math.pow(1 - damping, step * 10)
+                    local zVelocity = physics.velocity.Z
+                    zVelocity = zVelocity + (moveVector.Z * walkSpeed + (boost * moveVector.Z))
+                    zVelocity = zVelocity * math.pow(1 - damping, step * 10)
+                    return vector3New(xVelocity, 0, zVelocity)
+                end
+                local velocity = calculateVelocity()
                 if not canLoseMagnitude and lastVelocity and velocity.Magnitude < lastVelocity.Magnitude then
                     if velocity.Unit.Magnitude == velocity.Unit.Magnitude then
                         if character.moving then
