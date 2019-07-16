@@ -13,7 +13,7 @@ return function(Sunshine, scene, sceneIndex, ...)
     local loading = true
     for _, callback in pairs(Sunshine.sceneLoadCallbacks) do
         local callbackScene = Sunshine.entityScenes[callback[2]]
-        if callbackScene and not callbackScene.paused then
+        if callbackScene and callbackScene.active then
             if callback[1](scene, sceneIndex, ...) == false then
                 loading = false
             end
@@ -22,7 +22,7 @@ return function(Sunshine, scene, sceneIndex, ...)
     if loading then
         Sunshine:unloadScene(Sunshine.scenes[sceneIndex])
         Sunshine.dataScenes[sceneIndex] = scene
-        Sunshine.scenes[sceneIndex] = {entities = {}, paused = false, tick = 0, index = sceneIndex}
+        Sunshine.scenes[sceneIndex] = {entities = {}, active = true, tick = 0, index = sceneIndex}
         Sunshine.loadingScene = false
         for _, entity in pairs(scene.entities) do
             Sunshine:createEntity(entity, Sunshine.scenes[sceneIndex])

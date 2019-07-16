@@ -110,7 +110,7 @@ return function(Sunshine, entity, scene)
         })
         local pauseVelocity
         Sunshine:update(function()
-            if not scene.paused then
+            if scene.active then
                 pauseBodyVelocity.Parent = nil
                 if pauseVelocity then
                     model.model.PrimaryPart.Velocity = pauseVelocity

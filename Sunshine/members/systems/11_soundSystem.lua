@@ -8,7 +8,7 @@ return function(Sunshine, entity, scene)
         local lastId
         local soundInstance
         Sunshine:update(function()
-            if not scene.paused then
+            if scene.active then
                 if sound.id ~= lastId then
                     if sound.id then
                         if soundInstance then

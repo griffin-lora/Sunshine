@@ -1,7 +1,7 @@
 local RunService = game:GetService("RunService")
 local step = 1/60
 
-return function(Sunshine, callback, entity, ignorePause)
+return function(Sunshine, callback, entity, ignoreActive)
     if not entity then
         error("update is being used without entity specification.")
     end
@@ -9,18 +9,18 @@ return function(Sunshine, callback, entity, ignorePause)
         Sunshine.updateConnection = RunService.RenderStepped:Connect(function(trueStep)
             if Sunshine.running and RunService:IsRunning() then
                 for _, scene in pairs(Sunshine.scenes) do
-                    if not scene.paused then
+                    if scene.active then
                         scene.tick = scene.tick + trueStep
                     end
                 end
                 for _, callbackInList in ipairs(Sunshine.updateCallbacks) do
                     local scene = Sunshine.entityScenes[callbackInList[2]]
-                    if scene and (not scene.paused or callbackInList[3]) then
+                    if scene and (scene.active or callbackInList[3]) then
                         callbackInList[1](step)
                     end
                 end
             end
         end)
     end
-    Sunshine.updateCallbacks[#Sunshine.updateCallbacks + 1] = {callback, entity, ignorePause}
+    Sunshine.updateCallbacks[#Sunshine.updateCallbacks + 1] = {callback, entity, ignoreActive}
 end
