@@ -19,15 +19,17 @@ return function(Sunshine, entity)
         -- end
         local originalSize = model.model.PrimaryPart.Size
         transform.cFrame = nil
+        local lastCFrame = CFrame.new()
         setmetatable(transform, {
             __index = function(_, key)
                 if not model.model.Parent then
                     setmetatable(transform, {})
                     transform.cFrame = CFrame.new()
-                    return CFrame.new()
+                    return lastCFrame
                 end
                 if key == "cFrame" then
-                    return model.model:GetPrimaryPartCFrame()
+                    lastCFrame = model.model:GetPrimaryPartCFrame()
+                    return lastCFrame
                 end
             end,
             __newindex = function(_, key, value)
