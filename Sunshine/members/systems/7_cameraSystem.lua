@@ -69,6 +69,6 @@ return function(Sunshine, entity, scene)
             end
             Camera.CFrame = transform.cFrame
             Camera.FieldOfView = camera.fieldOfView
-        end, entity)
+        end, entity, true)
     end
 end

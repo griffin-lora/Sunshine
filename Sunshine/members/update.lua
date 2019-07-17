@@ -15,7 +15,7 @@ return function(Sunshine, callback, entity, ignoreActive)
                 end
                 for _, callbackInList in ipairs(Sunshine.updateCallbacks) do
                     local scene = Sunshine.entityScenes[callbackInList[2]]
-                    if scene and (scene.active or callbackInList[3]) then
+                    if scene and ((entity.core.active and scene.active) or callbackInList[3]) then
                         callbackInList[1](step)
                     end
                 end

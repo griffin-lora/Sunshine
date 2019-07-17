@@ -6,7 +6,7 @@ return function(Sunshine, entity, scene)
         local lastP = false
         Sunshine:update(function()
             if UserInputService:IsKeyDown(Enum.KeyCode.P) and not lastP then
-                scene.active = not scene.active
+                entity.core.active = not entity.core.active
             end
             lastP = UserInputService:IsKeyDown(Enum.KeyCode.P)
         end, entity, true)
