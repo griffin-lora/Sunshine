@@ -35,9 +35,12 @@
 		},
 		"ServerStorage": {
 			"$className": "ServerStorage",
-			"SunshineSuite": {
-				"$path": "SunshineSuite"
-			}
+            "SunshineSuite": {
+                "$className": "Folder",
+                "SunshineSuite": {
+                    "$path": "SunshineSuite"
+                }
+            }
 		}
 	}
 }

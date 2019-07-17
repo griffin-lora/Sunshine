@@ -364,5 +364,7 @@ return {
 	crackedWall = {
 		animation =  {Type = "number", Default = 0},
 		time = {Type = "number", Default = 0}
-	},
+    },
+    hydrophobic = {
+    }
 }
