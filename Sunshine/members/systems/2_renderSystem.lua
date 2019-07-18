@@ -1,15 +1,10 @@
 -- TrafficConeGod
 
-local ContentProvider = game:GetService("ContentProvider")
-
-return function(Sunshine, entity, scene)
+return function(Sunshine, entity)
     local model = entity.model
     local transform = entity.transform
     local transparency = entity.transparency
     if model and transform then
-        scene.active = false
-        ContentProvider:PreloadAsync({model.model})
-        scene.active = true
         model.model = model.model:Clone()
         Sunshine:addInstance(model.model, entity)
         model.model.Name = entity.core.id
