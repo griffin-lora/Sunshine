@@ -12,6 +12,7 @@ return function(Sunshine, entity)
                 character.character.swimming = true
             elseif character then
                 character.character.swimming = false
+                character = nil
             end
         end, entity)
     end
