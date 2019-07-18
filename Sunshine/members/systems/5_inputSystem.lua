@@ -16,6 +16,7 @@ return function(Sunshine, entity, scene)
         local e = false
         local r2 = false
         local l2 = false
+        local position
         local function handleInput(inputObject, gameProcessedEvent)
             if not gameProcessedEvent then
                 local begin = inputObject.UserInputState == Enum.UserInputState.Begin
@@ -38,20 +39,18 @@ return function(Sunshine, entity, scene)
                 elseif inputObject.KeyCode == Enum.KeyCode.ButtonL2 then
                     l2 = begin
                 end
+                if inputObject.KeyCode == Enum.KeyCode.Thumbstick1 then
+                    if inputObject.Position.Magnitude > 0.2 then
+                        position = inputObject.Position
+                    else
+                        position = vector3New()
+                    end
+                end
             end
         end
         Sunshine:addConnection(UserInputService.InputBegan, handleInput, entity, true)
+        Sunshine:addConnection(UserInputService.InputChanged, handleInput, entity, true)
         Sunshine:addConnection(UserInputService.InputEnded, handleInput, entity, true)
-        local position
-        Sunshine:addConnection(UserInputService.InputChanged, function(inputObject)
-            if inputObject.KeyCode == Enum.KeyCode.Thumbstick1 then
-                if inputObject.Position.Magnitude > 0.2 then
-                    position = inputObject.Position
-                else
-                    position = vector3New()
-                end
-            end
-        end, entity, true)
         Sunshine:update(function()
             input.space = space or
             UserInputService:IsGamepadButtonDown(Enum.UserInputType.Gamepad1, Enum.KeyCode.ButtonA) or

@@ -14,21 +14,23 @@ return function(Sunshine, entity, scene)
         local mouseScrollWheel = 0
         local mouseChange = Vector3.new()
         local position = Vector3.new()
-        local function handleInput(inputObject)
-            if UserInputService:GetLastInputType() ~= Enum.UserInputType.Gamepad1 then
-                if inputObject.UserInputType == Enum.UserInputType.MouseWheel then
-                    mouseScrollWheel = inputObject.Position.Z
-                elseif inputObject.UserInputType == Enum.UserInputType.MouseButton2 then
-                    mouseDown = inputObject.UserInputState == Enum.UserInputState.Begin
-                elseif inputObject.UserInputType == Enum.UserInputType.MouseMovement then
-                    mouseChange = inputObject.Delta
-                end
-            else
-                if inputObject.KeyCode == Enum.KeyCode.Thumbstick2 then
-                    if inputObject.Position.Magnitude > 0.2 then
-                        position = inputObject.Position
-                    else
-                        position = Vector3.new()
+        local function handleInput(inputObject, gameProcessedEvent)
+            if not gameProcessedEvent then
+                if UserInputService:GetLastInputType() ~= Enum.UserInputType.Gamepad1 then
+                    if inputObject.UserInputType == Enum.UserInputType.MouseWheel then
+                        mouseScrollWheel = inputObject.Position.Z
+                    elseif inputObject.UserInputType == Enum.UserInputType.MouseButton2 then
+                        mouseDown = inputObject.UserInputState == Enum.UserInputState.Begin
+                    elseif inputObject.UserInputType == Enum.UserInputType.MouseMovement then
+                        mouseChange = inputObject.Delta
+                    end
+                else
+                    if inputObject.KeyCode == Enum.KeyCode.Thumbstick2 then
+                        if inputObject.Position.Magnitude > 0.2 then
+                            position = inputObject.Position
+                        else
+                            position = Vector3.new()
+                        end
                     end
                 end
             end
