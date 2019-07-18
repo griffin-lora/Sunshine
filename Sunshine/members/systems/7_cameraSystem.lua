@@ -44,7 +44,7 @@ return function(Sunshine, entity, scene)
                 if mouseDown or position then
                     local change = mouseChange
                     if UserInputService.GamepadEnabled then
-                        change = Vector3.new(position.X, -position.Y, 0) * 5
+                        change = Vector3.new(position.X, -position.Y, 0) * 30
                     end
                     yaw = yaw - (change.Y * camera.rotateSpeed)
                     yaw = math.clamp(yaw, -80, 80)
