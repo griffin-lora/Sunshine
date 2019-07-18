@@ -32,7 +32,8 @@ std = {
         "unpack",
         "pcall",
         "os",
-        "plugin"
+        "plugin",
+        "DockWidgetPluginGuiInfo"
     }
 }
 ignore = {"Assets/prefabs/camera.lua"}
