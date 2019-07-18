@@ -53,6 +53,7 @@ local function updateTree()
             end
             updateTopPart()
             topPart:ClearAllChildren()
+            topPart.Material = Enum.Material.Fabric
             topPart.Locked = true
             topPart.CanCollide = false
             topPart.Transparency = 1
