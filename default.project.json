@@ -40,6 +40,9 @@
                 "SunshineSuite": {
                     "$path": "SunshineSuite"
                 }
+            },
+            "GrassyPartGenerator": {
+                "$path": "GrassyPartGenerator"
             }
 		}
 	}
