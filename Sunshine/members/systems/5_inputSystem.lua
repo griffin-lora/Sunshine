@@ -64,7 +64,7 @@ return function(Sunshine, entity, scene)
                 local cameraCFrame = CFrame.new(vector3New(), vector3New(camera.transform.cFrame.LookVector.X,
                 0, camera.transform.cFrame.LookVector.Z))
                 local moveVector = vector3New()
-                if not UserInputService.GamepadEnabled then
+                if UserInputService:GetLastInputType() ~= Enum.UserInputType.Gamepad1 then
                     if d then
                         moveVector = moveVector + vector3New(1, 0, 0)
                     end

@@ -45,7 +45,7 @@ return function(Sunshine, entity, scene)
                 zoom = math.clamp(zoom, camera.minZoom, camera.maxZoom)
                 if mouseDown or position then
                     local change = mouseChange
-                    if UserInputService.GamepadEnabled then
+                    if UserInputService:GetLastInputType() == Enum.UserInputType.Gamepad1 then
                         change = Vector3.new(position.X, -position.Y, 0) * 30
                     end
                     yaw = yaw - (change.Y * camera.rotateSpeed)
