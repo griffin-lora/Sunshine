@@ -9,7 +9,8 @@ return function(Sunshine, entity)
     local lastWall
     Sunshine:createStateSystem(entity, state, function()
         -- start check
-        return not character.swimming and character.onWall and character.wall ~= lastWall and not character.grounded and
+        return character.state ~= "longJump" and character.state ~= "dive"and not character.swimming and
+        character.onWall and character.wall ~= lastWall and not character.grounded and
         Vector3.new(physics.velocity.X, 0, physics.velocity.Z).Magnitude > 1
     end, function()
         -- start

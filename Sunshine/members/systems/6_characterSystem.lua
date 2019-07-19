@@ -135,13 +135,13 @@ return function(Sunshine, entity)
                     (moveVector), distance), {model.model})
                     if stepUpPart ~= part then
                         transform.cFrame = (transform.cFrame - Vector3.new(0, transform.cFrame.Y, 0)) + Vector3.new(0,
-                        stepUpPosition.Y + 3.1, 0)
+                        stepUpPosition.Y + ((model.model.PrimaryPart.Size.Y / 2) + 0.1), 0)
                     else
                         local stepDownPart, stepDownPosition = Sunshine:findPartOnRay(rayNew(transform.cFrame.Position,
                         distance * 2), {model.model})
                         if stepDownPart ~= part then
                             transform.cFrame = (transform.cFrame - Vector3.new(0, transform.cFrame.Y, 0)) +
-                            Vector3.new(0, stepDownPosition.Y + 3.1, 0)
+                            Vector3.new(0, stepDownPosition.Y + ((model.model.PrimaryPart.Size.Y / 2) + 0.1), 0)
                         end
                     end
                 end

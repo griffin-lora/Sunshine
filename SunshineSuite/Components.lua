@@ -366,5 +366,9 @@ return {
 		time = {Type = "number", Default = 0}
     },
     hydrophobic = {
+    },
+    bonk = {
+        power = {Type = "number", Default = 20},
+		animation = {Type = "number", Default = 0},
     }
 }
