@@ -17,7 +17,6 @@ local function getClosestPointOnPlane(point, normal, vector)
         return pos2
     end
 end
-local size = 0.7
 
 local function dotToLerp(dot)
     dot = dot + 1
@@ -34,21 +33,23 @@ return function(Sunshine, entity)
     local animator = entity.animator
     local health = entity.health
     local tag = entity.tag
-    if character and model and transform and physics and animator then
+    local gravity = entity.gravity
+    if character and model and transform and physics and animator and gravity then
         local lastGroundeds = {}
         local lastVelocity
         local lastMoveVector
         Sunshine:update(function(step)
             local distance = -transform.cFrame.UpVector * ((model.model.PrimaryPart.Size.Y / 2) + 0.3)
+            local size = Vector3.new(model.model.PrimaryPart.Size.X / 2, 0, model.model.PrimaryPart.Size.Z / 2)
             local raycasts = {}
             raycasts[1] = {Sunshine:findPartOnRay(rayNew(transform.cFrame.Position, distance), {model.model})}
-            raycasts[2] = {Sunshine:findPartOnRay(rayNew(transform.cFrame.Position + vector3New(size, 0, 0), distance),
+            raycasts[2] = {Sunshine:findPartOnRay(rayNew(transform.cFrame.Position + vector3New(size.X, 0, 0), distance),
             {model.model})}
-            raycasts[3] = {Sunshine:findPartOnRay(rayNew(transform.cFrame.Position - vector3New(size, 0, 0), distance),
+            raycasts[3] = {Sunshine:findPartOnRay(rayNew(transform.cFrame.Position - vector3New(size.X, 0, 0), distance),
             {model.model})}
-            raycasts[4] = {Sunshine:findPartOnRay(rayNew(transform.cFrame.Position + vector3New(0, 0, size), distance),
+            raycasts[4] = {Sunshine:findPartOnRay(rayNew(transform.cFrame.Position + vector3New(0, 0, size.Z), distance),
             {model.model})}
-            raycasts[5] = {Sunshine:findPartOnRay(rayNew(transform.cFrame.Position - vector3New(0, 0, size), distance),
+            raycasts[5] = {Sunshine:findPartOnRay(rayNew(transform.cFrame.Position - vector3New(0, 0, size.Z), distance),
             {model.model})}
             local part, normal, material
             for _, raycast in pairs(raycasts) do
@@ -63,9 +64,7 @@ return function(Sunshine, entity)
             character.onWall = not not wallPart and wallMaterial ~= Enum.Material.Water
             character.wall = wallPart
             character.wallNormal = wallNormal
-            if character.grounded then
-                physics.velocity = vector3New(physics.velocity.X, 0, physics.velocity.Z)
-            end
+            gravity.ignore = character.grounded
             if character.moving then
                 if not character.swimming then
                     animator.movement = character.moveAnimation
@@ -87,10 +86,10 @@ return function(Sunshine, entity)
                 character.moving = moveVector ~= vector3New()
                 local boost = 0
                 if character.grounded then
-                    local closestPoint = getClosestPointOnPlane(vector3New(), normal, moveVector)
-                    moveVector = closestPoint
-                    physics.velocity = vector3New(physics.velocity.X, moveVector.Y * 50, physics.velocity.Z)
-                    boost = -moveVector.Y * 10
+                    -- local closestPoint = getClosestPointOnPlane(vector3New(), normal, moveVector)
+                    -- moveVector = closestPoint
+                    -- physics.velocity = vector3New(physics.velocity.X, moveVector.Y * 50, physics.velocity.Z)
+                    -- boost = -moveVector.Y * 10
                 end
                 if character.moving and physics.movable and lastMoveVector then
                     transform.cFrame = transform.cFrame:Lerp(CFrame.new(transform.cFrame.Position,

@@ -370,5 +370,8 @@ return {
     bonk = {
         power = {Type = "number", Default = 20},
 		animation = {Type = "number", Default = 0},
+    },
+    gravity = {
+        ignore = {Type = "boolean", Default = true}
     }
 }

@@ -6,6 +6,7 @@ return function(Sunshine, entity, scene)
     local physics = entity.physics
     local lockAxis = entity.lockAxis
     local lockRotationAxis = entity.lockRotationAxis
+    local gravity = entity.gravity
     if model and transform and physics then
         local bodyVelocity = Instance.new("BodyVelocity")
         bodyVelocity.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
@@ -13,6 +14,7 @@ return function(Sunshine, entity, scene)
         local pauseBodyVelocity = Instance.new("BodyVelocity")
         pauseBodyVelocity.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
         pauseBodyVelocity.Velocity = Vector3.new()
+        local gravityIgnoreBodyForce = Instance.new("BodyForce")
         if lockAxis then
             local x = 0
             local y = 0
@@ -58,6 +60,15 @@ return function(Sunshine, entity, scene)
                     lockRotationAxisBodyVelocity:Clone().Parent = descendant
                 end
             end
+        end
+        if gravity then
+            local mass = 0
+            for _, descendant in pairs(model.model:GetDescendants()) do
+                if descendant:IsA("BasePart") then
+                    mass = mass + descendant:GetMass()
+                end
+            end
+            gravityIgnoreBodyForce.Force = Vector3.new(0, workspace.Gravity, 0) * mass
         end
         for _, descendant in pairs(model.model:GetDescendants()) do
             if descendant:IsA("BasePart") then
@@ -116,6 +127,13 @@ return function(Sunshine, entity, scene)
                     model.model.PrimaryPart.Velocity = pauseVelocity
                 end
                 pauseVelocity = nil
+                if gravity then
+                    if gravity.ignore then
+                        gravityIgnoreBodyForce.Parent = model.model.PrimaryPart
+                    else
+                        gravityIgnoreBodyForce.Parent = nil
+                    end
+                end
                 local descendants = model.model:GetDescendants()
                 for index = 1, #descendants do
                     local descendant = descendants[index]
