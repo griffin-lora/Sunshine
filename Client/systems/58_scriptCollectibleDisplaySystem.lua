@@ -1,11 +1,11 @@
-return function(Sunshine, entity, scene)
+return function(Sunshine, entity)
     local scriptCollectibleDisplay = entity.scriptCollectibleDisplay
     if scriptCollectibleDisplay then
         local scriptCollectible
         Sunshine:update(function()
-            local frame = Sunshine:getEntity(scriptCollectibleDisplay.frame, scene)
-            local nameLabel = Sunshine:getEntity(scriptCollectibleDisplay.nameLabel, scene)
-            local dateLabel = Sunshine:getEntity(scriptCollectibleDisplay.dateLabel, scene)
+            local frame = Sunshine:getEntity(scriptCollectibleDisplay.frame, entity.core.scene)
+            local nameLabel = Sunshine:getEntity(scriptCollectibleDisplay.nameLabel, entity.core.scene)
+            local dateLabel = Sunshine:getEntity(scriptCollectibleDisplay.dateLabel, entity.core.scene)
             if frame and nameLabel and dateLabel then
                 for _, otherEntity in pairs(Sunshine.scenes[1].entities) do
                     if otherEntity.scriptCollectible and otherEntity.scriptCollectible.active then

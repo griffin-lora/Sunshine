@@ -1,4 +1,4 @@
-return function(Sunshine, entity, scene)
+return function(Sunshine, entity)
     local follow = entity.follow
     local model = entity.model
     local transform = entity.transform
@@ -6,13 +6,13 @@ return function(Sunshine, entity, scene)
     if follow and model and transform and character then
         Sunshine:update(function()
             local player
-            for _, otherEntity in pairs(scene.entities) do
+            for _, otherEntity in pairs(entity.core.scene.entities) do
                 if otherEntity.tag and otherEntity.tag.tag == "player" then
                     player = otherEntity
                     break
                 end
             end
-            local mainCharacter = Sunshine:getEntity(player.player.character, scene)
+            local mainCharacter = Sunshine:getEntity(player.player.character, entity.core.scene)
             if not character.controllable and follow.active then
                 character.moveVector = Vector3.new()
                 local tip = transform.cFrame.Position

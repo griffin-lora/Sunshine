@@ -1,4 +1,4 @@
-return function(Sunshine, entity, scene)
+return function(Sunshine, entity)
     local key = entity.key
     local collider = entity.collider
     local spinner = entity.spinner
@@ -16,7 +16,7 @@ return function(Sunshine, entity, scene)
     local originalAngle
     if key and collider and spinner and transparency and oscillator and transform and respawner then
         local oldFrame = transform.cFrame
-        local script = Sunshine:getEntity(key.scriptCollectible, scene)
+        local script = Sunshine:getEntity(key.scriptCollectible, entity.core.scene)
         if script then
             script.spinner.speed = 0
             if originalAngle then
@@ -42,15 +42,15 @@ return function(Sunshine, entity, scene)
                             oscillator.axis = nil
                             spinner.speed = 25
                             collected = true
-                            startTick = Sunshine:tick(scene)
+                            startTick = entity.core.tick
                             local player = Sunshine:getEntity(character.character.player, scene)
                             if player then
                                 camera = Sunshine:getEntity(player.player.camera, scene)
                             end
-                        elseif collected and startTick and Sunshine:tick(scene) - startTick <= 1 then
+                        elseif collected and startTick and entity.core.tick - startTick <= 1 then
                             local newFrame = oldFrame + Vector3.new(0, 3, 0)
-                            transform.cFrame = transform.cFrame:lerp(newFrame, (Sunshine:tick(scene) - startTick)/5)
-                            transform.size = transform.size:lerp(Vector3.new(0, 0, 0), (Sunshine:tick(scene) - startTick)/5)
+                            transform.cFrame = transform.cFrame:lerp(newFrame, (entity.core.tick - startTick)/5)
+                            transform.size = transform.size:lerp(Vector3.new(0, 0, 0), (entity.core.tick - startTick)/5)
                         elseif collected and not completed then
                             transparency.transparency = 1
                             spinner.speed = 0
@@ -59,16 +59,16 @@ return function(Sunshine, entity, scene)
                             respawner.active = true
                             completed = true
                             spawning = true
-                            startTick2 = Sunshine:tick(scene)
+                            startTick2 = entity.core.tick
                         end
                     else
-                        if Sunshine:tick(scene) - startTick2 <= 2 then
+                        if entity.core.tick - startTick2 <= 2 then
                             camera.camera.controllable = false
                             character.character.controllable = false
                             local currentFrame = (originalAngle * CFrame.Angles(0,math.pi,0)) + script.transform.cFrame.Position
                             camera.transform.cFrame = CFrame.new(currentFrame.Position + (currentFrame.LookVector*10), currentFrame.Position)
-                            script.transform.cFrame = script.transform.cFrame:lerp(lerpToScript, (Sunshine:tick(scene) - startTick2)/45)
-                            script.transform.size = script.transform.size:lerp(lerpToSize, (Sunshine:tick(scene) - startTick2)/45)
+                            script.transform.cFrame = script.transform.cFrame:lerp(lerpToScript, (entity.core.tick - startTick2)/45)
+                            script.transform.size = script.transform.size:lerp(lerpToSize, (entity.core.tick - startTick2)/45)
                         else
                             script.transform.cFrame = lerpToScript
                             script.transform.size = lerpToSize

@@ -1,9 +1,10 @@
-return function(Sunshine, entity, scene)
+return function(Sunshine, entity)
     local fade = entity.fade
     local transparency = entity.transparency
     local completed = false
 
     if fade and transparency then
+        warn("DEPRECATED_WARN: fadeSystem is deprecated. Please use Sunshine:tween")
         Sunshine:update(function()
             if not completed then
                 if fade.direction == "out" then

@@ -1,11 +1,11 @@
-return function(Sunshine, entity, scene)
+return function(Sunshine, entity)
     local player = entity.player
     if player then
         local lastCharacter
         Sunshine:update(function()
-            local mainCharacter = Sunshine:getEntity(player.mainCharacter, scene)
-            local character = Sunshine:getEntity(player.character, scene)
-            local camera = Sunshine:getEntity(player.camera, scene)
+            local mainCharacter = Sunshine:getEntity(player.mainCharacter, entity.core.scene)
+            local character = Sunshine:getEntity(player.character, entity.core.scene)
+            local camera = Sunshine:getEntity(player.camera, entity.core.scene)
             if mainCharacter and character and camera then
                 character.character.player = entity
                 character.input.camera = camera

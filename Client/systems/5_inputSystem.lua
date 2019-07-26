@@ -4,7 +4,7 @@ local vector3New = Vector3.new
 
 local UserInputService = game:GetService("UserInputService")
 
-return function(Sunshine, entity, scene)
+return function(Sunshine, entity)
     local input = entity.input
     if input then
         local d = false
@@ -59,7 +59,7 @@ return function(Sunshine, entity, scene)
             input.e = e or
             UserInputService:IsGamepadButtonDown(Enum.UserInputType.Gamepad1, Enum.KeyCode.ButtonY) or
             UserInputService:IsGamepadButtonDown(Enum.UserInputType.Gamepad1, Enum.KeyCode.ButtonX)
-            local camera = Sunshine:getEntity(input.camera, scene)
+            local camera = Sunshine:getEntity(input.camera, entity.core.scene)
             if camera and camera.transform then
                 local cameraCFrame = CFrame.new(vector3New(), vector3New(camera.transform.cFrame.LookVector.X,
                 0, camera.transform.cFrame.LookVector.Z))

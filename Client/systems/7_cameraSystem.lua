@@ -3,7 +3,7 @@
 local UserInputService = game:GetService("UserInputService")
 local Camera = workspace.Camera
 
-return function(Sunshine, entity, scene)
+return function(Sunshine, entity)
     local camera = entity.camera
     local transform = entity.transform
     if camera and transform then
@@ -39,7 +39,7 @@ return function(Sunshine, entity, scene)
         Sunshine:addConnection(UserInputService.InputChanged, handleInput, entity, true)
         Sunshine:addConnection(UserInputService.InputEnded, handleInput, entity, true)
         Sunshine:update(function(step)
-            local subject = Sunshine:getEntity(camera.subject, scene)
+            local subject = Sunshine:getEntity(camera.subject, entity.core.scene)
             if subject and camera.controllable then
                 zoom = zoom - (mouseScrollWheel * camera.scrollSpeed)
                 zoom = math.clamp(zoom, camera.minZoom, camera.maxZoom)

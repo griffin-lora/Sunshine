@@ -1,4 +1,4 @@
-return function(Sunshine, entity, scene)
+return function(Sunshine, entity)
     local scriptCollectible = entity.scriptCollectible
     local transform =  entity.transform
     local sound = entity.sound
@@ -9,10 +9,11 @@ return function(Sunshine, entity, scene)
         local character
         local camera
         Sunshine:update(function()
-            if collider.hitEntity and collider.hitEntity.character and collider.hitEntity.character.controllable and collider.trigger then
+            if collider.hitEntity and collider.hitEntity.character and
+            collider.hitEntity.character.controllable and collider.trigger then
                 scriptCollectible.active = true
                 character = collider.hitEntity
-                camera = Sunshine:getEntity(character.input.camera, scene)
+                camera = Sunshine:getEntity(character.input.camera, entity.core.scene)
                 character.animator.action = 1076799780
                 character.character.controllable = false
                 character.physics.movable = false
@@ -25,10 +26,10 @@ return function(Sunshine, entity, scene)
                 transform.cFrame.Position)
                 sound.playing = true
                 spinner.speed = 0
-                startTick = Sunshine:tick(scene)
+                startTick = entity.core.tick
             end
             if startTick ~= nil and character and camera then
-                if Sunshine:tick(scene) - startTick > 4 then
+                if entity.core.tick - startTick > 4 then
                     startTick = nil
                     character.physics.movable = true
                     character.character.controllable = true

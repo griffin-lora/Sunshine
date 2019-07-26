@@ -1,6 +1,6 @@
 -- TrafficConeGod
 
-return function(Sunshine, entity, scene)
+return function(Sunshine, entity)
     local model = entity.model
     local transform = entity.transform
     local physics = entity.physics

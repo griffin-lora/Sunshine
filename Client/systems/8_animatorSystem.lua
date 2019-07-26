@@ -1,6 +1,6 @@
 -- TrafficConeGod
 
-return function(Sunshine, entity, scene)
+return function(Sunshine, entity)
     local animator = entity.animator
     local model = entity.model
     if animator and model then

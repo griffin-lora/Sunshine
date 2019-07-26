@@ -1,19 +1,19 @@
-return function(Sunshine, entity, scene)
+return function(Sunshine, entity)
     local respawner = entity.respawner
     local health = entity.health
     if respawner then
         local initialEntity = Sunshine:copyTable(Sunshine:getEntityById(entity.core.id,
-        Sunshine.dataScenes[scene.index]))
+        Sunshine.dataScenes[entity.core.scene.index]))
         local startTick
         Sunshine:update(function()
             if not respawner.active then
                 startTick = nil
             elseif not startTick then
-                startTick = Sunshine:tick(scene)
+                startTick = entity.core.tick
             end
-            if startTick and Sunshine:tick(scene) - startTick >= respawner.time or (health and health.health <= 0) then
+            if startTick and entity.core.tick - startTick >= respawner.time or (health and health.health <= 0) then
                 Sunshine:destroyEntity(entity)
-                Sunshine:createEntity(initialEntity, scene)
+                Sunshine:createEntity(initialEntity, entity.core.scene)
             end
         end, entity)
     end

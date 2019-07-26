@@ -1,6 +1,6 @@
 local UserInputService = game:GetService("UserInputService")
 
-return function(Sunshine, entity, scene)
+return function(Sunshine, entity)
     local pause = entity.pause
     if pause then
         local lastP = false
