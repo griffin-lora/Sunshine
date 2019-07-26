@@ -18,9 +18,10 @@ return function(Sunshine, entity)
         not lastE
     end, function()
         -- start
-        if Sunshine:getEntity(component.head, entity.core.scene) then
+        local dataScene = Sunshine.dataScenes[entity.core.scene.index]
+        if Sunshine:getEntity(component.head, dataScene) then
             cFrame = CFrame.new(transform.cFrame.Position + (transform.cFrame.LookVector.Unit * component.distance))
-            local headClone = Sunshine:cloneTable(Sunshine:getEntity(component.head, entity.core.scene))
+            local headClone = Sunshine:cloneTable(Sunshine:getEntity(component.head, dataScene))
             headClone.core.active = true
             head = Sunshine:createEntity(headClone, entity.core.scene)
         end
@@ -39,9 +40,7 @@ return function(Sunshine, entity)
         end
     end, function()
         -- update
-        if head and head.head then
-            head.head.cFrame = cFrame
-        end
+        head.head.cFrame = cFrame
         character.canLoseMagnitude = false
         if not animator.action then
             animator.action = component.animation
