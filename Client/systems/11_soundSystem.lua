@@ -2,13 +2,13 @@
 
 local SoundService = game:GetService("SoundService")
 
-return function(Sunshine, entity, scene)
+return function(Sunshine, entity)
     local sound = entity.sound
 	if sound then
         local lastId
         local soundInstance
         Sunshine:update(function()
-            if scene.active then
+            if entity.core.active and entity.core.scene.active then
                 if sound.id ~= lastId then
                     if sound.id then
                         if soundInstance then

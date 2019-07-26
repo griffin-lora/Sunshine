@@ -2,10 +2,10 @@ return function(Sunshine, dataScene, index)
     if not Sunshine.managing then
         Sunshine:manage()
     end
+    index = index or 1
     if Sunshine.scenes[index] then
         Sunshine:unloadScene(Sunshine.scenes[index])
     end
-    index = index or 1
     Sunshine.dataScenes[index] = dataScene
     local scene = {}
     scene.entities = {}

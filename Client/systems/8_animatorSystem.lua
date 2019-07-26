@@ -26,7 +26,7 @@ return function(Sunshine, entity, scene)
         local action = animator.action
         local actionTrack
         Sunshine:update(function()
-            if scene.active then
+            if entity.core.active and entity.core.scene.active then
                 if actionTrack then
                     actionTrack:AdjustSpeed(1)
                 end
