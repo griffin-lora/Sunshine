@@ -1,7 +1,8 @@
 --[[
 
-    Sunshine Framework v3.0
+    The Sunshine Engine
     Written by TrafficConeGod and SuperMakerPlayer
+    Gen is holding me and many other devs in his basement and making me develop various nuts
 
 ]]
 
@@ -19,18 +20,23 @@ local function getMember(instance)
     end
 end
 
-return setmetatable({}, {
+local Sunshine = setmetatable({}, {
     __index = function(Sunshine, name)
         -- This just routes an index to the correct module in the members folder.
         -- For example Sunshine.someIndex will return the required someIndex.lua file
         local member
-        if folder:FindFirstChild(name) then
-            local instance = folder[name]
+        if folder.members:FindFirstChild(name) then
+            local instance = folder.members[name]
             member = getMember(instance)
-        else
-            error(name .. " does not exist!")
         end
         Sunshine[name] = member
         return member
     end
 })
+
+Sunshine:setTopbarEnabled(false)
+Sunshine:manageErrors()
+Sunshine:manageDebugMode()
+Sunshine:managePauseMenu()
+
+return Sunshine

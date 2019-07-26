@@ -26,7 +26,13 @@
                     "$path": "Assets/skies.rbxm"
                 }
             }
-		},
+        },
+        "ReplicatedFirst": {
+			"$className": "ReplicatedFirst",
+            "Client": {
+                "$path": "Client"
+            }
+        },
 		"ServerScriptService": {
 			"$className": "ServerScriptService",
 			"Sunshine": {

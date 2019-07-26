@@ -5,7 +5,7 @@ return function(Sunshine, entity)
         local loading = false
         Sunshine:entityDestroy(function(destroy)
             loading = true
-            print(destroy)
+            -- print(destroy)
             return destroy
         end, entity)
         Sunshine:update(function()
