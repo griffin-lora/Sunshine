@@ -11,7 +11,7 @@ return function(Sunshine, entity, scene)
         Sunshine:fireServer("loading", entity.core.id)
         local lastSaveTick = Sunshine:tick(scene)
         Sunshine:update(function()
-            if (Sunshine:tick(scene) - lastSaveTick) > 1 then
+            if (Sunshine:tick(scene) - lastSaveTick) > 20 then
                 lastSaveTick = Sunshine:tick(scene)
                 Sunshine:fireServer("saving", entity.core.id, store.save)
             end
