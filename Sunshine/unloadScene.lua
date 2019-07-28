@@ -3,4 +3,5 @@ return function(Sunshine, scene)
     for _, entity in pairs(scene.entities) do
         Sunshine:destroyEntity(entity)
     end
+    game.Lighting:ClearAllChildren()
 end
