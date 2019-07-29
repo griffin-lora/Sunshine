@@ -4,6 +4,7 @@ local Lighting = game:GetService("Lighting")
 
 return function(Sunshine, entity)
 	local lighting = entity.lighting
+	local lastTintColor = Color3.fromRGB(255,255,255)
     if lighting then
         if lighting.sky then
             local sky = lighting.sky:Clone()
@@ -31,6 +32,7 @@ return function(Sunshine, entity)
 		color.Contrast = lighting.contrast
 		color.Saturation = lighting.saturation
 		color.TintColor = lighting.tintColor
+		lastTintColor = lighting.tintColor
 		blur.Size = lighting.blurAmount
 		bloom.Threshold = lighting.bloomThreshold
 		rays.Enabled = lighting.sunRays
@@ -39,5 +41,11 @@ return function(Sunshine, entity)
 		blur.Parent = game.Lighting
 		bloom.Parent = game.Lighting
 		rays.Parent = game.Lighting
+		Sunshine:update(function()
+			if lighting.tintColor ~= lastTintColor then
+				color.tintColor = lighting.tintColor
+				lastTintColor = lighting.tintColor
+			end
+		end, entity)
 	end
 end

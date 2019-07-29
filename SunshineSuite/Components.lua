@@ -312,6 +312,7 @@ return {
         animation = {Type = "number", Default = 0}
 	},
     music = {
+		id = {Type = "number", Default = nil}
 	},
 	scriptCollectible = {
         name = {Type = "string", Default = "rename this or you\'re a poo poo head"},

@@ -1,4 +1,5 @@
 local state = "swimUp"
+local oldGravity = workspace.Gravity
 
 return function(Sunshine, entity)
     local component = entity[state]
@@ -27,5 +28,6 @@ return function(Sunshine, entity)
     end, function()
         -- general update
         lastSpace = input.space
+        workspace.Gravity = character.swimming and 70 or oldGravity
     end)
 end
