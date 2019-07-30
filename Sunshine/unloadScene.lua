@@ -4,4 +4,5 @@ return function(Sunshine, scene)
         Sunshine:destroyEntity(entity)
     end
     game.Lighting:ClearAllChildren()
+    game.SoundService:ClearAllChildren()
 end
