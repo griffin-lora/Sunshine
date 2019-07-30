@@ -27,7 +27,11 @@ return function(Sunshine, entity)
         -- end
     end, function()
         -- general update
+        local gravity = false
+        if character.swimming or character.state == "wallSlide" then
+            gravity = true
+        end
         lastSpace = input.space
-        workspace.Gravity = character.swimming and 70 or oldGravity
+        workspace.Gravity = gravity and 70 or oldGravity
     end)
 end
