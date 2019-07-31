@@ -51,7 +51,7 @@ return function(Sunshine, entity)
                         collider.trigger = false
                         collider.hitEntity.crate.hits = collider.hitEntity.crate.hits - 1
                         if collider.hitEntity.crate.hits == 0 then
-                            print("ded (swear word)")
+                            print("ded")
                             collider.hitEntity.physics.canCollide = false
                             collider.hitEntity.transparency.transparency = 1
                             if collider.hitEntity.spawner.entity then

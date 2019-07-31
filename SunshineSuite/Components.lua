@@ -210,7 +210,9 @@ return {
     },
 
     health = {
-        health = {Type = "number", Default = 3}
+		health = {Type = "number", Default = 3},
+		time = {Type = "number", Default = 2},
+		invulnerabilityFrames = {Type = "boolean", Default = true},
     },
 
     bounce = {

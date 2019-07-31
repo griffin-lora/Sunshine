@@ -57,8 +57,10 @@ return function(Sunshine, entity)
             if CollectionService:HasTag(descendant, "head") then
                 if head.core.active then
                     descendant.Transparency = 1
+                    CollectionService:RemoveTag(descendant, "flashable")
                 else
                     descendant.Transparency = 0
+                    CollectionService:AddTag(descendant, "flashable")
                 end
             end
         end
