@@ -2,7 +2,6 @@
 
     The Sunshine Engine
     Written by TrafficConeGod and SuperMakerPlayer
-    Gen is holding me and many other devs in his basement and making me develop various nuts
 
 ]]
 
