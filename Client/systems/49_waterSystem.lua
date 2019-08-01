@@ -36,4 +36,5 @@ return function(Sunshine, entity)
             end
         end, entity)
     end
+    Sunshine:apologize()
 end
