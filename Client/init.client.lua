@@ -7,4 +7,4 @@ pcall(function()
 end)
 
 Sunshine:addSystemFolder(script:WaitForChild("systems"))
-Sunshine:loadScene(require(Assets.scenes.CrossroadsDay), 1)
+Sunshine:loadScene(require(Assets.scenes.CrossroadsDay))
