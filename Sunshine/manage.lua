@@ -18,5 +18,7 @@ return function(Sunshine)
     end
     if RunService:IsClient() then
         RunService.RenderStepped:Connect(update)
+    elseif RunService:IsServer() then
+        RunService.Stepped:Connect(update)
     end
 end

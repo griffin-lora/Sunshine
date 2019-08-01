@@ -39,7 +39,7 @@ return function(Sunshine, entity)
         local lastVelocity
         local lastMoveVector
         Sunshine:update(function(step)
-            local distance = -transform.cFrame.UpVector * ((model.model.PrimaryPart.Size.Y / 2) + 0.3)
+            local distance = -transform.cFrame.UpVector * ((model.model.PrimaryPart.Size.Y / 2) + 2.1)
             local size = Vector3.new(model.model.PrimaryPart.Size.X / 2, 0, model.model.PrimaryPart.Size.Z / 2)
             local raycasts = {}
             raycasts[1] = {Sunshine:findPartOnRay(rayNew(transform.cFrame.Position, distance), {model.model})}
@@ -51,10 +51,10 @@ return function(Sunshine, entity)
             {model.model})}
             raycasts[5] = {Sunshine:findPartOnRay(rayNew(transform.cFrame.Position - vector3New(0, 0, size.Z), distance),
             {model.model})}
-            local part, normal, material
+            local part, position, normal, material
             for _, raycast in pairs(raycasts) do
                 if raycast[1] then
-                    part, _, normal, material = raycast[1], raycast[2], raycast[3], raycast[4]
+                    part, position, normal, material = raycast[1], raycast[2], raycast[3], raycast[4]
                 end
             end
             character.grounded = not not part and material ~= Enum.Material.Water
@@ -145,6 +145,10 @@ return function(Sunshine, entity)
                     end
                 end
                 physics.velocity = vector3New(velocity.X, physics.velocity.Y, velocity.Z)
+                if character.grounded then
+                    transform.cFrame = (transform.cFrame - vector3New(0, transform.cFrame.Y)) + vector3New(0, position.Y + (model.model.PrimaryPart.Size.Y / 2) + 2)
+                    physics.velocity = vector3New(physics.velocity.X, 0, physics.velocity.Z)
+                end
                 lastMoveVector = moveVector
                 lastVelocity = velocity
                 lastGroundeds[2] = lastGroundeds[1]
