@@ -61,15 +61,6 @@ return function(Sunshine, entity)
                 end
             end
         end
-        if gravity then
-            local mass = 0
-            for _, descendant in pairs(model.model:GetDescendants()) do
-                if descendant:IsA("BasePart") then
-                    mass = mass + descendant:GetMass()
-                end
-            end
-            gravityIgnoreBodyForce.Force = Vector3.new(0, workspace.Gravity, 0) * mass
-        end
         for _, descendant in pairs(model.model:GetDescendants()) do
             if descendant:IsA("BasePart") then
                 if physics.welded and descendant ~= model.model.PrimaryPart then
@@ -82,6 +73,15 @@ return function(Sunshine, entity)
                 physics.friction or 0.3, physics.elasticity or 0.5, physics.frictionWeight or 1,
                 physics.elasticityWeight or 1)
             end
+        end
+        if gravity then
+            local mass = 0
+            for _, descendant in pairs(model.model:GetDescendants()) do
+                if descendant:IsA("BasePart") then
+                    mass = mass + descendant:GetMass()
+                end
+            end
+            gravityIgnoreBodyForce.Force = Vector3.new(0, workspace.Gravity, 0) * mass
         end
         if physics.movable then
             bodyVelocity.Parent = nil
