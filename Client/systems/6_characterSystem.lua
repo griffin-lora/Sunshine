@@ -42,9 +42,11 @@ return function(Sunshine, entity)
         local hitbox = model.model.PrimaryPart:Clone()
         hitbox.Name = "Hitbox"
         hitbox.CanCollide = true
+        hitbox:ClearAllChildren()
         local weldConstraint = Instance.new("WeldConstraint")
         weldConstraint.Part0 = model.model.PrimaryPart
         weldConstraint.Part1 = hitbox
+        weldConstraint.Parent = hitbox
         hitbox.Parent = model.model
         model.model.PrimaryPart = hitbox
         hitbox.Position = vector3New(hitbox.Position.X, hitbox.Position.Y + 2, hitbox.Position.Z)
