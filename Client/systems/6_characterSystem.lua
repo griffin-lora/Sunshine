@@ -3,21 +3,6 @@
 local rayNew = Ray.new
 local vector3New = Vector3.new
 
-local function getClosestPointOnPlane(point, normal, vector)
-    local D = point.X * normal.X + point.Y * normal.Y + point.Z * normal.Z
-    local A,B,C = normal.X, normal.Y, normal.Z
-    local distance = math.abs(A * vector.X + B * vector.Y + C * vector.Z + D) / math.sqrt(A^2 + B^2 + C^2)
-    local pos1 = vector + normal * distance
-    local pos2 = vector - normal * distance
-    local d1 = A * pos1.X + B * pos1.Y + C * pos1.Z
-    local d2 = A * pos2.X + B * pos2.Y + C * pos2.Z
-    if math.abs(D - d1) < math.abs(D - d2) then
-        return pos1
-    else
-        return pos2
-    end
-end
-
 local function dotToLerp(dot)
     dot = dot + 1
     dot = dot / 2
@@ -56,18 +41,18 @@ return function(Sunshine, entity)
             local size = Vector3.new(model.model.PrimaryPart.Size.X / 2, 0, model.model.PrimaryPart.Size.Z / 2)
             local raycasts = {}
             raycasts[1] = {Sunshine:findPartOnRay(rayNew(transform.cFrame.Position, distance), {model.model})}
-            raycasts[2] = {Sunshine:findPartOnRay(rayNew(transform.cFrame.Position + vector3New(size.X, 0, 0), distance),
-            {model.model})}
-            raycasts[3] = {Sunshine:findPartOnRay(rayNew(transform.cFrame.Position - vector3New(size.X, 0, 0), distance),
-            {model.model})}
-            raycasts[4] = {Sunshine:findPartOnRay(rayNew(transform.cFrame.Position + vector3New(0, 0, size.Z), distance),
-            {model.model})}
-            raycasts[5] = {Sunshine:findPartOnRay(rayNew(transform.cFrame.Position - vector3New(0, 0, size.Z), distance),
-            {model.model})}
-            local part, position, normal, material
+            raycasts[2] = {Sunshine:findPartOnRay(rayNew(transform.cFrame.Position + vector3New(size.X, 0, 0), distance)
+            ,{model.model})}
+            raycasts[3] = {Sunshine:findPartOnRay(rayNew(transform.cFrame.Position - vector3New(size.X, 0, 0), distance)
+            ,{model.model})}
+            raycasts[4] = {Sunshine:findPartOnRay(rayNew(transform.cFrame.Position + vector3New(0, 0, size.Z), distance)
+            ,{model.model})}
+            raycasts[5] = {Sunshine:findPartOnRay(rayNew(transform.cFrame.Position - vector3New(0, 0, size.Z), distance)
+            ,{model.model})}
+            local part, position, material
             for _, raycast in pairs(raycasts) do
                 if raycast[1] then
-                    part, position, normal, material = raycast[1], raycast[2], raycast[3], raycast[4]
+                    part, position, _, material = raycast[1], raycast[2], raycast[3], raycast[4]
                 end
             end
             character.grounded = not not part and physics.velocity.Y < 0.05 and material ~= Enum.Material.Water
@@ -98,12 +83,6 @@ return function(Sunshine, entity)
                 local moveVector = character.moveVector or input.moveVector
                 character.moving = moveVector ~= vector3New()
                 local boost = 0
-                if character.grounded then
-                    -- local closestPoint = getClosestPointOnPlane(vector3New(), normal, moveVector)
-                    -- moveVector = closestPoint
-                    -- physics.velocity = vector3New(physics.velocity.X, moveVector.Y * 50, physics.velocity.Z)
-                    -- boost = -moveVector.Y * 10
-                end
                 if character.moving and physics.movable and lastMoveVector then
                     transform.cFrame = transform.cFrame:Lerp(CFrame.new(transform.cFrame.Position,
                     transform.cFrame.Position + moveVector), step * moveVector:Dot(lastMoveVector) * 12)
@@ -159,7 +138,8 @@ return function(Sunshine, entity)
                 end
                 physics.velocity = vector3New(velocity.X, physics.velocity.Y, velocity.Z)
                 if character.grounded then
-                    transform.cFrame = (transform.cFrame - vector3New(0, transform.cFrame.Y)) + vector3New(0, position.Y + (model.model.PrimaryPart.Size.Y / 2) + 2)
+                    transform.cFrame = (transform.cFrame - vector3New(0, transform.cFrame.Y)) + vector3New(0, position.Y
+                    + (model.model.PrimaryPart.Size.Y / 2) + 2)
                     physics.velocity = vector3New(physics.velocity.X, 0, physics.velocity.Z)
                 end
                 lastMoveVector = moveVector
