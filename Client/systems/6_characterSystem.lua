@@ -38,6 +38,18 @@ return function(Sunshine, entity)
         local lastGroundeds = {}
         local lastVelocity
         local lastMoveVector
+        model.model.PrimaryPart.CanCollide = false
+        local hitbox = model.model.PrimaryPart:Clone()
+        hitbox.Name = "Hitbox"
+        hitbox.CanCollide = true
+        hitbox:ClearAllChildren()
+        local weldConstraint = Instance.new("WeldConstraint")
+        weldConstraint.Part0 = model.model.PrimaryPart
+        weldConstraint.Part1 = hitbox
+        weldConstraint.Parent = hitbox
+        hitbox.Parent = model.model
+        model.model.PrimaryPart = hitbox
+        hitbox.Position = vector3New(hitbox.Position.X, hitbox.Position.Y + 2, hitbox.Position.Z)
         Sunshine:update(function(step)
             local distance = -transform.cFrame.UpVector * ((model.model.PrimaryPart.Size.Y / 2) + 3)
             local size = Vector3.new(model.model.PrimaryPart.Size.X / 2, 0, model.model.PrimaryPart.Size.Z / 2)
@@ -57,7 +69,7 @@ return function(Sunshine, entity)
                     part, position, normal, material = raycast[1], raycast[2], raycast[3], raycast[4]
                 end
             end
-            character.grounded = not not part and material ~= Enum.Material.Water
+            character.grounded = not not part and physics.velocity.Y < 0.05 and material ~= Enum.Material.Water
             character.floor = part
             local wallPart, _, wallNormal, wallMaterial = Sunshine:findPartOnRay(rayNew(transform.cFrame.Position,
             transform.cFrame.LookVector * 2), {model.model})
