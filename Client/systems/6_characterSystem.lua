@@ -49,7 +49,8 @@ return function(Sunshine, entity)
         weldConstraint.Parent = hitbox
         hitbox.Parent = model.model
         model.model.PrimaryPart = hitbox
-        hitbox.Position = vector3New(hitbox.Position.X, hitbox.Position.Y + 2, hitbox.Position.Z)
+        hitbox.Position = vector3New(hitbox.Position.X, hitbox.Position.Y + 1, hitbox.Position.Z)
+        hitbox.Size = vector3New(hitbox.Size.X, hitbox.Size.Y - 2, hitbox.Size.Z)
         Sunshine:update(function(step)
             local distance = -transform.cFrame.UpVector * ((model.model.PrimaryPart.Size.Y / 2) + 3)
             local size = Vector3.new(model.model.PrimaryPart.Size.X / 2, 0, model.model.PrimaryPart.Size.Z / 2)
