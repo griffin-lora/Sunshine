@@ -57,7 +57,7 @@ return function(Sunshine, entity)
                     part, position, normal, material = raycast[1], raycast[2], raycast[3], raycast[4]
                 end
             end
-            character.grounded = not not part and material ~= Enum.Material.Water
+            character.grounded = not not part and physics.velocity.Y < 0.05 and material ~= Enum.Material.Water
             character.floor = part
             local wallPart, _, wallNormal, wallMaterial = Sunshine:findPartOnRay(rayNew(transform.cFrame.Position,
             transform.cFrame.LookVector * 2), {model.model})
