@@ -9,10 +9,10 @@ return function(Sunshine, entity, scene)
             end
         end), nil, entity)
         Sunshine:fireServer("loading", entity.core.id)
-        local lastSaveTick = Sunshine:tick(scene)
+        local lastSaveTick = entity.core.tick
         Sunshine:update(function()
-            if (Sunshine:tick(scene) - lastSaveTick) > 20 then
-                lastSaveTick = Sunshine:tick(scene)
+            if (entity.core.tick - lastSaveTick) > 20 then
+                lastSaveTick = entity.core.tick
                 Sunshine:fireServer("saving", entity.core.id, store.save)
             end
         end, entity)

@@ -5,9 +5,9 @@ return function(Sunshine, entity, scene)
         local lastInvulnerable = health.invulnerable
         Sunshine:update(function()
             if health.invulnerable and health.invulnerable ~= lastInvulnerable then
-                startTick = Sunshine:tick(scene)
+                startTick = entity.core.tick
             end
-            if health.invulnerable and Sunshine:tick(scene) - startTick > 2 then
+            if health.invulnerable and entity.core.tick - startTick > 2 then
                 health.invulnerable = false
             end
             lastInvulnerable = health.invulnerable

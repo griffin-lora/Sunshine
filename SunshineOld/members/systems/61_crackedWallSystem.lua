@@ -10,12 +10,12 @@ return function(Sunshine, entity, scene)
             if collider.hitEntity and collider.hitEntity.character and collider.hitEntity.character.state == "dash" and not wait then
                 physics.canCollide = false
                 wait = true
-                startTick = Sunshine:tick(scene)
+                startTick = entity.core.tick
                 if crackedWall.animation ~= nil then
                     animator.action = crackedWall.animation
                 end
             end
-            if wait and Sunshine:tick(scene) - startTick >= crackedWall.time then
+            if wait and entity.core.tick - startTick >= crackedWall.time then
                 Sunshine:destroyEntity(entity)
             end
         end, entity)

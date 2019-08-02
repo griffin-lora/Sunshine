@@ -8,3 +8,4 @@ end)
 
 Sunshine:addSystemFolder(script:WaitForChild("systems"))
 Sunshine:loadScene(require(Assets.scenes.CrossroadsDay))
+Sunshine:loadScene(require(Assets.scenes.uiScene), 2)

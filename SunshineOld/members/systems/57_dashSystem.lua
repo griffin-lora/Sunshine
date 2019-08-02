@@ -11,7 +11,7 @@ return function(Sunshine, entity, scene)
     local startTick
     Sunshine:createStateSystem(entity, state, function()
         -- start check
-        return startTick and Sunshine:tick(scene) - startTick >= component.time
+        return startTick and entity.core.tick - startTick >= component.time
     end, function()
         -- start
         character.walkSpeedFactor = component.factor
@@ -30,7 +30,7 @@ return function(Sunshine, entity, scene)
         -- general update
         if character.state ~= state then
             if input.e and not lastE then
-                startTick = Sunshine:tick(scene)
+                startTick = entity.core.tick
             elseif not input.e then
                 startTick = nil
             end

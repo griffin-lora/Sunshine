@@ -5,12 +5,28 @@ return function(Sunshine, entity)
     local uiTransform = entity.uiTransform
     local transparency = entity.transparency
     local label = entity.label
+    local parent = entity.parent
     local visible = entity.visible
     if (frame or label) and uiTransform then
         if frame then
             frame.frame = frame.frame:Clone()
             Sunshine:addInstance(frame.frame, entity)
-            frame.frame.Parent = Sunshine.gui
+            if parent then
+                local parentEntity = Sunshine:getEntity(parent.parent, entity.core.scene)
+                if parentEntity then
+                    local parentFrame = parentEntity.frame
+                    local parentLabel = parentEntity.label
+                    if parentFrame then
+                        frame.frame.Parent = parentFrame.frame
+                    elseif parentLabel then
+                        frame.frame.Parent = parentLabel.label
+                    end
+                else
+                    frame.frame.Parent = Sunshine.gui
+                end
+            else
+                frame.frame.Parent = Sunshine.gui
+            end
             local originalSize = frame.frame.Size
             Sunshine:update(function()
                 frame.frame.Position = uiTransform.position
@@ -33,7 +49,22 @@ return function(Sunshine, entity)
             labelInstance.BackgroundTransparency = 1
             labelInstance.TextScaled = true
             Sunshine:addInstance(labelInstance, entity)
-            labelInstance.Parent = Sunshine.gui
+            if parent then
+                local parentEntity = Sunshine:getEntity(parent.parent, entity.core.scene)
+                if parentEntity then
+                    local parentFrame = parentEntity.frame
+                    local parentLabel = parentEntity.label
+                    if parentFrame then
+                        labelInstance.Parent = parentFrame.frame
+                    elseif parentLabel then
+                        labelInstance.Parent = parentLabel.label
+                    end
+                else
+                    labelInstance.Parent = Sunshine.gui
+                end
+            else
+                labelInstance.Parent = Sunshine.gui
+            end
             local originalSize = label.size
             Sunshine:update(function()
                 labelInstance.Position = uiTransform.position

@@ -5,22 +5,22 @@ return function(Sunshine, entity, actualScene)
     if sceneTransition and uiTransform and visible then
         local loadingScene = false
         local scene
-        local startTick = Sunshine:tick(actualScene)
+        local startTick = entity.core.tick
         local info = sceneTransition.tweenInfo
         local loading = false
         Sunshine:update(function()
             if loadingScene then
                 visible.visible = true
-                uiTransform.size = Sunshine:tween(Sunshine:tick(actualScene) - startTick, info, Vector2.new(1, 1), Vector2.new())
-                if (Sunshine:tick(actualScene) - startTick) >= info.Time and not loading then
+                uiTransform.size = Sunshine:tween(entity.core.tick - startTick, info, Vector2.new(1, 1), Vector2.new())
+                if (entity.core.tick - startTick) >= info.Time and not loading then
                     loading = true
                     loadingScene = false
                     Sunshine:loadScene(scene, 1, false)
-                    startTick = Sunshine:tick(actualScene)
+                    startTick = entity.core.tick
                 end
             else
-                uiTransform.size = Sunshine:tween(Sunshine:tick(actualScene) - startTick, info, Vector2.new(), Vector2.new(1, 1))
-                if (Sunshine:tick(actualScene) - startTick) >= info.Time then
+                uiTransform.size = Sunshine:tween(entity.core.tick - startTick, info, Vector2.new(), Vector2.new(1, 1))
+                if (entity.core.tick - startTick) >= info.Time then
                     visible.visible = false
                 end
             end
@@ -31,7 +31,7 @@ return function(Sunshine, entity, actualScene)
                 if not loadingScene then
                     scene = sceneLoading
                     loadingScene = true
-                    startTick = Sunshine:tick(actualScene)
+                    startTick = entity.core.tick
                 end
                 return load or false
             end

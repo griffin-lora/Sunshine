@@ -25,10 +25,10 @@ return function(Sunshine, entity, scene)
                 transform.cFrame.Position)
                 sound.playing = true
                 spinner.speed = 0
-                startTick = Sunshine:tick(scene)
+                startTick = entity.core.tick
             end
             if startTick ~= nil and character and camera then
-                if Sunshine:tick(scene) - startTick > 4 then
+                if entity.core.tick - startTick > 4 then
                     startTick = nil
                     character.physics.movable = true
                     character.character.controllable = true

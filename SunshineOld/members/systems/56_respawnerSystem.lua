@@ -9,9 +9,9 @@ return function(Sunshine, entity, scene)
             if not respawner.active then
                 startTick = nil
             elseif not startTick then
-                startTick = Sunshine:tick(scene)
+                startTick = entity.core.tick
             end
-            if startTick and Sunshine:tick(scene) - startTick >= respawner.time or (health and health.health <= 0) then
+            if startTick and entity.core.tick - startTick >= respawner.time or (health and health.health <= 0) then
                 Sunshine:destroyEntity(entity)
                 Sunshine:createEntity(initialEntity, scene)
             end

@@ -376,5 +376,8 @@ return {
     },
     gravity = {
         ignore = {Type = "boolean", Default = true}
-    }
+	},
+	parent = {
+		parent = {Type = "Object", Default = nil}
+	}
 }
