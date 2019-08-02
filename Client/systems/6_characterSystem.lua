@@ -38,6 +38,16 @@ return function(Sunshine, entity)
         local lastGroundeds = {}
         local lastVelocity
         local lastMoveVector
+        model.model.PrimaryPart.CanCollide = false
+        local hitbox = model.model.PrimaryPart:Clone()
+        hitbox.Name = "Hitbox"
+        hitbox.CanCollide = true
+        local weldConstraint = Instance.new("WeldConstraint")
+        weldConstraint.Part0 = model.model.PrimaryPart
+        weldConstraint.Part1 = hitbox
+        hitbox.Parent = model.model
+        model.model.PrimaryPart = hitbox
+        hitbox.Position = vector3New(hitbox.Position.X, hitbox.Position.Y + 2, hitbox.Position.Z)
         Sunshine:update(function(step)
             local distance = -transform.cFrame.UpVector * ((model.model.PrimaryPart.Size.Y / 2) + 3)
             local size = Vector3.new(model.model.PrimaryPart.Size.X / 2, 0, model.model.PrimaryPart.Size.Z / 2)
