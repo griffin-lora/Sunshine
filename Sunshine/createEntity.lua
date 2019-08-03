@@ -7,6 +7,8 @@ return function(Sunshine, dataEntity, scene)
             entity.core.updateCallbacks = {}
             entity.core.instances = {}
             entity.core.connections = {}
+            entity.core.sceneUnloadCallbacks = {}
+            entity.core.entityDestroyCallbacks = {}
             scene.entities[#scene.entities + 1] = entity
             for _, system in ipairs(Sunshine.systems) do
                 system(Sunshine, entity, scene)
