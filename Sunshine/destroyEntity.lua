@@ -11,4 +11,7 @@ return function(_, entity)
     for _, connection in pairs(entity.core.connections) do
         connection:Disconnect()
     end
+    entity.core.updateCallbacks = {}
+    entity.core.instances = {}
+    entity.core.connections = {}
 end

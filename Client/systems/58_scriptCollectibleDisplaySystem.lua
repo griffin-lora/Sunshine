@@ -6,7 +6,7 @@ return function(Sunshine, entity)
             local frame = Sunshine:getEntity(scriptCollectibleDisplay.frame, entity.core.scene)
             local nameLabel = Sunshine:getEntity(scriptCollectibleDisplay.nameLabel, entity.core.scene)
             local dateLabel = Sunshine:getEntity(scriptCollectibleDisplay.dateLabel, entity.core.scene)
-            if frame and nameLabel and dateLabel then
+            if frame and nameLabel and dateLabel and Sunshine.scenes[1] then
                 for _, otherEntity in pairs(Sunshine.scenes[1].entities) do
                     if otherEntity.scriptCollectible and otherEntity.scriptCollectible.active then
                         scriptCollectible = otherEntity

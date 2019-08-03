@@ -82,7 +82,6 @@ return function(Sunshine, entity)
             if (input and character.controllable) or character.moveVector then
                 local moveVector = character.moveVector or input.moveVector
                 character.moving = moveVector ~= vector3New()
-                local boost = 0
                 if character.moving and physics.movable and lastMoveVector then
                     transform.cFrame = transform.cFrame:Lerp(CFrame.new(transform.cFrame.Position,
                     transform.cFrame.Position + moveVector), step * moveVector:Dot(lastMoveVector) * 12)
@@ -101,10 +100,10 @@ return function(Sunshine, entity)
                 local function calculateVelocity()
                     local walkSpeed = character.walkSpeed * character.walkSpeedFactor
                     local xVelocity = physics.velocity.X
-                    xVelocity = xVelocity + (moveVector.X * walkSpeed + (boost * moveVector.X))
+                    xVelocity = xVelocity + (moveVector.X * walkSpeed)
                     xVelocity = xVelocity * math.pow(1 - damping, step * 10)
                     local zVelocity = physics.velocity.Z
-                    zVelocity = zVelocity + (moveVector.Z * walkSpeed + (boost * moveVector.Z))
+                    zVelocity = zVelocity + (moveVector.Z * walkSpeed)
                     zVelocity = zVelocity * math.pow(1 - damping, step * 10)
                     return vector3New(xVelocity, 0, zVelocity)
                 end
@@ -119,21 +118,6 @@ return function(Sunshine, entity)
                         end
                     else
                         velocity = lastVelocity
-                    end
-                end
-                if character.grounded then
-                    local stepUpPart, stepUpPosition = Sunshine:findPartOnRay(rayNew(transform.cFrame.Position +
-                    (moveVector), distance), {model.model})
-                    if stepUpPart ~= part then
-                        transform.cFrame = (transform.cFrame - Vector3.new(0, transform.cFrame.Y, 0)) + Vector3.new(0,
-                        stepUpPosition.Y + ((model.model.PrimaryPart.Size.Y / 2) + 0.1), 0)
-                    else
-                        local stepDownPart, stepDownPosition = Sunshine:findPartOnRay(rayNew(transform.cFrame.Position,
-                        distance * 2), {model.model})
-                        if stepDownPart ~= part then
-                            transform.cFrame = (transform.cFrame - Vector3.new(0, transform.cFrame.Y, 0)) +
-                            Vector3.new(0, stepDownPosition.Y + ((model.model.PrimaryPart.Size.Y / 2) + 0.1), 0)
-                        end
                     end
                 end
                 physics.velocity = vector3New(velocity.X, physics.velocity.Y, velocity.Z)
