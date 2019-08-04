@@ -1,9 +1,11 @@
+local CollectionService = game:GetService("CollectionService")
+
 -- SuperMakerPlayer and TrafficConeGod
 return function(Sunshine, entity)
     local coinCounter = entity.coinCounter
-    local label = entity.label
+    local frame = entity.frame
     local last = 0
-    if coinCounter and label then
+    if coinCounter and frame then
         Sunshine:update(function()
             if Sunshine.scenes[1] then
                 local player = Sunshine:getEntity(coinCounter.player, Sunshine.scenes[1])
@@ -16,7 +18,11 @@ return function(Sunshine, entity)
                             for _ = 1, 4 - #tostring(text) do
                                 text = "0"..text
                             end
-                            label.text = text
+                            for _,p in pairs(frame.frame:GetDescendants()) do
+                                if CollectionService:HasTag(p, "coinsLabel") then
+                                    p.Text = text
+                                end
+                            end
                         end
                     end
                 end

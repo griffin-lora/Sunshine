@@ -347,9 +347,6 @@ return {
         time = {Type = "number", Default = 0}
     },
     scriptCollectibleDisplay = {
-        frame = {Type = "Object", Default = nil},
-        nameLabel = {Type = "Object", Default = nil},
-        dateLabel = {Type = "Object", Default = nil}
 	},
 	fade = {
 		increment = {Type = "number", Default = 0.05},
