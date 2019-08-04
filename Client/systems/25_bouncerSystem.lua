@@ -3,7 +3,7 @@ return function(Sunshine, entity)
     local collider = entity.collider
     if bouncer and collider then
         Sunshine:update(function()
-            if collider.hitEntity and collider.hitEntity.tag and collider.hitEntity.tag.tag == "character" then
+            if collider.hitEntity and collider.hitEntity.character then
                 local physics = collider.hitEntity.physics
                 if bouncer.direct then
                     physics.velocity = Vector3.new(0, bouncer.power, 0)

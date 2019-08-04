@@ -43,10 +43,7 @@ return function(Sunshine, entity)
                             spinner.speed = 25
                             collected = true
                             startTick = entity.core.tick
-                            local player = Sunshine:getEntity(character.character.player, scene)
-                            if player then
-                                camera = Sunshine:getEntity(player.player.camera, scene)
-                            end
+                            camera = Sunshine:getEntity(character.input.camera, entity.core.scene)
                         elseif collected and startTick and entity.core.tick - startTick <= 1 then
                             local newFrame = oldFrame + Vector3.new(0, 3, 0)
                             transform.cFrame = transform.cFrame:lerp(newFrame, (entity.core.tick - startTick)/5)
@@ -64,6 +61,7 @@ return function(Sunshine, entity)
                     else
                         if entity.core.tick - startTick2 <= 2 then
                             camera.camera.controllable = false
+                            character.input.moveVector = Vector3.new(0,0,0)
                             character.character.controllable = false
                             local currentFrame = (originalAngle * CFrame.Angles(0,math.pi,0)) + script.transform.cFrame.Position
                             camera.transform.cFrame = CFrame.new(currentFrame.Position + (currentFrame.LookVector*10), currentFrame.Position)

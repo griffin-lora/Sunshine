@@ -15,6 +15,7 @@ return function(Sunshine, entity)
                 character = collider.hitEntity
                 camera = Sunshine:getEntity(character.input.camera, entity.core.scene)
                 character.animator.action = 1076799780
+                character.input.moveVector = Vector3.new(0,0,0)
                 character.character.controllable = false
                 character.physics.movable = false
                 character.transform.cFrame = CFrame.new(transform.cFrame.Position, Vector3.new(
