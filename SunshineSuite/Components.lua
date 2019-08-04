@@ -372,5 +372,12 @@ return {
 	},
 	parent = {
 		parent = {Type = "Object", Default = nil}
+	},
+	healthUI = {
+		player = {Type = "Object", Default = nil},
+		rectOffset3 = {Type = "Vector2", Default = Vector2.new()},
+		rectOffset2 = {Type = "Vector2", Default = Vector2.new()},
+		rectOffset1 = {Type = "Vector2", Default = Vector2.new()},
+		rectOffset0 = {Type = "Vector2", Default = Vector2.new()}
 	}
 }
