@@ -13,6 +13,7 @@ return function(Sunshine, entity)
     local collected = false
     local completed = false
     local spawning = false
+    local pausedEntities = {}
     local originalAngle
     if key and collider and spinner and transparency and oscillator and transform and respawner then
         local oldFrame = transform.cFrame
@@ -43,6 +44,13 @@ return function(Sunshine, entity)
                             collected = true
                             startTick = entity.core.tick
                             camera = Sunshine:getEntity(character.input.camera, entity.core.scene)
+                            for _,p in pairs(entity.core.scene.entities) do
+                                local otherEntity = Sunshine:getEntity(p, entity.core.scene)
+                                if otherEntity.core.id ~= script.core.id and otherEntity.core.id ~= camera.core.id and otherEntity.core.id ~= entity.core.id and otherEntity.core.name ~= "sound" then --hack until i finish music
+                                    table.insert(pausedEntities, #pausedEntities+1, {p, otherEntity.core.active or false})
+                                    p.core.active = false
+                                end
+                            end
                         elseif collected and startTick and entity.core.tick - startTick <= 1 then
                             local newFrame = oldFrame + Vector3.new(0, 3, 0)
                             transform.cFrame = transform.cFrame:lerp(newFrame, (entity.core.tick - startTick)/5)
@@ -71,6 +79,12 @@ return function(Sunshine, entity)
                             script.transform.size = lerpToSize
                             camera.camera.controllable = true
                             character.character.controllable = true
+                            for _,p in pairs(pausedEntities) do
+                                local otherEntity = Sunshine:getEntity(p[1], entity.core.scene)
+                                if otherEntity then
+                                    otherEntity.core.active = p[2]
+                                end
+                            end
                             spawning = false
                         end
                     end
