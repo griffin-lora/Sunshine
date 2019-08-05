@@ -398,5 +398,7 @@ return {
 		id = {Type = "number", Default = 0},
 		playing = {Type = "boolean", Default = false},
 		volume = {Type = "number", Default = 1},
-	}
+	},
+	scenePause = {
+	},
 }
