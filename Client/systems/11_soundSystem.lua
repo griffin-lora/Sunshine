@@ -1,7 +1,5 @@
 -- SuperMakerPlayer and TrafficConeGod
 
-local SoundService = game:GetService("SoundService")
-
 return function(Sunshine, entity)
     local sound = entity.sound
 	if sound then

@@ -4,11 +4,11 @@ return function(Sunshine, entity)
 	local coin = entity.coin
     local transform = entity.transform
     local collider = entity.collider
-    local sound = entity.sound
+    local speaker = entity.speaker
 
     local stop = false
 
-    if coin and transform and collider and sound then
+    if coin and transform and collider and speaker then
         local collected = false
         local info = coin.tweenInfo
         local startTick
@@ -24,13 +24,12 @@ return function(Sunshine, entity)
                 local player = hitEntity.character.player
                 collected = true
                 player.stats.coins = player.stats.coins + 1
-                sound.playing = true
+                speaker.playing = true
                 stop = true
                 startTick = entity.core.tick
             end
             if startTick ~= nil and stop then
                 if entity.core.tick - startTick > 0.6 then
-                    sound.playing = false
                     stop = false
                 end
             end

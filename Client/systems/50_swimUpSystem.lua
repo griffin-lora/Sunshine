@@ -7,6 +7,7 @@ return function(Sunshine, entity)
     local input = entity.input
     local physics = entity.physics
     local animator = entity.animator
+    local speaker = entity.speaker
     local lastSpace = false
     Sunshine:createStateSystem(entity, state, function()
         -- start check
@@ -15,6 +16,10 @@ return function(Sunshine, entity)
         -- start
         physics.velocity = Vector3.new(physics.velocity.X, component.power, physics.velocity.Z)
         animator.action = nil
+        if component.sound then
+            speaker.id = component.sound
+            speaker.playing = true
+        end
     end, function()
         -- update
         if animator.action ~= component.animation then

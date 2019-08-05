@@ -9,6 +9,7 @@ return function(Sunshine, entity)
     local transform = entity.transform
     local physics = entity.physics
     local animator = entity.animator
+    local speaker = entity.speaker
     local horizontal
     local lastE = false
     Sunshine:createStateSystem(entity, state, function()
@@ -21,6 +22,10 @@ return function(Sunshine, entity)
         horizontal = transform.cFrame.LookVector * component.power
         physics.velocity = horizontal + Vector3.new(0, component.bouncePower, 0)
         animator.action = component.animation
+        if component.sound then
+            speaker.id = component.sound
+            speaker.playing = true
+        end
     end, function(step)
         -- update
         horizontal = horizontal:Lerp(transform.cFrame.LookVector * component.power, step * 3)

@@ -4,6 +4,7 @@ return function(Sunshine, entity)
     local component = entity[state]
     local character = entity.character
     local physics = entity.physics
+    local speaker = entity.speaker
     local animator = entity.animator
     Sunshine:createStateSystem(entity, state, function()
         -- start check
@@ -15,7 +16,11 @@ return function(Sunshine, entity)
         if not character.grounded then
             component.bounceCount = component.bounceCount + 1
         end
-        animator.action = 2504812300
+        animator.action = 2504812300            
+        if component.sound then
+            speaker.id = component.sound
+            speaker.playing = true
+        end
     end, function()
         -- update
         character.canLoseMagnitude = false

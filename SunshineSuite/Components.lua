@@ -72,14 +72,16 @@ return {
 	},
 	jump = {
         power = {Type = "number", Default = 50},
-        animation = {Type = "number", Default = 0}
+		animation = {Type = "number", Default = 0},
+		sound = {Type = "number", Default = 0}
 	},
 
 	dive = {
 		power = {Type = "number", Default = 50},
 		bouncePower = {Type = "number", Default = 50},
         animation = {Type = "number", Default = 0},
-        endAnimation = {Type = "number", Default = 0}
+		endAnimation = {Type = "number", Default = 0},
+		sound = {Type = "number", Default = 0}
 	},
 	camera = {
 		controllable = {Type = "boolean", Default = false},
@@ -118,10 +120,8 @@ return {
 	},
 	sound = {
 		id = {Type = "number", Default = 0},
-		looped = {Type = "boolean", Default = false},
         playing = {Type = "boolean", Default = false},
 		volume = {Type = "number", Default = 0.5},
-		autoStop = {Type = "boolean", Default = false},
 	},
 	animation = {
 		id = {Type = "number", Default = 0},
@@ -156,7 +156,8 @@ return {
     crouch = {
         walkSpeedFactor = {Type = "number", Default = 0.5},
         animation = {Type = "number", Default = 0},
-        moveAnimation = {Type = "number", Default = 0}
+		moveAnimation = {Type = "number", Default = 0},
+		sound = {Type = "number", Default = 0}
     },
     groundPound = {
         walkSpeedFactor = {Type = "number", Default = 0.1},
@@ -164,21 +165,26 @@ return {
         delay = {Type = "number", Default = 0.5},
         startAnimation = {Type = "number", Default = 0},
         animation = {Type = "number", Default = 0},
-        endAnimation = {Type = "number", Default = 0}
+		endAnimation = {Type = "number", Default = 0},
+		sound = {Type = "number", Default = 0},
+		endSound = {Type = "number", Default = 0}
     },
 	groundPoundJump = {
 		power = {Type = "number", Default = 50},
-        animation = {Type = "number", Default = 0}
+		animation = {Type = "number", Default = 0},
+		sound = {Type = "number", Default = 0}
 	},
 	backFlip = {
 		power = {Type = "number", Default = 50},
 		backPower = {Type = "number", Default = 50},
-        animation = {Type = "number", Default = 0}
+		animation = {Type = "number", Default = 0},
+		sound = {Type = "number", Default = 0}
 	},
 	longJump = {
 		power = {Type = "number", Default = 50},
 		bouncePower = {Type = "number", Default = 50},
-        animation = {Type = "number", Default = 0}
+		animation = {Type = "number", Default = 0},
+		sound = {Type = "number", Default = 0}
 	},
     store = {
 	},
@@ -206,7 +212,8 @@ return {
         power = {Type = "number", Default = 50},
         distance = {Type = "number", Default = 20},
         animation = {Type = "number", Default = 0},
-        head = {Type = "Object", Default = nil}
+		head = {Type = "Object", Default = nil},
+		sound = {Type = "number", Default = 0}
     },
 
     health = {
@@ -218,7 +225,8 @@ return {
     bounce = {
         power = {Type = "number", Default = 50},
         animation = {Type = "number", Default = 0},
-        bounceCount = {Type = "number", Default = 0}
+		bounceCount = {Type = "number", Default = 0},
+		sound = {Type = "number", Default = 0}
     },
     capture = {
         active = {Type = "boolean", Default = false},
@@ -252,7 +260,8 @@ return {
     wallJump = {
         animation = {Type = "number", Default = 0},
         power = {Type = "number", Default = 5},
-        bouncePower = {Type = "number", Default = 20},
+		bouncePower = {Type = "number", Default = 20},
+		sound = {Type = "number", Default = 0}
     },
     hazard = {
         damage = {Type = "number", Default = 1}
@@ -265,11 +274,13 @@ return {
     },
 	doubleJump = {
         power = {Type = "number", Default = 50},
-        animation = {Type = "number", Default = 0}
+		animation = {Type = "number", Default = 0},
+		sound = {Type = "number", Default = 0}
 	},
 	tripleJump = {
         power = {Type = "number", Default = 50},
-        animation = {Type = "number", Default = 0}
+		animation = {Type = "number", Default = 0},
+		sound = {Type = "number", Default = 0}
     },
     follow = {
         range = {Type = "number", Default = 50},
@@ -311,7 +322,8 @@ return {
 	},
 	swimUp = {
         power = {Type = "number", Default = 50},
-        animation = {Type = "number", Default = 0}
+		animation = {Type = "number", Default = 0},
+		sound = {Type = "number", Default = 0}
 	},
     music = {
 		id = {Type = "number", Default = nil}
@@ -366,6 +378,7 @@ return {
     bonk = {
         power = {Type = "number", Default = 20},
 		animation = {Type = "number", Default = 0},
+		sound = {Type = "number", Default = 0}
     },
     gravity = {
         ignore = {Type = "boolean", Default = true}
@@ -380,5 +393,10 @@ return {
 		rectOffset2 = {Type = "Vector2", Default = Vector2.new()},
 		rectOffset1 = {Type = "Vector2", Default = Vector2.new()},
 		rectOffset0 = {Type = "Vector2", Default = Vector2.new()}
+	},
+	speaker = {
+		id = {Type = "number", Default = 0},
+		playing = {Type = "boolean", Default = false},
+		volume = {Type = "number", Default = 1},
 	}
 }

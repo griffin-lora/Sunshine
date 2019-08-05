@@ -8,6 +8,7 @@ return function(Sunshine, entity)
     local transform = entity.transform
     local physics = entity.physics
     local animator = entity.animator
+    local speaker = entity.speaker
     local model = entity.model
     local lastE = false
     local head = {core = {}}
@@ -37,6 +38,10 @@ return function(Sunshine, entity)
             animator.action = nil
         else
             animator.action = component.animation
+            if component.sound then
+                speaker.id = component.sound
+                speaker.playing = true
+            end
         end
     end, function()
         -- update

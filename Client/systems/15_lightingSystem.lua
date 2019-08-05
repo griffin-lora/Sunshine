@@ -46,6 +46,7 @@ return function(Sunshine, entity)
 				color.tintColor = lighting.tintColor
 				lastTintColor = lighting.tintColor
 			end
+			
 		end, entity)
 	end
 end

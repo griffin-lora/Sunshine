@@ -8,6 +8,7 @@ return function(Sunshine, entity)
     local input = entity.input
     local physics = entity.physics
     local animator = entity.animator
+    local speaker = entity.speaker
     local spaceRemember = 0
     local lastSpace = false
     local doubleJumping = false
@@ -20,6 +21,10 @@ return function(Sunshine, entity)
         spaceRemember = 0
         physics.velocity = Vector3.new(physics.velocity.X, component.power, physics.velocity.Z)
         animator.action = component.animation
+        if component.sound then
+            speaker.id = component.sound
+            speaker.playing = true
+        end
     end, function()
         -- update
         if physics.velocity.Y > 0 and not input.space then

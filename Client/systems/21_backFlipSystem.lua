@@ -7,6 +7,7 @@ return function(Sunshine, entity)
     local transform = entity.transform
     local physics = entity.physics
     local animator = entity.animator
+    local speaker = entity.speaker
     Sunshine:createStateSystem(entity, state, function()
         -- start check
         return character.state == "crouch" and physics.velocity.Magnitude < 13 and character.grounded and input.space
@@ -15,6 +16,10 @@ return function(Sunshine, entity)
         local horizontal = transform.cFrame.LookVector * component.backPower
         physics.velocity = Vector3.new(horizontal.X, component.power, horizontal.Z)
         animator.action = component.animation
+        if component.sound then
+            speaker.id = component.sound
+            speaker.playing = true
+        end
     end, function()
         -- update
     end, function()

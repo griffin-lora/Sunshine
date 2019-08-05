@@ -7,6 +7,7 @@ return function(Sunshine, entity)
     local transform = entity.transform
     local physics = entity.physics
     local animator = entity.animator
+    local speaker = entity.speaker
     local horizontal
     local lastSpace = false
     Sunshine:createStateSystem(entity, state, function()
@@ -19,6 +20,10 @@ return function(Sunshine, entity)
         horizontal = transform.cFrame.LookVector * component.power
         physics.velocity = Vector3.new(horizontal.X, component.bouncePower, horizontal.Z)
         animator.action = component.animation
+        if component.sound then
+            speaker.id = component.sound
+            speaker.playing = true
+        end
     end, function()
         -- update
         physics.velocity = Vector3.new(horizontal.X, physics.velocity.Y, horizontal.Z)
