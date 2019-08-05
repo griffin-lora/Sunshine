@@ -399,6 +399,8 @@ return {
 		playing = {Type = "boolean", Default = false},
 		volume = {Type = "number", Default = 1},
 	},
-	scenePause = {
-	},
+	swingingUprightPlatform = {
+		speed = {Type = "number", Default = 2},
+		range = {Type = "number", Default = 45},
+	}
 }
