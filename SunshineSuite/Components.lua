@@ -375,6 +375,7 @@ return {
 	},
 	healthUI = {
 		player = {Type = "Object", Default = nil},
+		image = {Type ="number", Default = 2324645164},
 		rectOffset3 = {Type = "Vector2", Default = Vector2.new()},
 		rectOffset2 = {Type = "Vector2", Default = Vector2.new()},
 		rectOffset1 = {Type = "Vector2", Default = Vector2.new()},

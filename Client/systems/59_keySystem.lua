@@ -30,7 +30,6 @@ return function(Sunshine, entity)
                 script.transform.cFrame = script.transform.cFrame - Vector3.new(0, 2, 0)
                 script.transparency.transparency = 1
                 script.spinner.speed = 1
-                print(script.spinner.speed)
                 script.collider.trigger = false
                 Sunshine:update(function()
                     if not script then

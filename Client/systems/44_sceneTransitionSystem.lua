@@ -25,7 +25,7 @@ return function(Sunshine, entity, actualScene)
                 end
             end
         end, entity)
-        Sunshine:sceneLoad(function(sceneLoading, sceneIndex, load)
+        Sunshine:sceneUnload(function(sceneLoading, sceneIndex, load)
             if sceneIndex == 1 and load ~= false then
                 loading = false
                 if not loadingScene then
