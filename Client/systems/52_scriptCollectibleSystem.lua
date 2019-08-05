@@ -4,6 +4,8 @@ return function(Sunshine, entity)
     local sound = entity.sound
     local collider = entity.collider
     local spinner = entity.spinner
+    local pausedEntities = {}
+
     if scriptCollectible and sound and collider then
         local startTick
         local character
@@ -17,6 +19,7 @@ return function(Sunshine, entity)
                 character.animator.action = 1076799780
                 character.input.moveVector = Vector3.new(0,0,0)
                 character.character.controllable = false
+                character.physics.velocity = Vector3.new(0,0,0)
                 character.physics.movable = false
                 character.transform.cFrame = CFrame.new(transform.cFrame.Position, Vector3.new(
                 camera.transform.cFrame.Position.X, transform.cFrame.Y, camera.transform.cFrame.Position.Z))
@@ -28,6 +31,13 @@ return function(Sunshine, entity)
                 sound.playing = true
                 spinner.speed = 0
                 startTick = entity.core.tick
+                for _,p in pairs(entity.core.scene.entities) do
+                    local otherEntity = Sunshine:getEntity(p, entity.core.scene)
+                    if otherEntity.core.id ~= character.core.id and otherEntity.core.id ~= camera.core.id and otherEntity.core.id ~= entity.core.id then
+                        table.insert(pausedEntities, #pausedEntities+1, {p, otherEntity.core.active})
+                        p.core.active = false
+                    end
+                end
             end
             if startTick ~= nil and character and camera then
                 if entity.core.tick - startTick > 4 then
@@ -35,6 +45,10 @@ return function(Sunshine, entity)
                     character.physics.movable = true
                     character.character.controllable = true
                     camera.camera.controllable = true
+                    for _,p in pairs(pausedEntities) do
+                        local otherEntity = Sunshine:getEntity(p, entity.core.scene)
+                        otherEntity.core.active = p[2]
+                    end
                     Sunshine:destroyEntity(entity)
                 end
             end
