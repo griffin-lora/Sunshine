@@ -23,7 +23,7 @@ return function(Sunshine, entity)
                 transform.cFrame = character.transform.cFrame + Vector3.new(0, 6.5, 0)
                 camera.camera.controllable = false
                 camera.transform.cFrame = CFrame.new(transform.cFrame.Position +
-                (-transform.cFrame.LookVector.Unit * 20) + Vector3.new(0, 10, 0),
+                (transform.cFrame.LookVector.Unit * 20) + Vector3.new(0, 10, 0),
                 transform.cFrame.Position)
                 sound.playing = true
                 spinner.speed = 0
