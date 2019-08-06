@@ -326,7 +326,9 @@ return {
 		sound = {Type = "number", Default = 0}
 	},
     music = {
-		id = {Type = "number", Default = nil}
+		id = {Type = "number", Default = 0},
+		volume = {Type = "number", Default = 1},
+		paused = {Type = "boolean", Default = false},
 	},
 	scriptCollectible = {
         name = {Type = "string", Default = "rename this or you\'re a poo poo head"},
@@ -402,5 +404,8 @@ return {
 	swingingUprightPlatform = {
 		speed = {Type = "number", Default = 2},
 		range = {Type = "number", Default = 45},
-	}
+	},
+	musicTracker = {
+		entity = {Type = "Object", Default = nil},
+	},
 }

@@ -46,9 +46,9 @@ return function(Sunshine, entity)
                             camera = Sunshine:getEntity(character.input.camera, entity.core.scene)
                             for _,p in pairs(entity.core.scene.entities) do
                                 local otherEntity = Sunshine:getEntity(p, entity.core.scene)
-                                if otherEntity.core.id ~= script.core.id and otherEntity.core.id ~= camera.core.id and otherEntity.core.id ~= entity.core.id and otherEntity.core.name ~= "sound" then --hack until i finish music
+                                if otherEntity.core.id ~= script.core.id and otherEntity.core.id ~= camera.core.id and otherEntity.core.id ~= entity.core.id then
                                     table.insert(pausedEntities, #pausedEntities+1, {p, otherEntity.core.active or false})
-                                    p.core.active = false
+                                    otherEntity.core.active = false
                                 end
                             end
                         elseif collected and startTick and entity.core.tick - startTick <= 1 then

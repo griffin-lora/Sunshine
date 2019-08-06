@@ -35,7 +35,10 @@ return function(Sunshine, entity)
                     local otherEntity = Sunshine:getEntity(p, entity.core.scene)
                     if otherEntity.core.id ~= character.core.id and otherEntity.core.id ~= camera.core.id and otherEntity.core.id ~= entity.core.id then
                         table.insert(pausedEntities, #pausedEntities+1, {p, otherEntity.core.active or false})
-                        p.core.active = false
+                        if otherEntity.music then
+                            otherEntity.music.paused = true
+                        end
+                        otherEntity.core.active = false
                     end
                 end
             end
@@ -48,6 +51,9 @@ return function(Sunshine, entity)
                     for _,p in pairs(pausedEntities) do
                         local otherEntity = Sunshine:getEntity(p[1], entity.core.scene)
                         if otherEntity then
+                            if otherEntity.music then
+                                otherEntity.music.paused = false
+                            end
                             otherEntity.core.active = p[2]
                         end
                     end

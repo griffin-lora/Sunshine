@@ -1,29 +1,25 @@
 return function(Sunshine, entity)
-    local music = entity.music
+    local musicTracker = entity.musicTracker
     local sound = entity.sound
-    if music and sound then
-        local loading = false
-        Sunshine:entityDestroy(function(destroy)
-            loading = true
-            -- print(destroy)
-            return destroy
-        end, entity)
+
+    if musicTracker and sound then
         Sunshine:update(function()
-            -- print("iexist",entity.core.id)
-            -- if loading and Sunshine.scene and Sunshine.scene.entities then
-            --     for _, otherEntity in pairs(Sunshine.scene.entities) do
-            --         -- print(otherEntity ~= entity, otherEntity.music)
-            --         if otherEntity ~= entity and otherEntity.sound and otherEntity.sound.id == sound.id then
-            --             Sunshine:destroyEntity(otherEntity, false)
-            --             loading = false
-            --             break
-            --         end
-            --     end
-            --     if loading then
-            --         -- print("d")
-            --         Sunshine:destroyEntity(entity, false)
-            --     end
-            -- end
+            if Sunshine.scenes[1] then
+                local music = Sunshine:getEntity(musicTracker.entity, Sunshine.scenes[1])
+                if music then
+                    sound.id = music.music.id
+                    sound.volume = music.music.volume
+                    if Sunshine.scenes[1].active == true then
+                        sound.playing = not music.music.paused
+                    else
+                        sound.playing = false
+                    end
+                else
+                    sound.playing = false
+                end
+            else
+                sound.playing = false
+            end
         end, entity)
     end
 end
