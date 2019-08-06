@@ -12,12 +12,7 @@ return function(Sunshine, entity)
         Sunshine:update(function()
             transform.cFrame = CFrame.new(transform.cFrame.Position) * CFrame.Angles(math.rad(rotation),oldRotation.Y,oldRotation.Z)
             ----------------------------
-            if rotation > sup.range then
-                reverse = true
-            elseif rotation < -sup.range then
-                reverse = false
-            end
-            rotation = reverse and rotation - sup.speed or rotation + sup.speed
+            rotation = math.sin(entity.core.tick) * sup.range
             ----------------------------
             for _,p in pairs(model.model:GetDescendants()) do
                 if CollectionService:HasTag(p, "uprightPlatform") then
