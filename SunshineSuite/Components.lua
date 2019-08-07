@@ -31,7 +31,8 @@ return {
 		tag = {Type = "string", Default = ""}
 	},
 	collider = {
-		trigger = {Type = "boolean", Default = false}
+        trigger = {Type = "boolean", Default = false},
+        anchored = {Type = "boolean", Default = false}
 	},
 	collectible = {
 	},
