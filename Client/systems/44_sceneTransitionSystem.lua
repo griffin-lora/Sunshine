@@ -1,3 +1,5 @@
+local CollectionService = game:GetService("CollectionService")
+
 return function(Sunshine, entity, actualScene)
     local frame = entity.frame
     local sceneTransition = entity.sceneTransition
@@ -26,16 +28,17 @@ return function(Sunshine, entity, actualScene)
                     visible.visible = true
                     startTick = entity.core.tick
                 end
-            else
                 if unloading then
-                    uiTransform.size = Sunshine:tween(entity.core.tick - startTick, info, Vector2.new(1, 1), Vector2.new())
+                    uiTransform.size = Sunshine:tween(entity.core.tick - startTick, info, Vector2.new(1, 1),
+                    Vector2.new())
                     if (entity.core.tick - startTick) >= info.Time then
                         startTick = entity.core.tick
                         unloading = false
                         Sunshine:loadScene(sceneTransition.scene)
                     end
                 else
-                    uiTransform.size = Sunshine:tween(entity.core.tick - startTick, info, Vector2.new(), Vector2.new(1, 1))
+                    uiTransform.size = Sunshine:tween(entity.core.tick - startTick, info, Vector2.new(),
+                    Vector2.new(1, 1))
                     if (entity.core.tick - startTick) >= info.Time then
                         sceneTransition.loading = false
                         visible.visible = false
@@ -43,21 +46,6 @@ return function(Sunshine, entity, actualScene)
                 end
             end
             lastLoading = sceneTransition.loading
-            -- if loadingScene then
-            --     visible.visible = true
-            --     uiTransform.size = Sunshine:tween(entity.core.tick - startTick, info, Vector2.new(1, 1), Vector2.new())
-            --     if (entity.core.tick - startTick) >= info.Time and not loading then
-            --         loading = true
-            --         loadingScene = false
-            --         Sunshine:loadScene(scene, 1, false)
-            --         startTick = entity.core.tick
-            --     end
-            -- else
-            --     uiTransform.size = Sunshine:tween(entity.core.tick - startTick, info, Vector2.new(), Vector2.new(1, 1))
-            --     if (entity.core.tick - startTick) >= info.Time then
-            --         visible.visible = false
-            --     end
-            -- end
         end, entity)
     end
 end

@@ -11,13 +11,6 @@ return function(Sunshine, entity)
                 if collider.hitEntity and collider.hitEntity.character and
                 collider.hitEntity.character.controllable then
                     teleporter.activated = true
-                    Sunshine:loadScene(scene)
-                end
-            end, entity)
-        elseif button then
-            Sunshine:update(function()
-                if button.activated then
-                    teleporter.activated = true
                     local cutout
                     for _, otherEntity in pairs(Sunshine.scenes[2].entities) do
                         if otherEntity.tag and otherEntity.tag.tag == "sceneTransition" then
@@ -28,6 +21,13 @@ return function(Sunshine, entity)
                     cutout.sceneTransition.scene = Sunshine.dataScenes[entity.core.scene.index]
                     cutout.sceneTransition.type = "teleport"
                     cutout.sceneTransition.loading = true
+                end
+            end, entity)
+        elseif button then
+            Sunshine:update(function()
+                if button.activated then
+                    teleporter.activated = true
+                    Sunshine:loadScene(scene)
                 end
             end, entity)
         end
