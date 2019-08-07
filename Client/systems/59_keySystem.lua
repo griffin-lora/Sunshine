@@ -37,21 +37,24 @@ return function(Sunshine, entity)
                         Sunshine:destroyEntity(entity)
                     end
                     if not spawning then
-                        if collider.hitEntity and collider.hitEntity.character and collider.hitEntity.character.player and not collected then
-                            character = collider.hitEntity
-                            oscillator.axis = nil
-                            spinner.speed = 25
-                            collected = true
-                            startTick = entity.core.tick
-                            camera = Sunshine:getEntity(character.input.camera, entity.core.scene)
-                            for _,p in pairs(entity.core.scene.entities) do
-                                local otherEntity = Sunshine:getEntity(p, entity.core.scene)
-                                if otherEntity.core.id ~= script.core.id and otherEntity.core.id ~= camera.core.id and otherEntity.core.id ~= entity.core.id then
-                                    table.insert(pausedEntities, #pausedEntities+1, {p, otherEntity.core.active or false})
-                                    otherEntity.core.active = false
+                        for _,hitEntity in pairs(collider.hitEntities) do
+                            if hitEntity and hitEntity.character and hitEntity.character.player and not collected then
+                                character = hitEntity
+                                oscillator.axis = nil
+                                spinner.speed = 25
+                                collected = true
+                                startTick = entity.core.tick
+                                camera = Sunshine:getEntity(character.input.camera, entity.core.scene)
+                                for _,p in pairs(entity.core.scene.entities) do
+                                    local otherEntity = Sunshine:getEntity(p, entity.core.scene)
+                                    if otherEntity.core.id ~= script.core.id and otherEntity.core.id ~= camera.core.id and otherEntity.core.id ~= entity.core.id then
+                                        table.insert(pausedEntities, #pausedEntities+1, {p, otherEntity.core.active or false})
+                                        otherEntity.core.active = false
+                                    end
                                 end
                             end
-                        elseif collected and startTick and entity.core.tick - startTick <= 1 then
+                        end
+                        if collected and startTick and entity.core.tick - startTick <= 1 then
                             local newFrame = oldFrame + Vector3.new(0, 3, 0)
                             transform.cFrame = transform.cFrame:lerp(newFrame, (entity.core.tick - startTick)/5)
                             transform.size = transform.size:lerp(Vector3.new(0, 0, 0), (entity.core.tick - startTick)/5)
