@@ -139,7 +139,6 @@ return function(Sunshine, entity)
                                 break
                             end
                         end
-                        cutout.sceneTransition.scene = Sunshine.dataScenes[entity.core.scene.index]
                         cutout.sceneTransition.type = "death"
                         cutout.sceneTransition.loading = true
                     end

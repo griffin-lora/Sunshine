@@ -10,6 +10,8 @@ return function(Sunshine, entity)
         local info = sceneTransition.tweenInfo
         local lastLoading
         local unloading
+        local inBetweenScenes = false
+        local dataScene
         Sunshine:update(function()
             if sceneTransition.loading then
                 if lastLoading ~= sceneTransition.loading then
@@ -22,6 +24,7 @@ return function(Sunshine, entity)
                     end
                     if sceneTransition.type == "death" then
                         cutoutLabel.Image = "rbxassetid://2396957701"
+                        dataScene = Sunshine.dataScenes[1]
                     elseif sceneTransition.type == "teleport" then
                         cutoutLabel.Image = "rbxassetid://2676141005"
                     end
@@ -34,14 +37,27 @@ return function(Sunshine, entity)
                     if (entity.core.tick - startTick) >= info.Time then
                         startTick = entity.core.tick
                         unloading = false
-                        Sunshine:loadScene(sceneTransition.scene)
+                        if sceneTransition.type == "death" then
+                            inBetweenScenes = true
+                            Sunshine:unloadScene(Sunshine.scenes[1])
+                        else
+                            Sunshine:loadScene(sceneTransition.scene)
+                        end
                     end
                 else
-                    uiTransform.size = Sunshine:tween(entity.core.tick - startTick, info, Vector2.new(),
-                    Vector2.new(1, 1))
-                    if (entity.core.tick - startTick) >= info.Time then
-                        sceneTransition.loading = false
-                        visible.visible = false
+                    if inBetweenScenes then
+                        if (entity.core.tick - startTick) >= 5 then
+                            inBetweenScenes = false
+                            startTick = entity.core.tick
+                            Sunshine:loadScene(dataScene)
+                        end
+                    else
+                        uiTransform.size = Sunshine:tween(entity.core.tick - startTick, info, Vector2.new(),
+                        Vector2.new(1, 1))
+                        if (entity.core.tick - startTick) >= info.Time then
+                            sceneTransition.loading = false
+                            visible.visible = false
+                        end
                     end
                 end
             end
