@@ -1,5 +1,5 @@
 local CollectionService = game:GetService("CollectionService")
-local TWEENINFO_BACK = TweenInfo.new(.5, Enum.EasingStyle.Sine, Enum.EasingDirection.Out, 0, false, 0)
+local TWEENINFO_BACK = TweenInfo.new(0.35, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0)
 local CHARACTER_POSITION_OFFSET = 70
 
 return function(Sunshine, entity)
@@ -49,7 +49,7 @@ return function(Sunshine, entity)
                                         startTick = nil
                                         startTickBack = entity.core.tick 
                                     end
-                                    if startTickBack and entity.core.tick - startTickBack < .5 then
+                                    if startTickBack and entity.core.tick - startTickBack < 0.35 then
                                         p.Position = UDim2.new(Sunshine:tween(entity.core.tick - startTickBack, TWEENINFO_BACK, screenPointPosition.X.Scale, firstPosition.X.Scale), Sunshine:tween(entity.core.tick - startTickBack, TWEENINFO_BACK, screenPointPosition.X.Offset, firstPosition.X.Offset), Sunshine:tween(entity.core.tick - startTickBack, TWEENINFO_BACK, screenPointPosition.Y.Scale, firstPosition.Y.Scale), Sunshine:tween(entity.core.tick - startTickBack, TWEENINFO_BACK, screenPointPosition.Y.Offset, firstPosition.Y.Offset) )
                                     elseif startTickBack then
                                         startTickBack = nil
