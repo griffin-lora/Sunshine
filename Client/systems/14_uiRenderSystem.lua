@@ -11,6 +11,11 @@ return function(Sunshine, entity)
         if frame then
             frame.frame = frame.frame:Clone()
             Sunshine:addInstance(frame.frame, entity)
+            for _, descendant in pairs(frame.frame:GetDescendants()) do
+                if descendant:IsA("GuiBase") then
+                    descendant.ZIndex = uiTransform.zIndex
+                end
+            end
             if parent then
                 local parentEntity = Sunshine:getEntity(parent.parent, entity.core.scene)
                 if parentEntity then
