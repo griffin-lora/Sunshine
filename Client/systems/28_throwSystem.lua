@@ -67,14 +67,6 @@ return function(Sunshine, entity)
                     descendant.Transparency = 0
                     CollectionService:AddTag(descendant, "flashable")
                 end
-            elseif CollectionService:HasTag(descendant, "playerGem") then
-                if head.core.active then
-                    descendant.Color = Color3.fromRGB(0, 255, 0)
-                    descendant.Material = Enum.Material.Neon
-                else
-                    descendant.Color = Color3.fromRGB(6, 103, 0)
-                    descendant.Material = Enum.Material.SmoothPlastic
-                end
             end
         end
     end)
