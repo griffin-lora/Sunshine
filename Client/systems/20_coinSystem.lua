@@ -20,13 +20,19 @@ return function(Sunshine, entity)
                 Sunshine:destroyEntity(entity)
             end
             local hitEntity = collider.hitEntity
-            if hitEntity and hitEntity.character and hitEntity.character.player and not collected then
-                local player = hitEntity.character.player
+            if hitEntity and ((hitEntity.head and hitEntity.head.character) or (hitEntity.character and hitEntity.character.player)) and not collected then
+                local player
+                if hitEntity.character then
+                    player = Sunshine:getEntity(hitEntity.character.player, entity.core.scene)
+                elseif hitEntity.head then
+                    local character = Sunshine:getEntity(hitEntity.head.character, entity.core.scene)
+                    player = Sunshine:getEntity(character.character.player, entity.core.scene)
+                end                
+                startTick = entity.core.tick
                 collected = true
                 player.stats.coins = player.stats.coins + 1
                 speaker.playing = true
                 stop = true
-                startTick = entity.core.tick
             end
             if startTick ~= nil and stop then
                 if entity.core.tick - startTick > 0.6 then
