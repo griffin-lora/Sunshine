@@ -35,8 +35,8 @@
         },
 		"ServerScriptService": {
 			"$className": "ServerScriptService",
-			"Server": {
-				"$path": "Server"
+			"Sunshine": {
+				"$path": "SunshineServer"
 			}
 		},
 		"ServerStorage": {

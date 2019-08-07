@@ -33,8 +33,7 @@ return function(Sunshine, entity)
                 startTick = entity.core.tick
                 for _,p in pairs(entity.core.scene.entities) do
                     local otherEntity = Sunshine:getEntity(p, entity.core.scene)
-                    if otherEntity.core.id ~= character.core.id and otherEntity.core.id ~= camera.core.id and
-                    otherEntity.core.id ~= entity.core.id then
+                    if otherEntity.core.id ~= character.core.id and otherEntity.core.id ~= camera.core.id and otherEntity.core.id ~= entity.core.id then
                         table.insert(pausedEntities, #pausedEntities+1, {p, otherEntity.core.active or false})
                         if otherEntity.music then
                             otherEntity.music.paused = true

@@ -132,16 +132,7 @@ return function(Sunshine, entity)
                 lastGroundeds[1] = character.grounded
                 if health and tag and tag.tag == "character" then
                     if health.health <= 0 then
-                        local cutout
-                        for _, otherEntity in pairs(Sunshine.scenes[2].entities) do
-                            if otherEntity.tag and otherEntity.tag.tag == "sceneTransition" then
-                                cutout = otherEntity
-                                break
-                            end
-                        end
-                        cutout.sceneTransition.scene = Sunshine.dataScenes[entity.core.scene.index]
-                        cutout.sceneTransition.type = "death"
-                        cutout.sceneTransition.loading = true
+                        Sunshine:reloadScene(entity.core.scene)
                     end
                 end
             end

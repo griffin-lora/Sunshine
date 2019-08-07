@@ -1,4 +1,4 @@
-local Sunshine = require(game:GetService("ReplicatedStorage"):WaitForChild("Sunshine"))
+-- local Sunshine = require(game:GetService("ReplicatedStorage"):WaitForChild("Sunshine"))
 
-Sunshine:addSystemFolder(script:WaitForChild("systems"))
-Sunshine:loadScene(require(script:WaitForChild("scene")))
+-- Sunshine:addSystemFolder(script:WaitForChild("systems"))
+-- Sunshine:loadScene(require(script:WaitForChild("scene")))
