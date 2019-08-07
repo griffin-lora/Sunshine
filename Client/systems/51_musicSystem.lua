@@ -17,8 +17,6 @@ return function(Sunshine, entity)
                 else
                     sound.playing = false
                 end
-            else
-                sound.playing = false
             end
         end, entity)
     end
