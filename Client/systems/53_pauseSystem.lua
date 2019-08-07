@@ -5,10 +5,10 @@ return function(Sunshine, entity)
     if pause then
         local lastP = false
         Sunshine:update(function()
-            if UserInputService:IsKeyDown(Enum.KeyCode.P) and not lastP then
+            if (UserInputService:IsKeyDown(Enum.KeyCode.P) or UserInputService:IsGamepadButtonDown(Enum.UserInputType.Gamepad1, Enum.KeyCode.ButtonSelect)) and not lastP then
                 entity.core.scene.active = not entity.core.scene.active
             end
-            lastP = UserInputService:IsKeyDown(Enum.KeyCode.P)
+            lastP = UserInputService:IsKeyDown(Enum.KeyCode.P) or UserInputService:IsGamepadButtonDown(Enum.UserInputType.Gamepad1, Enum.KeyCode.ButtonSelect)
         end, entity, true)
     end
 end

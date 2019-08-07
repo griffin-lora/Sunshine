@@ -43,9 +43,10 @@ return function(Sunshine, entity)
                 end
             end
             if startTick ~= nil and character and camera then
-                if entity.core.tick - startTick > 4 then
+                if entity.core.tick - startTick > 3.3 then
                     startTick = nil
                     character.physics.movable = true
+                    character.animator.action = nil
                     character.character.controllable = true
                     camera.camera.controllable = true
                     for _,p in pairs(pausedEntities) do

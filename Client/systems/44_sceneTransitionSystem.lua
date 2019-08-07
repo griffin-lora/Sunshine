@@ -1,40 +1,63 @@
 return function(Sunshine, entity, actualScene)
+    local frame = entity.frame
     local sceneTransition = entity.sceneTransition
     local uiTransform = entity.uiTransform
     local visible = entity.visible
-    if sceneTransition and uiTransform and visible then
-        local loadingScene = false
-        local scene
+    if frame and sceneTransition and uiTransform and visible then
         local startTick = entity.core.tick
         local info = sceneTransition.tweenInfo
-        local loading = false
+        local lastLoading
+        local unloading
         Sunshine:update(function()
-            if loadingScene then
-                visible.visible = true
-                uiTransform.size = Sunshine:tween(entity.core.tick - startTick, info, Vector2.new(1, 1), Vector2.new())
-                if (entity.core.tick - startTick) >= info.Time and not loading then
-                    loading = true
-                    loadingScene = false
-                    Sunshine:loadScene(scene, 1, false)
+            if sceneTransition.loading then
+                if lastLoading ~= sceneTransition.loading then
+                    unloading = true
+                    local cutoutLabel
+                    for _, descendant in pairs(frame.frame:GetDescendants()) do
+                        if CollectionService:HasTag(descendant, "cutoutLabel") then
+                            cutoutLabel = descendant
+                        end
+                    end
+                    if sceneTransition.type == "death" then
+                        cutoutLabel.Image = "rbxassetid://2396957701"
+                    elseif sceneTransition.type == "teleport" then
+                        cutoutLabel.Image = "rbxassetid://2676141005"
+                    end
+                    visible.visible = true
                     startTick = entity.core.tick
                 end
             else
-                uiTransform.size = Sunshine:tween(entity.core.tick - startTick, info, Vector2.new(), Vector2.new(1, 1))
-                if (entity.core.tick - startTick) >= info.Time then
-                    visible.visible = false
+                if unloading then
+                    uiTransform.size = Sunshine:tween(entity.core.tick - startTick, info, Vector2.new(1, 1), Vector2.new())
+                    if (entity.core.tick - startTick) >= info.Time then
+                        startTick = entity.core.tick
+                        unloading = false
+                        Sunshine:loadScene(sceneTransition.scene)
+                    end
+                else
+                    uiTransform.size = Sunshine:tween(entity.core.tick - startTick, info, Vector2.new(), Vector2.new(1, 1))
+                    if (entity.core.tick - startTick) >= info.Time then
+                        sceneTransition.loading = false
+                        visible.visible = false
+                    end
                 end
             end
-        end, entity)
-        Sunshine:sceneUnload(function(sceneLoading, sceneIndex, load)
-            if sceneIndex == 1 and load ~= false then
-                loading = false
-                if not loadingScene then
-                    scene = sceneLoading
-                    loadingScene = true
-                    startTick = entity.core.tick
-                end
-                return load or false
-            end
+            lastLoading = sceneTransition.loading
+            -- if loadingScene then
+            --     visible.visible = true
+            --     uiTransform.size = Sunshine:tween(entity.core.tick - startTick, info, Vector2.new(1, 1), Vector2.new())
+            --     if (entity.core.tick - startTick) >= info.Time and not loading then
+            --         loading = true
+            --         loadingScene = false
+            --         Sunshine:loadScene(scene, 1, false)
+            --         startTick = entity.core.tick
+            --     end
+            -- else
+            --     uiTransform.size = Sunshine:tween(entity.core.tick - startTick, info, Vector2.new(), Vector2.new(1, 1))
+            --     if (entity.core.tick - startTick) >= info.Time then
+            --         visible.visible = false
+            --     end
+            -- end
         end, entity)
     end
 end
