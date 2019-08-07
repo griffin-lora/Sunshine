@@ -3,9 +3,11 @@ return function(Sunshine, entity)
     local collider = entity.collider
     if hazard and collider then
         Sunshine:update(function()
-            if collider.hitEntity and collider.hitEntity.health and not collider.hitEntity.health.invulnerable then
-                collider.hitEntity.health.invulnerable = true
-                collider.hitEntity.health.health = collider.hitEntity.health.health - hazard.damage
+            for _,hitEntity in pairs(collider.hitEntities) do
+                if hitEntity and hitEntity.health and not hitEntity.health.invulnerable then
+                    hitEntity.health.invulnerable = true
+                    hitEntity.health.health = hitEntity.health.health - hazard.damage
+                end
             end
         end, entity)
     end

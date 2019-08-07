@@ -10,13 +10,18 @@ return function(Sunshine, entity)
     if water and collider and model and transform then
         local character
         Sunshine:update(function()
-            if collider.hitEntity and collider.hitEntity.hydrophobic and collider.hitEntity.health then
-                collider.hitEntity.health.health = 0
-            elseif collider.hitEntity and collider.hitEntity.character and collider.hitEntity.character.controllable
-            then
-                character = collider.hitEntity
-                character.character.swimming = true
-            elseif character then
+            local touchedEntity
+            for _,hitEntity in pairs(collider.hitEntities) do
+                if hitEntity and hitEntity.hydrophobic and hitEntity.health then
+                    hitEntity.health.health = 0
+                elseif hitEntity and hitEntity.character and hitEntity.character.controllable
+                then
+                    character = hitEntity
+                    character.character.swimming = true
+                    touchedEntity = true
+                end
+            end
+            if character and not touchedEntity then
                 character.character.swimming = false
                 character = nil
             end

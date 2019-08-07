@@ -1,4 +1,4 @@
-return function(Sunshine, entity, scene)
+return function(Sunshine, entity)
     local head = entity.head
     local transform = entity.transform
     local collider = entity.collider
@@ -9,7 +9,7 @@ return function(Sunshine, entity, scene)
         local canBounce = true
         local first = true
         Sunshine:update(function(step)
-            local character = Sunshine:getEntity(head.character, scene)
+            local character = Sunshine:getEntity(head.character, entity.core.scene)
             if head.cFrame and active then
                 if first then
                     transform.cFrame = character.transform.cFrame
@@ -32,33 +32,19 @@ return function(Sunshine, entity, scene)
                         active = false
                     end
                 end
-                if active and canBounce and collider.hitEntity == character and character.bounce.bounceCount < 1 then
-                    canBounce = false
-                    collider.trigger = false
-                    bounceTick = entity.core.tick
-                    if not character.character.swimming then
-                        character.character.state = "bounce"
-                    end
-                elseif active and collider.hitEntity and collider.hitEntity.capture then
-                    active = false
-                    local player = character.character.player
-                    player.player.character = collider.hitEntity
-                    Sunshine:destroyEntity(entity)
-                elseif active and collider.hitEntity and collider.trigger and collider.hitEntity.crate and
-                collider.hitEntity.transparency and collider.hitEntity.physics then
-                    if collider.hitEntity.crate.hits > 0 then
-                        print("lol die")
+                for _,p in pairs(collider.hitEntities) do
+                    if active and canBounce and hitEntity == character and character.bounce.bounceCount < 1 then
+                        canBounce = false
                         collider.trigger = false
-                        collider.hitEntity.crate.hits = collider.hitEntity.crate.hits - 1
-                        if collider.hitEntity.crate.hits == 0 then
-                            print("ded (swear word)")
-                            collider.hitEntity.physics.canCollide = false
-                            collider.hitEntity.transparency.transparency = 1
-                            if collider.hitEntity.spawner.entity then
-                                collider.hitEntity.spawner.active = true
-                                print("spawn")
-                            end
+                        bounceTick = entity.core.tick
+                        if not character.character.swimming then
+                            character.character.state = "bounce"
                         end
+                    elseif active and hitEntity and hitEntity.capture then
+                        active = false
+                        local player = character.character.player
+                        player.player.character = hitEntity
+                        Sunshine:destroyEntity(entity)
                     end
                 end
             else

@@ -25,28 +25,29 @@ return function(Sunshine, entity)
             elseif collected then
                 Sunshine:destroyEntity(entity)
             end
-            local hitEntity = collider.hitEntity
-            if hitEntity and ((hitEntity.head and hitEntity.head.character) or (hitEntity.character and hitEntity.character.player)) and not collected then
-                local player
-                if hitEntity.character then
-                    player = Sunshine:getEntity(hitEntity.character.player, entity.core.scene)
-                elseif hitEntity.head then
-                    local character = Sunshine:getEntity(hitEntity.head.character, entity.core.scene)
-                    player = Sunshine:getEntity(character.character.player, entity.core.scene)
-                end                
-                startTick = entity.core.tick
-                collected = true
-                if coin then
-                    player.stats.coins = player.stats.coins + 1
-                elseif regionalCoin then
-                    player.stats.regionalCoins = player.stats.regionalCoins + 1
+            for _,hitEntity in pairs(collider.hitEntities) do
+                if hitEntity and ((hitEntity.head and hitEntity.head.character) or (hitEntity.character and hitEntity.character.player)) and not collected then
+                    local player
+                    if hitEntity.character then
+                        player = Sunshine:getEntity(hitEntity.character.player, entity.core.scene)
+                    elseif hitEntity.head then
+                        local character = Sunshine:getEntity(hitEntity.head.character, entity.core.scene)
+                        player = Sunshine:getEntity(character.character.player, entity.core.scene)
+                    end                
+                    startTick = entity.core.tick
+                    collected = true
+                    if coin then
+                        player.stats.coins = player.stats.coins + 1
+                    elseif regionalCoin then
+                        player.stats.regionalCoins = player.stats.regionalCoins + 1
+                    end
+                    speaker.playing = true
+                    stop = true
                 end
-                speaker.playing = true
-                stop = true
-            end
-            if startTick ~= nil and stop then
-                if entity.core.tick - startTick > 0.6 then
-                    stop = false
+                if startTick ~= nil and stop then
+                    if entity.core.tick - startTick > 0.6 then
+                        stop = false
+                    end
                 end
             end
         end, entity)

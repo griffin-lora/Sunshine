@@ -11,35 +11,37 @@ return function(Sunshine, entity)
         local character
         local camera
         Sunshine:update(function()
-            if collider.hitEntity and collider.hitEntity.character and
-            collider.hitEntity.character.controllable and collider.trigger then
-                scriptCollectible.active = true
-                character = collider.hitEntity
-                camera = Sunshine:getEntity(character.input.camera, entity.core.scene)
-                character.animator.action = 1076799780
-                character.input.moveVector = Vector3.new(0,0,0)
-                character.character.controllable = false
-                character.physics.velocity = Vector3.new(0,0,0)
-                character.physics.movable = false
-                character.transform.cFrame = CFrame.new(transform.cFrame.Position, Vector3.new(
-                camera.transform.cFrame.Position.X, transform.cFrame.Y, camera.transform.cFrame.Position.Z))
-                transform.cFrame = character.transform.cFrame + Vector3.new(0, 6.5, 0)
-                camera.camera.controllable = false
-                camera.transform.cFrame = CFrame.new(transform.cFrame.Position +
-                (transform.cFrame.LookVector.Unit * 20) + Vector3.new(0, 10, 0),
-                transform.cFrame.Position)
-                sound.playing = true
-                spinner.speed = 0
-                startTick = entity.core.tick
-                for _,p in pairs(entity.core.scene.entities) do
-                    local otherEntity = Sunshine:getEntity(p, entity.core.scene)
-                    if otherEntity.core.id ~= character.core.id and otherEntity.core.id ~= camera.core.id and
-                    otherEntity.core.id ~= entity.core.id then
-                        table.insert(pausedEntities, #pausedEntities+1, {p, otherEntity.core.active or false})
-                        if otherEntity.music then
-                            otherEntity.music.paused = true
+            for _,hitEntity in pairs(collider.hitEntities) do
+                if hitEntity and hitEntity.character and
+                hitEntity.character.controllable and collider.trigger then
+                    scriptCollectible.active = true
+                    character = hitEntity
+                    camera = Sunshine:getEntity(character.input.camera, entity.core.scene)
+                    character.animator.action = 1076799780
+                    character.input.moveVector = Vector3.new(0,0,0)
+                    character.character.controllable = false
+                    character.physics.velocity = Vector3.new(0,0,0)
+                    character.physics.movable = false
+                    character.transform.cFrame = CFrame.new(transform.cFrame.Position, Vector3.new(
+                    camera.transform.cFrame.Position.X, transform.cFrame.Y, camera.transform.cFrame.Position.Z))
+                    transform.cFrame = character.transform.cFrame + Vector3.new(0, 6.5, 0)
+                    camera.camera.controllable = false
+                    camera.transform.cFrame = CFrame.new(transform.cFrame.Position +
+                    (transform.cFrame.LookVector.Unit * 20) + Vector3.new(0, 10, 0),
+                    transform.cFrame.Position)
+                    sound.playing = true
+                    spinner.speed = 0
+                    startTick = entity.core.tick
+                    for _,p in pairs(entity.core.scene.entities) do
+                        local otherEntity = Sunshine:getEntity(p, entity.core.scene)
+                        if otherEntity.core.id ~= character.core.id and otherEntity.core.id ~= camera.core.id and
+                        otherEntity.core.id ~= entity.core.id then
+                            table.insert(pausedEntities, #pausedEntities+1, {p, otherEntity.core.active or false})
+                            if otherEntity.music then
+                                otherEntity.music.paused = true
+                            end
+                            otherEntity.core.active = false
                         end
-                        otherEntity.core.active = false
                     end
                 end
             end
