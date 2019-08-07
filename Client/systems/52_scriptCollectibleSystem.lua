@@ -48,6 +48,7 @@ return function(Sunshine, entity)
                     startTick = nil
                     character.physics.movable = true
                     character.character.controllable = true
+                    character.animator.action = nil
                     camera.camera.controllable = true
                     for _,p in pairs(pausedEntities) do
                         local otherEntity = Sunshine:getEntity(p[1], entity.core.scene)
