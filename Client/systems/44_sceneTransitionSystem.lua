@@ -1,6 +1,6 @@
 local CollectionService = game:GetService("CollectionService")
 
-return function(Sunshine, entity, actualScene)
+return function(Sunshine, entity)
     local frame = entity.frame
     local sceneTransition = entity.sceneTransition
     local uiTransform = entity.uiTransform
