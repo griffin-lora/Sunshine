@@ -1,16 +1,22 @@
 -- SuperMakerPlayer and TrafficConeGod
 
 return function(Sunshine, entity)
-	local coin = entity.coin
+    local coin = entity.coin
+    local regionalCoin = entity.regionalCoin
     local transform = entity.transform
     local collider = entity.collider
     local speaker = entity.speaker
 
     local stop = false
 
-    if coin and transform and collider and speaker then
+    if (coin or regionalCoin) and transform and collider and speaker then
         local collected = false
-        local info = coin.tweenInfo
+        local info 
+        if coin then
+            info = coin.tweenInfo
+        elseif regionalCoin then
+            info = regionalCoin.tweenInfo
+        end
         local startTick
         local size = transform.size
         Sunshine:update(function()
@@ -30,7 +36,11 @@ return function(Sunshine, entity)
                 end                
                 startTick = entity.core.tick
                 collected = true
-                player.stats.coins = player.stats.coins + 1
+                if coin then
+                    player.stats.coins = player.stats.coins + 1
+                elseif regionalCoin then
+                    player.stats.regionalCoins = player.stats.regionalCoins + 1
+                end
                 speaker.playing = true
                 stop = true
             end

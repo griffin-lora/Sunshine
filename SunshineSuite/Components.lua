@@ -69,7 +69,8 @@ return {
 		coins = {Type = "number", Default = 0}
 	},
 	stats = {
-		coins = {Type = "number", Default = 0}
+		coins = {Type = "number", Default = 0},
+		regionalCoins = {Type = "number", Default = 0}
 	},
 	jump = {
         power = {Type = "number", Default = 50},
@@ -240,6 +241,9 @@ return {
         z = {Type = "boolean", Default = false}
 	},
 	coin = {
+        tweenInfo = {Type = "TweenInfo", Default = TweenInfo.new()}
+	},
+	regionalCoin = {
         tweenInfo = {Type = "TweenInfo", Default = TweenInfo.new()}
 	},
 
