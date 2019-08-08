@@ -22,6 +22,7 @@ return function(Sunshine, entity)
                     character.character.controllable = false
                     character.physics.velocity = Vector3.new(0,0,0)
                     character.physics.movable = false
+                    character.health.health = 3
                     character.transform.cFrame = CFrame.new(transform.cFrame.Position, Vector3.new(
                     camera.transform.cFrame.Position.X, transform.cFrame.Y, camera.transform.cFrame.Position.Z))
                     transform.cFrame = character.transform.cFrame + Vector3.new(0, 6.5, 0)
