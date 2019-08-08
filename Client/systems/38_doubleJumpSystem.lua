@@ -2,6 +2,9 @@
 
 local state = "doubleJump"
 
+local VECTOR3_NEW = Vector3.new
+local BLANK_VECTOR3 = VECTOR3_NEW()
+
 return function(Sunshine, entity)
     local component = entity[state]
     local character = entity.character
@@ -18,7 +21,7 @@ return function(Sunshine, entity)
     end, function()
         -- start
         spaceRemember = 0
-        physics.velocity = Vector3.new(physics.velocity.X, component.power, physics.velocity.Z)
+        physics.velocity = VECTOR3_NEW(physics.velocity.X, component.power, physics.velocity.Z)
         animator.action = component.animation
         if component.sound then
             speaker.id = component.sound
@@ -27,7 +30,7 @@ return function(Sunshine, entity)
     end, function()
         -- update
         if physics.velocity.Y > 0 and not input.space then
-            physics.velocity = Vector3.new(physics.velocity.X, physics.velocity.Y * 0.8, physics.velocity.Z)
+            physics.velocity = VECTOR3_NEW(physics.velocity.X, physics.velocity.Y * 0.8, physics.velocity.Z)
         end
     end, function()
         -- end check

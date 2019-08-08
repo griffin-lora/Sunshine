@@ -1,5 +1,9 @@
 -- TrafficConeGod
 
+local INSTANCE_NEW = Instance.new
+local VECTOR3_NEW = Vector3.new
+local BLANK_VECTOR3 = VECTOR3_NEW()
+
 return function(Sunshine, entity)
     local model = entity.model
     local transform = entity.transform
@@ -8,13 +12,13 @@ return function(Sunshine, entity)
     local lockRotationAxis = entity.lockRotationAxis
     local gravity = entity.gravity
     if model and transform and physics then
-        local bodyVelocity = Instance.new("BodyVelocity")
-        bodyVelocity.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
-        bodyVelocity.Velocity = Vector3.new()
-        local pauseBodyVelocity = Instance.new("BodyVelocity")
-        pauseBodyVelocity.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
-        pauseBodyVelocity.Velocity = Vector3.new()
-        local gravityIgnoreBodyForce = Instance.new("BodyForce")
+        local bodyVelocity = INSTANCE_NEW("BodyVelocity")
+        bodyVelocity.MaxForce = VECTOR3_NEW(math.huge, math.huge, math.huge)
+        bodyVelocity.Velocity = BLANK_VECTOR3
+        local pauseBodyVelocity = INSTANCE_NEW("BodyVelocity")
+        pauseBodyVelocity.MaxForce = VECTOR3_NEW(math.huge, math.huge, math.huge)
+        pauseBodyVelocity.Velocity = BLANK_VECTOR3
+        local gravityIgnoreBodyForce = INSTANCE_NEW("BodyForce")
         if lockAxis then
             local x = 0
             local y = 0
@@ -28,9 +32,9 @@ return function(Sunshine, entity)
             if lockAxis.z then
                 z = math.huge
             end
-            local lockAxisBodyVelocity = Instance.new("BodyVelocity")
-            lockAxisBodyVelocity.MaxForce = Vector3.new(x, y, z)
-            lockAxisBodyVelocity.Velocity = Vector3.new()
+            local lockAxisBodyVelocity = INSTANCE_NEW("BodyVelocity")
+            lockAxisBodyVelocity.MaxForce = VECTOR3_NEW(x, y, z)
+            lockAxisBodyVelocity.Velocity = BLANK_VECTOR3
             lockAxisBodyVelocity.Parent = model.model.PrimaryPart
             for _, descendant in pairs(model.model:GetDescendants()) do
                 if descendant:IsA("BasePart") then
@@ -51,9 +55,9 @@ return function(Sunshine, entity)
             if lockRotationAxis.z then
                 z = math.huge
             end
-            local lockRotationAxisBodyVelocity = Instance.new("BodyAngularVelocity")
-            lockRotationAxisBodyVelocity.MaxTorque = Vector3.new(x, y, z)
-            lockRotationAxisBodyVelocity.AngularVelocity = Vector3.new()
+            local lockRotationAxisBodyVelocity = INSTANCE_NEW("BodyAngularVelocity")
+            lockRotationAxisBodyVelocity.MaxTorque = VECTOR3_NEW(x, y, z)
+            lockRotationAxisBodyVelocity.AngularVelocity = BLANK_VECTOR3
             lockRotationAxisBodyVelocity.Parent = model.model.PrimaryPart
             for _, descendant in pairs(model.model:GetDescendants()) do
                 if descendant:IsA("BasePart") then
@@ -64,7 +68,7 @@ return function(Sunshine, entity)
         for _, descendant in pairs(model.model:GetDescendants()) do
             if descendant:IsA("BasePart") then
                 if physics.welded and descendant ~= model.model.PrimaryPart then
-                    local weldConstraint = Instance.new("WeldConstraint")
+                    local weldConstraint = INSTANCE_NEW("WeldConstraint")
                     weldConstraint.Part0 = descendant
                     weldConstraint.Part1 = model.model.PrimaryPart
                     weldConstraint.Parent = descendant
@@ -81,7 +85,7 @@ return function(Sunshine, entity)
                     mass = mass + descendant:GetMass()
                 end
             end
-            gravityIgnoreBodyForce.Force = Vector3.new(0, workspace.Gravity, 0) * mass
+            gravityIgnoreBodyForce.Force = VECTOR3_NEW(0, workspace.Gravity, 0) * mass
         end
         if physics.movable then
             bodyVelocity.Parent = nil
@@ -94,11 +98,11 @@ return function(Sunshine, entity)
             __index = function(_, key)
                 if not model.model.Parent then
                     setmetatable(physics, {})
-                    physics.velocity = Vector3.new()
-                    return Vector3.new()
+                    physics.velocity = BLANK_VECTOR3
+                    return BLANK_VECTOR3
                 end
                 if key == "velocity" then
-                    return model.model.PrimaryPart.Velocity or Vector3.new()
+                    return model.model.PrimaryPart.Velocity or BLANK_VECTOR3
                 elseif key == "movable" then
                     return not bodyVelocity.Parent
                 end

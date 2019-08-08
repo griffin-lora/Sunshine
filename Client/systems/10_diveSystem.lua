@@ -2,6 +2,8 @@
 
 local state = "dive"
 
+local VECTOR3_NEW = Vector3.new
+
 return function(Sunshine, entity)
     local component = entity[state]
     local character = entity.character
@@ -20,7 +22,7 @@ return function(Sunshine, entity)
         -- start
         physics.movable = true
         horizontal = transform.cFrame.LookVector * component.power
-        physics.velocity = horizontal + Vector3.new(0, component.bouncePower, 0)
+        physics.velocity = horizontal + VECTOR3_NEW(0, component.bouncePower, 0)
         animator.action = component.animation
         if component.sound then
             speaker.id = component.sound
@@ -29,7 +31,7 @@ return function(Sunshine, entity)
     end, function(step)
         -- update
         horizontal = horizontal:Lerp(transform.cFrame.LookVector * component.power, step * 3)
-        physics.velocity = Vector3.new(horizontal.X, physics.velocity.Y, horizontal.Z)
+        physics.velocity = VECTOR3_NEW(horizontal.X, physics.velocity.Y, horizontal.Z)
     end, function()
         -- end check
         return character.grounded or character.swimming

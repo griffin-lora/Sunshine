@@ -1,20 +1,22 @@
 -- TrafficConeGod
 
+local CFRAME_NEW = CFrame.new
+
 return function(Sunshine, entity)
     local transform = entity.transform
     local spinner = entity.spinner
     if transform and spinner then
         Sunshine:update(function()
+            local pos = transform.cFrame.Position
+            local preCalcCFrame = CFRAME_NEW(pos)
             if spinner.speed ~= 0 then
                 local angle = (entity.core.tick % math.pi) * spinner.speed
                 if spinner.axis == "x" then
-                    transform.cFrame = CFrame.new(transform.cFrame.Position) * CFrame.Angles(angle, 0, 0)
+                    transform.cFrame = preCalcCFrame * CFrame.Angles(angle, 0, 0)
                 elseif spinner.axis == "y" then
-                    transform.cFrame = CFrame.new(transform.cFrame.Position) * CFrame.Angles(0, angle, 0)
+                    transform.cFrame = preCalcCFrame * CFrame.Angles(0, angle, 0)
                 elseif spinner.axis == "z" then
-                    transform.cFrame = CFrame.new(transform.cFrame.Position) * CFrame.Angles(0, 0, angle)
-                elseif spinner.axis == "xyz" then
-                    transform.cFrame = CFrame.new(transform.cFrame.Position) * CFrame.Angles(angle, angle, angle)
+                    transform.cFrame = preCalcCFrame * CFrame.Angles(0, 0, angle)
                 end
             end
         end, entity)

@@ -1,3 +1,6 @@
+local VECTOR3_NEW = Vector3.new
+local BLANK_VECTOR3 = VECTOR3_NEW()
+
 return function(Sunshine, entity)
     local follow = entity.follow
     local model = entity.model
@@ -14,7 +17,7 @@ return function(Sunshine, entity)
             end
             local mainCharacter = Sunshine:getEntity(player.player.character, entity.core.scene)
             if not character.controllable and follow.active then
-                character.moveVector = Vector3.new()
+                character.moveVector = BLANK_VECTOR3
                 local tip = transform.cFrame.Position
                 local direction = transform.cFrame.LookVector.Unit
                 local height = follow.range
@@ -27,7 +30,7 @@ return function(Sunshine, entity)
                         if not Sunshine:findPartOnRay(Ray.new(transform.cFrame.Position,
                         direction), {model.model, mainCharacter.model.model}) then
                             local lookDirection = mainCharacter.transform.cFrame.Position - transform.cFrame.Position
-                            local moveVector = Vector3.new(lookDirection.X, 0, lookDirection.Z).Unit
+                            local moveVector = VECTOR3_NEW(lookDirection.X, 0, lookDirection.Z).Unit
                             if moveVector.Unit.Magnitude == moveVector.Unit.Magnitude then
                                 character.moveVector = moveVector
                             end

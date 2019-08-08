@@ -2,6 +2,10 @@
 
 local UserInputService = game:GetService("UserInputService")
 local Camera = workspace.Camera
+local VECTOR3_NEW = Vector3.new
+local BLANK_VECTOR3 = VECTOR3_NEW()
+local INSTANCE_NEW = Instance.new
+local CFRAME_NEW = CFrame.new
 
 return function(Sunshine, entity)
     local camera = entity.camera
@@ -12,8 +16,8 @@ return function(Sunshine, entity)
         local pitch = 0
         local mouseDown = false
         local mouseScrollWheel = 0
-        local mouseChange = Vector3.new()
-        local position = Vector3.new()
+        local mouseChange = BLANK_VECTOR3
+        local position = BLANK_VECTOR3
         local function handleInput(inputObject, gameProcessedEvent)
             if not gameProcessedEvent then
                 if UserInputService:GetLastInputType() ~= Enum.UserInputType.Gamepad1 then
@@ -29,7 +33,7 @@ return function(Sunshine, entity)
                         if inputObject.Position.Magnitude > 0.2 then
                             position = inputObject.Position
                         else
-                            position = Vector3.new()
+                            position = BLANK_VECTOR3
                         end
                     end
                 end
@@ -46,16 +50,16 @@ return function(Sunshine, entity)
                 if mouseDown or position then
                     local change = mouseChange
                     if UserInputService:GetLastInputType() == Enum.UserInputType.Gamepad1 then
-                        change = Vector3.new(position.X, -position.Y, 0) * 30
+                        change = VECTOR3_NEW(position.X, -position.Y, 0) * 30
                     end
                     yaw = yaw - (change.Y * camera.rotateSpeed)
                     yaw = math.clamp(yaw, -80, 80)
                     pitch = pitch - (change.X * camera.rotateSpeed)
                 end
-                local hackPart = Instance.new("Part") -- This is hacky code 101. But euler angles work differently and
+                local hackPart = INSTANCE_NEW("Part") -- This is hacky code 101. But euler angles work differently and
                 -- I can't be bothered to look up the math to do it.
-                hackPart.Orientation = Vector3.new(yaw, pitch, 0)
-                local cFrame = CFrame.new(subject.transform.cFrame.Position, subject.transform.cFrame.Position
+                hackPart.Orientation = VECTOR3_NEW(yaw, pitch, 0)
+                local cFrame = CFRAME_NEW(subject.transform.cFrame.Position, subject.transform.cFrame.Position
                 + hackPart.CFrame.LookVector)
                 hackPart:Destroy()
                 -- cFrame = cFrame * CFrame.Angles(math.rad(yaw), math.rad(pitch), 0)
@@ -63,11 +67,11 @@ return function(Sunshine, entity)
                 -- local part, position = Sunshine:findPartOnRay(Ray.new(transform.cFrame.Position, newCFrame.Position -
                 -- transform.cFrame.Position), {})
                 -- if not part then
-                --     transform.cFrame = CFrame.new(position, position + newCFrame.LookVector)
+                --     transform.cFrame = CFRAME_NEW(position, position + newCFrame.LookVector)
                 -- end
                 transform.cFrame = newCFrame
                 mouseScrollWheel = 0
-                mouseChange = Vector3.new()
+                mouseChange = BLANK_VECTOR3
             end
             Camera.CFrame = transform.cFrame
             Camera.FieldOfView = camera.fieldOfView

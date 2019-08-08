@@ -1,5 +1,7 @@
 local state = "longJump"
 
+local VECTOR3_NEW = Vector3.new
+
 return function(Sunshine, entity)
     local component = entity[state]
     local character = entity.character
@@ -14,7 +16,7 @@ return function(Sunshine, entity)
     end, function()
         -- start
         local horizontal = transform.cFrame.LookVector * component.power
-        physics.velocity = Vector3.new(horizontal.X, component.bouncePower, horizontal.Z)
+        physics.velocity = VECTOR3_NEW(horizontal.X, component.bouncePower, horizontal.Z)
         animator.action = component.animation
         if component.sound then
             speaker.id = component.sound

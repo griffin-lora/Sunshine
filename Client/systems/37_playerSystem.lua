@@ -1,3 +1,5 @@
+local CFRAME_NEW = CFrame.new
+
 return function(Sunshine, entity)
     local player = entity.player
     if player then
@@ -11,7 +13,7 @@ return function(Sunshine, entity)
                 character.input.camera = camera
                 camera.camera.subject = character
                 if character ~= mainCharacter then
-                    mainCharacter.transform.cFrame = CFrame.new(0, 100000, 0)
+                    mainCharacter.transform.cFrame = CFRAME_NEW(0, 100000, 0)
                     mainCharacter.physics.movable = false
                     mainCharacter.character.controllable = false
                     character.character.controllable = true

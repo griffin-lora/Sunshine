@@ -1,5 +1,7 @@
 -- SuperMakerPlayer and TrafficConeGod
 
+local ZERO_VECTOR3 = Vector3.new(0,0,0)
+
 return function(Sunshine, entity)
     local coin = entity.coin
     local regionalCoin = entity.regionalCoin
@@ -21,7 +23,7 @@ return function(Sunshine, entity)
         local size = transform.size
         Sunshine:update(function()
             if collected and entity.core.tick - startTick <= info.Time then
-                transform.size = Sunshine:tween(entity.core.tick - startTick, info, size, Vector3.new(0, 0, 0))
+                transform.size = Sunshine:tween(entity.core.tick - startTick, info, size, ZERO_VECTOR3)
             elseif collected and speaker.sounds == 0 then
                 Sunshine:destroyEntity(entity)
             end

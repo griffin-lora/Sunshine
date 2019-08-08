@@ -2,6 +2,7 @@
 
 local rayNew = Ray.new
 local vector3New = Vector3.new
+local BLANK_VECTOR3 = vector3New()
 
 local function dotToLerp(dot)
     dot = dot + 1
@@ -81,7 +82,7 @@ return function(Sunshine, entity)
             end
             if (input and character.controllable) or character.moveVector then
                 local moveVector = character.moveVector or input.moveVector
-                character.moving = moveVector ~= vector3New()
+                character.moving = moveVector ~= BLANK_VECTOR3
                 if character.moving and physics.movable and lastMoveVector then
                     transform.cFrame = transform.cFrame:Lerp(CFrame.new(transform.cFrame.Position,
                     transform.cFrame.Position + moveVector), step * moveVector:Dot(lastMoveVector) * 12)
@@ -91,7 +92,7 @@ return function(Sunshine, entity)
                 local fullyGrounded = lastGroundeds[1] and lastGroundeds[2] and character.grounded
                 if not fullyGrounded then
                     canLoseMagnitude = false
-                elseif moveVector == vector3New() then
+                elseif moveVector == BLANK_VECTOR3 then
                     damping = 0.7
                 end
                 if character.canLoseMagnitude or character.swimming or (lastGroundeds[1] and character.grounded) then

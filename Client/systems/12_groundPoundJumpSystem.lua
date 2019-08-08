@@ -1,5 +1,7 @@
 local state = "groundPoundJump"
 
+local VECTOR3_NEW = Vector3.new
+
 return function(Sunshine, entity)
     local component = entity[state]
     local character = entity.character
@@ -11,7 +13,7 @@ return function(Sunshine, entity)
         return character.state == "groundPound" and character.grounded and input.space
     end, function()
         -- start
-        physics.velocity = Vector3.new(0, component.power, 0)
+        physics.velocity = VECTOR3_NEW(0, component.power, 0)
         animator.action = component.animation
     end, function()
         -- update

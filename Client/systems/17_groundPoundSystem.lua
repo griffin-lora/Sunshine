@@ -2,6 +2,9 @@
 
 local state = "groundPound"
 
+local VECTOR3_NEW = Vector3.new
+local BLANK_VECTOR3 = VECTOR3_NEW()
+
 return function(Sunshine, entity)
     local component = entity[state]
     local character = entity.character
@@ -17,7 +20,7 @@ return function(Sunshine, entity)
     end, function()
         -- start
         physics.movable = false
-        physics.velocity = Vector3.new()
+        physics.velocity = BLANK_VECTOR3
         character.canLoseMagnitude = true
         startTick = entity.core.tick
         animator.action = component.startAnimation
@@ -31,7 +34,7 @@ return function(Sunshine, entity)
             end
         elseif (entity.core.tick - startTick) > component.delay then
             physics.movable = true
-            physics.velocity = Vector3.new(0, component.speed, 0)
+            physics.velocity = VECTOR3_NEW(0, component.speed, 0)
             if animator.action ~= component.animation then
                 animator.action = component.animation
             end
@@ -46,7 +49,7 @@ return function(Sunshine, entity)
         physics.movable = true
         character.canLoseMagnitude = false
         if character.state == state then
-            physics.velocity = Vector3.new(0, 0, 0)
+            physics.velocity = BLANK_VECTOR3
         end
     end, function()
         -- general update

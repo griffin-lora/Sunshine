@@ -2,13 +2,15 @@
 
 local SoundService = game:GetService("SoundService")
 
+local INSTANCE_NEW = Instance.new
+
 return function(Sunshine, entity)
     local speaker = entity.speaker
     if speaker then
         local soundInstances = {}
         Sunshine:update(function()
             if speaker.playing then
-                local soundInstance = Instance.new("Sound")
+                local soundInstance = INSTANCE_NEW("Sound")
                 soundInstance.SoundId = "rbxassetid://"..speaker.id
                 soundInstance.Volume = speaker.volume
                 soundInstance.Playing = true
