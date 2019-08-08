@@ -86,7 +86,7 @@ return function(Sunshine, entity)
                     transform.cFrame = transform.cFrame:Lerp(CFrame.new(transform.cFrame.Position,
                     transform.cFrame.Position + moveVector), step * moveVector:Dot(lastMoveVector) * 12)
                 end
-                local damping = 0.5
+                local damping = 0.33
                 local canLoseMagnitude = true
                 local fullyGrounded = lastGroundeds[1] and lastGroundeds[2] and character.grounded
                 if not fullyGrounded then
@@ -98,7 +98,7 @@ return function(Sunshine, entity)
                     canLoseMagnitude = true
                 end
                 local function calculateVelocity()
-                    local walkSpeed = character.walkSpeed * character.walkSpeedFactor
+                    local walkSpeed = character.walkSpeed * character.walkSpeedFactor * 0.56363762272
                     local xVelocity = physics.velocity.X
                     xVelocity = xVelocity + (moveVector.X * walkSpeed)
                     xVelocity = xVelocity * math.pow(1 - damping, step * 10)
@@ -120,6 +120,7 @@ return function(Sunshine, entity)
                         velocity = lastVelocity
                     end
                 end
+                print(velocity.Magnitude)
                 physics.velocity = vector3New(velocity.X, physics.velocity.Y, velocity.Z)
                 if character.grounded then
                     transform.cFrame = (transform.cFrame - vector3New(0, transform.cFrame.Y)) + vector3New(0, position.Y
