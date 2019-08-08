@@ -23,6 +23,9 @@ return function(Sunshine, entity)
                                             dataComponent[propertyName] = value
                                         end
                                     end
+                                    if name == "transform" then
+                                        dataComponent.cFrame = component.cFrame
+                                    end
                                     dataEntity[name] = dataComponent
                                 end
                             end

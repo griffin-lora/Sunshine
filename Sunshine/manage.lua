@@ -17,7 +17,7 @@ return function(Sunshine)
         end
     end
     local updateConnection = RunService.Heartbeat:Connect(update)
-    if Sunshine.plugin then
+    if RunService:IsEdit() then
         local unloadConnection
         unloadConnection = Sunshine.plugin.Unloading:Connect(function()
             updateConnection:Disconnect()
