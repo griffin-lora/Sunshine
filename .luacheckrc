@@ -33,7 +33,9 @@ std = {
         "pcall",
         "os",
         "plugin",
-        "DockWidgetPluginGuiInfo"
+        "DockWidgetPluginGuiInfo",
+        "spawn",
+        "wait"
     }
 }
 ignore = {"Assets/prefabs/camera.lua"}
