@@ -120,7 +120,6 @@ return function(Sunshine, entity)
                         velocity = lastVelocity
                     end
                 end
-                print(velocity.Magnitude)
                 physics.velocity = vector3New(velocity.X, physics.velocity.Y, velocity.Z)
                 if character.grounded then
                     transform.cFrame = (transform.cFrame - vector3New(0, transform.cFrame.Y)) + vector3New(0, position.Y

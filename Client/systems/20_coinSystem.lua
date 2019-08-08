@@ -11,7 +11,7 @@ return function(Sunshine, entity)
 
     if (coin or regionalCoin) and transform and collider and speaker then
         local collected = false
-        local info 
+        local info
         if coin then
             info = coin.tweenInfo
         elseif regionalCoin then
@@ -22,18 +22,19 @@ return function(Sunshine, entity)
         Sunshine:update(function()
             if collected and entity.core.tick - startTick <= info.Time then
                 transform.size = Sunshine:tween(entity.core.tick - startTick, info, size, Vector3.new(0, 0, 0))
-            elseif collected then
+            elseif collected and speaker.sounds == 0 then
                 Sunshine:destroyEntity(entity)
             end
-            for _,hitEntity in pairs(collider.hitEntities) do
-                if hitEntity and ((hitEntity.head and hitEntity.head.character) or (hitEntity.character and hitEntity.character.player)) and not collected then
+            for _, hitEntity in pairs(collider.hitEntities) do
+                if hitEntity and ((hitEntity.head and hitEntity.head.character) or (hitEntity.character and
+                hitEntity.character.player)) and not collected then
                     local player
                     if hitEntity.character then
                         player = Sunshine:getEntity(hitEntity.character.player, entity.core.scene)
                     elseif hitEntity.head then
                         local character = Sunshine:getEntity(hitEntity.head.character, entity.core.scene)
                         player = Sunshine:getEntity(character.character.player, entity.core.scene)
-                    end                
+                    end
                     startTick = entity.core.tick
                     collected = true
                     if coin then
