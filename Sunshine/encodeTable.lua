@@ -35,6 +35,12 @@ return function(Sunshine, table)
         elseif memberType == "Color3" then
             local r, g, b = member.r, member.g, member.b
             output = output.."Color3.new("..r..","..g..","..b..")"
+        elseif memberType == "Vector2" then
+            local x, y = member.X, member.Y
+            output = output.."Vector2.new("..x..","..y..")"
+        elseif memberType == "TweenInfo" then
+            local time, style, direction = member.Time, member.EasingStyle, member.EasingDirection
+            output = output.."TweenInfo.new("..time..","..tostring(style)..","..tostring(direction)..")"
         elseif memberType == "function" then
             output = output.."function()end"
         else

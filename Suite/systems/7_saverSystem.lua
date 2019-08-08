@@ -25,6 +25,12 @@ return function(Sunshine, entity)
                                     end
                                     if name == "transform" then
                                         dataComponent.cFrame = component.cFrame
+                                    elseif name == "model" then
+                                        dataComponent.model = dataComponent.originalModel
+                                        dataComponent.originalModel = nil
+                                    elseif name == "prefab" then
+                                        dataComponent.prefab = dataComponent.originalPrefab
+                                        dataComponent.originalPrefab = nil
                                     end
                                     dataEntity[name] = dataComponent
                                 end

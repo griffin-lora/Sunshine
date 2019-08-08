@@ -3,6 +3,7 @@
 return function(Sunshine, entity)
     local prefab = entity.prefab
     if prefab then
+        prefab.originalPrefab = prefab.prefab
         prefab.prefab = require(prefab.prefab)
         for name, component in pairs(prefab.prefab) do
             if not entity[name] then

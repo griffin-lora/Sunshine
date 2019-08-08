@@ -35,7 +35,9 @@ std = {
         "plugin",
         "DockWidgetPluginGuiInfo",
         "spawn",
-        "wait"
+        "wait",
+        "rawget",
+        "rawequal"
     }
 }
 ignore = {"Assets/prefabs/camera.lua"}

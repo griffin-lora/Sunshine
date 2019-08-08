@@ -5,6 +5,7 @@ return function(Sunshine, entity)
     local transform = entity.transform
     local transparency = entity.transparency
     if model and transform then
+        model.originalModel = model.model
         model.model = model.model:Clone()
         Sunshine:addInstance(model.model, entity)
         model.model.Name = entity.core.id
