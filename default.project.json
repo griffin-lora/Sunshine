@@ -41,8 +41,11 @@
 		},
 		"ServerStorage": {
 			"$className": "ServerStorage",
-            "SunshineSuite": {
-                "$path": "SunshineSuite"
+            "Suite": {
+                "$className": "Folder",
+                "Suite": {
+                    "$path": "Suite"
+                }
             },
             "GrassyPartGenerator": {
                 "$path": "GrassyPartGenerator"
