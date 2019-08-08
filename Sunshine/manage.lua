@@ -16,5 +16,15 @@ return function(Sunshine)
             end
         end
     end
-    RunService.Heartbeat:Connect(update)
+    local updateConnection = RunService.Heartbeat:Connect(update)
+    if Sunshine.plugin then
+        local unloadConnection
+        unloadConnection = Sunshine.plugin.Unloading:Connect(function()
+            updateConnection:Disconnect()
+            unloadConnection:Disconnect()
+            for _, scene in pairs(Sunshine.scenes) do
+                Sunshine:unloadScene(scene)
+            end
+        end)
+    end
 end

@@ -22,7 +22,10 @@ return {entities = {
         },
         uiTransform = {
             position = UDim2.new(0, 0, 0, 0),
-            size = Vector2.new(1, 1)
+            size = Vector2.new(1, 1),
+            rotation = 0,
+            zIndex = 0,
+            anchorPoint = Vector2.new(0.5, 0.5)
         },
         frame = {
             frame = script.Parent.frames.button
@@ -30,8 +33,34 @@ return {entities = {
         parent = {
             parent = "{3E798C2C-B6C6-4E73-BF9A-7DAFD0B4473F}"
         },
-        button = {},
+        button = {
+            size = UDim2.new(0.2, 0, 0.1, 0)
+        },
         loader = {}
+    },
+    {
+        core = {
+            id = "{CBF6F8AB-8358-4ED6-AACC-13BF1BECB567}",
+            name = "SaveSceneButton",
+            active = true
+        },
+        uiTransform = {
+            position = UDim2.new(0, 0, 0.3, 0),
+            size = Vector2.new(1, 1),
+            rotation = 0,
+            zIndex = 0,
+            anchorPoint = Vector2.new(0.5, 0.5)
+        },
+        frame = {
+            frame = script.Parent.frames.button
+        },
+        parent = {
+            parent = "{3E798C2C-B6C6-4E73-BF9A-7DAFD0B4473F}"
+        },
+        button = {
+            size = UDim2.new(0.2, 0, 0.1, 0)
+        },
+        saver = {}
     }
 }}
 

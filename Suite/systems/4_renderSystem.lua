@@ -9,7 +9,7 @@ return function(Sunshine, entity)
         Sunshine:addInstance(model.model, entity)
         model.model.Name = entity.core.id
         model.model:SetPrimaryPartCFrame(transform.cFrame)
-        model.model.Parent = workspace
+        model.model.Parent = Sunshine.workspace
         -- local lastSize = Vector3.new(1, 1, 1)
         -- local originalCFrames = {}
         -- for _, descendant in pairs(model.model:GetDescendants()) do
