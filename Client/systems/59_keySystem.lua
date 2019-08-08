@@ -44,6 +44,7 @@ return function(Sunshine, entity)
                                 spinner.speed = 25
                                 collected = true
                                 startTick = entity.core.tick
+                                key.active = true
                                 camera = Sunshine:getEntity(character.input.camera, entity.core.scene)
                                 for _,p in pairs(entity.core.scene.entities) do
                                     local otherEntity = Sunshine:getEntity(p, entity.core.scene)
@@ -82,6 +83,7 @@ return function(Sunshine, entity)
                             script.transform.size = lerpToSize
                             camera.camera.controllable = true
                             character.character.controllable = true
+                            key.active = false
                             for _,p in pairs(pausedEntities) do
                                 local otherEntity = Sunshine:getEntity(p[1], entity.core.scene)
                                 if otherEntity then

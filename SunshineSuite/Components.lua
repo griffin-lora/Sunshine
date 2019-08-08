@@ -369,6 +369,7 @@ return {
 	},
 	key = {
 		scriptCollectible = {Type = "Object", Default = nil},
+		active = {Type = "boolean", Default = false}
 	},
 	gyroBlock = {
 		hits = {Type = "number", Default = 2},
@@ -412,5 +413,9 @@ return {
 	},
 	musicTracker = {
 		entity = {Type = "Object", Default = nil},
+	},
+	distancePause = {
+		disabled = {Type = "boolean", Default = false},
+		distance = {Type = "number", Default = 250}
 	},
 }
