@@ -184,7 +184,24 @@ return {entities = {
         parent = {
             parent = "{3779b6e0-4235-402a-8fe6-146e7dbd5bbd}"
         },
-    }
+    },
+--Other
+    {
+        core = {
+            id = "{27331DC5-098F-4C08-807A-11A6A4B0AC2B}",
+            name = "ScnChangeManager",
+            active = true
+        },
+        change = {
+        },
+        teamCreate = {
+        },
+        history = {
+        },
+        tag = {
+            "changeManager"
+        }
+    },
 }}
 
 --[[
