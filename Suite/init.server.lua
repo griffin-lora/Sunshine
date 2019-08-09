@@ -19,4 +19,10 @@ if game:GetService("RunService"):IsEdit() then
     Sunshine:manage()
     Sunshine:addSystemFolder(script:WaitForChild("systems"))
     Sunshine:loadScene(require(script:WaitForChild("scene")))
+else
+    for _, child in pairs(workspace:GetChildren()) do
+        if child:IsA("Message") and child.Name == "SunshineSuiteWorkspace" then
+            child:Destroy()
+        end
+    end
 end
