@@ -56,6 +56,7 @@ return function(Sunshine, entity)
             local labelInstance = Instance.new("TextLabel")
             labelInstance.BackgroundTransparency = 1
             labelInstance.TextScaled = true
+            labelInstance.TextTruncate = "AtEnd"
             Sunshine:addInstance(labelInstance, entity)
             if parent then
                 local parentEntity = Sunshine:getEntity(parent.parent, entity.core.scene)
@@ -76,7 +77,7 @@ return function(Sunshine, entity)
             local originalSize = label.size
             Sunshine:update(function()
                 labelInstance.Position = uiTransform.position
-                labelInstance.Font = Enum.Font.Highway
+                labelInstance.Font = label.font
                 labelInstance.Size = UDim2.new(originalSize.X.Scale * uiTransform.size.X, originalSize.X.Offset *
                 uiTransform.size.X, originalSize.Y.Scale * uiTransform.size.Y, originalSize.Y.Offset *
                 uiTransform.size.Y)
@@ -85,6 +86,8 @@ return function(Sunshine, entity)
                 labelInstance.AnchorPoint = uiTransform.anchorPoint
                 labelInstance.Text = label.text
                 labelInstance.TextColor3 = label.color
+                labelInstance.TextStrokeTransparency = label.outlineTransparency 
+                labelInstance.TextStrokeColor3 = label.outlineColor
                 if transparency then
                     labelInstance.TextTransparency = transparency.transparency
                 end

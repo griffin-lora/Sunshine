@@ -20,9 +20,21 @@ return function(Sunshine, entity)
                 end
             end
             if selectedEntity then
-                print(selectedEntity.core.id)
+                for _,sceneEntity in pairs(entity.core.scene.entities) do
+                    if sceneEntity.tag then
+                        if sceneEntity.tag.tag == "entitySelectedText" then
+                            sceneEntity.label.text = "Selected "..selectedEntity.core.name
+                        end
+                    end
+                end
             else
-                print("failed bruhm")
+                for _,sceneEntity in pairs(entity.core.scene.entities) do
+                    if sceneEntity.tag then
+                        if sceneEntity.tag.tag == "entitySelectedText" then
+                            sceneEntity.label.text = "No entity selected!"
+                        end
+                    end
+                end
             end
         end, entity)
     end

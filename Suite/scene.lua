@@ -54,7 +54,8 @@ return {entities = {
         button = {
             size = UDim2.new(0.6, 0, 0.2, 0),
             text = "Load Scene",
-            textColor = Color3.fromRGB(69, 189, 117)
+            textColor = Color3.fromRGB(69, 189, 117),
+            font = "GothamBlack"
         },
         loader = {}
     },
@@ -80,7 +81,8 @@ return {entities = {
         button = {
             size = UDim2.new(0.6, 0, 0.2, 0),
             text = "Save Scene",
-            textColor = Color3.fromRGB(0, 135, 200)
+            textColor = Color3.fromRGB(0, 135, 200),
+            font = "GothamBlack"
         },
         saver = {}
     },
@@ -112,7 +114,7 @@ return {entities = {
     --Component Editor
     {
         core = {
-            id = "{949bca1d-e16f-4125-a4a3-7997ff0f3f5e}",
+            id = "{5cf0ec08-06d3-43e6-bfaf-34ebebb192e7}",
             name = "CompEditorBackground",
             active = true
         },
@@ -133,6 +135,54 @@ return {entities = {
         },
         parent = {
             parent = "{BC51A2F2-3163-4DF7-95BA-68750BA7B7CF}"
+        },
+    },
+    {
+        core = {
+            id = "{3779b6e0-4235-402a-8fe6-146e7dbd5bbd}",
+            name = "CompEditorFrame",
+            active = true
+        },
+        uiTransform = {
+            position = UDim2.new(0, 0, 0, 0),
+            size = Vector2.new(1, 1),
+            rotation = 0,
+            zIndex = 0,
+            anchorPoint = Vector2.new(0, 0)
+        },
+        frame = {
+            frame = script.Parent.frames.blank
+        },
+        parent = {
+            parent = "{BC51A2F2-3163-4DF7-95BA-68750BA7B7CF}"
+        },
+    },
+    {
+        core = {
+            id = "{084886b2-5de6-4566-b31f-79a57f736fa0}",
+            name = "CompEditorSelected",
+            active = true
+        },
+        uiTransform = {
+            position = UDim2.new(0.5, 0, 0.05, 0),
+            size = Vector2.new(1, 1),
+            rotation = 0,
+            zIndex = 1,
+            anchorPoint = Vector2.new(0.5, 0)
+        },
+        label = {
+            text = "No entity selected!",
+            color = Color3.new(1, 1, 1),
+            outlineTransparency = 1,
+            outlineColor = Color3.new(0, 0, 0),
+            size = UDim2.new(0.8, 0, 0.1, 0),
+            font = "GothamBold"
+        },
+        tag = {
+            tag = "entitySelectedText"
+        },
+        parent = {
+            parent = "{3779b6e0-4235-402a-8fe6-146e7dbd5bbd}"
         },
     }
 }}

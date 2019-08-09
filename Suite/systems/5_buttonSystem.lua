@@ -10,7 +10,7 @@ return function(Sunshine, entity)
         buttonInstance.TextColor3 = button.textColor
         buttonInstance.TextScaled = true
         buttonInstance.TextTruncate = "AtEnd"
-        buttonInstance.Font = Enum.Font.GothamBlack
+        buttonInstance.Font = button.font
         buttonInstance.BackgroundTransparency = 1
         Sunshine:addInstance(buttonInstance, entity)
         if parent then
