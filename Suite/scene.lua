@@ -1,4 +1,5 @@
 return {entities = {
+    --Widgets
     {
         core = {
             id = "{3E798C2C-B6C6-4E73-BF9A-7DAFD0B4473F}",
@@ -6,7 +7,7 @@ return {entities = {
             active = true
         },
         widget = {
-            title = "Load Scene",
+            title = "Manage Scenes",
             dockState = Enum.InitialDockState.Right,
             enabled = true,
             overrideEnabledRestore = false,
@@ -30,6 +31,7 @@ return {entities = {
         },
         componentEditor = {}
     },
+    --Scene Loader
     {
         core = {
             id = "{0CB50030-50BA-4A0D-A80C-0E607F52C8D5}",
@@ -85,7 +87,7 @@ return {entities = {
     {
         core = {
             id = "{949bca1d-e16f-4125-a4a3-7997ff0f3f5e}",
-            name = "SceneEditorBackground",
+            name = "SceneManagerBackground",
             active = true
         },
         uiTransform = {
@@ -105,6 +107,32 @@ return {entities = {
         },
         parent = {
             parent = "{3E798C2C-B6C6-4E73-BF9A-7DAFD0B4473F}"
+        },
+    },
+    --Component Editor
+    {
+        core = {
+            id = "{949bca1d-e16f-4125-a4a3-7997ff0f3f5e}",
+            name = "CompEditorBackground",
+            active = true
+        },
+        uiTransform = {
+            position = UDim2.new(0, 0, 0, 0),
+            size = Vector2.new(1, 1),
+            rotation = 0,
+            zIndex = -1,
+            anchorPoint = Vector2.new(0, 0)
+        },
+        frame = {
+            frame = script.Parent.frames.backgroundRed
+        },
+        scroller = {
+            axis = "xy",
+            amount = 75,
+            tweenInfo = TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out, -1, false, 0)
+        },
+        parent = {
+            parent = "{BC51A2F2-3163-4DF7-95BA-68750BA7B7CF}"
         },
     }
 }}

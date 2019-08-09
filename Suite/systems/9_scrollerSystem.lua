@@ -24,9 +24,9 @@ return function(Sunshine, entity)
                         )
                     elseif scroller.axis == "y" then
                         label.Position = UDim2.new(
-                        originalPosition.X.Offset, 
                         originalPosition.X.Scale, 
-                        originalPosition.Y.Offset,
+                        originalPosition.X.Offset, 
+                        originalPosition.Y.Scale,
                         Sunshine:tween(time, scroller.tweenInfo, originalPosition.Y.Offset, originalPosition.Y.Offset + scroller.amount)
                         )
                     else
