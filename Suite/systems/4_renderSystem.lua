@@ -8,7 +8,7 @@ return function(Sunshine, entity)
         model.originalModel = model.model
         model.model = model.model:Clone()
         Sunshine:addInstance(model.model, entity)
-        model.model.Name = entity.core.id
+        model.model.Name = entity.core.name
         model.model:SetPrimaryPartCFrame(transform.cFrame)
         model.model.Parent = Sunshine.workspace
         -- local lastSize = Vector3.new(1, 1, 1)

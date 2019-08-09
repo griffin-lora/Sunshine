@@ -15,7 +15,6 @@ return function(Sunshine, entity)
                                     local dataComponent = {}
                                     for propertyName, value in pairs(component) do
                                         if type(value) == "table" then
-                                            print(propertyName,value)
                                             dataComponent[propertyName] = Sunshine:cloneTable(value)
                                         else
                                             dataComponent[propertyName] = value

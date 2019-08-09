@@ -16,6 +16,22 @@ return {entities = {
     },
     {
         core = {
+            id = "{BC51A2F2-3163-4DF7-95BA-68750BA7B7CF}",
+            name = "CompEditWidget",
+            active = true
+        },
+        widget = {
+            title = "Component Editor",
+            dockState = Enum.InitialDockState.Left,
+            enabled = true,
+            overrideEnabledRestore = false,
+            size = Vector2.new(400, 500),
+            minSize = Vector2.new(300, 80)
+        },
+        componentEditor = {}
+    },
+    {
+        core = {
             id = "{0CB50030-50BA-4A0D-A80C-0E607F52C8D5}",
             name = "LoadSceneButton",
             active = true
