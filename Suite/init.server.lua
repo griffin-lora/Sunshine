@@ -1,4 +1,4 @@
-if game:GetService("RunService") then
+if game:GetService("RunService"):IsEdit() then
     local Sunshine = require(game:GetService("ReplicatedStorage"):WaitForChild("Sunshine"))
 
     for _, child in pairs(workspace:GetChildren()) do
