@@ -1,4 +1,4 @@
-if game:GetService("RunService") then
+if game:GetService("RunService"):IsEdit() then
     local Sunshine = require(game:GetService("ReplicatedStorage"):WaitForChild("Sunshine"))
 
     for _, child in pairs(workspace:GetChildren()) do
@@ -19,4 +19,11 @@ if game:GetService("RunService") then
     Sunshine:manage()
     Sunshine:addSystemFolder(script:WaitForChild("systems"))
     Sunshine:loadScene(require(script:WaitForChild("scene")))
+else
+    wait(2)
+    for _, child in pairs(workspace:GetChildren()) do
+        if child:IsA("Message") and child.Name == "SunshineSuiteWorkspace" then
+            child:Destroy()
+        end
+    end
 end

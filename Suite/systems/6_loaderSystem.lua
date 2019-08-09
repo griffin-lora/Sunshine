@@ -10,7 +10,8 @@ return function(Sunshine, entity)
                     if instance:IsA("ModuleScript") then
                         local dataScene = require(instance)
                         if type(dataScene) == "table" and dataScene.entities then
-                            Sunshine:loadScene(dataScene, index + 1)
+                            local scene = Sunshine:loadScene(dataScene, index + 1)
+                            scene.instance = instance
                         end
                     end
                 end

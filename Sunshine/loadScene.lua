@@ -15,4 +15,5 @@ return function(Sunshine, dataScene, index)
     for _, entity in pairs(dataScene.entities) do
         Sunshine:createEntity(entity, scene)
     end
+    return scene
 end
