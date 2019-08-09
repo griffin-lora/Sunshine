@@ -34,7 +34,7 @@ return function(Sunshine, entity)
                             end
                             dataScene.entities[#dataScene.entities + 1] = dataEntity
                         end
-                        print(Sunshine:encodeTable(dataScene))
+                        scene.instance.Source = "return" .. Sunshine:encodeTable(dataScene)
                     end
                 end
             end
