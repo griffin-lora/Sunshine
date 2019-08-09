@@ -35,6 +35,7 @@ return function(Sunshine, entity)
                             dataScene.entities[#dataScene.entities + 1] = dataEntity
                         end
                         scene.instance.Source = "return" .. Sunshine:encodeTable(dataScene)
+                        print("Saved scene successfully!")
                     end
                 end
             end

@@ -12,6 +12,7 @@ return function(Sunshine, entity)
                         if type(dataScene) == "table" and dataScene.entities then
                             local scene = Sunshine:loadScene(dataScene, index + 1)
                             scene.instance = instance
+                            print("Loaded scene successfully!")
                         end
                     end
                 end
