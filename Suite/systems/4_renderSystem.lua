@@ -5,42 +5,41 @@ return function(Sunshine, entity)
     local transform = entity.transform
     local transparency = entity.transparency
     if model and transform then
-        model.originalModel = model.model
-        model.model = model.model:Clone()
-        Sunshine:addInstance(model.model, entity)
-        model.model.Name = entity.core.name
-        model.model:SetPrimaryPartCFrame(transform.cFrame)
-        model.model.Parent = Sunshine.workspace
+        local modelInstance = model.model:Clone()
+        Sunshine:addInstance(modelInstance, entity)
+        modelInstance.Name = entity.core.name
+        modelInstance:SetPrimaryPartCFrame(transform.cFrame)
+        modelInstance.Parent = Sunshine.workspace
         -- local lastSize = Vector3.new(1, 1, 1)
         -- local originalCFrames = {}
-        -- for _, descendant in pairs(model.model:GetDescendants()) do
+        -- for _, descendant in pairs(modelInstance:GetDescendants()) do
         --     if descendant:IsA("BasePart") then
         --         originalCFrames[descendant] = descendant.CFrame
         --     end
         -- end
-        local originalSize = model.model.PrimaryPart.Size
+        local originalSize = modelInstance.PrimaryPart.Size
         transform.cFrame = nil
         local lastCFrame = CFrame.new()
         setmetatable(transform, {
             __index = function(_, key)
-                if not model.model.Parent then
+                if not modelInstance.Parent then
                     setmetatable(transform, {})
                     transform.cFrame = CFrame.new()
                     return lastCFrame
                 end
                 if key == "cFrame" then
-                    lastCFrame = model.model:GetPrimaryPartCFrame()
+                    lastCFrame = modelInstance:GetPrimaryPartCFrame()
                     return lastCFrame
                 end
             end,
             __newindex = function(_, key, value)
-                if not model.model.Parent then
+                if not modelInstance.Parent then
                     setmetatable(transform, {})
                     return
                 end
                 if key == "cFrame" then
                     if value.LookVector.Unit.Magnitude == value.LookVector.Unit.Magnitude then
-                        model.model:SetPrimaryPartCFrame(value)
+                        modelInstance:SetPrimaryPartCFrame(value)
                     else
                         warn("A transformation error occurred. Input CFrame is: " .. tostring(value))
                     end
@@ -48,9 +47,9 @@ return function(Sunshine, entity)
             end
         })
         Sunshine:update(function()
-            if model.model.PrimaryPart and transparency or transform.size ~= Vector3.new(1, 1, 1) then
-                model.model.PrimaryPart.Size = originalSize * transform.size
-                local descendants = model.model:GetDescendants()
+            if modelInstance.PrimaryPart and transparency or transform.size ~= Vector3.new(1, 1, 1) then
+                modelInstance.PrimaryPart.Size = originalSize * transform.size
+                local descendants = modelInstance:GetDescendants()
                 for index = 1, #descendants do
                     local descendant = descendants[index]
                     if descendant:IsA("BasePart") then
