@@ -37,7 +37,7 @@ return {entities = {
             active = true
         },
         uiTransform = {
-            position = UDim2.new(0, 0, 0, 0),
+            position = UDim2.new(0.5, 0, 0.35, 0),
             size = Vector2.new(1, 1),
             rotation = 0,
             zIndex = 0,
@@ -50,7 +50,9 @@ return {entities = {
             parent = "{3E798C2C-B6C6-4E73-BF9A-7DAFD0B4473F}"
         },
         button = {
-            size = UDim2.new(0.2, 0, 0.1, 0)
+            size = UDim2.new(0.6, 0, 0.2, 0),
+            text = "Load Scene",
+            textColor = Color3.fromRGB(69, 189, 117)
         },
         loader = {}
     },
@@ -61,7 +63,7 @@ return {entities = {
             active = true
         },
         uiTransform = {
-            position = UDim2.new(0, 0, 0.3, 0),
+            position = UDim2.new(0.5, 0, 0.65, 0),
             size = Vector2.new(1, 1),
             rotation = 0,
             zIndex = 0,
@@ -74,9 +76,36 @@ return {entities = {
             parent = "{3E798C2C-B6C6-4E73-BF9A-7DAFD0B4473F}"
         },
         button = {
-            size = UDim2.new(0.2, 0, 0.1, 0)
+            size = UDim2.new(0.6, 0, 0.2, 0),
+            text = "Save Scene",
+            textColor = Color3.fromRGB(0, 135, 200)
         },
         saver = {}
+    },
+    {
+        core = {
+            id = "{949bca1d-e16f-4125-a4a3-7997ff0f3f5e}",
+            name = "SceneEditorBackground",
+            active = true
+        },
+        uiTransform = {
+            position = UDim2.new(0, 0, 0, 0),
+            size = Vector2.new(1, 1),
+            rotation = 0,
+            zIndex = -1,
+            anchorPoint = Vector2.new(0, 0)
+        },
+        frame = {
+            frame = script.Parent.frames.backgroundGreen
+        },
+        scroller = {
+            axis = "xy",
+            amount = 75,
+            tweenInfo = TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out, -1, false, 0)
+        },
+        parent = {
+            parent = "{3E798C2C-B6C6-4E73-BF9A-7DAFD0B4473F}"
+        },
     }
 }}
 

@@ -1,10 +1,16 @@
 return function(Sunshine, entity)
     local button = entity.button
+    local frame = entity.frame
     local uiTransform = entity.uiTransform
     local parent = entity.parent
+
     if button and uiTransform then
         local buttonInstance = Instance.new("TextButton")
-        buttonInstance.Text = ""
+        buttonInstance.Text = button.text
+        buttonInstance.TextColor3 = button.textColor
+        buttonInstance.TextScaled = true
+        buttonInstance.TextTruncate = "AtEnd"
+        buttonInstance.Font = Enum.Font.GothamBlack
         buttonInstance.BackgroundTransparency = 1
         Sunshine:addInstance(buttonInstance, entity)
         if parent then
@@ -31,10 +37,16 @@ return function(Sunshine, entity)
         end, entity)
         local endActivation = false
         local originalSize = button.size
+        if frame then
+            frame.frame.Size = button.size
+        end
         Sunshine:update(function()
             buttonInstance.Position = uiTransform.position
             buttonInstance.Size = UDim2.new(originalSize.X.Scale * uiTransform.size.X, originalSize.X.Offset *
             uiTransform.size.X, originalSize.Y.Scale * uiTransform.size.Y, originalSize.Y.Offset * uiTransform.size.Y)
+            if frame then
+                frame.frame.Size = buttonInstance.Size
+            end
             buttonInstance.Rotation = uiTransform.rotation
             buttonInstance.ZIndex = uiTransform.zIndex
             buttonInstance.AnchorPoint = uiTransform.anchorPoint
