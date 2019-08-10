@@ -207,6 +207,9 @@ return {entities = {
         tag = {
             tag = "componentsFrame"
         },
+        visible = {
+            visible = true
+        },
         parent = {
             parent = "{3779b6e0-4235-402a-8fe6-146e7dbd5bbd}"
         }
