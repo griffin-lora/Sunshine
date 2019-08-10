@@ -46,7 +46,6 @@ return function(Sunshine, entity)
                 end
             end
             if selectedEntity then
-                local componentAmount = 0
                 for _, sceneEntity in pairs(entity.core.scene.entities) do
                     if sceneEntity.tag then
                         if sceneEntity.tag.tag == "entitySelectedText" then
@@ -57,8 +56,31 @@ return function(Sunshine, entity)
                 for _, buttonEntity in pairs(deletableButtons) do
                     Sunshine:destroyEntity(buttonEntity)
                 end
-                for name, component in pairs(selectedEntity) do
-                    local button = Sunshine:createEntity({core = {name = "componentButton", id = game:GetService("HttpService"):GenerateGUID(true), active = true}, parent = {parent = "{7419E0EF-4D76-47C8-92B1-09F38E8A8F36}"}, frame = {frame = script.Parent.Parent.frames.componentButton}, tag = {tag = "componentButton"}, visible = {visible = false}, uiTransform = {position = UDim2.new(0, 5, 0, 5), size = Vector2.new(1, 1), rotation = 0, zIndex = 1, anchorPoint = Vector2.new(0, 0)}}, entity.core.scene)
+                for name, _ in pairs(selectedEntity) do
+                    local button = Sunshine:createEntity({
+                        core = {
+                            name = "componentButton",
+                            id = game:GetService("HttpService"):GenerateGUID(true),
+                            active = true
+                        },
+                        parent = {
+                            parent = "{7419E0EF-4D76-47C8-92B1-09F38E8A8F36}"
+                        },
+                        frame = {
+                            frame = script.Parent.Parent.frames.componentButton
+                        },
+                        tag = {
+                            tag = "componentButton"
+                        },
+                        visible = {
+                            visible = false
+                        },
+                        uiTransform = {
+                            position = UDim2.new(0, 5, 0, 5), size = Vector2.new(1, 1),
+                            rotation = 0,
+                            zIndex = 1,
+                            anchorPoint = Vector2.new(0, 0)
+                        }}, entity.core.scene)
                     for _, buttonDescendant in pairs(button.frame.frame:GetDescendants()) do
                         if CollectionService:HasTag(buttonDescendant, "componentName") then
                             buttonDescendant.Text = Sunshine:camelCasetoTitleCase(name)
@@ -66,13 +88,8 @@ return function(Sunshine, entity)
                     end
                     button.visible.visible = true
                     table.insert(deletableButtons, #deletableButtons+1, button)
-                    componentAmount = componentAmount + 1
                 end
-                componentAmount = componentAmount/2
-                if componentAmount%2 ~= 0 then
-                    componentAmount = componentAmount + 1
-                end
-                scrollingFrame.scrollingFrame.canvasSize = UDim2.new(0, 0, 0, (40*(componentAmount))+10)
+                scrollingFrame.scrollingFrame.canvasSize = UDim2.new(0, 0, 0, uiGridLayout.AbsoluteContentSize.Y)
             else
                 for _, sceneEntity in pairs(entity.core.scene.entities) do
                     if sceneEntity.tag then
