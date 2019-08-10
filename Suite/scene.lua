@@ -109,7 +109,7 @@ return {entities = {
         },
         parent = {
             parent = "{3E798C2C-B6C6-4E73-BF9A-7DAFD0B4473F}"
-        },
+        }
     },
     --Component Editor
     {
@@ -135,7 +135,7 @@ return {entities = {
         },
         parent = {
             parent = "{BC51A2F2-3163-4DF7-95BA-68750BA7B7CF}"
-        },
+        }
     },
     {
         core = {
@@ -155,7 +155,7 @@ return {entities = {
         },
         parent = {
             parent = "{BC51A2F2-3163-4DF7-95BA-68750BA7B7CF}"
-        },
+        }
     },
     {
         core = {
@@ -164,7 +164,7 @@ return {entities = {
             active = true
         },
         uiTransform = {
-            position = UDim2.new(0.5, 0, 0.05, 0),
+            position = UDim2.new(0.5, 0, 0.03, 0),
             size = Vector2.new(1, 1),
             rotation = 0,
             zIndex = 1,
@@ -183,7 +183,33 @@ return {entities = {
         },
         parent = {
             parent = "{3779b6e0-4235-402a-8fe6-146e7dbd5bbd}"
+        }
+    },
+    {
+        core = {
+            id = "{7419E0EF-4D76-47C8-92B1-09F38E8A8F36}",
+            name = "ScrollingFrame",
+            active = true
         },
+        uiTransform = {
+            position = UDim2.new(1, 5, 0.5, 0),
+            size = Vector2.new(1, 1),
+            rotation = 0,
+            zIndex = 1,
+            anchorPoint = Vector2.new(1, 0.5)
+        },
+        scrollingFrame = {
+            size =  UDim2.new(1,-5,0.65,0),
+            canvasSize = UDim2.new(0,0,2,0),
+            scrollingDirection = "Y",
+            frame = nil,
+        },
+        tag = {
+            tag = "componentsFrame"
+        },
+        parent = {
+            parent = "{3779b6e0-4235-402a-8fe6-146e7dbd5bbd}"
+        }
     },
 --Other
     {
