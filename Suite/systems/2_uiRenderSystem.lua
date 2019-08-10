@@ -22,12 +22,15 @@ return function(Sunshine, entity)
                     local parentFrame = parentEntity.frame
                     local parentLabel = parentEntity.label
                     local parentWidget = parentEntity.widget
+                    local parentScroll = parentEntity.scrollingFrame
                     if parentFrame then
                         frame.frame.Parent = parentFrame.frame
                     elseif parentLabel then
                         frame.frame.Parent = parentLabel.label
                     elseif parentWidget then
                         frame.frame.Parent = parentWidget.widget
+                    elseif parentScroll then
+                        frame.frame.Parent = parentScroll.frame
                     end
                 else
                     frame.frame.Parent = Sunshine.gui
@@ -63,10 +66,13 @@ return function(Sunshine, entity)
                 if parentEntity then
                     local parentFrame = parentEntity.frame
                     local parentLabel = parentEntity.label
+                    local parentScroll = parentEntity.scrollingFrame
                     if parentFrame then
                         labelInstance.Parent = parentFrame.frame
                     elseif parentLabel then
                         labelInstance.Parent = parentLabel.label
+                    elseif parentScroll then
+                        labelInstance.Parent = parentScroll.frame
                     end
                 else
                     labelInstance.Parent = Sunshine.gui
