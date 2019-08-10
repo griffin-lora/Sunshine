@@ -68,7 +68,11 @@ return function(Sunshine, entity)
                     table.insert(deletableButtons, #deletableButtons+1, button)
                     componentAmount = componentAmount + 1
                 end
-                scrollingFrame.scrollingFrame.canvasSize = UDim2.new(0, 0, 0, 40*(componentAmount/2))
+                componentAmount = componentAmount/2
+                if componentAmount%2 ~= 0 then
+                    componentAmount = componentAmount + 1
+                end
+                scrollingFrame.scrollingFrame.canvasSize = UDim2.new(0, 0, 0, (40*(componentAmount))+10)
             else
                 for _, sceneEntity in pairs(entity.core.scene.entities) do
                     if sceneEntity.tag then
