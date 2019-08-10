@@ -214,6 +214,35 @@ return {entities = {
             parent = "{3779b6e0-4235-402a-8fe6-146e7dbd5bbd}"
         }
     },
+    {
+        core = {
+            id = "{CACF2305-D309-41E9-AA7C-2BC4E518B7F3}",
+            name = "ComponentBackButton",
+            active = true
+        },
+        uiTransform = {
+            position = UDim2.new(0.5, 0, 1, -5),
+            size = Vector2.new(1, 1),
+            rotation = 0,
+            zIndex = 0,
+            anchorPoint = Vector2.new(0.5, 1)
+        },
+        frame = {
+            frame = script.Parent.frames.button
+        },
+        parent = {
+            parent = "{3779b6e0-4235-402a-8fe6-146e7dbd5bbd}"
+        },
+        visible = {
+            visible = false
+        },
+        button = {
+            size = UDim2.new(0.9, 0, 0.15, 0),
+            text = "Back",
+            textColor = Color3.fromRGB(0, 0, 0),
+            font = "GothamBold"
+        },
+    },
 --Other
     {
         core = {

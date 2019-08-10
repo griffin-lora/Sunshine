@@ -1,6 +1,7 @@
 return function(Sunshine, entity)
     local button = entity.button
     local frame = entity.frame
+    local visible = entity.visible
     local uiTransform = entity.uiTransform
     local parent = entity.parent
 
@@ -46,6 +47,9 @@ return function(Sunshine, entity)
             uiTransform.size.X, originalSize.Y.Scale * uiTransform.size.Y, originalSize.Y.Offset * uiTransform.size.Y)
             if frame then
                 frame.frame.Size = buttonInstance.Size
+            end
+            if visible then
+                buttonInstance.Visible = visible.visible
             end
             buttonInstance.Rotation = uiTransform.rotation
             buttonInstance.ZIndex = uiTransform.zIndex
