@@ -3,7 +3,7 @@ return function(Sunshine, entity)
     if change then
         Sunshine:update(function()
             if change.change then
-                print(change.component, change.propertyName)
+                print(change.entity, change.componentName, change.propertyName)
                 -- other shit will handle the rest
                 change.change = nil
             end
