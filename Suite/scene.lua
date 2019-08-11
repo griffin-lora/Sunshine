@@ -242,6 +242,34 @@ return {entities = {
             textColor = Color3.fromRGB(0, 0, 0),
             font = "GothamBold"
         },
+        componentBackButton = {
+        }
+    },
+        {
+        core = {
+            id = "{7419E0EF-4D76-47C8-92B1-09F38E8A8F36}",
+            name = "focusedComponentFrame",
+            active = true
+        },
+        uiTransform = {
+            position = UDim2.new(1, 5, 0.5, 0),
+            size = Vector2.new(1, 1),
+            rotation = 0,
+            zIndex = 1,
+            anchorPoint = Vector2.new(1, 0.5)
+        },
+        frame = {
+            frame = script.Parent.frames.focusedComponentFrame
+        },
+        tag = {
+            tag = "focusedComponentFrame"
+        },
+        visible = {
+            visible = false
+        },
+        parent = {
+            parent = "{3779b6e0-4235-402a-8fe6-146e7dbd5bbd}"
+        }
     },
 --Other
     {
