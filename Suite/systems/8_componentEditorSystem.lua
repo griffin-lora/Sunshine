@@ -83,7 +83,7 @@ return function(Sunshine, entity)
                         }}, entity.core.scene)
                     for _, buttonDescendant in pairs(button.frame.frame:GetDescendants()) do
                         if CollectionService:HasTag(buttonDescendant, "componentName") then
-                            buttonDescendant.Text = Sunshine:camelCasetoTitleCase(name)
+                            buttonDescendant.Text = Sunshine:camelCaseToTitleCase(name)
                         end
                     end
                     button.visible.visible = true
