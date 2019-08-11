@@ -245,33 +245,33 @@ return {entities = {
         componentBackButton = {
         }
     },
-        {
-        core = {
-            id = "{7419E0EF-4D76-47C8-92B1-09F38E8A8F36}",
-            name = "focusedComponentFrame",
-            active = true
-        },
-        uiTransform = {
-            position = UDim2.new(1, 5, 0.5, 0),
-            size = Vector2.new(1, 1),
-            rotation = 0,
-            zIndex = 1,
-            anchorPoint = Vector2.new(1, 0.5)
-        },
-        frame = {
-            frame = script.Parent.frames.focusedComponentFrame
-        },
-        tag = {
-            tag = "focusedComponentFrame"
-        },
-        visible = {
-            visible = false
-        },
-        parent = {
-            parent = "{3779b6e0-4235-402a-8fe6-146e7dbd5bbd}"
-        }
-    },
---Other
+    --     {
+    --     core = {
+    --         id = "{7419E0EF-4D76-47C8-92B1-09F38E8A8F36}",
+    --         name = "focusedComponentFrame",
+    --         active = true
+    --     },
+    --     uiTransform = {
+    --         position = UDim2.new(1, 5, 0.5, 0),
+    --         size = Vector2.new(1, 1),
+    --         rotation = 0,
+    --         zIndex = 1,
+    --         anchorPoint = Vector2.new(1, 0.5)
+    --     },
+    --     frame = {
+    --         frame = script.Parent.frames.focusedComponentFrame
+    --     },
+    --     tag = {
+    --         tag = "focusedComponentFrame"
+    --     },
+    --     visible = {
+    --         visible = false
+    --     },
+    --     parent = {
+    --         parent = "{3779b6e0-4235-402a-8fe6-146e7dbd5bbd}"
+    --     }
+    -- },
+--changemanager
     {
         core = {
             id = "{27331DC5-098F-4C08-807A-11A6A4B0AC2B}",
@@ -285,18 +285,7 @@ return {entities = {
         history = {
         },
         tag = {
-            "changeManager"
+            tag = "changeManager"
         }
     },
 }}
-
---[[
-    {
-        core = {
-            id = "{3E798C2C-B6C6-4E73-BF9A-7DAFD0B4473F}",
-            name = "DataStore",
-            active = true
-        },
-        store = {}
-    }
-]]

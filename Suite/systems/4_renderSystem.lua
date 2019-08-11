@@ -5,6 +5,13 @@ return function(Sunshine, entity)
     local transform = entity.transform
     local transparency = entity.transparency
     if model and transform then
+        local changeManager
+        for _, otherEntity in pairs(Sunshine.scenes[1].entities) do
+            if otherEntity.tag and otherEntity.tag.tag == "changeManager" then
+                changeManager = otherEntity
+                break
+            end
+        end
         local modelInstance = model.model:Clone()
         Sunshine:addInstance(modelInstance, entity)
         modelInstance.Name = entity.core.name
@@ -46,7 +53,18 @@ return function(Sunshine, entity)
                 end
             end
         })
+        local previousCFrame
         Sunshine:update(function()
+            if modelInstance.PrimaryPart then
+                local cFrame = modelInstance:GetPrimaryPartCFrame()
+                if previousCFrame and previousCFrame ~= cFrame then
+                    changeManager.change.entity = entity
+                    changeManager.change.componentName = "transform"
+                    changeManager.change.propertyName = "cFrame"
+                    changeManager.change.propertyValue = cFrame
+                end
+                previousCFrame = cFrame
+            end
             if modelInstance.PrimaryPart and transparency or transform.size ~= Vector3.new(1, 1, 1) then
                 modelInstance.PrimaryPart.Size = originalSize * transform.size
                 local descendants = modelInstance:GetDescendants()

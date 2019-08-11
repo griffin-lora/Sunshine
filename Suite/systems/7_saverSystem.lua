@@ -8,25 +8,7 @@ return function(Sunshine, entity)
                     if index > 1 then
                         local dataScene = {entities = {}}
                         for _, sceneEntity in pairs(scene.entities) do
-                            local dataEntity = {core = {id = sceneEntity.core.id, name = sceneEntity.core.name, active =
-                            sceneEntity.core.active}}
-                            for name, component in pairs(sceneEntity) do
-                                if name ~= "core" then
-                                    local dataComponent = {}
-                                    for propertyName, value in pairs(component) do
-                                        if type(value) == "table" then
-                                            dataComponent[propertyName] = Sunshine:cloneTable(value)
-                                        else
-                                            dataComponent[propertyName] = value
-                                        end
-                                    end
-                                    if name == "transform" then
-                                        dataComponent.cFrame = component.cFrame
-                                    end
-                                    dataEntity[name] = dataComponent
-                                end
-                            end
-                            dataScene.entities[#dataScene.entities + 1] = dataEntity
+                            dataScene.entities[#dataScene.entities + 1] = sceneEntity.core.dataEntity
                         end
                         scene.instance.Source = "return" .. Sunshine:encodeTable(dataScene)
                         print("Saved scene successfully!")
