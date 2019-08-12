@@ -1,3 +1,5 @@
+-- Unused
+
 return function(Sunshine, entity)
     local saver = entity.saver
     local button = entity.button

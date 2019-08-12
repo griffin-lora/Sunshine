@@ -64,6 +64,7 @@ return function(Sunshine, entity)
                     changeManager.change.componentName = "transform"
                     changeManager.change.propertyName = "cFrame"
                     changeManager.change.propertyValue = cFrame
+                    changeManager.change.alreadyChangedOnEntity = true
                 end
                 previousCFrame = cFrame
             end

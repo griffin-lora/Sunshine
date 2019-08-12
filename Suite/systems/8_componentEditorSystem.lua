@@ -173,7 +173,6 @@ return function(Sunshine, entity)
                                                             changeManager.change.componentName = name
                                                             changeManager.change.propertyName = focusedName
                                                             changeManager.change.propertyValue = tonumber(propertyDescendant.Text)
-                                                            selectedEntity[name][focusedName] = tonumber(propertyDescendant.Text)
                                                         else
                                                             propertyDescendant.Text = oldText
                                                         end
