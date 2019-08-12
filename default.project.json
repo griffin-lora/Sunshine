@@ -27,6 +27,12 @@
                 "$className": "Folder",
                 "Suite": {
                     "$path": "Suite"
+                },
+                "Sunshine": {
+                    "$path": "Sunshine"
+                },
+                "PluginNetworkClient": {
+                    "$path": "PluginNetworkClient"
                 }
             },
             "GrassyPartGenerator": {

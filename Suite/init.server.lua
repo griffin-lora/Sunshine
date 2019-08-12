@@ -1,5 +1,6 @@
 if game:GetService("RunService"):IsEdit() then
-    local Sunshine = require(game:GetService("ReplicatedStorage"):WaitForChild("Sunshine"))
+    local Sunshine = require(script.Parent.Sunshine)
+    local PluginNetworkClient = require(script.Parent.PluginNetworkClient)
 
     for _, child in pairs(workspace:GetChildren()) do
         if child:IsA("Message") and child.Name == "SunshineSuiteWorkspace" then
@@ -15,6 +16,7 @@ if game:GetService("RunService"):IsEdit() then
     Sunshine.gui.ResetOnSpawn = false -- again should always be false
     Sunshine.gui.Parent = game:GetService("CoreGui") -- ANGERY
     Sunshine.plugin = plugin
+    Sunshine.PluginNetworkClient = PluginNetworkClient
 
     Sunshine:manage()
     Sunshine:addSystemFolder(script:WaitForChild("systems"))
