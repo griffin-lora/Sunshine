@@ -36,22 +36,22 @@ return {entities = {
                     name = {type = "string", default = "Name"}
                 },
                 prefab = {
-                    prefab = {type = "instance", default = nil}
+                    prefab = {type = "Instance", default = nil}
                 },
                 model = {
-                    model = {type = "instance", default = nil}
+                    model = {type = "Instance", default = nil}
                 },
                 transform = {
-                    cFrame = {type = "cFrame", default = CFrame.new()},
-                    size = {type = "vector3", default = Vector3.new(1, 1, 1)}
+                    cFrame = {type = "CFrame", default = CFrame.new()},
+                    size = {type = "Vector3", default = Vector3.new(1, 1, 1)}
                 },
                 physics = {
                     anchored = {type = "boolean", default = true},
                     canCollide = {type = "boolean", default = true},
                     welded = {type = "boolean", default = true},
                     massless = {type = "boolean", default = false},
-                    velocity = {type = "vector3", default = Vector3.new()},
-                    angularVelocity = {type = "vector3", default = Vector3.new()},
+                    velocity = {type = "Vector3", default = Vector3.new()},
+                    angularVelocity = {type = "Vector3", default = Vector3.new()},
                     density = {type = "number", default = 0.7},
                     friction = {type = "number", default = 0.3},
                     elasticity = {type = "number", default = 0.5},
@@ -69,26 +69,26 @@ return {entities = {
                 collectible = {
                 },
                 input = {
-                    moveVector = {type = "vector3", default = Vector3.new()},
+                    moveVector = {type = "Vector3", default = Vector3.new()},
                     space = {type = "boolean", default = false},
                     shift = {type = "boolean", default = false},
-                    camera = {type = "object", default = nil},
+                    camera = {type = "Entity", default = nil},
                 },
                 character = {
                     controllable = {type = "boolean", default = false},
                     canLoseMagnitude = {type = "boolean", default = false},
                     -- shirtGraphic = {type = "string", default = ""},
-                    -- shirtGraphicColor = {type = "color3", default = Color3.fromRGB(255, 255, 255)},
+                    -- shirtGraphicColor = {type = "Color3", default = Color3.fromRGB(255, 255, 255)},
                     -- shirt = {type = "string", default = ""},
-                    -- shirtColor = {type = "color3", default = Color3.fromRGB(255, 255, 255)},
+                    -- shirtColor = {type = "Color3", default = Color3.fromRGB(255, 255, 255)},
                     -- pants = {type = "string", default = ""},
-                    -- pantsColor = {type = "color3", default = Color3.fromRGB(255, 255, 255)},
-                    -- headColor = {type = "color3", default = Color3.fromRGB(163, 162, 165)},
-                    -- leftArmColor = {type = "color3", default = Color3.fromRGB(163, 162, 165)},
-                    -- leftLegColor = {type = "color3", default = Color3.fromRGB(163, 162, 165)},
-                    -- rightArmColor = {type = "color3", default = Color3.fromRGB(163, 162, 165)},
-                    -- rightLegColor = {type = "color3", default = Color3.fromRGB(163, 162, 165)},
-                    -- torsoColor = {type = "color3", default = Color3.fromRGB(163, 162, 165)},
+                    -- pantsColor = {type = "Color3", default = Color3.fromRGB(255, 255, 255)},
+                    -- headColor = {type = "Color3", default = Color3.fromRGB(163, 162, 165)},
+                    -- leftArmColor = {type = "Color3", default = Color3.fromRGB(163, 162, 165)},
+                    -- leftLegColor = {type = "Color3", default = Color3.fromRGB(163, 162, 165)},
+                    -- rightArmColor = {type = "Color3", default = Color3.fromRGB(163, 162, 165)},
+                    -- rightLegColor = {type = "Color3", default = Color3.fromRGB(163, 162, 165)},
+                    -- torsoColor = {type = "Color3", default = Color3.fromRGB(163, 162, 165)},
                     walkSpeed = {type = "number", default = 16},
                     walkSpeedFactor = {type = "number", default = 1},
                     moveAnimation = {type = "number", default = 0},
@@ -119,7 +119,7 @@ return {entities = {
                 },
                 camera = {
                     controllable = {type = "boolean", default = false},
-                    subject = {type = "object", default = nil},
+                    subject = {type = "Entity", default = nil},
                     fieldOfView = {type = "number", default = 70},
                     rotateSpeed = {type = "number", default = 0.5},
                     scrollSpeed = {type = "number", default = 5},
@@ -134,23 +134,23 @@ return {entities = {
                 animator = {
                 },
                 frame = {
-                    frame = {type = "instance", default = nil}
+                    frame = {type = "Instance", default = nil}
                 },
                 uiTransform = {
-                    position = {type = "udim2", default = UDim2.new()},
-                    size = {type = "vector2", default = Vector2.new(1, 1)},
+                    position = {type = "UDim2", default = UDim2.new()},
+                    size = {type = "Vector2", default = Vector2.new(1, 1)},
                     zIndex = {type = "number", default = 0},
-                    anchorPoint = {type = "vector2", default = Vector2.new()},
+                    anchorPoint = {type = "Vector2", default = Vector2.new()},
                 },
                 label = {
                     text = {type = "string", default = "label"},
-                    size = {type = "udim2", default = UDim2.new(0, 100, 0, 100)},
-                    color = {type = "color3", default = Color3.new(1, 1, 1)},
+                    size = {type = "UDim2", default = UDim2.new(0, 100, 0, 100)},
+                    color = {type = "Color3", default = Color3.new(1, 1, 1)},
                     -- font = {type = Enum.Font, default = Enum.Font.Highway}
                 },
                 button = {
                     activated = {type = "boolean", default = false},
-                    size = {type = "udim2", default = UDim2.new(0, 100, 0, 100)}
+                    size = {type = "UDim2", default = UDim2.new(0, 100, 0, 100)}
                 },
                 sound = {
                     id = {type = "number", default = 0},
@@ -168,20 +168,20 @@ return {entities = {
                 },
             
                 lighting = {
-                    sky = {type = "instance", default = nil},
+                    sky = {type = "Instance", default = nil},
                     lightness = {type = "number", default = 2},
-                    ambient = {type = "color3", default = Color3.fromRGB(128, 128, 128)},
-                    outdoorAmbient = {type = "color3", default = Color3.fromRGB(128, 128, 128)},
+                    ambient = {type = "Color3", default = Color3.fromRGB(128, 128, 128)},
+                    outdoorAmbient = {type = "Color3", default = Color3.fromRGB(128, 128, 128)},
                     globalShadows = {type = "boolean", default = true},
                     clockTime = {type = "number", default = 12},
                     sunPos = {type = "number", default = 41},
-                    fogColor = {type = "color3", default = Color3.fromRGB(192, 192, 192)},
+                    fogColor = {type = "Color3", default = Color3.fromRGB(192, 192, 192)},
                     fogStart = {type = "number", default = 0},
                     fogEnd = {type = "number", default = 100000},
                     brightness = {type = "number", default = 0},
                     contrast = {type = "number", default = 0},
                     saturation = {type = "number", default = 0},
-                    tintColor = {type = "color3", default = Color3.new(1,1,1)},
+                    tintColor = {type = "Color3", default = Color3.new(1,1,1)},
                     blurAmount = {type = "number", default = 0},
                     bloomThreshold = {type = "number", default = 2},
                     sunRays = {type = "boolean", default = false},
@@ -223,11 +223,11 @@ return {entities = {
                 store = {
                 },
                 moving = {
-                    extend = {type = "cFrame", default = CFrame.new(0,0,0)},
+                    extend = {type = "CFrame", default = CFrame.new(0,0,0)},
                     speed = {type = "number", default = 1}
                 },
                 head = {
-                    character = {type = "object", default = nil},
+                    character = {type = "Entity", default = nil},
                     time = {type = "number", default = 2},
                     holdTime = {type = "number", default = 5},
                     bounceTime = {type = "number", default = 0.5},
@@ -239,14 +239,14 @@ return {entities = {
                 },
             
                 teleporter = {
-                    scene = {type = "instance", default = nil}
+                    scene = {type = "Instance", default = nil}
                 },
             
                 throw = {
                     power = {type = "number", default = 50},
                     distance = {type = "number", default = 20},
                     animation = {type = "number", default = 0},
-                    head = {type = "object", default = nil},
+                    head = {type = "Entity", default = nil},
                     sound = {type = "number", default = 0}
                 },
             
@@ -264,7 +264,7 @@ return {entities = {
                 },
                 capture = {
                     active = {type = "boolean", default = false},
-                    character = {type = "object", default = nil}
+                    character = {type = "Entity", default = nil}
                 },
             
                 lockAxis = {
@@ -273,14 +273,14 @@ return {entities = {
                     z = {type = "boolean", default = false}
                 },
                 coin = {
-                    tweenInfo = {type = "tweenInfo", default = TweenInfo.new()}
+                    tweenInfo = {type = "TweenInfo", default = TweenInfo.new()}
                 },
                 regionalCoin = {
-                    tweenInfo = {type = "tweenInfo", default = TweenInfo.new()}
+                    tweenInfo = {type = "TweenInfo", default = TweenInfo.new()}
                 },
             
                 coinCounter = {
-                    player = {type = "object", default = nil}
+                    player = {type = "Entity", default = nil}
                 },
                 deathBarrier = {
                     y = {type = "number", default = -500}
@@ -305,9 +305,9 @@ return {entities = {
                 },
             
                 player = {
-                    mainCharacter = {type = "object", default = nil},
-                    character = {type = "object", default = nil},
-                    camera = {type = "object", default = nil}
+                    mainCharacter = {type = "Entity", default = nil},
+                    character = {type = "Entity", default = nil},
+                    camera = {type = "Entity", default = nil}
                 },
                 doubleJump = {
                     power = {type = "number", default = 50},
@@ -326,7 +326,7 @@ return {entities = {
                 },
                 spawner = {
                     active = {type = "boolean", default = false},
-                    entity = {type = "object", default = nil}
+                    entity = {type = "Entity", default = nil}
                 },
                 collisionSpawner = {
                 },
@@ -335,7 +335,7 @@ return {entities = {
                 },
             
                 sceneTransition = {
-                    tweenInfo = {type = "tweenInfo", default = TweenInfo.new()}
+                    tweenInfo = {type = "TweenInfo", default = TweenInfo.new()}
                 },
             
                 visible = {
@@ -400,13 +400,13 @@ return {entities = {
                 scriptCollectibleDisplay = {
                 },
                 key = {
-                    scriptCollectible = {type = "object", default = nil},
+                    scriptCollectible = {type = "Entity", default = nil},
                     active = {type = "boolean", default = false}
                 },
                 gyroBlock = {
                     hits = {type = "number", default = 2},
-                    ring1 = {type = "object", default = nil},
-                    ring2 = {type = "object", default = nil},
+                    ring1 = {type = "Entity", default = nil},
+                    ring2 = {type = "Entity", default = nil},
                 },
             
                 crackedWall = {
@@ -424,15 +424,15 @@ return {entities = {
                     ignore = {type = "boolean", default = true}
                 },
                 parent = {
-                    parent = {type = "object", default = nil}
+                    parent = {type = "Entity", default = nil}
                 },
                 healthUI = {
-                    player = {type = "object", default = nil},
+                    player = {type = "Entity", default = nil},
                     image = {type ="number", default = 2324645164},
-                    rectOffset3 = {type = "vector2", default = Vector2.new()},
-                    rectOffset2 = {type = "vector2", default = Vector2.new()},
-                    rectOffset1 = {type = "vector2", default = Vector2.new()},
-                    rectOffset0 = {type = "vector2", default = Vector2.new()}
+                    rectOffset3 = {type = "Vector2", default = Vector2.new()},
+                    rectOffset2 = {type = "Vector2", default = Vector2.new()},
+                    rectOffset1 = {type = "Vector2", default = Vector2.new()},
+                    rectOffset0 = {type = "Vector2", default = Vector2.new()}
                 },
                 speaker = {
                     id = {type = "number", default = 0},
@@ -444,7 +444,7 @@ return {entities = {
                     range = {type = "number", default = 45},
                 },
                 musicTracker = {
-                    entity = {type = "object", default = nil},
+                    entity = {type = "Entity", default = nil},
                 }
             }
         }

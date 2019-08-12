@@ -10,12 +10,14 @@ return function(Sunshine, entity)
     if (frame or label) and uiTransform then
         if frame then
             frame.frame = frame.frame:Clone()
-            Sunshine:addInstance(frame.frame, entity)
-            for _, descendant in pairs(frame.frame:GetDescendants()) do
-                if descendant:IsA("GuiBase") then
-                    descendant.ZIndex = uiTransform.zIndex
+            if uiTransform.zIndex ~= nil then
+                for _,ui in pairs(frame.frame:GetDescendants()) do
+                    if ui:IsA("GuiBase") then
+                        ui.ZIndex = uiTransform.zIndex
+                    end
                 end
             end
+            Sunshine:addInstance(frame.frame, entity)
             if parent then
                 local parentEntity = Sunshine:getEntity(parent.parent, entity.core.scene)
                 if parentEntity then
@@ -45,7 +47,9 @@ return function(Sunshine, entity)
                 uiTransform.size.X, originalSize.Y.Scale * uiTransform.size.Y, originalSize.Y.Offset *
                 uiTransform.size.Y)
                 frame.frame.Rotation = uiTransform.rotation
-                frame.frame.ZIndex = uiTransform.zIndex
+                if uiTransform.zIndex ~= nil then
+                    frame.frame.ZIndex = uiTransform.zIndex
+                end
                 frame.frame.AnchorPoint = uiTransform.anchorPoint
                 if transparency then
                     frame.frame.BackgroundTransparency = transparency.transparency
@@ -88,7 +92,9 @@ return function(Sunshine, entity)
                 uiTransform.size.X, originalSize.Y.Scale * uiTransform.size.Y, originalSize.Y.Offset *
                 uiTransform.size.Y)
                 labelInstance.Rotation = uiTransform.rotation
-                labelInstance.ZIndex = uiTransform.zIndex
+                if uiTransform.zIndex ~= nil then
+                    labelInstance.ZIndex = uiTransform.zIndex
+                end
                 labelInstance.AnchorPoint = uiTransform.anchorPoint
                 labelInstance.Text = label.text
                 labelInstance.TextColor3 = label.color
