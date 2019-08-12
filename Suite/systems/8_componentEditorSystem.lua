@@ -158,7 +158,7 @@ return function(Sunshine, entity)
                                             table.insert(deletableFocusedButtons, #deletableFocusedButtons+1, propertyButton)
                                             for _, propertyDescendant in pairs(propertyButton.frame.frame:GetDescendants()) do
                                                 if CollectionService:HasTag(propertyDescendant, "componentPropertyName") then
-                                                    propertyDescendant.Text = focusedName
+                                                    propertyDescendant.Text = Sunshine:camelCaseToTitleCase(focusedName)
                                                 elseif CollectionService:HasTag(propertyDescendant, "componentPropertyBox") then
                                                     propertyDescendant.PlaceholderText = focusedValue.default
                                                     if selectedEntity[name][focusedName] == nil then
@@ -183,7 +183,7 @@ return function(Sunshine, entity)
                                             table.insert(deletableFocusedButtons, #deletableFocusedButtons+1, propertyButton)
                                             for _, propertyDescendant in pairs(propertyButton.frame.frame:GetDescendants()) do
                                                 if CollectionService:HasTag(propertyDescendant, "componentPropertyName") then
-                                                    propertyDescendant.Text = focusedName
+                                                    propertyDescendant.Text = Sunshine:camelCaseToTitleCase(focusedName)
                                                 elseif CollectionService:HasTag(propertyDescendant, "componentPropertyBox") then
                                                     propertyDescendant.PlaceholderText = focusedValue.default
                                                     if selectedEntity[name][focusedName] == nil then
