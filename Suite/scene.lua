@@ -3,11 +3,11 @@ return {entities = {
     {
         core = {
             id = "{3E798C2C-B6C6-4E73-BF9A-7DAFD0B4473F}",
-            name = "LoadSceneWidget",
+            name = "UtilWidget",
             active = true
         },
         widget = {
-            title = "Manage Scenes",
+            title = "Utility",
             dockState = Enum.InitialDockState.Right,
             enabled = true,
             overrideEnabledRestore = false,
@@ -457,7 +457,7 @@ return {entities = {
             active = true
         },
         uiTransform = {
-            position = UDim2.new(0.5, 0, 0.35, 0),
+            position = UDim2.new(0.5, 0, 0.5, 0),
             size = Vector2.new(1, 1),
             rotation = 0,
             zIndex = 0,
@@ -477,33 +477,33 @@ return {entities = {
         },
         loader = {}
     },
-    {
-        core = {
-            id = "{CBF6F8AB-8358-4ED6-AACC-13BF1BECB567}",
-            name = "SaveSceneButton",
-            active = true
-        },
-        uiTransform = {
-            position = UDim2.new(0.5, 0, 0.65, 0),
-            size = Vector2.new(1, 1),
-            rotation = 0,
-            zIndex = 0,
-            anchorPoint = Vector2.new(0.5, 0.5)
-        },
-        frame = {
-            frame = script.Parent.frames.button
-        },
-        parent = {
-            parent = "{3E798C2C-B6C6-4E73-BF9A-7DAFD0B4473F}"
-        },
-        button = {
-            size = UDim2.new(0.6, 0, 0.2, 0),
-            text = "Save Scene",
-            textColor = Color3.fromRGB(0, 135, 200),
-            font = "GothamBlack"
-        },
-        saver = {}
-    },
+    -- {
+    --     core = {
+    --         id = "{CBF6F8AB-8358-4ED6-AACC-13BF1BECB567}",
+    --         name = "SaveSceneButton",
+    --         active = true
+    --     },
+    --     uiTransform = {
+    --         position = UDim2.new(0.5, 0, 0.65, 0),
+    --         size = Vector2.new(1, 1),
+    --         rotation = 0,
+    --         zIndex = 0,
+    --         anchorPoint = Vector2.new(0.5, 0.5)
+    --     },
+    --     frame = {
+    --         frame = script.Parent.frames.button
+    --     },
+    --     parent = {
+    --         parent = "{3E798C2C-B6C6-4E73-BF9A-7DAFD0B4473F}"
+    --     },
+    --     button = {
+    --         size = UDim2.new(0.6, 0, 0.2, 0),
+    --         text = "Save Scene",
+    --         textColor = Color3.fromRGB(0, 135, 200),
+    --         font = "GothamBlack"
+    --     },
+    --     saver = {}
+    -- },
     {
         core = {
             id = "{949bca1d-e16f-4125-a4a3-7997ff0f3f5e}",

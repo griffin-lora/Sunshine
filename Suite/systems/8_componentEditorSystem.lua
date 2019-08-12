@@ -106,7 +106,7 @@ return function(Sunshine, entity)
                             }}, entity.core.scene)
                         for _, buttonDescendant in pairs(button.frame.frame:GetDescendants()) do
                             if CollectionService:HasTag(buttonDescendant, "componentName") then
-                                buttonDescendant.Text = Sunshine:camelCasetoTitleCase(name)
+                                buttonDescendant.Text = Sunshine:camelCaseToTitleCase(name)
                             elseif CollectionService:HasTag(buttonDescendant, "componentButton") then
                                 Sunshine:addConnection(buttonDescendant.Activated, function()
                                     componentFocused = true
@@ -116,7 +116,7 @@ return function(Sunshine, entity)
                                                 sceneEntity.visible.visible = true
                                                 for _, descendant in pairs(sceneEntity.frame.frame:GetDescendants()) do 
                                                     if CollectionService:HasTag(descendant, "focusedComponentText") then
-                                                        descendant.Text = Sunshine:camelCasetoTitleCase(name)
+                                                        descendant.Text = Sunshine:camelCaseToTitleCase(name)
                                                     end
                                                 end
                                             elseif sceneEntity.tag.tag == "componentBackButton" then
