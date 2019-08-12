@@ -6,12 +6,6 @@ return function(Sunshine, entity)
     local transparency = entity.transparency
     if model and transform then
         local changeManager
-        for _, otherEntity in pairs(Sunshine.scenes[1].entities) do
-            if otherEntity.tag and otherEntity.tag.tag == "changeManager" then
-                changeManager = otherEntity
-                break
-            end
-        end
         local modelInstance = model.model:Clone()
         Sunshine:addInstance(modelInstance, entity)
         modelInstance.Name = entity.core.name
@@ -55,7 +49,15 @@ return function(Sunshine, entity)
         })
         local previousCFrame
         Sunshine:update(function()
-            if modelInstance.PrimaryPart then
+            if not changeManager then
+                for _, otherEntity in pairs(Sunshine.scenes[1].entities) do
+                    if otherEntity.tag and otherEntity.tag.tag == "changeManager" then
+                        changeManager = otherEntity
+                        break
+                    end
+                end
+            end
+            if changeManager and modelInstance.PrimaryPart then
                 local cFrame = modelInstance:GetPrimaryPartCFrame()
                 if previousCFrame and previousCFrame ~= cFrame then
                     changeManager.change.entity = entity

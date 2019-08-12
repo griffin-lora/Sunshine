@@ -23,9 +23,9 @@ return function(Sunshine, entity)
                     end
                 end
             end
-            Sunshine.plugin:SetSetting("loadedScenes", loadedScenes)
+            Sunshine.plugin:SetSetting("loadedScenes_" .. game.PlaceId, loadedScenes)
         end
-        local loadedScenes = Sunshine.plugin:GetSetting("loadedScenes")
+        local loadedScenes = Sunshine.plugin:GetSetting("loadedScenes_" .. game.PlaceId)
         if loadedScenes then
             local loadedSceneInstances = {}
             for sceneIndex, path in pairs(loadedScenes) do
