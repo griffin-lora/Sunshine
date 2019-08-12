@@ -6,6 +6,9 @@ return function(Sunshine, entity)
                 if not change.alreadyChangedOnEntity then
                     change.entity[change.componentName][change.propertyName] = change.propertyValue
                 end
+                if not change.entity.core.dataEntity[change.componentName] then
+                    change.entity.core.dataEntity[change.componentName] = {}
+                end
                 change.entity.core.dataEntity[change.componentName][change.propertyName] = change.propertyValue
                 change.entity.core.scene.instance.Source = "return " .. Sunshine:encodeTable(Sunshine.dataScenes
                 [change.entity.core.scene.index])
