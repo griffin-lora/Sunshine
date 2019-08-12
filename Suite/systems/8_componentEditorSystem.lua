@@ -6,7 +6,9 @@ return function(Sunshine, entity)
     local deletableButtons = {}
     local scrollingFrame
     local componentEditor = entity.componentEditor
+    local tag = entity.tag
     local uiGridLayout
+    local componentFocused = false
 
     if componentEditor then
         Sunshine:update(function()
@@ -46,55 +48,91 @@ return function(Sunshine, entity)
                 end
             end
             if selectedEntity then
+                componentFocused = false
                 for _, sceneEntity in pairs(entity.core.scene.entities) do
                     if sceneEntity.tag then
                         if sceneEntity.tag.tag == "entitySelectedText" then
                             sceneEntity.label.text = "Selected "..selectedEntity.core.name
+                        elseif sceneEntity.tag.tag == "focusedComponentFrame" then
+                            sceneEntity.visible.visible = false
+                        elseif sceneEntity.tag.tag == "componentBackButton" then
+                            sceneEntity.visible.visible = false
+                        elseif sceneEntity.tag.tag == "componentsFrame" then
+                            sceneEntity.visible.visible = true
                         end
                     end
                 end
                 for _, buttonEntity in pairs(deletableButtons) do
                     Sunshine:destroyEntity(buttonEntity)
                 end
-                for name, _ in pairs(selectedEntity) do
-                    local button = Sunshine:createEntity({
-                        core = {
-                            name = "componentButton",
-                            id = game:GetService("HttpService"):GenerateGUID(true),
-                            active = true
-                        },
-                        parent = {
-                            parent = "{7419E0EF-4D76-47C8-92B1-09F38E8A8F36}"
-                        },
-                        frame = {
-                            frame = script.Parent.Parent.frames.componentButton
-                        },
-                        tag = {
-                            tag = "componentButton"
-                        },
-                        visible = {
-                            visible = false
-                        },
-                        uiTransform = {
-                            position = UDim2.new(0, 5, 0, 5), size = Vector2.new(1, 1),
-                            rotation = 0,
-                            zIndex = 1,
-                            anchorPoint = Vector2.new(0, 0)
-                        }}, entity.core.scene)
-                    for _, buttonDescendant in pairs(button.frame.frame:GetDescendants()) do
-                        if CollectionService:HasTag(buttonDescendant, "componentName") then
-                            buttonDescendant.Text = Sunshine:camelCaseToTitleCase(name)
+                for name, _ in pairs(componentEditor.components) do
+                    if selectedEntity[name] then
+                        local button = Sunshine:createEntity({
+                            core = {
+                                name = "componentButton",
+                                id = game:GetService("HttpService"):GenerateGUID(true),
+                                active = true
+                            },
+                            parent = {
+                                parent = "{7419E0EF-4D76-47C8-92B1-09F38E8A8F36}"
+                            },
+                            frame = {
+                                frame = script.Parent.Parent.frames.componentButton
+                            },
+                            tag = {
+                                tag = "componentButton"
+                            },
+                            visible = {
+                                visible = false
+                            },
+                            uiTransform = {
+                                position = UDim2.new(0, 5, 0, 5), size = Vector2.new(1, 1),
+                                rotation = 0,
+                                zIndex = 1,
+                                anchorPoint = Vector2.new(0, 0)
+                            }}, entity.core.scene)
+                        for _, buttonDescendant in pairs(button.frame.frame:GetDescendants()) do
+                            if CollectionService:HasTag(buttonDescendant, "componentName") then
+                                buttonDescendant.Text = Sunshine:camelCasetoTitleCase(name)
+                            elseif CollectionService:HasTag(buttonDescendant, "componentButton") then
+                                Sunshine:addConnection(buttonDescendant.Activated, function()
+                                    componentFocused = true
+                                    for _, sceneEntity in pairs(entity.core.scene.entities) do
+                                        if sceneEntity.tag then
+                                            if sceneEntity.tag.tag == "focusedComponentFrame" then
+                                                sceneEntity.visible.visible = true
+                                                for _, descendant in pairs(sceneEntity.frame.frame:GetDescendants()) do 
+                                                    if CollectionService:HasTag(descendant, "focusedComponentText") then
+                                                        descendant.Text = Sunshine:camelCasetoTitleCase(name)
+                                                    end
+                                                end
+                                            elseif sceneEntity.tag.tag == "componentBackButton" then
+                                                sceneEntity.visible.visible = true
+                                            elseif sceneEntity.tag.tag == "componentsFrame" then
+                                                sceneEntity.visible.visible = false
+                                            end
+                                        end
+                                    end
+                                end, entity)
+                            end
                         end
+                        button.visible.visible = true
+                        table.insert(deletableButtons, #deletableButtons+1, button)
                     end
-                    button.visible.visible = true
-                    table.insert(deletableButtons, #deletableButtons+1, button)
                 end
                 scrollingFrame.scrollingFrame.canvasSize = UDim2.new(0, 0, 0, uiGridLayout.AbsoluteContentSize.Y)
             else
+                componentFocused = false
                 for _, sceneEntity in pairs(entity.core.scene.entities) do
                     if sceneEntity.tag then
                         if sceneEntity.tag.tag == "entitySelectedText" then
                             sceneEntity.label.text = "No entity selected!"
+                        elseif sceneEntity.tag.tag == "focusedComponentFrame" then
+                            sceneEntity.visible.visible = false
+                        elseif sceneEntity.tag.tag == "componentBackButton" then
+                            sceneEntity.visible.visible = false
+                        elseif sceneEntity.tag.tag == "componentsFrame" then
+                            sceneEntity.visible.visible = true
                         end
                     end
                 end
@@ -103,5 +141,24 @@ return function(Sunshine, entity)
                 end
             end
         end, entity)
+    elseif tag then
+        if tag.tag == "componentBackButton" then
+            Sunshine:update(function()
+                if entity.button.activated then
+                    componentFocused = false
+                    for _, sceneEntity in pairs(entity.core.scene.entities) do
+                        if sceneEntity.tag then
+                            if sceneEntity.tag.tag == "focusedComponentFrame" then
+                                sceneEntity.visible.visible = false
+                            elseif sceneEntity.tag.tag == "componentBackButton" then
+                                sceneEntity.visible.visible = false
+                            elseif sceneEntity.tag.tag == "componentsFrame" then
+                                sceneEntity.visible.visible = true
+                            end
+                        end
+                    end
+                end
+            end, entity)
+        end
     end
 end
