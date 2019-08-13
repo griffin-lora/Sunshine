@@ -25,6 +25,12 @@ return function(Sunshine, entity)
                 character.character.swimming = false
                 character = nil
             end
+            for _,p in pairs(model.model:GetDescendants()) do
+                if CollectionService:HasTag(p, "forcefield") then
+                    p.Size = Vector3.new(transform.size.X,0.05,transform.size.Z)
+                    p.CFrame = CFrame.new(transform.cFrame.Position + Vector3.new(0,transform.size.Y/2,0))
+                end
+            end
         end, entity)
     end
 end
