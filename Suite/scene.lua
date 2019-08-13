@@ -716,7 +716,8 @@ return {entities = {
             visible = true
         },
         uiListLayout = {
-            padding = UDim.new(0, 5)
+            padding = UDim.new(0, 5),
+            instance = nil
         },
         parent = {
             parent = "{D74A2253-35CD-4921-99C5-3A3F775A3F24}"
