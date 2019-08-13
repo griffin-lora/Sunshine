@@ -37,7 +37,8 @@ std = {
         "spawn",
         "wait",
         "rawget",
-        "rawequal"
+        "rawequal",
+        "assert"
     }
 }
 ignore = {"Assets/prefabs/camera.lua"}

@@ -17,6 +17,7 @@ if game:GetService("RunService"):IsEdit() then
     Sunshine.gui.Parent = game:GetService("CoreGui") -- ANGERY
     Sunshine.plugin = plugin
     Sunshine.PluginNetworkClient = PluginNetworkClient
+    PluginNetworkClient:init(plugin)
 
     Sunshine:manage()
     Sunshine:addSystemFolder(script:WaitForChild("systems"))
