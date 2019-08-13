@@ -59,7 +59,7 @@ return function(Sunshine, entity)
             end
             if changeManager and modelInstance.PrimaryPart then
                 local cFrame = modelInstance:GetPrimaryPartCFrame()
-                if previousCFrame and previousCFrame ~= cFrame then
+                if previousCFrame and previousCFrame ~= cFrame and not changeManager.change.teamCreateUpdate then
                     changeManager.change.entity = entity
                     changeManager.change.componentName = "transform"
                     changeManager.change.propertyName = "cFrame"
