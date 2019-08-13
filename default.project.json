@@ -7,6 +7,21 @@
 			"$className": "ReplicatedStorage",
 			"Sunshine": {
 				"$path": "Sunshine"
+            },
+            "Assets": {
+                "$className": "Folder",
+                "prefabs": {
+                    "$path": "Assets/prefabs.rbxm"
+                },
+                "remotes": {
+                    "$path": "Assets/remotes.rbxm"
+                },
+                "scenes": {
+                    "$path": "Assets/scenes.rbxm"
+                },
+                "skies": {
+                    "$path": "Assets/skies.rbxm"
+                }
             }
         },
         "ReplicatedFirst": {
