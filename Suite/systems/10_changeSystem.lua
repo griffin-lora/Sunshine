@@ -17,9 +17,10 @@ return function(Sunshine, entity)
                 change.teamCreateUpdate = false
                 handleChange(change.entity, change.componentName, change.propertyName, change.propertyValue,
                 change.alreadyChangedOnEntity)
-                Sunshine.PluginNetworkClient:fireAllClients(change.entity.core.scene.instance, change.entity.core.id,
-                change.componentName,
-                change.propertyName, change.propertyValue)
+                if Sunshine.PluginNetworkClient.isEnabled() then
+                    Sunshine.PluginNetworkClient:fireAllClients(change.entity.core.scene.instance,
+                    change.entity.core.id, change.componentName, change.propertyName, change.propertyValue)
+                end
                 change.entity = nil
                 change.componentName = nil
                 change.propertyName = nil

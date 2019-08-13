@@ -2,11 +2,6 @@ local PluginNetworkClient = {}
 local clientEvents = {}
 local plugin
 local player = game:GetService("Players").LocalPlayer
-if not player:FindFirstChild("usingPNC") then
-    local usingPNC = Instance.new("BoolValue")
-    usingPNC.Name = "usingPNC"
-    usingPNC.Parent = player
-end
 local packetFolder = game:GetService("ServerStorage"):FindFirstChild("PNCPacketFolder") or Instance.new("Folder")
 packetFolder.Name = "PNCPacketFolder"
 packetFolder.Parent = game:GetService("ServerStorage")
@@ -87,6 +82,11 @@ function PluginNetworkClient.encodeTable(_, table)
     end
     output = output.."}"
     return output
+end
+
+function PluginNetworkClient.isEnabled()
+    player = game:GetService("Players").LocalPlayer
+    return not not player
 end
 
 function PluginNetworkClient.createPacket(_, ...)
