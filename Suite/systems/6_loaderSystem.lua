@@ -10,7 +10,9 @@ return function(Sunshine, entity)
                 if instance:IsA("ModuleScript") then
                     local dataScene = require(instance)
                     if type(dataScene) == "table" and dataScene.entities then
-                        local scene = Sunshine:loadScene(dataScene, index + 1)
+                        local instanceClone = instance:Clone()
+                        local dataSceneClone = require(instanceClone)
+                        local scene = Sunshine:loadScene(dataSceneClone, index + 1)
                         scene.instance = instance
                         local path = {instance.Name}
                         local parent = instance.Parent
