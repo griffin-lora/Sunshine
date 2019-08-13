@@ -8,6 +8,7 @@ return function(Sunshine, entity)
         listInstance.Padding = uiListLayout.padding
         Sunshine:addInstance(listInstance, entity)
         Sunshine:update(function()
+            uiListLayout.instance = listInstance
             if frame then
                 if frame.frame ~= nil then
                     listInstance.Parent = frame.frame

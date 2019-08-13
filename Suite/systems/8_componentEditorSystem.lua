@@ -109,6 +109,7 @@ return function(Sunshine, entity)
                                 buttonDescendant.Text = Sunshine:camelCaseToTitleCase(name)
                             elseif CollectionService:HasTag(buttonDescendant, "componentButton") then
                                 Sunshine:addConnection(buttonDescendant.Activated, function()
+                                    local focusedScrollingFrame = Sunshine:getEntity("{8465CE6D-CB7D-4779-8BFE-0AA1C205E188}", entity.core.scene)
                                     componentFocused = true
                                     for _, sceneEntity in pairs(entity.core.scene.entities) do
                                         if sceneEntity.tag then
@@ -130,6 +131,7 @@ return function(Sunshine, entity)
                                         Sunshine:destroyEntity(buttonEntity)
                                     end
                                     for focusedName, focusedValue in pairs(componentEditor.components[name]) do
+                                        local frameInstance = script.Parent.Parent.frames.componentProperty
                                         local propertyButton = Sunshine:createEntity({
                                             core = {
                                                 name = "componentProperty",
@@ -140,7 +142,7 @@ return function(Sunshine, entity)
                                                 parent = "{8465CE6D-CB7D-4779-8BFE-0AA1C205E188}"
                                             },
                                             frame = {
-                                                frame = script.Parent.Parent.frames.componentProperty
+                                                frame = frameInstance
                                             },
                                             tag = {
                                                 tag = "componentProperty"
@@ -158,7 +160,7 @@ return function(Sunshine, entity)
                                             table.insert(deletableFocusedButtons, #deletableFocusedButtons+1, propertyButton)
                                             for _, propertyDescendant in pairs(propertyButton.frame.frame:GetDescendants()) do
                                                 if CollectionService:HasTag(propertyDescendant, "componentPropertyName") then
-                                                    propertyDescendant.Text = Sunshine:camelCaseToTitleCase(focusedName)
+                                                    propertyDescendant.Text = Sunshine:camelCaseToTitleCase(focusedName)..":"
                                                 elseif CollectionService:HasTag(propertyDescendant, "componentPropertyBox") then
                                                     propertyDescendant.PlaceholderText = focusedValue.default
                                                     if selectedEntity[name][focusedName] == nil then
@@ -183,7 +185,7 @@ return function(Sunshine, entity)
                                             table.insert(deletableFocusedButtons, #deletableFocusedButtons+1, propertyButton)
                                             for _, propertyDescendant in pairs(propertyButton.frame.frame:GetDescendants()) do
                                                 if CollectionService:HasTag(propertyDescendant, "componentPropertyName") then
-                                                    propertyDescendant.Text = Sunshine:camelCaseToTitleCase(focusedName)
+                                                    propertyDescendant.Text = Sunshine:camelCaseToTitleCase(focusedName)..":"
                                                 elseif CollectionService:HasTag(propertyDescendant, "componentPropertyBox") then
                                                     propertyDescendant.PlaceholderText = focusedValue.default
                                                     if selectedEntity[name][focusedName] == nil then
@@ -207,6 +209,7 @@ return function(Sunshine, entity)
                                         else
                                             Sunshine:destroyEntity(propertyButton)
                                         end
+                                        focusedScrollingFrame.scrollingFrame.canvasSize = UDim2.new(0, 0, 0, focusedScrollingFrame.uiListLayout.instance.AbsoluteContentSize.Y)
                                     end
                                 end, entity)
                             end
