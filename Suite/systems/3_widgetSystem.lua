@@ -7,7 +7,7 @@ return function(Sunshine, entity)
         widget.widget.Title = widget.title
         widget.widget.Name = entity.core.id
         Sunshine:update(function()
-            widget.widget.Enabled = true
+            widget.widget.Enabled = widget.enabled
         end, entity)
     end
 end
