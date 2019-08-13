@@ -10,7 +10,7 @@ return {entities = {
             title = "Utility",
             dockState = Enum.InitialDockState.Right,
             enabled = true,
-            overrideEnabledRestore = false,
+            overrideEnabledRestore = true,
             size = Vector2.new(400, 500),
             minSize = Vector2.new(300, 80)
         }
@@ -25,7 +25,7 @@ return {entities = {
             title = "Component Editor",
             dockState = Enum.InitialDockState.Left,
             enabled = true,
-            overrideEnabledRestore = false,
+            overrideEnabledRestore = true,
             size = Vector2.new(400, 500),
             minSize = Vector2.new(300, 80)
         },
