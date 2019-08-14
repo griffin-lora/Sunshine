@@ -109,7 +109,6 @@ return function(Sunshine, entity)
                                 buttonDescendant.Text = Sunshine:camelCaseToTitleCase(name)
                             elseif CollectionService:HasTag(buttonDescendant, "componentButton") then
                                 Sunshine:addConnection(buttonDescendant.Activated, function()
-                                    local focusedScrollingFrame = Sunshine:getEntity("{8465CE6D-CB7D-4779-8BFE-0AA1C205E188}", entity.core.scene)
                                     componentFocused = true
                                     for _, sceneEntity in pairs(entity.core.scene.entities) do
                                         if sceneEntity.tag then
@@ -150,66 +149,20 @@ return function(Sunshine, entity)
                                             visible = {
                                                 visible = true
                                             },
+                                            propertyButton = {
+                                                type = focusedValue.type,
+                                                default = focusedValue.default,
+                                                propertyName = focusedName,
+                                                componentName = name,
+                                                entity = selectedEntity
+                                            },
                                             uiTransform = {
                                                 position = UDim2.new(0, 5, 0, 5), size = Vector2.new(1, 1),
                                                 rotation = 0,
                                                 zIndex = nil,
                                                 anchorPoint = Vector2.new(0, 0)
-                                            }}, entity.core.scene)
-                                        if focusedValue.type == "number" then
-                                            table.insert(deletableFocusedButtons, #deletableFocusedButtons+1, propertyButton)
-                                            for _, propertyDescendant in pairs(propertyButton.frame.frame:GetDescendants()) do
-                                                if CollectionService:HasTag(propertyDescendant, "componentPropertyName") then
-                                                    propertyDescendant.Text = Sunshine:camelCaseToTitleCase(focusedName)..":"
-                                                elseif CollectionService:HasTag(propertyDescendant, "componentPropertyBox") then
-                                                    propertyDescendant.PlaceholderText = focusedValue.default
-                                                    if selectedEntity[name][focusedName] == nil then
-                                                        propertyDescendant.Text = ""
-                                                    else
-                                                        propertyDescendant.Text = selectedEntity[name][focusedName]
-                                                    end
-                                                    local oldText = propertyDescendant.Text
-                                                    Sunshine:addConnection(propertyDescendant.FocusLost, function()
-                                                        if tonumber(propertyDescendant.Text) and propertyDescendant.Text ~= oldText then
-                                                            changeManager.change.entity = selectedEntity
-                                                            changeManager.change.componentName = name
-                                                            changeManager.change.propertyName = focusedName
-                                                            changeManager.change.propertyValue = tonumber(propertyDescendant.Text)
-                                                        else
-                                                            propertyDescendant.Text = oldText
-                                                        end
-                                                    end, entity)
-                                                end
-                                            end
-                                        elseif focusedValue.type == "string" then
-                                            table.insert(deletableFocusedButtons, #deletableFocusedButtons+1, propertyButton)
-                                            for _, propertyDescendant in pairs(propertyButton.frame.frame:GetDescendants()) do
-                                                if CollectionService:HasTag(propertyDescendant, "componentPropertyName") then
-                                                    propertyDescendant.Text = Sunshine:camelCaseToTitleCase(focusedName)..":"
-                                                elseif CollectionService:HasTag(propertyDescendant, "componentPropertyBox") then
-                                                    propertyDescendant.PlaceholderText = focusedValue.default
-                                                    if selectedEntity[name][focusedName] == nil then
-                                                        propertyDescendant.Text = ""
-                                                    else
-                                                        propertyDescendant.Text = selectedEntity[name][focusedName]
-                                                    end
-                                                    local oldText = propertyDescendant.Text
-                                                    Sunshine:addConnection(propertyDescendant.FocusLost, function()
-                                                        if propertyDescendant.Text ~= oldText then
-                                                            changeManager.change.entity = selectedEntity
-                                                            changeManager.change.componentName = name
-                                                            changeManager.change.propertyName = focusedName
-                                                            changeManager.change.propertyValue = propertyDescendant.Text
-                                                        else
-                                                            propertyDescendant.Text = oldText
-                                                        end
-                                                    end, entity)
-                                                end
-                                            end
-                                        else
-                                            Sunshine:destroyEntity(propertyButton)
-                                        end
-                                        focusedScrollingFrame.scrollingFrame.canvasSize = UDim2.new(0, 0, 0, focusedScrollingFrame.uiListLayout.instance.AbsoluteContentSize.Y)
+                                        }}, entity.core.scene)
+                                        table.insert(deletableFocusedButtons, #deletableFocusedButtons+1, propertyButton)
                                     end
                                 end, entity)
                             end
