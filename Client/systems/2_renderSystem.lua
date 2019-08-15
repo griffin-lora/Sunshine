@@ -4,15 +4,10 @@ local VECTOR3_NEW = Vector3.new
 local CFRAME_NEW = CFrame.new
 
 return function(Sunshine, entity)
-    local core = entity.core
     local model = entity.model
     local transform = entity.transform
     local transparency = entity.transparency
-    local distancePause = entity.distancePause
-    local character = entity.character
     local originalSize
-    local lastResult
-    local wasActive
 
     if model and transform then
         model.model = model.model:Clone()

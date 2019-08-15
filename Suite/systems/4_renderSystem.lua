@@ -6,11 +6,8 @@ return function(Sunshine, entity)
     local transparency = entity.transparency
     if model and transform then
         local changeManager
-        local modelInstance = model.model:Clone()
-        Sunshine:addInstance(modelInstance, entity)
-        modelInstance.Name = entity.core.name
-        modelInstance:SetPrimaryPartCFrame(transform.cFrame)
-        modelInstance.Parent = Sunshine.workspace
+        local lastModel
+        local modelInstance
         -- local lastSize = Vector3.new(1, 1, 1)
         -- local originalCFrames = {}
         -- for _, descendant in pairs(modelInstance:GetDescendants()) do
@@ -18,7 +15,7 @@ return function(Sunshine, entity)
         --         originalCFrames[descendant] = descendant.CFrame
         --     end
         -- end
-        local originalSize = modelInstance.PrimaryPart.Size
+        -- local originalSize
         transform.cFrame = nil
         local lastCFrame = CFrame.new()
         setmetatable(transform, {
@@ -28,7 +25,7 @@ return function(Sunshine, entity)
                     transform.cFrame = CFrame.new()
                     return lastCFrame
                 end
-                if key == "cFrame" then
+                if modelInstance and key == "cFrame" then
                     lastCFrame = modelInstance:GetPrimaryPartCFrame()
                     return lastCFrame
                 end
@@ -38,7 +35,7 @@ return function(Sunshine, entity)
                     setmetatable(transform, {})
                     return
                 end
-                if key == "cFrame" then
+                if modelInstance and key == "cFrame" then
                     if value.LookVector.Unit.Magnitude == value.LookVector.Unit.Magnitude then
                         modelInstance:SetPrimaryPartCFrame(value)
                     else
@@ -48,7 +45,40 @@ return function(Sunshine, entity)
             end
         })
         local previousCFrame
+        local startTick = entity.core.tick
+        local changed = false
         Sunshine:update(function()
+            if model.model and lastModel ~= model.model then
+                if not model.model.PrimaryPart then
+                    error(model.model:GetFullName())
+                end
+                if modelInstance then
+                    modelInstance:Destroy()
+                end
+                modelInstance = model.model:Clone()
+                Sunshine:addInstance(modelInstance, entity)
+                modelInstance.Name = entity.core.name
+                modelInstance:SetPrimaryPartCFrame(transform.cFrame)
+                for _, descendant in pairs(modelInstance:GetDescendants()) do
+                    Sunshine:addConnection(descendant.Changed, function()
+                        changed = true
+                    end, entity)
+                end
+                modelInstance.Parent = Sunshine.workspace
+                -- originalSize = modelInstance.PrimaryPart.Size
+            end
+            lastModel = model.model
+            if entity.core.tick - startTick > 3 and changed then
+                changed = false
+                startTick = entity.core.tick
+                print("UPDATE")
+                local modelInstanceClone = modelInstance:Clone()
+                modelInstanceClone.Name = model.model.Name
+                modelInstanceClone.Parent = model.model.Parent
+                model.model:Destroy()
+                model.model = modelInstanceClone
+                lastModel = model.model
+            end
             if not changeManager then
                 for _, otherEntity in pairs(Sunshine.scenes[1].entities) do
                     if otherEntity.tag and otherEntity.tag.tag == "changeManager" then
@@ -57,7 +87,7 @@ return function(Sunshine, entity)
                     end
                 end
             end
-            if changeManager and modelInstance.PrimaryPart then
+            if modelInstance and changeManager and modelInstance.PrimaryPart then
                 local cFrame = modelInstance:GetPrimaryPartCFrame()
                 if previousCFrame and previousCFrame ~= cFrame and not changeManager.change.teamCreateUpdate then
                     changeManager.change.entity = entity
@@ -68,8 +98,8 @@ return function(Sunshine, entity)
                 end
                 previousCFrame = cFrame
             end
-            if modelInstance.PrimaryPart and transparency or transform.size ~= Vector3.new(1, 1, 1) then
-                modelInstance.PrimaryPart.Size = originalSize * transform.size
+            if modelInstance and modelInstance.PrimaryPart and transparency or transform.size ~= Vector3.new(1, 1, 1) then
+                -- modelInstance.PrimaryPart.Size = originalSize * transform.size
                 local descendants = modelInstance:GetDescendants()
                 for index = 1, #descendants do
                     local descendant = descendants[index]
