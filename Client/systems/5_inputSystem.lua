@@ -32,7 +32,7 @@ return function(Sunshine, entity)
                     space = begin
                 elseif inputObject.KeyCode == Enum.KeyCode.LeftShift then
                     shift = begin
-                elseif inputObject.KeyCode == Enum.KeyCode.E then
+                elseif inputObject.KeyCode == Enum.KeyCode.E or inputObject.UserInputType == Enum.UserInputType.MouseButton1 then
                     e = begin
                 elseif inputObject.KeyCode == Enum.KeyCode.ButtonR2 then
                     r2 = begin
