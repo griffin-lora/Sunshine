@@ -23,7 +23,7 @@ return function(Sunshine, entity)
                         end
                     end
                     if sceneTransition.type == "death" then
-                        cutoutLabel.Image = "rbxassetid://2396957701"
+                        cutoutLabel.Image = "rbxassetid://2676141005"
                         dataScene = Sunshine.dataScenes[1]
                     elseif sceneTransition.type == "teleport" then
                         cutoutLabel.Image = "rbxassetid://2676141005"
