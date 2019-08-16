@@ -65,15 +65,19 @@ return function(Sunshine, entity)
             character.wallNormal = wallNormal
             gravity.ignore = character.grounded
             if character.moving then
+                animator.movementSpeed = Vector3.new(physics.velocity.X, 0, physics.velocity.Z).Magnitude /
+                (character.walkSpeed * 8.16580200195)
                 if not character.swimming then
                     animator.movement = character.moveAnimation
                 else
                     animator.movement = character.swimAnimation
                 end
             else
+                animator.movementSpeed = 1
                 animator.movement = character.idleAnimation
             end
             if not character.grounded and physics.velocity.Y < -0.5 then
+                animator.movementSpeed = 1
                 if not character.swimming then
                     animator.movement = character.fallAnimation
                 elseif not character.moving then
