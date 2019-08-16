@@ -3,7 +3,8 @@
 return function(Sunshine, entity)
     local prefab = entity.prefab
     if prefab then
-        local dataPrefab = require(prefab.prefab)
+        local prefabInstance = prefab.prefab:Clone()
+        local dataPrefab = require(prefabInstance)
         for name, component in pairs(dataPrefab) do
             if not entity[name] then
                 entity[name] = Sunshine:cloneTable(component)
