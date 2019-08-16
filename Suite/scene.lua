@@ -114,6 +114,7 @@ return {entities = {
                     power = {type = "number", default = 50},
                     bouncePower = {type = "number", default = 50},
                     animation = {type = "number", default = 0},
+                    doAnimation = {type = "number", default = 0},
                     endAnimation = {type = "number", default = 0},
                     sound = {type = "number", default = 0}
                 },

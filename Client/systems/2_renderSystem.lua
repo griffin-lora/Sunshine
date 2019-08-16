@@ -46,7 +46,7 @@ return function(Sunshine, entity)
                     if value.LookVector.Unit.Magnitude == value.LookVector.Unit.Magnitude then
                         model.model:SetPrimaryPartCFrame(value)
                     else
-                        warn("A transformation error occurred. Input CFrame is: " .. tostring(value))
+                        --warn("A transformation error occurred. Input CFrame is: " .. tostring(value))
                     end
                 end
             end
