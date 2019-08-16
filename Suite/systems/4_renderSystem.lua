@@ -60,15 +60,16 @@ return function(Sunshine, entity)
                 modelInstance.Name = entity.core.name
                 modelInstance:SetPrimaryPartCFrame(transform.cFrame)
                 for _, descendant in pairs(modelInstance:GetDescendants()) do
-                    Sunshine:addConnection(descendant.Changed, function(prop)
+                    Sunshine:addConnection(descendant.Changed, function()
                         changed = true
                     end, entity)
                 end
                 modelInstance.Parent = Sunshine.workspace
-                -- originalSize = modelInstance.PrimaryPart.Size
+                -- originalSize = m odelInstance.PrimaryPart.Size
             end
             lastModel = model.model
             if entity.core.tick - startTick > 3 and changed then
+                print("UPDATE")
                 changed = false
                 startTick = entity.core.tick
                 local modelInstanceClone = modelInstance:Clone()
@@ -101,7 +102,7 @@ return function(Sunshine, entity)
                 end
                 previousCFrame = cFrame
             end
-            if modelInstance and modelInstance.PrimaryPart and transparency or transform.size ~= Vector3.new(1, 1, 1) then
+            if modelInstance and (modelInstance.PrimaryPart and transparency or transform.size ~= Vector3.new(1, 1, 1)) then
                 -- modelInstance.PrimaryPart.Size = originalSize * transform.size
                 local descendants = modelInstance:GetDescendants()
                 for index = 1, #descendants do

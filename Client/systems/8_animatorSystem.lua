@@ -28,16 +28,16 @@ return function(Sunshine, entity)
         Sunshine:update(function()
             if entity.core.active and entity.core.scene.active then
                 if actionTrack then
-                    actionTrack:AdjustSpeed(1)
+                    actionTrack:AdjustSpeed(animator.actionSpeed or 1)
                 end
                 if movementTrack then
-                    movementTrack:AdjustSpeed(1)
+                    movementTrack:AdjustSpeed(animator.movementSpeed or 1)
                 end
                 if idleTrack then
-                    idleTrack:AdjustSpeed(1)
+                    idleTrack:AdjustSpeed(animator.idleSpeed or 1)
                 end
                 if coreTrack then
-                    coreTrack:AdjustSpeed(1)
+                    coreTrack:AdjustSpeed(animator.coreSpeed or 1)
                 end
                 if action ~= animator.action then
                     action = animator.action
