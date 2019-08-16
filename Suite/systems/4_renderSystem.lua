@@ -60,7 +60,7 @@ return function(Sunshine, entity)
                 modelInstance.Name = entity.core.name
                 modelInstance:SetPrimaryPartCFrame(transform.cFrame)
                 for _, descendant in pairs(modelInstance:GetDescendants()) do
-                    Sunshine:addConnection(descendant.Changed, function()
+                    Sunshine:addConnection(descendant.Changed, function(prop)
                         changed = true
                     end, entity)
                 end
@@ -71,12 +71,15 @@ return function(Sunshine, entity)
             if entity.core.tick - startTick > 3 and changed then
                 changed = false
                 startTick = entity.core.tick
-                print("UPDATE")
                 local modelInstanceClone = modelInstance:Clone()
                 modelInstanceClone.Name = model.model.Name
                 modelInstanceClone.Parent = model.model.Parent
                 model.model:Destroy()
-                model.model = modelInstanceClone
+                changeManager.change.entity = entity
+                changeManager.change.componentName = "model"
+                changeManager.change.propertyName = "model"
+                changeManager.change.propertyValue = modelInstanceClone
+                changeManager.change.alreadyChangedOnEntity = true
                 lastModel = model.model
             end
             if not changeManager then
