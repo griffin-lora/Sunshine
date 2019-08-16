@@ -10,11 +10,15 @@ return function(Sunshine, entity)
     local speaker = entity.speaker
     local horizontal
     local lastSpace = false
+    local jumpTick
+    local walledTick
     Sunshine:createStateSystem(entity, state, function()
         -- start check
-        return character.state == "wallSlide" and input.space and not lastSpace
+        return jumpTick and walledTick and entity.core.tick - walledTick <= 0.1 and entity.core.tick - jumpTick <= 0.1
     end, function()
         -- start
+        jumpTick = nil
+        walledTick = nil
         transform.cFrame = CFrame.new(transform.cFrame.Position, (transform.cFrame.Position) -
         transform.cFrame.LookVector)
         horizontal = transform.cFrame.LookVector * component.power
@@ -37,7 +41,12 @@ return function(Sunshine, entity)
         end
     end, function()
         -- general update
-        lastSpace = input.space
+        if character.state == "wallSlide" then
+            walledTick = entity.core.tick
+        end
+        if input.space and not lastSpace then
+            jumpTick = entity.core.tick
+        end
     end)
 end
 
