@@ -2,10 +2,9 @@ local Sunshine = require(game:GetService("ReplicatedStorage"):WaitForChild("Suns
 local Assets = game:GetService("ReplicatedStorage"):WaitForChild("Assets")
 local player = game:GetService("Players").LocalPlayer
 
-pcall(function()
-	local starterGui = game:GetService('StarterGui')
-	starterGui:SetCore("TopbarEnabled", false)
-end)
+game:GetService('Players').LocalPlayer:WaitForChild('PlayerGui'):SetTopbarTransparency(1)
+game.StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.All,false)
+game.StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Chat,true)
 
 Sunshine:addSystemFolder(script:WaitForChild("systems"))
 Sunshine:loadScene(require(Assets:WaitForChild("scenes").TitleScreen))
