@@ -446,7 +446,8 @@ return {entities = {
                 },
                 musicTracker = {
                     entity = {type = "Entity", default = nil},
-                }
+                },
+                inertia = {}
             }
         }
     },
