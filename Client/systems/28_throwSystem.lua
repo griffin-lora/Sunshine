@@ -96,7 +96,11 @@ return function(Sunshine, entity)
                     descendant.Transparency = 1
                     CollectionService:RemoveTag(descendant, "flashable")
                 else
-                    descendant.Transparency = 0
+                    local transparency = 0
+                    if CollectionService:HasTag(descendant, "translucent") then
+                        transparency = 0.5
+                    end
+                    descendant.Transparency = transparency
                     CollectionService:AddTag(descendant, "flashable")
                 end
             elseif CollectionService:HasTag(descendant, "playerGem") then
