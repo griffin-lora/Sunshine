@@ -16,6 +16,7 @@ local numKeys = {
     [8] = Enum.KeyCode.Eight,
     [9] = Enum.KeyCode.Nine,
 }
+local selectedNum = 1
 
 return function(Sunshine, entity)
     local costumeChanger = entity.costumeChanger
@@ -25,8 +26,27 @@ return function(Sunshine, entity)
         local folderInstance
         Sunshine:addConnection(UserInputService.InputBegan, function(input, gameProcessedEvent)
             if not gameProcessedEvent then
+                if input.KeyCode == Enum.KeyCode.Left or input.KeyCode == Enum.KeyCode.DPadLeft then
+                    selectedNum = selectedNum - 1
+                    if selectedNum < 0 then
+                        selectedNum = 9
+                    end
+                elseif input.KeyCode == Enum.KeyCode.Right or input.KeyCode == Enum.KeyCode.DPadRight then
+                    selectedNum = selectedNum + 1
+                    if selectedNum > 9 then
+                        selectedNum = 0
+                    end
+                end
                 for _, costume in pairs(costumeFolder:GetChildren()) do
+                    local selected = false
                     if input.KeyCode == numKeys[costume.NumberKey.Value] then
+                        selected = true
+                    elseif input.KeyCode == Enum.KeyCode.Left or input.KeyCode == Enum.KeyCode.DPadLeft or input.KeyCode == Enum.KeyCode.Right or input.KeyCode == Enum.KeyCode.DPadRight then
+                        if selectedNum == costume.NumberKey.Value then
+                            selected = true  
+                        end
+                    end
+                    if selected then
                         if not model.model:FindFirstChild("costumeWelds") then
                             folderInstance = Instance.new("Folder")
                             folderInstance.Name = "costumeWelds"
