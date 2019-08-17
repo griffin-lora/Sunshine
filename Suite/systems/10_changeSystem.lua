@@ -8,7 +8,6 @@ return function(Sunshine, entity)
             if not changedEntity.core.dataEntity[componentName] then
                 changedEntity.core.dataEntity[componentName] = {}
             end
-            print("changing dataENtity stuff")
             changedEntity.core.dataEntity[componentName][propertyName] = propertyValue
             changedEntity.core.scene.instance.Source = "return " .. Sunshine:encodeTable(Sunshine.dataScenes
             [changedEntity.core.scene.index])
