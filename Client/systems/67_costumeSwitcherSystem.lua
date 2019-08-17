@@ -59,6 +59,7 @@ return function(Sunshine, entity)
                                 bodyPart.TextureID = "rbxassetid://"..costume.ClothesImage.Value
                             end
                         end
+                        costumeChanger.currentCostume = costume.Name
                     end
                 end
             end

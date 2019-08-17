@@ -1,9 +1,11 @@
 local CollectionService = game:GetService("CollectionService")
 local state = "throw"
+local costumeFolder = game:GetService("ReplicatedStorage").Assets.costumes
 
 return function(Sunshine, entity)
     local component = entity[state]
     local character = entity.character
+    local costumeChanger = entity.costumeChanger
     local input = entity.input
     local transform = entity.transform
     local physics = entity.physics
@@ -13,6 +15,7 @@ return function(Sunshine, entity)
     local lastE = false
     local head = {core = {}}
     local cFrame
+    local lastActive
     Sunshine:createStateSystem(entity, state, function()
         -- start check
         return not head.core.active and character.state ~= "groundPound" and character.state ~= "dive" and input.e and
@@ -58,6 +61,35 @@ return function(Sunshine, entity)
     end, function()
         -- general update
         lastE = input.e
+        local folderInstance
+        if head.core.active and costumeChanger then
+            if not lastActive then
+                local costume = costumeFolder:FindFirstChild(costumeChanger.currentCostume)
+                local folder = head.model.model:FindFirstChild("costumeWelds")
+                if not folder then
+                    folderInstance = Instance.new("Folder")
+                    folderInstance.Name = "costumeWelds"
+                    folderInstance.Parent = head.model.model
+                else
+                    folder:ClearAllChildren()
+                end
+                if costume then
+                    if costume:FindFirstChild("Head") then
+                        local hat = costume.Head:Clone()
+                        hat:SetPrimaryPartCFrame(head.transform.cFrame)
+                        local headWeld = Instance.new("WeldConstraint")
+                        local ppWeld = Instance.new("WeldConstraint")
+                        ppWeld.Part0 = hat.Display
+                        ppWeld.Part1 = hat.PrimaryPart
+                        ppWeld.Parent = hat
+                        headWeld.Part0 = hat.PrimaryPart
+                        headWeld.Part1 = head.model.model.Head
+                        headWeld.Parent = hat
+                        hat.Parent = folderInstance
+                    end
+                end
+            end
+        end
         for _, descendant in pairs(model.model:GetDescendants()) do
             if CollectionService:HasTag(descendant, "head") then
                 if head.core.active then
@@ -77,5 +109,6 @@ return function(Sunshine, entity)
                 end
             end
         end
+        lastActive = head.core.active
     end)
 end
