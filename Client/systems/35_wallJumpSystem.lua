@@ -44,7 +44,7 @@ return function(Sunshine, entity)
         if character.state == "wallSlide" then
             walledTick = entity.core.tick
         end
-        if input.space and not lastSpace then
+        if input.space and not lastSpace and character.state == "wallSlide" then
             jumpTick = entity.core.tick
         end
     end)
