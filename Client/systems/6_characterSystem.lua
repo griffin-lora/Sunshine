@@ -66,7 +66,7 @@ return function(Sunshine, entity)
             gravity.ignore = character.grounded
             if character.moving then
                 animator.movementSpeed = Vector3.new(physics.velocity.X, 0, physics.velocity.Z).Magnitude /
-                (character.walkSpeed * 8.16580200195)
+                (character.walkSpeed * 6.16580200195)
                 if not character.swimming then
                     animator.movement = character.moveAnimation
                 else
@@ -97,7 +97,7 @@ return function(Sunshine, entity)
                 if not fullyGrounded then
                     canLoseMagnitude = false
                 elseif moveVector == BLANK_VECTOR3 then
-                    damping = 0.7
+                    damping = 0.75
                 end
                 if character.canLoseMagnitude or character.swimming or (lastGroundeds[1] and character.grounded) then
                     canLoseMagnitude = true
