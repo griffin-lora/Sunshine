@@ -3,7 +3,6 @@
 local state = "doubleJump"
 
 local VECTOR3_NEW = Vector3.new
-local BLANK_VECTOR3 = VECTOR3_NEW()
 
 return function(Sunshine, entity)
     local component = entity[state]
@@ -13,13 +12,15 @@ return function(Sunshine, entity)
     local animator = entity.animator
     local speaker = entity.speaker
     local spaceRemember = 0
+    local jumpTick
     local lastSpace = false
-    local jumping = false
     Sunshine:createStateSystem(entity, state, function()
         -- start check
-        return not character.swimming and jumping and character.grounded and spaceRemember > 0
+        return not input.shift and not character.swimming and jumpTick and entity.core.tick - jumpTick <= component.time
+        and character.grounded and spaceRemember > 0
     end, function()
         -- start
+        jumpTick = nil
         spaceRemember = 0
         physics.velocity = VECTOR3_NEW(physics.velocity.X, component.power, physics.velocity.Z)
         animator.action = component.animation
@@ -47,6 +48,8 @@ return function(Sunshine, entity)
             spaceRemember = 0.1
         end
         lastSpace = input.space
-        jumping = character.state == "jump"
+        if character.state == "jump" then
+            jumpTick = entity.core.tick
+        end
     end)
 end

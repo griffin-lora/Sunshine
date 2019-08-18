@@ -13,10 +13,12 @@ return function(Sunshine, entity)
     local speaker = entity.speaker
     local spaceRemember = 0
     local lastSpace = false
-    local doubleJumping = false
+    local jumpTick
     Sunshine:createStateSystem(entity, state, function()
         -- start check
-        return not character.swimming and doubleJumping and physics.velocity.Magnitude > 10 and character.grounded and
+        return not input.shift and not character.swimming and jumpTick and
+        entity.core.tick - jumpTick <= component.time and
+        VECTOR3_NEW(physics.velocity.X, 0, physics.velocity.Z).Magnitude > 30 and character.grounded and
         spaceRemember > 0
     end, function()
         -- start
@@ -47,6 +49,8 @@ return function(Sunshine, entity)
             spaceRemember = 0.1
         end
         lastSpace = input.space
-        doubleJumping = character.state == "doubleJump"
+        if character.state == "doubleJump" then
+            jumpTick = entity.core.tick
+        end
     end)
 end
