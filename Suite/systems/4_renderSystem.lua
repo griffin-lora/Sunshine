@@ -18,25 +18,15 @@ return function(Sunshine, entity)
         --     end
         -- end
         -- local originalSize
+        local lastCFrame = transform.cFrame
         transform.cFrame = nil
-        local lastCFrame = CFrame.new()
         setmetatable(transform, {
             __index = function(_, key)
-                if not modelInstance.Parent then
-                    setmetatable(transform, {})
-                    transform.cFrame = CFrame.new()
-                    return lastCFrame
-                end
                 if modelInstance and key == "cFrame" then
-                    lastCFrame = modelInstance:GetPrimaryPartCFrame()
-                    return lastCFrame
+                    return modelInstance:GetPrimaryPartCFrame()
                 end
             end,
             __newindex = function(_, key, value)
-                if not modelInstance.Parent then
-                    setmetatable(transform, {})
-                    return
-                end
                 if modelInstance and key == "cFrame" then
                     if value.LookVector.Unit.Magnitude == value.LookVector.Unit.Magnitude then
                         modelInstance:SetPrimaryPartCFrame(value)
@@ -48,6 +38,9 @@ return function(Sunshine, entity)
         local startTick = entity.core.tick
         local changed = false
         Sunshine:update(function()
+            if modelInstance and modelInstance.Parent then
+                lastCFrame = modelInstance:GetPrimaryPartCFrame()
+            end
             if model.model and lastModel ~= model.model then
                 if not model.model.PrimaryPart then
                     error(model.model:GetFullName())
@@ -58,7 +51,7 @@ return function(Sunshine, entity)
                 modelInstance = model.model:Clone()
                 Sunshine:addInstance(modelInstance, entity)
                 modelInstance.Name = entity.core.name
-                modelInstance:SetPrimaryPartCFrame(transform.cFrame)
+                modelInstance:SetPrimaryPartCFrame(lastCFrame)
                 for _, descendant in pairs(modelInstance:GetDescendants()) do
                     Sunshine:addConnection(descendant.Changed, function()
                         changed = true
