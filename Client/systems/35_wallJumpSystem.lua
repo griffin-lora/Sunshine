@@ -14,7 +14,7 @@ return function(Sunshine, entity)
     local walledTick
     Sunshine:createStateSystem(entity, state, function()
         -- start check
-        return jumpTick and walledTick and entity.core.tick - walledTick <= 0.1 and entity.core.tick - jumpTick <= 0.1
+        return jumpTick and walledTick and entity.core.tick - walledTick < 0.1 and entity.core.tick - jumpTick < 0.1
     end, function()
         -- start
         jumpTick = nil
@@ -44,9 +44,10 @@ return function(Sunshine, entity)
         if character.state == "wallSlide" then
             walledTick = entity.core.tick
         end
-        if input.space and not lastSpace and character.state == "wallSlide" then
+        if input.space and not lastSpace then
             jumpTick = entity.core.tick
         end
+        lastSpace = input.space
     end)
 end
 

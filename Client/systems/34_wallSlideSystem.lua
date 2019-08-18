@@ -2,7 +2,6 @@ local state = "wallSlide"
 
 local CFRAME_NEW = CFrame.new
 local VECTOR3_NEW = Vector3.new
-local BLANK_VECTOR3 = VECTOR3_NEW()
 
 return function(Sunshine, entity)
     local component = entity[state]
