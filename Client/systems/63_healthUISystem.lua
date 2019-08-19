@@ -50,7 +50,8 @@ return function(Sunshine, entity)
                                         startTickBack = entity.core.tick 
                                     end
                                     if startTickBack and entity.core.tick - startTickBack < 0.35 then
-                                        p.Position = UDim2.new(Sunshine:tween(entity.core.tick - startTickBack, TWEENINFO_BACK, screenPointPosition.X.Scale, firstPosition.X.Scale), Sunshine:tween(entity.core.tick - startTickBack, TWEENINFO_BACK, screenPointPosition.X.Offset, firstPosition.X.Offset), Sunshine:tween(entity.core.tick - startTickBack, TWEENINFO_BACK, screenPointPosition.Y.Scale, firstPosition.Y.Scale), Sunshine:tween(entity.core.tick - startTickBack, TWEENINFO_BACK, screenPointPosition.Y.Offset, firstPosition.Y.Offset) )
+                                        p.Position = Sunshine:tween(entity.core.tick - startTickBack, TWEENINFO_BACK,
+                                        screenPointPosition, firstPosition)
                                     elseif startTickBack then
                                         startTickBack = nil
                                     end
