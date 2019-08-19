@@ -40,7 +40,7 @@ return function(Sunshine, entity)
                                     end
                                     if health.health ~= lastHealth and health.health ~= 0 and (health.health ~= 3 and lastHealth ~= 0) then
                                         local screenPoint = workspace.Camera:WorldToScreenPoint(mainCharacter.transform.cFrame.Position)
-                                        p.Position = UDim2.new(0, screenPoint.x, 0, screenPoint.y - CHARACTER_POSITION_OFFSET)
+                                        p.Position = UDim2.new(0, screenPoint.X, 0, screenPoint.Y - CHARACTER_POSITION_OFFSET)
                                         screenPointPosition = p.Position
                                         startTick = entity.core.tick
                                         startTickBack = nil
