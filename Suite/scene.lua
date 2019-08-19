@@ -449,7 +449,8 @@ return {entities = {
                 musicTracker = {
                     entity = {type = "Entity", default = nil},
                 },
-                inertia = {}
+                inertia = {},
+                gameVisible = {}
             }
         }
     },
