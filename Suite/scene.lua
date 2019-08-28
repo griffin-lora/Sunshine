@@ -313,12 +313,14 @@ return {entities = {
                 doubleJump = {
                     power = {type = "number", default = 50},
                     animation = {type = "number", default = 0},
-                    sound = {type = "number", default = 0}
+                    sound = {type = "number", default = 0},
+                    time = {type = "number", default = 0.7}
                 },
                 tripleJump = {
                     power = {type = "number", default = 50},
                     animation = {type = "number", default = 0},
-                    sound = {type = "number", default = 0}
+                    sound = {type = "number", default = 0},
+                    time = {type = "number", default = 0.7}
                 },
                 follow = {
                     range = {type = "number", default = 50},
@@ -447,7 +449,8 @@ return {entities = {
                 musicTracker = {
                     entity = {type = "Entity", default = nil},
                 },
-                inertia = {}
+                inertia = {},
+                gameVisible = {}
             }
         }
     },

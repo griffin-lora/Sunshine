@@ -18,25 +18,15 @@ return function(Sunshine, entity)
         --     end
         -- end
         -- local originalSize
+        local lastCFrame = transform.cFrame
         transform.cFrame = nil
-        local lastCFrame = CFrame.new()
         setmetatable(transform, {
             __index = function(_, key)
-                if not modelInstance.Parent then
-                    setmetatable(transform, {})
-                    transform.cFrame = CFrame.new()
-                    return lastCFrame
-                end
                 if modelInstance and key == "cFrame" then
-                    lastCFrame = modelInstance:GetPrimaryPartCFrame()
-                    return lastCFrame
+                    return modelInstance:GetPrimaryPartCFrame()
                 end
             end,
             __newindex = function(_, key, value)
-                if not modelInstance.Parent then
-                    setmetatable(transform, {})
-                    return
-                end
                 if modelInstance and key == "cFrame" then
                     if value.LookVector.Unit.Magnitude == value.LookVector.Unit.Magnitude then
                         modelInstance:SetPrimaryPartCFrame(value)
@@ -45,9 +35,10 @@ return function(Sunshine, entity)
             end
         })
         local previousCFrame
-        local startTick = entity.core.tick
-        local changed = false
         Sunshine:update(function()
+            if modelInstance and modelInstance.Parent then
+                lastCFrame = modelInstance:GetPrimaryPartCFrame()
+            end
             if model.model and lastModel ~= model.model then
                 if not model.model.PrimaryPart then
                     error(model.model:GetFullName())
@@ -58,30 +49,11 @@ return function(Sunshine, entity)
                 modelInstance = model.model:Clone()
                 Sunshine:addInstance(modelInstance, entity)
                 modelInstance.Name = entity.core.name
-                modelInstance:SetPrimaryPartCFrame(transform.cFrame)
-                for _, descendant in pairs(modelInstance:GetDescendants()) do
-                    Sunshine:addConnection(descendant.Changed, function()
-                        changed = true
-                    end, entity)
-                end
+                modelInstance:SetPrimaryPartCFrame(lastCFrame)
                 modelInstance.Parent = Sunshine.workspace
                 -- originalSize = m odelInstance.PrimaryPart.Size
             end
             lastModel = model.model
-            if entity.core.tick - startTick > 3 and changed then
-                changed = false
-                startTick = entity.core.tick
-                local modelInstanceClone = modelInstance:Clone()
-                modelInstanceClone.Name = name
-                modelInstanceClone.Parent = parent
-                model.model:Destroy()
-                changeManager.change.entity = entity
-                changeManager.change.componentName = "model"
-                changeManager.change.propertyName = "model"
-                changeManager.change.propertyValue = modelInstanceClone
-                changeManager.change.alreadyChangedOnEntity = true
-                lastModel = model.model
-            end
             if not changeManager then
                 for _, otherEntity in pairs(Sunshine.scenes[1].entities) do
                     if otherEntity.tag and otherEntity.tag.tag == "changeManager" then

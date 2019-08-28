@@ -20,6 +20,11 @@ return function(Sunshine, time, info, start, goal)
         elseif type == "Vector3" then
             return VECTOR3_NEW(Sunshine:tween(time, info, start.X, goal.X), Sunshine:tween(time, info, start.Y, goal.Y),
             Sunshine:tween(time, info, start.Z, goal.Z))
+        elseif type == "UDim2" then
+            return UDim2.new(Sunshine:tween(time, info, start.X.Scale, goal.X.Scale),
+            Sunshine:tween(time, info, start.X.Offset, goal.X.Offset),
+            Sunshine:tween(time, info, start.Y.Scale, goal.Y.Scale),
+            Sunshine:tween(time, info, start.Y.Offset, goal.Y.Offset))
         else
             error("Type " .. type .. " is unsupported for tweening")
         end

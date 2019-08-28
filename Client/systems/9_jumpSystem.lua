@@ -3,7 +3,6 @@
 local state = "jump"
 
 local VECTOR3_NEW = Vector3.new
-local BLANK_VECTOR3 = VECTOR3_NEW()
 
 return function(Sunshine, entity)
     local component = entity[state]
@@ -17,7 +16,8 @@ return function(Sunshine, entity)
     local lastSpace = false
     Sunshine:createStateSystem(entity, state, function()
         -- start check
-        return not character.swimming and character.state == nil and groundedRemember > 0 and spaceRemember > 0
+        return not input.shift and not character.swimming and character.state == nil and groundedRemember > 0 and
+        spaceRemember > 0
     end, function()
         -- start
         groundedRemember = 0

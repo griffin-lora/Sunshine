@@ -10,7 +10,7 @@ return function(Sunshine, entity)
             local pos = transform.cFrame.Position
             local preCalcCFrame = CFRAME_NEW(pos)
             if spinner.speed ~= 0 then
-                local angle = (entity.core.tick % math.pi) * spinner.speed
+                local angle = (entity.core.tick * spinner.speed) % (math.pi * 2)
                 if spinner.axis == "x" then
                     transform.cFrame = preCalcCFrame * CFrame.Angles(angle, 0, 0)
                 elseif spinner.axis == "y" then
