@@ -42,7 +42,9 @@ return function(Sunshine, entity)
         return character.grounded or character.swimming
     end, function()
         -- end
-        animator.action = component.endAnimation
+        if character.state ~= "bonk" then
+            animator.action = component.endAnimation
+        end
     end, function()
         -- general update
         lastE = input.e

@@ -18,7 +18,7 @@ return function(Sunshine, entity)
     local lastActive
     Sunshine:createStateSystem(entity, state, function()
         -- start check
-        return not head.core.active and character.state ~= "groundPound" and character.state ~= "dive" and input.e and
+        return not head.core.active and character.state ~= "groundPound" and character.state ~= "crouch" and character.state ~= "bonk" and character.state ~= "dive" and input.e and
         not lastE
     end, function()
         -- start

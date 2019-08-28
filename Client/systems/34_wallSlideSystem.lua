@@ -15,7 +15,7 @@ return function(Sunshine, entity)
         -- start check
         return character.state ~= "longJump" and character.state ~= "dive"and not character.swimming and
         character.onWall and character.wall ~= lastWall and not character.grounded and
-        VECTOR3_NEW(physics.velocity.X, 0, physics.velocity.Z).Magnitude > 1
+        VECTOR3_NEW(physics.velocity.X, 0, physics.velocity.Z).Magnitude > 1 and character.state ~= "bonk"
     end, function()
         -- start
         lastWall = character.wall

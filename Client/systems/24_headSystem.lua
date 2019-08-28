@@ -48,7 +48,7 @@ return function(Sunshine, entity)
                     end
                 end
             else
-                transform.cFrame = transform.cFrame:Lerp(character.transform.cFrame, step * 10)
+                transform.cFrame = transform.cFrame:Lerp(character.transform.cFrame, step * 15)
                 if (transform.cFrame.Position - character.transform.cFrame.Position).Magnitude < 5 then
                     Sunshine:destroyEntity(entity)
                 end

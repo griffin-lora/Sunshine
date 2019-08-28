@@ -16,7 +16,7 @@ return function(Sunshine, entity)
     local lastShift = false
     Sunshine:createStateSystem(entity, state, function()
         -- start check
-        return character.state ~= "dive" and not character.grounded and input.shift and not lastShift
+        return character.state ~= "dive" and character.state ~= "bonk" and not character.grounded and input.shift and not lastShift
     end, function()
         -- start
         physics.movable = false

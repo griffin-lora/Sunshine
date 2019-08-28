@@ -7,11 +7,13 @@ return function(Sunshine, entity)
     local character = entity.character
     local input = entity.input
     local animator = entity.animator
+    local oldWalkSpeedFactor = 1
     Sunshine:createStateSystem(entity, state, function()
         -- start check
         return not character.swimming and character.state == nil and character.grounded and input.shift
     end, function()
         -- start
+        oldWalkSpeedFactor = character.walkSpeedFactor
         character.walkSpeedFactor = component.walkSpeedFactor
     end, function()
         -- update
@@ -30,7 +32,7 @@ return function(Sunshine, entity)
         return not input.shift or not character.grounded
     end, function()
         -- end
-        character.walkSpeedFactor = 1
+        character.walkSpeedFactor = oldWalkSpeedFactor
         if character.state == state then
             animator.action = nil
         end
