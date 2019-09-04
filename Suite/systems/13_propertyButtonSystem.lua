@@ -51,6 +51,42 @@ return function(Sunshine, entity)
                     end, entity)
                 end
             end
+        elseif propertyButton.type == "Vector3" then
+            ----------------------------------------------------------------------------------
+            for _, propertyDescendant in pairs(entity.frame.frame:GetDescendants()) do
+                if CollectionService:HasTag(propertyDescendant, "componentPropertyName") then
+                    propertyDescendant.Text = Sunshine:camelCaseToTitleCase(propertyButton.propertyName)..":"
+                elseif CollectionService:HasTag(propertyDescendant, "componentPropertyBox") then
+                    --------------------------------------------------------------------------
+                    propertyVectorDefault = propertyButton.default
+                    propertyVector = propertyButton.entity[propertyButton.componentName][propertyButton.propertyName]
+                    propertyDescendant.PlaceholderText = propertyVectorDefault.X..", "..propertyVectorDefault.Y..", "..propertyVectorDefault.Z
+                    if propertyButton.entity[propertyButton.componentName][propertyButton.propertyName] == nil then
+                        propertyDescendant.Text = ""
+                    else
+                        propertyDescendant.Text = propertyVector.X..", "..propertyVector.Y..", "..propertyVector.Z
+                    end
+                    local oldText = propertyDescendant.Text
+                    --------------------------------------------------------------------------
+                    Sunshine:addConnection(propertyDescendant.FocusLost, function()
+                        local vectorData = {}
+                        for number in propertyDescendant.Text:gmatch("[^%,]+") do                  
+                            vectorData[#vectorData + 1] = number 
+                        end
+
+                        if #vectorData == 3 then
+                            local x, y, z = tonumber(vectorData[1]), tonumber(vectorData[2]), tonumber(vectorData[3])
+                            changeManager.change.entity = propertyButton.entity
+                            changeManager.change.componentName = propertyButton.componentName
+                            changeManager.change.propertyName = propertyButton.propertyName
+                            changeManager.change.propertyValue = Vector3.new(x, y, z)
+                            propertyDescendant.Text = x..", "..y..", "..z
+                        else
+                            propertyDescendant.Text = oldText
+                        end
+                    end, entity)
+                end
+            end        
         elseif propertyButton.type == "boolean" then
             bool = propertyButton.entity[propertyButton.componentName][propertyButton.propertyName]
             for _, propertyDescendant in pairs(entity.frame.frame:GetDescendants()) do
