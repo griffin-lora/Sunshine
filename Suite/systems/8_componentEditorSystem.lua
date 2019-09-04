@@ -131,6 +131,9 @@ return function(Sunshine, entity)
                                     end
                                     for focusedName, focusedValue in pairs(componentEditor.components[name]) do
                                         local frameInstance = script.Parent.Parent.frames.componentProperty
+                                        if focusedValue.type == "boolean" then
+                                            frameInstance = script.Parent.Parent.frames.componentBooleanProperty
+                                        end
                                         local propertyButton = Sunshine:createEntity({
                                             core = {
                                                 name = "componentProperty",
