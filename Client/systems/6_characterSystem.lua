@@ -103,7 +103,7 @@ return function(Sunshine, entity)
                     canLoseMagnitude = true
                 end
                 local function calculateVelocity()
-                    local walkSpeed = character.walkSpeed or 6 * character.walkSpeedFactor or 1 * 0.56363762272
+                    local walkSpeed = (character.walkSpeed or 6) * (character.walkSpeedFactor or 1) * 0.56363762272
                     local xVelocity = physics.velocity.X
                     xVelocity = xVelocity + (moveVector.X * walkSpeed)
                     xVelocity = xVelocity * math.pow(1 - damping, step * 10)
